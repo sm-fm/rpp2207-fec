@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV == "production";
 const stylesHandler = "style-loader";
 
 const config = {
-  entry: "./src/index.jsx",
+  entry: "./client/src/Index.jsx",
   output: {
     path: path.resolve(__dirname, "dist"),
   },
