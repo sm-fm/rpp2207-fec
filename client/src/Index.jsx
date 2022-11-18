@@ -12,6 +12,7 @@ class Index extends React.Component {
     return (
       <h1>Hello world</h1>
       // adding comment for test with pull request
+      //adding additional comment for second test with pull request
     )
   }
 }
