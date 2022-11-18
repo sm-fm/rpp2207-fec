@@ -10,7 +10,7 @@ const stylesHandler = "style-loader";
 const config = {
   entry: "./client/src/Index.jsx",
   output: {
-    path: path.resolve(__dirname, "/client/dist"),
+    path: path.resolve(__dirname, "client/dist"),
   },
   devServer: {
     open: true,
