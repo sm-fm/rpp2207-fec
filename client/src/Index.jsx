@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './style.css';
 
 class Index extends React.Component {
   constructor(props) {
