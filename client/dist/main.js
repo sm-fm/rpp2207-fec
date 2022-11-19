@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
   \****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar GITHUB_ACCESS_TOKEN = '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';\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GITHUB_ACCESS_TOKEN);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/auth.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar GITHUB_ACCESS_TOKEN = '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';\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GITHUB_ACCESS_TOKEN);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/auth.js?");
 
 /***/ }),
 
