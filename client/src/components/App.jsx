@@ -14,7 +14,7 @@ import '../style.css';
 import helperFunctions from './helperFunctions.js'
 
 const App = () => {
-  let id = helperFunctions.getIDFromURL();
+  let id = helperFunctions.getIDFromURL(window.location.href);
 
   console.log(id)
   return (

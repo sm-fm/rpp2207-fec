@@ -1,10 +1,10 @@
 let helperFunctions = {
-  getIDFromURL: () => {
-    let localURL = window.location.href.split('/')
+  getIDFromURL: (url) => {
+    let localURL = url.split('/')
     let id = localURL[localURL.length - 1];
 
     return id;
   }
 }
 
-export default helperFunctions;
+module.exports.helperFunctions = helperFunctions;
