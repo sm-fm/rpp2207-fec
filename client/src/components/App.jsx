@@ -11,7 +11,7 @@ import Questions from './Questions/Questions.jsx';
 import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
-import helperFunctions from './helperFunctions.js'
+let helperFunctions = require('./helperFunctions.js').helperFunctions;
 
 const App = () => {
   let id = helperFunctions.getIDFromURL(window.location.href);
