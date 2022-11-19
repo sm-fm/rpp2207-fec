@@ -11,11 +11,12 @@ import Questions from './Questions/Questions.jsx';
 import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
+import helperFunctions from './helperFunctions.js'
 
 const App = () => {
-  let localURL = window.location.href.split('/')
-  let id = localURL[localURL.length - 1];
+  let id = helperFunctions.getIDFromURL();
 
+  console.log(id)
   return (
     <Router>
       <h1>App.jsx</h1>
