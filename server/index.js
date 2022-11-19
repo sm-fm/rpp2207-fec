@@ -15,8 +15,8 @@ const PATH = 3000;
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')))
 
 
-app.get('/', (req, res) => {
-
+app.get('/:query', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '..', 'client', 'dist')})
 })
 
 app.listen(PATH, () => {
