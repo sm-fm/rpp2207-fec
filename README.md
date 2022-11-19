@@ -4,10 +4,10 @@ Overview --
 A modern e-commerce site utilizing Atelier's API.
 
 Table of Contents --
-  - Overview Module: https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Overview.jsx
-  - Questions & Answers Module: https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Questions.jsx
-  - Ratings & Reviews Module: https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Ratings.jsx
-  - Related Items & Comparison Module: https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Related.jsx
+  - [Overview Module](https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Overview.jsx)
+  - [Questions & Answers Module](https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Questions.jsx)
+  - [Ratings & Reviews Module](https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Ratings.jsx)
+  - [Related Items & Comparison Module](https://github.com/The-World-is-Not-Enough/rpp2207-fec/blob/main/client/src/components/Related.jsx)
 
 Description --
 The Overview module will be the top-most module on the Product Detail page.  The functionality contained within this module can be divided into several pieces:
