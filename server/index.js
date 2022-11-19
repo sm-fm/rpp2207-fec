@@ -16,8 +16,6 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'dist')))
 
 
 app.get('/:query', (req, res) => {
-  // console.log(req.params.query);
-  res.sendFile('index.html', {root: path.join(__dirname, '..', 'client', 'dist' )});
 
 })
 
