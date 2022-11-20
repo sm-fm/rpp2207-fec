@@ -11,14 +11,25 @@ const Overview = {
       .then(results => {
         return results.json();
       })
-      .then(results => {
-        console.log(results);
-      })
       .catch(err => {
         console.log(err);
       });
   },
 
+  getProductById: (id) => {
+    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': GITHUB_ACCESS_TOKEN
+      }
+    })
+      .then(result => {
+        return result.json();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 };
 
 export default Overview;

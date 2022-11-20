@@ -3,12 +3,29 @@ import api from '../../API/Overview.js';
 
 const Overview = (props) => {
 
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    api.getAllProducts();
+    if (!props.objID) {
+      api.getAllProducts()
+        .then(results => {
+          setProducts(results[0]);
+        })
+        .catch(err => console.log(err));
+    } else {
+      api.getProductById(props.objID)
+        .then(result => {
+          setProducts(result);
+        })
+        .catch(err => console.log(err));
+    }
   }, [])
 
   return (
-    <h1>Overview.jsx</h1>
+    <div>
+      <p>{products.id}</p>
+      <p>{products.name}</p>
+    </div>
   )
 }
 
