@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../API/Overview.js';
+import ProductInfo from './ProductInfo/ProductInfo.jsx';
+import Images from './ImageViews/Images.jsx';
+import StyleSelector from './StylesSelector/StyleSelector.jsx';
+import Cart from './Cart/Cart.jsx';
 
 const Overview = (props) => {
 
@@ -22,11 +26,14 @@ const Overview = (props) => {
   }, [])
 
   return (
-    <div>
-      <p>{products.id}</p>
-      <p>{products.name}</p>
+    <div id="main-overview">
+      <ProductInfo product={products} />
+      <Images product={products} />
+      <StyleSelector product={products} />
+      <Cart product={products} />
+      <p>{products.description}</p>
     </div>
   )
-}
+};
 
 export default Overview;
