@@ -15,14 +15,18 @@ let helperFunctions = require('./helperFunctions.js').helperFunctions;
 
 const App = () => {
   let id = helperFunctions.getIDFromURL(window.location.href);
+  const [yourOutfit, setYourOutfit] = useState([]);
+  const addToOutfit = (product) => {
+    setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+  }
 
   return (
     <Router>
       <h1>App.jsx</h1>
-      <Overview objID={id}/>
+      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
       <Ratings objID={id}/>
-      <Related objID={id}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
     </Router>
   )
 }
