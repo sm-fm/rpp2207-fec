@@ -1,0 +1,59 @@
+
+.related-container {
+	height: 800px;
+	width: 1000px;
+	border: 1px solid red;
+}
+
+.related-products-container, .your-outfit-container {
+	height: 360px;
+	border: 1px solid black;
+	margin: 20px;
+	display: flex;
+	flex-direction: row;
+}
+
+.product-card-container {
+	display: flex;
+	flex-direction: column;
+	height: 340px;
+	width: 220px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: 2px solid black;
+	box-sizing: border-box;
+}
+
+.product-card-image {
+	background: lightgray;
+	height: 70%;
+	width: 100%;
+}
+
+.product-card-description {
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	justify-content: space-between;
+	height: 30%;
+}
+
+.product-card-category {
+	text-transform: uppercase;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+.product-card-name {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.product-card-price {
+	font-size: 12px;
+}
+
+.product-card-stars {
+	margin-bottom: 5px;
+}
+

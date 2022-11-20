@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../../API/Related.js';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
+import './related.css'
 
 const Related = (props) => {
   const [relatedProducts, setRelatedProducts] = useState();
