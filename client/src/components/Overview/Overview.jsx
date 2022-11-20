@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../API/Overview.js';
 
-const Overview = () => {
+const Overview = (props) => {
 
   useEffect(() => {
     api.getAllProducts();
