@@ -2,7 +2,7 @@ import GITHUB_ACCESS_TOKEN from '../auth.js';
 
 const Overview = {
   getAllProducts: () => {
-    fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {
+    return fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {
       method: 'GET',
       headers: {
         'Authorization': GITHUB_ACCESS_TOKEN
