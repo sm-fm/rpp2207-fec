@@ -49,13 +49,13 @@ const App = () => {
 
   }
 
-  const halfStar = (id, key) => {
+  const halfStar = (id, key, amount) => {
     return (
       <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
         <defs>
           <linearGradient id="grad-half">
-          <stop offset="50%" stopColor="black"/>
-            <stop offset="50%" stopColor="white"/>
+          <stop offset={`25%`} stopColor="black" stopOpacity='1'/>
+          <stop offset={`75%`} stopColor="white" stopOpacity='1'/>
           </linearGradient>
         </defs>
         <path fill="url(#grad-half)" stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
@@ -69,8 +69,8 @@ const App = () => {
     const fullStars = Math.floor(rating);
     for (let i = 0; i < 5; i++) {
       if (i === fullStars) {
-        if (rating.toString().includes('.5')) {
-          stars.push(halfStar(i, key));
+        if (rating % 1 > 0.0001) {
+          stars.push(halfStar(i, key, (rating % 1) * 100));
         } else {
           stars.push(fullStar(i, 'e', key));
         }
