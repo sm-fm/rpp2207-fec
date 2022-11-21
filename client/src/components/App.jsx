@@ -3,22 +3,30 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useSearchParams
 } from "react-router-dom";
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
 import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
+let helperFunctions = require('./helperFunctions.js').helperFunctions;
 
 const App = () => {
+  let id = helperFunctions.getIDFromURL(window.location.href);
+  const [yourOutfit, setYourOutfit] = useState([]);
+  const addToOutfit = (product) => {
+    setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+  }
+
   return (
     <Router>
       <h1>App.jsx</h1>
-      <Overview />
-      <Questions />
-      <Ratings />
-      <Related />
+      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
+      <Questions objID={id}/>
+      <Ratings objID={id}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
     </Router>
   )
 }

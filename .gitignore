@@ -2,5 +2,4 @@ node_modules/
 node_modules
 .env
 auth.js
-
-auth.js
+client/dist/main.js
