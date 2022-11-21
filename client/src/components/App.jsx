@@ -20,23 +20,38 @@ const App = () => {
     setYourOutfit(yourOutfit => ([...yourOutfit, product]));
   }
 
-  const fullStar = (id) => {
-    return (
-      <svg key={`star-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
-        <defs>
-          <linearGradient id="grad-full">
-            <stop offset="100%" stopColor="black"/>
-          </linearGradient>
-        </defs>
-        <path fill="url(#grad-full)" stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
-      l11.547-1.2L16.026,0.6L20.388,10.918z"/>
-      </svg>
-    )
+  const fullStar = (id, st, key) => {
+    if (st === 'f') {
+      return (
+        <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
+          <defs>
+            <linearGradient id="grad-full">
+              <stop offset="100%" stopColor="black"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#grad-full)" stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+        l11.547-1.2L16.026,0.6L20.388,10.918z"/>
+        </svg>
+      )
+    } else if (st === 'e') {
+      return (
+        <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
+          <defs>
+            <linearGradient id="grad-full">
+              <stop offset="100%" stopColor="white"/>
+            </linearGradient>
+          </defs>
+          <path fill="white" stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+        l11.547-1.2L16.026,0.6L20.388,10.918z"/>
+        </svg>
+      )
+    }
+
   }
 
-  const halfStar = (id) => {
+  const halfStar = (id, key) => {
     return (
-      <svg key={`star-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
+      <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
         <defs>
           <linearGradient id="grad-half">
           <stop offset="50%" stopColor="black"/>
@@ -49,17 +64,26 @@ const App = () => {
     )
   }
 
-  const generateStars = (rating) => {
+  const generateStars = (rating, key) => {
     const stars = [];
     const fullStars = Math.floor(rating);
-    var i = 0;
-    for (i; i < fullStars; i++) {
-      stars.push(fullStar(i));
+    for (let i = 0; i < 5; i++) {
+      if (i === fullStars) {
+        if (rating.toString().includes('.5')) {
+          stars.push(halfStar(i, key));
+        } else {
+          stars.push(fullStar(i, 'e', key));
+        }
+        continue;
+      }
+
+      if (i < fullStars) {
+        stars.push(fullStar(i, 'f', key));
+      } else if ( i > fullStars - 1) {
+        stars.push(fullStar(i, 'e', key))
+      }
     }
-    if (rating.toString().includes('.5')) {
-      i ++;
-      stars.push(halfStar(i));
-    }
+
     return stars;
   }
 
