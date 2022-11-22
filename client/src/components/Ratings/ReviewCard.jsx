@@ -4,10 +4,25 @@ import parseISO from 'date-fns/parseISO';
 import './rating.css';
 
 let ReviewCard = (props) => {
-  console.log(props.data.date)
+  // May want to refactor this to happen before the data is returned to this component
+  //   could have the date object inside data already have this work done.
+  // Could even do this with the body - could send an already shortened portion of the body
   var date = new Date(props.data.date);
-  console.log(date);
   date = format(date, 'MMM d, y');
+
+  const [displayFullBody, setDisplay] = useState(false);
+  let shortBody;
+  if (props.data.body.length > 250) {
+    shortBody = props.data.body.slice(0, 250) + '...';
+  } else {
+    shortBody = props.data.body;
+  }
+  let renderBody = null;
+  if (displayFullBody) {
+    renderBody = props.data.body;
+  } else {
+    renderBody = shortBody;
+  }
   return(
     <div className = 'userReview'>
       <div className='flex-box'>
@@ -17,7 +32,10 @@ let ReviewCard = (props) => {
         <h6 id='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
       </div>
       <h3 className='summary'>{props.data.summary}</h3>
-      <p className='reviewBody'>{props.data.body}</p>
+      <p className='reviewBody'>{renderBody}</p>
+      {!displayFullBody  &&
+        <p onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
+        {/* Currently there is no function to display LESS - I think we should implement this too */}
       {props.data.recommend &&
         <p>✓ I recommend this product</p>}
       {props.data.response !== '' &&

@@ -9,7 +9,7 @@ let example = {
       "summary": "I'm enjoying wearing these shades",
       "recommend": false,
       "response": null,
-      "body": "Comfortable and practical.",
+      "body": "Comfortable and practical. Ray-Ban is an American-Italian brand of luxury sunglasses and eyeglasses created in 1936 by Bausch & Lomb. The brand is known for its Wayfarer and Aviator lines of sunglasses. In 1999, Bausch & Lomb sold the brand to Italian eyewear conglomerate Luxottica Group for a reported $640 million",
       "date": "2019-04-14T00:00:00.000Z",
       "reviewer_name": "shortandsweeet",
       "helpfulness": 5,
