@@ -1,4 +1,5 @@
 import GITHUB_ACCESS_TOKEN from '../auth.js';
+const fetch = require('node-fetch');
 
 const Overview = {
   getAllProducts: () => {
