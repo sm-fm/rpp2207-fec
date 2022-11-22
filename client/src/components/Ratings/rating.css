@@ -10,6 +10,11 @@
   display: inline;
 }
 
+.summary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .flex-box {
   /* border: 1px solid black; */
   display: flex;
