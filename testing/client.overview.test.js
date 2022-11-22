@@ -17,8 +17,7 @@ test('getAllProducts returns correct data from API', async () => {
   expect(actual[0]).toStrictEqual(expected);
 });
 
-test('getProductById returns correct data for specific product id', async () => {
-  var actual = await Overview.getProductById(71698);
+test('getProductById returns correct data for specific product id', () => {
   var expected = {
     "id": 71698,
     "campus": "hr-rpp",
@@ -44,5 +43,11 @@ test('getProductById returns correct data for specific product id', async () => 
         }
     ]
 };
-  expect(actual).toStrictEqual(expected);
-})
+Overview.getProductById(71698)
+  .then(result => {
+    expect(result).toStrictEqual(expected);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+});
