@@ -7,31 +7,44 @@ import Cart from './Cart/Cart.jsx';
 
 const Overview = (props) => {
 
-  const [products, setProducts] = useState([]);
+  let [product, setProduct] = useState({});
+  let [styles, setStyles] = useState([]);
+  let [chosenStyle, setChosenStyle] = useState({});
 
   useEffect(() => {
     if (!props.objID) {
       api.getAllProducts()
         .then(results => {
-          setProducts(results[0]);
+          setProduct(results[0]);
+          return api.getStylesById(results[0].id)
+        })
+        .then(styles => {
+          setStyles(styles.results);
+          setChosenStyle(styles.results[0]);
         })
         .catch(err => console.log(err));
     } else {
       api.getProductById(props.objID)
         .then(result => {
-          setProducts(result);
+          setProduct(result);
+          return api.getStylesById(results[0].id)
+        })
+        .then(styles => {
+          console.log(styles);
+          setStyles(styles.results);
+          setChosenStyle(styles.results[0]);
         })
         .catch(err => console.log(err));
-    }
-  }, [])
+      }
+  }, []);
 
   return (
     <div id="main-overview">
-      <ProductInfo product={products} />
-      <Images product={products} />
-      <StyleSelector product={products} />
-      <Cart product={products} />
-      <p>{products.description}</p>
+      <ProductInfo product={product} />
+      <StyleSelector product={product} setChosenStyle={setChosenStyle} setStyles={setStyles} styles={styles} chosenStyle={chosenStyle} />
+      <Images product={product} styles={styles} chosenStyle={chosenStyle} setChosenStyle={setChosenStyle} />
+      <Cart product={product} />
+      <p>{product.description}</p>
     </div>
   )
 };
