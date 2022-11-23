@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 const SpecificImage = (props) => {
-  console.log(props.photo);
+  return (
+    <img src={props.photo.thumbnail_url} onClick={() => { props.setMainImg(props.photo.thumbnail_url); }} />
+  )
 }
 
 export default SpecificImage;

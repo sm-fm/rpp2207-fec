@@ -4,12 +4,14 @@ import SpecificImage from './SpecificImage.jsx';
 
 const Images = (props) => {
 
+  const [mainImg, setMainImg] = useState(props.chosenStyle.photos[0].thumbnail_url);
+
   return (
     <div>
-      <img src={props.chosenStyle.photos[0].thumbnail_url} />
+      <img src={mainImg} />
       <div id="specific-photo">
         {props.chosenStyle.photos.map(photo => {
-          return <SpecificImage photo={photo} key={uuidv4()} />
+          return <SpecificImage photo={photo} setMainImg={setMainImg} key={uuidv4()} />
         })}
       </div>
     </div>
