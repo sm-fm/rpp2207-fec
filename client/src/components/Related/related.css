@@ -1,0 +1,71 @@
+
+.related-container {
+	width: fit-content;
+	border: 1px solid red;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.related-products-container, .your-outfit-container {
+	height: 380px;
+	width: 1020px;
+	border: 1px solid black;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+}
+
+.product-card-container {
+	display: flex;
+	flex-direction: column;
+	height: 340px;
+	width: 230px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.product-card-image {
+	background: gray;
+	height: 70%;
+	width: 100%;
+	object-fit: contain;
+}
+
+.product-card-description {
+	display: flex;
+	flex-direction: column;
+	margin: 5px;
+	justify-content: space-between;
+	height: 30%;
+}
+
+.product-card-category {
+	text-transform: uppercase;
+	font-size: 12px;
+}
+
+.product-card-name {
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.product-card-price {
+	font-size: 12px;
+}
+
+.product-card-stars {
+}
+
+.action-btn-star {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+}
+
