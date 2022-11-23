@@ -16,7 +16,6 @@ let helperFunctions = require('./helperFunctions.js').helperFunctions;
 const App = () => {
   let id = helperFunctions.getIDFromURL(window.location.href);
 
-  console.log(id)
   return (
     <Router>
       <h1>App.jsx</h1>
