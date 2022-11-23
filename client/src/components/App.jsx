@@ -49,16 +49,16 @@ const App = () => {
 
   }
 
-  const halfStar = (id, key) => {
+  const halfStar = (id, key, amount) => {
     return (
       <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
         <defs>
-          <linearGradient id="grad-half">
-          <stop offset="50%" stopColor="black"/>
-            <stop offset="50%" stopColor="white"/>
+          <linearGradient id={`grad-${key}-${id}`}>
+          <stop offset={`${amount}%`} stopColor="black" stopOpacity='1'/>
+          <stop offset={`${amount}%`} stopColor="white" stopOpacity='1'/>
           </linearGradient>
         </defs>
-        <path fill="url(#grad-half)" stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+        <path fill={`url(#grad-${key}-${id})`} stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
       l11.547-1.2L16.026,0.6L20.388,10.918z"/>
       </svg>
     )
@@ -69,8 +69,13 @@ const App = () => {
     const fullStars = Math.floor(rating);
     for (let i = 0; i < 5; i++) {
       if (i === fullStars) {
-        if (rating.toString().includes('.5')) {
-          stars.push(halfStar(i, key));
+        let values = [0, 0.25, 0.5, 0.75, 1];
+        let roundedStarVal = values.map((val) => {
+          return Math.abs(val - (rating % 1));
+        })
+        if (rating % 1 > 0.0001) {
+          let partialStar = values[roundedStarVal.indexOf(Math.min(...roundedStarVal))] * 100;
+          stars.push(halfStar(i, key, partialStar));
         } else {
           stars.push(fullStar(i, 'e', key));
         }

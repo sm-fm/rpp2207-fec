@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-const Related = () => {
+const Related = (props  ) => {
   return (
-    <h1>Related.jsx</h1>
+    <div>
+      <h1>Related.jsx</h1>
+      <p>{props.generateStars(0.2, 'related')}</p>
+    </div>
   )
 }
 
