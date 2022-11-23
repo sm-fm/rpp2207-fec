@@ -6,9 +6,7 @@ const Images = (props) => {
 
   return (
     <div>
-      {props.chosenStyle.photos
-        ? <img src={props.chosenStyle.photos[0].thumbnail_url} />
-        : null}
+      <img src={props.chosenStyle.photos[0].thumbnail_url} />
       <div id="specific-photo">
         {props.chosenStyle.photos.map(photo => {
           return <SpecificImage photo={photo} key={uuidv4()} />

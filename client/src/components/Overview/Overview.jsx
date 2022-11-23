@@ -41,11 +41,15 @@ const Overview = (props) => {
 
   return (
     <div id="main-overview">
-      <ProductInfo id="productInfo" product={product} />
-      <StyleSelector id="styles" product={product} setChosenStyle={setChosenStyle} setStyles={setStyles} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
-      <Images id="images-comp" product={product} styles={styles} chosenStyle={chosenStyle} setChosenStyle={setChosenStyle} />
-      <Cart id="cart" product={product} />
-      <p>{product.description}</p>
+      {Object.keys(chosenStyle).length !== 0
+        ? <div>
+            <ProductInfo id="productInfo" product={product} />
+            <StyleSelector id="styles" product={product} setChosenStyle={setChosenStyle} setStyles={setStyles} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
+            <Images id="images-comp" product={product} styles={styles} chosenStyle={chosenStyle} setChosenStyle={setChosenStyle} />
+            <Cart id="cart" product={product} />
+            <p>{product.description}</p>
+          </div>
+        : null}
     </div>
   )
 };
