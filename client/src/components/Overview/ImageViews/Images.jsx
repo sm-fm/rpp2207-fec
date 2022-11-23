@@ -11,7 +11,7 @@ const Images = (props) => {
       </div>
       <div id="style-photos">
         {props.chosenStyle.photos.map(photo => {
-          return <SpecificImage photo={photo} chosenStyle={props.chosenStyle} setChosenStyle={props.setChosenStyle} setMainImg={props.setMainImg} key={uuidv4()} />
+          return <SpecificImage photo={photo} setMainImg={props.setMainImg} key={uuidv4()} />
         })}
       </div>
     </div>
