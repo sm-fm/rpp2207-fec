@@ -28,10 +28,11 @@
 	width: 230px;
 	border: 1px solid black;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .product-card-image {
-	background: black;
+	background: gray;
 	height: 70%;
 	width: 100%;
 	object-fit: contain;
@@ -60,5 +61,11 @@
 }
 
 .product-card-stars {
+}
+
+.action-btn-star {
+	position: absolute;
+	right: 3px;
+	top: 3px;
 }
 

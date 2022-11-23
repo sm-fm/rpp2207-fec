@@ -65,7 +65,6 @@ const App = () => {
   }
 
   const generateStars = (rating, key) => {
-    console.log(rating, key)
     const stars = [];
     const fullStars = Math.floor(rating);
     for (let i = 0; i < 5; i++) {
@@ -76,7 +75,6 @@ const App = () => {
         })
         if (rating % 1 > 0.0001) {
           let partialStar = values[roundedStarVal.indexOf(Math.min(...roundedStarVal))] * 100;
-          console.log('partialStar: ', partialStar)
           stars.push(halfStar(i, key, partialStar));
         } else {
           stars.push(fullStar(i, 'e', key));
@@ -90,7 +88,6 @@ const App = () => {
         stars.push(fullStar(i, 'e', key))
       }
     }
-    console.log(stars)
     return stars;
   }
 

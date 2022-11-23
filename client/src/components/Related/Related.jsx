@@ -10,7 +10,6 @@ const Related = (props) => {
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
     .then((products) => {
-      console.log('product from useEffect: ', products)
       setRelatedProducts(products);
     })
   }, [])
