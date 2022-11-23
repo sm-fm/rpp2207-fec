@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 const SpecificImage = (props) => {
   return (
-    <img src={props.photo.thumbnail_url} onClick={() => { props.setMainImg(props.photo.thumbnail_url); }} />
+    <div>
+      <img id="thumbnail-img" src={props.photo.thumbnail_url} onClick={() => { props.setMainImg(props.photo.thumbnail_url);/*props.setChosenStyle(props.chosenStyle); */ }} />
+    </div>
   )
 }
 
 export default SpecificImage;
+
+// props.setChosenStyle(props.chosenStyle);
+// props.setMainImg(props.photo.thumbnail_url);
