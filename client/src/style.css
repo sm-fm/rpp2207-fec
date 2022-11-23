@@ -56,3 +56,41 @@ table {
 CSS-RESET: end
 =====================
 */
+
+#specific-style {
+	border-radius: 50%;
+	max-width: 100%;
+	max-height: 100%;
+	flex-direction: right;
+	position: relative;
+}
+
+#style-info {
+	text-align: right;
+	padding-right: 900px;
+}
+
+#style-icons {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	align-items: center;
+	gap: 20px;
+	flex-wrap: wrap;
+	max-width: 400px;
+}
+
+#checkmark {
+	height: 25px;
+	width: 25px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.icon {
+	object-fit: cover;
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+}

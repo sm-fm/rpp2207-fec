@@ -4,17 +4,21 @@ import SpecificStyle from './SpecificStyle.jsx';
 import api from '../../../API/Overview.js';
 
 const StyleSelector = (props) => {
-  const [allStyles, setAllStyles] = useState([]);
-  const [specificStyle, setSpecificStyle] = useState([]);
+
+  const [clicked, toggleClick] = useState(false);
   return (
-    <div id="style-selector">
-      {props.chosenStyle.sale_price
-        ? <h3>{props.chosenStyle.sale_price}</h3>
-        : <h3>{props.chosenStyle.original_price}</h3>}
-      <h3>STYLE > {props.chosenStyle.name}</h3>
+    <div>
+      <div id="style-info">
+        {props.chosenStyle.sale_price
+          ? <h3>{props.chosenStyle.sale_price}</h3>
+          : <h3>{props.chosenStyle.original_price}</h3>}
+        <h3>STYLE > {props.chosenStyle.name}</h3>
+      </div>
+      <div id="style-icons">
       {props.styles.map(style => {
-        return <SpecificStyle style={style} key={uuidv4()} />
+        return <SpecificStyle style={style} allStyles={props.styles} setChosenStyle={props.setChosenStyle} key={uuidv4()} />
       })}
+      </div>
     </div>
   )
 };
