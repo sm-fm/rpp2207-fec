@@ -5,7 +5,6 @@ import api from '../../../API/Overview.js';
 
 const StyleSelector = (props) => {
 
-  const [clicked, toggleClick] = useState(false);
   return (
     <div>
       <div id="style-info">
@@ -16,7 +15,7 @@ const StyleSelector = (props) => {
       </div>
       <div id="style-icons">
       {props.styles.map(style => {
-        return <SpecificStyle style={style} allStyles={props.styles} setChosenStyle={props.setChosenStyle} key={uuidv4()} />
+        return <SpecificStyle style={style} allStyles={props.styles} setChosenStyle={props.setChosenStyle} key={uuidv4()} styleClicked={props.styleClicked} toggleClick={props.toggleClick} />
       })}
       </div>
     </div>
