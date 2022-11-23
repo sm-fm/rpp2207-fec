@@ -4,7 +4,7 @@ import api from '../../API/Overview.js';
 const Overview = () => {
 
   useEffect(() => {
-    api.getAllProducts();
+    // api.getAllProducts();
   }, [])
 
   return (
