@@ -9,6 +9,3 @@ const SpecificImage = (props) => {
 }
 
 export default SpecificImage;
-
-// props.setChosenStyle(props.chosenStyle);
-// props.setMainImg(props.photo.thumbnail_url);
