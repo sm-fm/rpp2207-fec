@@ -1,16 +1,24 @@
 
 .related-container {
-	height: 800px;
-	width: 1000px;
+	width: fit-content;
 	border: 1px solid red;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto;
 }
 
 .related-products-container, .your-outfit-container {
-	height: 360px;
+	height: 380px;
+	width: 1020px;
 	border: 1px solid black;
-	margin: 20px;
+	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
 }
 
 .product-card-container {
@@ -18,8 +26,6 @@
 	flex-direction: column;
 	height: 340px;
 	width: 230px;
-	margin-top: 10px;
-	margin-left: 10px;
 	border: 1px solid black;
 	box-sizing: border-box;
 }
@@ -28,6 +34,7 @@
 	background: lightgray;
 	height: 70%;
 	width: 100%;
+	object-fit: contain;
 }
 
 .product-card-description {
