@@ -31,7 +31,7 @@
 }
 
 .product-card-image {
-	background: lightgray;
+	background: black;
 	height: 70%;
 	width: 100%;
 	object-fit: contain;

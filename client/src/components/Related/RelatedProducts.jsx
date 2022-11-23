@@ -8,7 +8,7 @@ const RelatedProducts = (props) => {
 
 
       props.relatedProducts.map((product) => {
-        return <ProductCard key={product.id} product={product}/>
+        return <ProductCard key={product.id} product={product} generateStars={props.generateStars}/>
       })
       : null
       }

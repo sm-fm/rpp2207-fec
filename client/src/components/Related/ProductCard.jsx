@@ -1,6 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import ratingsAPI from '../../API/Ratings.js';
 
 const RelatedProduct = (props) => {
+  const [averageRating, setAverageRating] = useState(0);
+
+  const getAverageRating = (ratings) => {
+    var sum = 0;
+    var count = 0;
+    Object.keys(ratings).forEach(function(rating) {
+      sum += rating * parseInt(ratings[rating]);
+      count += parseInt(ratings[rating]);
+    })
+    return sum / count;
+  }
+  useEffect(() => {
+    ratingsAPI.getReviewMetadata(props.product.id)
+    .then((metadata) => {
+      setAverageRating(getAverageRating(metadata.ratings));
+    })
+  }, [])
+
   return (
     <div className='product-card-container'>
       <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url}>
@@ -10,7 +29,7 @@ const RelatedProduct = (props) => {
         <div className='product-card-category'>{props.product.category}</div>
         <div className='product-card-name'>{props.product.name}</div>
         <div className='product-card-price'>${props.product.default_price}</div>
-        <div className='product-card-stars'>&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div className='product-card-stars'>{props.generateStars(averageRating, 'related')}</div>
       </div>
     </div>
   )
