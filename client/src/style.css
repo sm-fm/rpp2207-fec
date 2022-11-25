@@ -133,3 +133,7 @@ CSS-RESET: end
 #highlight-img {
 	border-bottom: 5px solid black;
 }
+
+#right-arrow {
+	flex-direction: right;
+}

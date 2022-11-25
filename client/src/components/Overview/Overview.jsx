@@ -49,7 +49,7 @@ const Overview = (props) => {
         ? <div>
             <ProductInfo id="productInfo" product={product} />
             <StyleSelector id="styles" setChosenStyle={setChosenStyle} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
-            <Images id="images-comp" chosenStyle={chosenStyle} />
+            <Images id="images-comp" chosenStyle={chosenStyle} photos={photos} />
             <Cart id="cart" product={product} />
             <p>{product.description}</p>
           </div>
