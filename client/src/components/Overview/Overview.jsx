@@ -11,7 +11,7 @@ const Overview = (props) => {
   let [styles, setStyles] = useState([]);
   let [chosenStyle, setChosenStyle] = useState({});
   let [styleClicked, toggleClick] = useState('');
-  let [mainImg, setMainImg] = useState('')
+  let [photos, setPhotos] = useState([]);
 
   useEffect(() => {
     if (!props.objID) {
@@ -21,9 +21,10 @@ const Overview = (props) => {
           return api.getStylesById(results[0].id)
         })
         .then(styles => {
+          console.log(styles);
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
-          setMainImg(styles.results[0].photos[0].thumbnail_url);
+          setPhotos(styles.results[0].photos);
         })
         .catch(err => console.log(err));
     } else {
@@ -36,7 +37,7 @@ const Overview = (props) => {
           console.log(styles);
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
-          setMainImg(styles.results[0].photos[0].thumbnail_url);
+          setPhotos(styles.results[0].photos);
         })
         .catch(err => console.log(err));
       }
@@ -47,8 +48,8 @@ const Overview = (props) => {
       {Object.keys(chosenStyle).length !== 0
         ? <div>
             <ProductInfo id="productInfo" product={product} />
-            <StyleSelector id="styles" setChosenStyle={setChosenStyle} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} setMainImg={setMainImg}/>
-            <Images id="images-comp" chosenStyle={chosenStyle} mainImg={mainImg} setMainImg={setMainImg} />
+            <StyleSelector id="styles" setChosenStyle={setChosenStyle} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
+            <Images id="images-comp" chosenStyle={chosenStyle} />
             <Cart id="cart" product={product} />
             <p>{product.description}</p>
           </div>

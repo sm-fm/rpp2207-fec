@@ -15,7 +15,7 @@ const StyleSelector = (props) => {
       </div>
       <div id="style-icons">
       {props.styles.map(style => {
-        return <SpecificStyle style={style} setChosenStyle={props.setChosenStyle} key={uuidv4()} styleClicked={props.styleClicked} toggleClick={props.toggleClick} setMainImg={props.setMainImg} />
+        return <SpecificStyle style={style} setChosenStyle={props.setChosenStyle} key={uuidv4()} styleClicked={props.styleClicked} toggleClick={props.toggleClick} />
       })}
       </div>
     </div>
