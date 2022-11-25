@@ -13,7 +13,7 @@ const Images = (props) => {
       </div>
       <div id="style-photos">
         {props.chosenStyle.photos.map((photo, index) => {
-          return <SpecificImage photo={photo} key={uuidv4()} setIndexOfMainImg={setIndexOfMainImg} index={index} />
+          return <SpecificImage photo={photo} key={uuidv4()} setIndexOfMainImg={setIndexOfMainImg} index={index} indexOfMainImg={indexOfMainImg} />
         })}
       </div>
     </div>

@@ -129,3 +129,7 @@ CSS-RESET: end
 	border: 1px solid blue;
 	position: absolute;
 }
+
+#highlight-img {
+	border-bottom: 5px solid black;
+}
