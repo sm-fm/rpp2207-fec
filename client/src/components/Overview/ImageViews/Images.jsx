@@ -30,7 +30,7 @@ const Images = (props) => {
           ? null
           : <FontAwesomeIcon id="right-arrow" icon={faAngleRight} onClick={() => handleRightClick()} />
           }
-        <img className="specific-img" src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url} />
+        <img className="specific-img" src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url} onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
       </div>
       <div id="style-photos">
         <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />

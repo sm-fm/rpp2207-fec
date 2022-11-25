@@ -109,6 +109,9 @@ CSS-RESET: end
 	height: 100%;
 	object-fit: cover;
 	object-position: 50% 50%;
+	cursor: -moz-zoom-in;
+	cursor: -webkit-zoom-in;
+	cursor: zoom-in;
 }
 
 #thumbnail-img {
@@ -136,4 +139,9 @@ CSS-RESET: end
 
 #right-arrow {
 	flex-direction: right;
+}
+
+#expanded-img {
+	width: 100vw;
+	height: 100vh;
 }

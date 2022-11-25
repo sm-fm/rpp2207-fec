@@ -4,6 +4,7 @@ import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import Images from './ImageViews/Images.jsx';
 import StyleSelector from './StylesSelector/StyleSelector.jsx';
 import Cart from './Cart/Cart.jsx';
+import ExpandedView from './ImageViews/ExpandedView.jsx';
 
 const Overview = (props) => {
 
@@ -12,6 +13,8 @@ const Overview = (props) => {
   let [chosenStyle, setChosenStyle] = useState({});
   let [styleClicked, toggleClick] = useState('');
   let [photos, setPhotos] = useState([]);
+  let [expandedView, setExpandedView] = useState(false);
+  let [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
 
   useEffect(() => {
     if (!props.objID) {
@@ -30,8 +33,9 @@ const Overview = (props) => {
     } else {
       api.getProductById(props.objID)
         .then(result => {
+          console.log(result);
           setProduct(result);
-          return api.getStylesById(results[0].id)
+          return api.getStylesById(result.id)
         })
         .then(styles => {
           console.log(styles);
@@ -43,19 +47,27 @@ const Overview = (props) => {
       }
   }, []);
 
-  return (
+  if (!expandedView) {
+    return (
     <div id="main-overview">
       {Object.keys(chosenStyle).length !== 0
         ? <div>
             <ProductInfo id="productInfo" product={product} />
             <StyleSelector id="styles" setChosenStyle={setChosenStyle} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
-            <Images id="images-comp" chosenStyle={chosenStyle} photos={photos} />
+            <Images id="images-comp" chosenStyle={chosenStyle} photos={photos} setExpandedView={setExpandedView} setIndexOfExpandedImg={setIndexOfExpandedImg} />
             <Cart id="cart" product={product} />
             <p>{product.description}</p>
           </div>
         : null}
     </div>
-  )
+    )
+  } else {
+    return (
+    <div id="expanded-view">
+      <ExpandedView chosenStyle={chosenStyle} indexOfExpandedImg={indexOfExpandedImg} />
+    </div>
+    );
+  }
 };
 
 export default Overview;
