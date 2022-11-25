@@ -161,3 +161,15 @@ CSS-RESET: end
 #expanded-view {
 	position: relative;
 }
+
+#circle-expanded-view {
+	position: absolute;
+  bottom: 2%;
+	left: 50%;
+}
+
+#circle {
+	height: 5px;
+	color: white;
+	padding: 5px;
+}
