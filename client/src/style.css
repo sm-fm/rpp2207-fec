@@ -138,10 +138,26 @@ CSS-RESET: end
 }
 
 #right-arrow {
-	flex-direction: right;
+	right: 0;
+	top: 50%;
+	width: 10%;
+	height: 35px;
+	position: absolute;
+}
+
+#left-arrow {
+	left: 0;
+	top: 50%;
+	width: 10%;
+	height: 35px;
+	position: absolute;
 }
 
 #expanded-img {
 	width: 100vw;
 	height: 100vh;
+}
+
+#expanded-view {
+	position: relative;
 }
