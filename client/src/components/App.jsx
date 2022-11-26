@@ -16,8 +16,16 @@ let helperFunctions = require('./helperFunctions.js').helperFunctions;
 const App = () => {
   let id = helperFunctions.getIDFromURL(window.location.href);
   const [yourOutfit, setYourOutfit] = useState([]);
+
   const addToOutfit = (product) => {
-    setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+    if (!(yourOutfit.filter((item) => item.id === product.id).length > 0))
+    {
+      setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+    }
+  }
+  const removeFromOutfit = (product) => {
+    const id = product.id;
+    setYourOutfit(yourOutfit.filter(outfit => outfit.id !== id));
   }
 
   const fullStar = (id, st, key) => {
@@ -53,20 +61,12 @@ const App = () => {
     return (
       <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31">
         <defs>
-<<<<<<< HEAD
-          <linearGradient id={`grad-${key}-${id}`}>
-=======
           <linearGradient id={`grad-${key}-${amount}-${id}`}>
->>>>>>> 56ed82231899fc23ced72b2d56cfed1bf350c94b
           <stop offset={`${amount}%`} stopColor="black" stopOpacity='1'/>
           <stop offset={`${amount}%`} stopColor="white" stopOpacity='1'/>
           </linearGradient>
         </defs>
-<<<<<<< HEAD
-        <path fill={`url(#grad-${key}-${id})`} stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
-=======
         <path fill={`url(#grad-${key}-${amount}-${id})`} stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
->>>>>>> 56ed82231899fc23ced72b2d56cfed1bf350c94b
       l11.547-1.2L16.026,0.6L20.388,10.918z"/>
       </svg>
     )
@@ -96,10 +96,6 @@ const App = () => {
         stars.push(fullStar(i, 'e', key))
       }
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 56ed82231899fc23ced72b2d56cfed1bf350c94b
     return stars;
   }
 
@@ -109,7 +105,7 @@ const App = () => {
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
       <Ratings objID={id}/>
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} generateStars={generateStars}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
     </Router>
   )
 }
