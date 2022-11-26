@@ -16,8 +16,16 @@ let helperFunctions = require('./helperFunctions.js').helperFunctions;
 const App = () => {
   let id = helperFunctions.getIDFromURL(window.location.href);
   const [yourOutfit, setYourOutfit] = useState([]);
+
   const addToOutfit = (product) => {
-    setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+    if (!(yourOutfit.filter((item) => item.id === product.id).length > 0))
+    {
+      setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+    }
+  }
+  const removeFromOutfit = (product) => {
+    const id = product.id;
+    setYourOutfit(yourOutfit.filter(outfit => outfit.id !== id));
   }
 
   const fullStar = (id, st, key) => {
@@ -97,7 +105,7 @@ const App = () => {
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
       <Ratings objID={id}/>
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} generateStars={generateStars}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
     </Router>
   )
 }
