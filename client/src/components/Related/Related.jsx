@@ -1,24 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../API/Related.js';
+import relatedAPI from '../../API/Related.js';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
 import './related.css'
 
 const Related = (props) => {
   const [relatedProducts, setRelatedProducts] = useState();
+  const [isFetching, setIsFetching] = useState(true);
+
+  const handleSetIsFetching = () => {
+    setIsFetching(!isFetching);
+  }
 
   useEffect(() => {
-    api.getRelatedProducts(props.objID)
+    relatedAPI.getRelatedProducts(props.objID)
     .then((products) => {
-      console.log('product from useEffect: ', products)
       setRelatedProducts(products);
     })
   }, [])
 
   return (
       <div className='related-container'>
-        <RelatedProducts relatedProducts={relatedProducts}/>
-        <YourOutfit />
+        <RelatedProducts addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={relatedProducts} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
+        <YourOutfit yourOutfit={props.yourOutfit} removeFromOutfit={props.removeFromOutfit} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
       </div>
   )
 }

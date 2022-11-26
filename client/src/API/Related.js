@@ -2,33 +2,54 @@ import GITHUB_ACCESS_TOKEN from '../auth.js';
 
 const RelatedAPI = {
   getRelatedProducts: (id) => {
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`, {
+    var relatedProducts = [];
+    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/related`, {
       method: 'GET',
       headers: {
         'Authorization': GITHUB_ACCESS_TOKEN
       }
     })
-      .then(result => {
-        return result.json();
+      .then(results => {
+        return results.json();
       })
-      .then(result => {
-        const category = result.category;
-        console.log(category);
-        return fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {
-          method: 'GET',
-          headers: {
-            'Authorization': GITHUB_ACCESS_TOKEN
+      .then(relatedIDs => {
+        return Promise.all(
+          relatedIDs.map(id => {
+            return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`, {
+              method: 'GET',
+              headers: {
+                'Authorization': GITHUB_ACCESS_TOKEN
+              }
+            })
+            .then((result) => {
+              return result.json();
+            })
+          })
+        )
+      })
+      .then((products) => {
+        relatedProducts = products;
+        console.log('relatedProducts: ', relatedProducts)
+        return Promise.all(
+          products.map(product => {
+            return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product.id}/styles`, {
+              method: 'GET',
+              headers: {
+                'Authorization': GITHUB_ACCESS_TOKEN
+              }
+            })
+            .then((result) => {
+              return result.json();
+            })
+          })
+        )
+        .then((styles) => {
+          for (var i = 0; i < styles.length; i++) {
+            relatedProducts[i].styles = styles[i];
           }
+          console.log('relatedProducts with styles: ', relatedProducts)
+          return relatedProducts;
         })
-          .then(results => {
-            return results.json();
-          })
-          .then(results => {
-            return results.filter(result => result.category === category);
-          })
-          .catch(err => {
-            console.log(err);
-          });
       })
       .catch(err => {
         console.log(err);
