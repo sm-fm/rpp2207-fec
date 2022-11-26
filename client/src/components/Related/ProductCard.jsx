@@ -4,6 +4,7 @@ import ratingsAPI from '../../API/Ratings.js';
 const RelatedProduct = (props) => {
   const [averageRating, setAverageRating] = useState(0);
 
+  const stars = props.generateStars(averageRating, 'related');
   const getAverageRating = (ratings) => {
     var sum = 0;
     var count = 0;
@@ -17,10 +18,12 @@ const RelatedProduct = (props) => {
     ratingsAPI.getReviewMetadata(props.product.id)
     .then((metadata) => {
       setAverageRating(getAverageRating(metadata.ratings));
+      props.setIsFetching(false);
     })
   }, [])
 
   return (
+    !props.isFetching ?
     <div className='product-card-container'>
       <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url}>
       </img>
@@ -36,6 +39,7 @@ const RelatedProduct = (props) => {
         <div className='product-card-stars'>{props.generateStars(averageRating, 'related')}</div>
       </div>
     </div>
+    : null
   )
 }
 
