@@ -22,6 +22,7 @@ const RelatedProducts = (props) => {
       })
       : null
       }
+      <div className="arrow right"></div>
     </div>
 
   )

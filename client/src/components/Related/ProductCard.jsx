@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ratingsAPI from '../../API/Ratings.js';
+import { useNavigate } from 'react-router-dom';
 
 const RelatedProduct = (props) => {
   const [averageRating, setAverageRating] = useState(0);
@@ -9,6 +10,12 @@ const RelatedProduct = (props) => {
     return props.yourOutfit.filter((product) => product.id === props.product.id).length > 0
   }
 
+  const navigate = useNavigate();
+
+  const routeChange = () => {
+    const path = props.product.id.toString();
+    navigate(path);
+  }
   const getAverageRating = (ratings) => {
     var sum = 0;
     var count = 0;
@@ -18,6 +25,7 @@ const RelatedProduct = (props) => {
     })
     return sum / count;
   }
+
   useEffect(() => {
     ratingsAPI.getReviewMetadata(props.product.id)
     .then((metadata) => {
@@ -28,7 +36,7 @@ const RelatedProduct = (props) => {
 
   return (
     !props.isFetching ?
-    <div className='product-card-container'>
+    <div className='product-card-container' onClick={() => routeChange()}>
       <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url}>
       </img>
       {props.parentComponent === 'RelatedProducts' ?
