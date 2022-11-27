@@ -1,30 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
 
+
+
 const RelatedProducts = (props) => {
+  const [position, setPosition] = useState(1);
   const componentName = "RelatedProducts";
   return (
-    <div className='related-products-container'>
-      {props.relatedProducts ?
+    <>
+      <div className='related-products-container' style={{marginLeft: `-${position}px`}}>
+        {props.relatedProducts ?
 
 
-      props.relatedProducts.map((product) => {
-        return <ProductCard
-        key={product.id}
-        product={product}
-        generateStars={props.generateStars}
-        isFetching={props.isFetching}
-        setIsFetching={props.setIsFetching}
-        parentComponent={componentName}
-        yourOutfit={props.yourOutfit}
-        addToOutfit={props.addToOutfit}
-        />
-      })
-      : null
-      }
-      <div className="arrow right"></div>
-    </div>
+        props.relatedProducts.map((product) => {
+          return <ProductCard
+          key={product.id}
+          product={product}
+          generateStars={props.generateStars}
+          isFetching={props.isFetching}
+          setIsFetching={props.setIsFetching}
+          parentComponent={componentName}
+          yourOutfit={props.yourOutfit}
+          addToOutfit={props.addToOutfit}
+          />
+        })
+        : null
+        }
 
+      </div>
+      <div className='fade'>
+        <div className="arrow-container-left">
+          <div className="arrow-left" onClick={() => {setPosition(position - 250)}}></div>
+        </div>
+        <div className="arrow-container-right">
+          <div className="arrow-right" onClick={() => {setPosition(position + 250)}}></div>
+        </div>
+      </div>
+    </>
   )
 }
 

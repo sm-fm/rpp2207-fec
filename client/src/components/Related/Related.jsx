@@ -23,7 +23,9 @@ const Related = (props) => {
 
   return (
       <div className='related-container'>
+        <div className="related-products-header">RELATED PRODUCTS</div>
         <RelatedProducts addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={relatedProducts} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
+        <div className="your-outfit-header">YOUR OUTFIT</div>
         <YourOutfit yourOutfit={props.yourOutfit} removeFromOutfit={props.removeFromOutfit} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
       </div>
   )
