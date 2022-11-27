@@ -36,7 +36,7 @@ const RelatedProducts = (props) => {
         </div>
         : null
         }
-        { props && props.relatedProducts && position <= (props.relatedProducts.length - 4) * 250?
+        { props && props.relatedProducts && position <= (props.relatedProducts.length - 4) * 250 ?
         <div className="arrow-container-right">
           <div className="arrow-right" onClick={() => {setPosition(position + 250)}}></div>
         </div>

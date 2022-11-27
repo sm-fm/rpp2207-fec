@@ -67,6 +67,7 @@
 	border: 1px solid black;
 	box-sizing: border-box;
 	position: relative;
+	pointer-events: auto;
 }
 
 .product-card-container:first-child {
@@ -147,6 +148,12 @@
 	justify-content: center;
 	align-items: center;
 	pointer-events: auto;
+	visibility: visible;
+	transition: visibility 1s ease;
+}
+
+.hidden {
+	visibility: hidden;
 }
 
 .arrow-container-left {
@@ -154,7 +161,7 @@
 }
 
 .arrow-container-right {
-	right: -8px;
+	right: 35px;
 }
 
 .arrow-right {
