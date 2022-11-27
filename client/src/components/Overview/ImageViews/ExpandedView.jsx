@@ -30,9 +30,9 @@ const ExpandedView = (props) => {
       <div id="circle-expanded-view">
         {props.photos.map((photo, index) => {
           const highlight = {
-            transform: indexOfCurrentImg === index ? 'scale(2.5)' : null
+            transform: indexOfCurrentImg === index ? 'scale(2)' : null
           };
-          return <FontAwesomeIcon id="circle" style={highlight} icon={faCircle} key={uuidv4()} />
+          return <FontAwesomeIcon id="circle" style={highlight} icon={faCircle} key={uuidv4()} onClick={() => setIndexOfCurrentImg(index)} />
         })}
       </div>
       <img id="expanded-img" src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url} />
