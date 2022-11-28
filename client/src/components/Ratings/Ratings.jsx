@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ratingsAPI from '../../API/Ratings.js';
 import UserReviews from './ReviewCard.jsx';
 
 const Ratings = (props) => {
@@ -15,7 +16,7 @@ const Ratings = (props) => {
       </div>
       {props.data.results.map((elem, idx) => {
         return (
-        <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
+          <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
         )
       })}
     </div>

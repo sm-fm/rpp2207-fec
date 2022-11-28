@@ -12,6 +12,7 @@ import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
 let helperFunctions = require('./helperFunctions.js').helperFunctions;
+import exampleRatings from './Ratings/exampleData/exampleDataRatings.js';
 
 /*
 ================================
@@ -111,7 +112,7 @@ const App = () => {
       <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
-      <Ratings objID={id}/>
+      <Ratings objID={id} data={exampleRatings} generateStars={generateStars}/>
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
     </Router>
   )
