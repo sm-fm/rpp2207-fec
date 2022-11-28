@@ -12,17 +12,27 @@ const Ratings = (props) => {
   }
   const product_id = props.objID;
 
+  // Refering to the review list
   const [reviewData, setReviewData] = useState(holderReviewData);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingreview, setIsLoadingreview] = useState(true);
   const [category, setCategory] = useState(null);
 
-  // Take it in the order: id, sort, page, count
+  // Refering to metadata
+  const [metadata, setMetadata] = useState({});
+
+  /**
+   *
+   * @param {*} id - product_id which can be found from the url
+   * @param {*} sort - sort preferenced based on the front end input
+   * @param {*} page - Speciries the page from which the results are returned
+   * @param {*} count - Tells how many results per page
+   */
   let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
-    console.log(sort)
+    console.log(count)
     ratingsAPI.getReviewList(id, sort, page, count)
       .then(data => {
         setReviewData(data);
-        setIsLoading(false);
+        setIsLoadingreview(false);
       })
       .catch(err => {
         console.log(err);
@@ -30,7 +40,14 @@ const Ratings = (props) => {
   }
 
   useEffect(()=> {
-    getReviewList(product_id);
+    ratingsAPI.getAll(product_id)
+      .then(data => {
+        setReviewData(data[0]);
+        setMetadata(data[1]);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   }, []);
 
   let catChange = (e) => {
