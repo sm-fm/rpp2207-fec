@@ -27,9 +27,15 @@ Object.defineProperty(window, 'location', {
 });
 describe("RelatedProducts component", () => {
   test("Test 1", async () => {
-    render(<App />)
-    const items = await screen.findAllByText("Morning Joggers")
-    expect(items).toHaveLength(1);
+    const { findAllByText } = await render(<App />)
+    const joggers = await findAllByText("Morning Joggers")
+    expect(joggers).toHaveLength(1);
+    const shoes = await findAllByText("Blues Suede Shoes")
+    expect(shoes).toHaveLength(1);
+    const kicks = await findAllByText("Pumped Up Kicks")
+    expect(kicks).toHaveLength(1);
+    const heir = await findAllByText("Heir Force Ones")
+    expect(heir).toHaveLength(1);
 
   });
   test("Test 2", () => {
