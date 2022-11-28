@@ -31,14 +31,14 @@ const RelatedProducts = (props) => {
       </div>
       <div className='fade-top'>
         { position > 0 ?
-        <div className="arrow-container-left">
-          <div className="arrow-left" onClick={() => {setPosition(position - 250)}}></div>
+        <div className="arrow-container-left" onClick={() => {setPosition(position - 250)}}>
+          <div className="arrow-left"></div>
         </div>
         : null
         }
         { props && props.relatedProducts && position <= (props.relatedProducts.length - 4) * 250 ?
-        <div className="arrow-container-right">
-          <div className="arrow-right" onClick={() => {setPosition(position + 250)}}></div>
+        <div className="arrow-container-right" onClick={() => {setPosition(position + 250)}}>
+          <div className="arrow-right"></div>
         </div>
         : null
         }
