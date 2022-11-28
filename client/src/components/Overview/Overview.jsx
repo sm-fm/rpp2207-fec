@@ -63,7 +63,7 @@ const Overview = (props) => {
     )
   } else {
     return (
-    <div>
+    <div id="main-overview">
       <ExpandedView chosenStyle={chosenStyle} indexOfExpandedImg={indexOfExpandedImg} photos={photos} />
     </div>
     );

@@ -156,10 +156,13 @@ CSS-RESET: end
 #expanded-img {
 	width: 100vw;
 	height: 100vh;
+	cursor: crosshair;
 }
 
 #expanded-view {
 	position: relative;
+	width: 100vw;
+	height: 100vh;
 }
 
 #circle-expanded-view {
@@ -172,4 +175,16 @@ CSS-RESET: end
 	height: 5px;
 	color: white;
 	padding: 5px;
+}
+
+#zoom {
+	transform-origin: center;
+	height: 100vh;
+	width: 100vw;
+}
+
+#zoom-container {
+	height: 100vh;
+	width: 100vw;
+	overflow: hidden;
 }
