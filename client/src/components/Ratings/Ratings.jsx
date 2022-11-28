@@ -3,34 +3,38 @@ import ratingsAPI from '../../API/Ratings.js';
 import UserReviews from './ReviewCard.jsx';
 
 const Ratings = (props) => {
-  // console.log(props.data);
+  // use 71697 for testing
   const holderReviewData = {
     "product": "2",
     "page": 0,
     "count": 5,
     "results": []
   }
+  const product_id = props.objID;
+
   const [reviewData, setReviewData] = useState(holderReviewData);
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState(null);
-  // ratingsAPI.getReviewMetadata(71697);
 
-
-
-
-  useEffect(()=> {
-    ratingsAPI.getReviewList(71697)
+  // Take it in the order: id, sort, page, count
+  let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
+    console.log(sort)
+    ratingsAPI.getReviewList(id, sort, page, count)
       .then(data => {
         setReviewData(data);
         setIsLoading(false);
       })
       .catch(err => {
         console.log(err);
-      })
+      });
+  }
+
+  useEffect(()=> {
+    getReviewList(product_id);
   }, []);
 
   let catChange = (e) => {
-    console.log(e)
+    getReviewList(product_id, e.target.value);
   }
 
   return (
