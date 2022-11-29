@@ -24,13 +24,22 @@ const Images = (props) => {
       <div id="main-img">
         {indexOfMainImg === 0
           ? null
-          : <FontAwesomeIcon id="left-arrow" icon={faAngleLeft} onClick={() => handleLeftClick()} />
+          : <FontAwesomeIcon
+            id="left-arrow"
+            icon={faAngleLeft}
+            onClick={() => handleLeftClick()} />
         }
         {indexOfMainImg === props.photos.length - 1
           ? null
-          : <FontAwesomeIcon id="right-arrow" icon={faAngleRight} onClick={() => handleRightClick()} />
+          : <FontAwesomeIcon
+              id="right-arrow"
+              icon={faAngleRight}
+              onClick={() => handleRightClick()} />
           }
-        <img className="specific-img" src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url} onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
+        <img
+          className="specific-img"
+          src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
+          onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
       </div>
       <div id="style-photos">
         <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />
