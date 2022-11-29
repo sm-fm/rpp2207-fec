@@ -5,7 +5,6 @@ import YourOutfit from './YourOutfit.jsx';
 import './related.css'
 
 const Related = (props) => {
-  console.log("props.objID: ", props.objID)
   const [relatedProducts, setRelatedProducts] = useState();
   const [isFetching, setIsFetching] = useState(true);
 

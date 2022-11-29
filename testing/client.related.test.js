@@ -3,6 +3,7 @@
  */
 
 import {cleanup, fireEvent, render, screen} from '@testing-library/react';
+import TestRenderer from 'react-test-renderer';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -26,27 +27,30 @@ Object.defineProperty(window, 'location', {
   }
 });
 describe("RelatedProducts component", () => {
-  test("Test 1", async () => {
-    const { findAllByText } = await render(<App />)
-    const joggers = await findAllByText("Morning Joggers")
-    expect(joggers).toHaveLength(1);
-    const shoes = await findAllByText("Blues Suede Shoes")
-    expect(shoes).toHaveLength(1);
-    const kicks = await findAllByText("Pumped Up Kicks")
-    expect(kicks).toHaveLength(1);
-    const heir = await findAllByText("Heir Force Ones")
-    expect(heir).toHaveLength(1);
+  // test("Test 1", async () => {
+  //   const { findAllByText } = render(<App />)
+  //   const joggers = await findAllByText("Morning Joggers")
+  // });
+
+  // test("Test 2", async () => {
+  //   const { findByRole } = render(<App />)
+  //   const headings = await findByRole("heading")
+  //   console.log(typeof headings)
+  // });
+
+  test("Test 3", () => {
+    const appComponent = TestRenderer.create(<App />)
+    const appInstance = appComponent.root;
+    const relatedComponent = appComponent.toJSON()[4]
+    console.log(relatedComponent)
+    console.log(relatedComponent.children)
 
   });
-  test("Test 2", () => {
-    expect(true).toBeTrue;
-  });
-  test("Test 3", () => {
-    expect(true).toBeTrue;
-  });
+
   test("Test 4", () => {
     expect(true).toBeTrue;
   });
+
   test("Test 5", () => {
     expect(true).toBeTrue;
   });

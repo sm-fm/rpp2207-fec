@@ -29,7 +29,6 @@ const RelatedAPI = {
       })
       .then((products) => {
         relatedProducts = products;
-        console.log('relatedProducts: ', relatedProducts)
         return Promise.all(
           products.map(product => {
             return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product.id}/styles`, {
@@ -47,7 +46,6 @@ const RelatedAPI = {
           for (var i = 0; i < styles.length; i++) {
             relatedProducts[i].styles = styles[i];
           }
-          console.log('relatedProducts with styles: ', relatedProducts)
           return relatedProducts;
         })
       })
