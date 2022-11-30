@@ -1,5 +1,5 @@
-import GITHUB_ACCESS_TOKEN from '../auth.js';
-
+// import GITHUB_ACCESS_TOKEN from '../auth.js';
+let GITHUB_ACCESS_TOKEN = 'l'
 const RelatedAPI = {
   getRelatedProducts: (id) => {
     var relatedProducts = [];

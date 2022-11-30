@@ -30,24 +30,35 @@ const Ratings = (props) => {
    */
   let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
     console.log(count)
-    ratingsAPI.getReviewList(id, sort, page, count)
-      .then(data => {
-        setReviewData(data);
-        setIsLoadingreview(false);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // ratingsAPI.getReviewList(id, sort, page, count)
+    //   .then(data => {
+    //     setReviewData(data);
+    //     setIsLoadingreview(false);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 
   useEffect(()=> {
-    ratingsAPI.getAll(product_id)
-      .then(data => {
-        setReviewData(data[0]);
-        setMetadata(data[1]);
+    // ratingsAPI.getAll(product_id)
+    //   .then(data => {
+    //     setReviewData(data[0]);
+    //     setMetadata(data[1]);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   })
+
+    fetch('/reviews/?' + new URLSearchParams({
+      product_id: product_id,
+    }))
+      .then(result => {
+        console.log('Congrats!', result.body);
+        return result;
       })
       .catch(err => {
-        console.log(err);
+        console.log('Uh-oh!', err);
       })
   }, []);
 

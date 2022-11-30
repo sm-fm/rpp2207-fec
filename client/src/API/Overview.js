@@ -1,5 +1,5 @@
-import GITHUB_ACCESS_TOKEN from '../auth.js';
-
+// import GITHUB_ACCESS_TOKEN from '../auth.js';
+let GITHUB_ACCESS_TOKEN = 'l'
 const Overview = {
   getAllProducts: () => {
     fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {
