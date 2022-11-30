@@ -1,7 +1,11 @@
-.userReview {
+.ratings {
+  border: 1px solid black;
+  width: 75%;
+}
+.ratings .userReview {
   /* border: 1px solid black; */
   display: inline-block;
-  width: 65%;
+  width: 50%;
   padding: 10px 5px;
 }
 
@@ -10,24 +14,23 @@
   display: inline;
 }
 
-.summary {
+.ratings .summary {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.flex-box {
-  /* border: 1px solid black; */
+.ratings .flex-box {
   display: flex;
   justify-content: space-between;
 }
 
-.thumbnail{
+.ratings .thumbnail{
   display: inline-block;
   height: 50px;
   padding: 5px 10px 0px 10px;
 }
 
-.thumbnail-holder {
+.ratings .thumbnail-holder {
   /* border: 1px solid black; */
   display: flex;
   padding-bottom: 5px;
@@ -35,7 +38,7 @@
   border-bottom: 1px solid black;
 }
 
-select {
+.ratings select {
   background-color: none;
   border: none;
   border-bottom: 1px solid black;

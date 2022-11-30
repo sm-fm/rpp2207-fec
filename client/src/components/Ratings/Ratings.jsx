@@ -19,6 +19,7 @@ const Ratings = (props) => {
 
   // Refering to metadata
   const [metadata, setMetadata] = useState({});
+  const [isLoadingMeta, setIsLoadingMeta] = useState(true);
 
   /**
    *
@@ -56,6 +57,9 @@ const Ratings = (props) => {
 
   return (
     <div className='ratings'>
+      <div className='metaDataDisplay'>
+
+      </div>
       <div className='reviewListHeading'>
         <label>{reviewData.results.length} reviews, sorted by </label>
         <select id='sortBy' onChange={catChange}>
@@ -64,11 +68,14 @@ const Ratings = (props) => {
           <option value='helpful'>most helpful</option>
         </select>
       </div>
-      {reviewData.results.map((elem, idx) => {
-        return (
-          <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
-        )
-      })}
+      <div className='userReviews'>
+        {reviewData.results.map((elem, idx) => {
+          return (
+            <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
+          )
+        })}
+      </div>
+
     </div>
 
   )
