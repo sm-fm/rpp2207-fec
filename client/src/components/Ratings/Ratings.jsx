@@ -46,12 +46,31 @@ const Ratings = (props) => {
   }
 
   let getMetaData = (id) => {
-
+    return fetch('/reviews/meta/?' + new URLSearchParams({
+      product_id: product_id
+    }))
+      .then(data => {
+        const reader = data.body.getReader();
+        return reader.read()
+      })
+      .then(data => {
+        return JSON.parse(String.fromCharCode.apply(null, data.value));
+      })
+      .catch(err => {
+        console.log('Uh-oh! There was an error in Ratings.jsx: ', err);
+      })
   }
 
 
   useEffect(()=> {
-    fetch('/reviews/meta')
+    Promise.all([getMetaData(product_id), getReviewList(product_id)])
+      .then(data => {
+        setMetadata(data[0]);
+        setReviewData(data[1]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   let catChange = (e) => {
