@@ -48,7 +48,6 @@ app.get('/products/:query(*)', (req, res) => {
 })
 
 app.get('/reviews', (req, res) => {
-  console.log(req.query)
   fetch(`${baseURL}/reviews/?product_id=${req.query.product_id}`, getOptions)
     .then(results => {
       return results.json();
@@ -63,6 +62,7 @@ app.get('/reviews', (req, res) => {
 })
 
 app.get('/reviews/meta', (req, res) => {
+  console.log(req.query)
   fetch(`${baseURL}/reviews/meta/?product_id=${req.query.product_id}`, getOptions)
   .then(results => {
     return results.json();

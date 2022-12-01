@@ -29,37 +29,29 @@ const Ratings = (props) => {
    * @param {*} count - Tells how many results per page
    */
   let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
-    console.log(count)
-    // ratingsAPI.getReviewList(id, sort, page, count)
-    //   .then(data => {
-    //     setReviewData(data);
-    //     setIsLoadingreview(false);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-  }
-
-  useEffect(()=> {
-    // ratingsAPI.getAll(product_id)
-    //   .then(data => {
-    //     setReviewData(data[0]);
-    //     setMetadata(data[1]);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   })
-
-    fetch('/reviews/?' + new URLSearchParams({
+    return fetch('/reviews/?' + new URLSearchParams({
       product_id: product_id,
     }))
       .then(result => {
-        console.log('Congrats!', result.body);
-        return result;
+        const reader = result.body.getReader();
+        return reader.read()
+      })
+      .then(({done, value}) => {
+        // setReviewData(JSON.parse(String.fromCharCode.apply(null, value)));
+        return JSON.parse(String.fromCharCode.apply(null, value))
       })
       .catch(err => {
-        console.log('Uh-oh!', err);
+        console.log('Uh-oh! There was an error in Ratings.jsx: ', err);
       })
+  }
+
+  let getMetaData = (id) => {
+
+  }
+
+
+  useEffect(()=> {
+    fetch('/reviews/meta')
   }, []);
 
   let catChange = (e) => {
