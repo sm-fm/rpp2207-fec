@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 const RelatedAPI = {
   getRelatedProducts: (id) => {
     var relatedProducts = [];

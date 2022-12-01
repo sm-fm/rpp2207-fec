@@ -12,7 +12,7 @@ const RelatedProduct = (props) => {
   }
 
   const routeChange = () => {
-    const path = props.product.id.toString();
+    const path = `/${props.product.id.toString()}`;
     console.log('card clicked')
     navigate(path);
   }
