@@ -198,3 +198,38 @@ const sampleProduct = {
       }]
   }
 }
+
+const reviews = {
+    "product_id": "71702",
+    "ratings": {
+        "1": "1",
+        "4": "1",
+        "5": "2"
+    },
+    "recommended": {
+        "true": "4"
+    },
+    "characteristics": {
+        "Size": {
+            "id": 240599,
+            "value": "3.0000000000000000"
+        },
+        "Width": {
+            "id": 240600,
+            "value": "3.0000000000000000"
+        },
+        "Comfort": {
+            "id": 240601,
+            "value": "3.5000000000000000"
+        },
+        "Quality": {
+            "id": 240602,
+            "value": "3.5000000000000000"
+        }
+    }
+}
+
+module.exports = {
+    sampleProduct: sampleProduct,
+    reviews: reviews
+}
