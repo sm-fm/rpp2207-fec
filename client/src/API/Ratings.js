@@ -1,13 +1,6 @@
-import GITHUB_ACCESS_TOKEN from '../auth.js';
-
 const Ratings = {
   getReviewMetadata: (id) => {
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta?product_id=${id}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
-    })
+    return fetch(`reviews/meta?product_id=${id}`)
     .then(results => {
       return results.json();
     })
