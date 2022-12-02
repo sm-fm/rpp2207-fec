@@ -23,7 +23,7 @@ let calculateRecommended = (rec) => {
   if (typeof (rec) !== 'object') {
     return null;
   }
-  return (parseInt(rec.true) / parseInt(rec.true) + parseInt(rec.false)).toFixed(0);
+  return Math.round((parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false))) * 100);
 };
 
 module.exports = {

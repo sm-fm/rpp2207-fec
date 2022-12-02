@@ -123,5 +123,6 @@ test('Test calculateAverageReviews from the Ratings helperfunction suite', () =>
 
 test('Test calculateRcommended from the Ratings helper functions', () => {
   expect(hf.calculateRecommended(undefined)).toBe(null);
-  expect(hf.calculateRecommended({false:'54', true:'152'})).toEqual('55');
+  expect(hf.calculateRecommended({false:'54', true:'152'})).toEqual(74);
+  expect(hf.calculateRecommended({false:'2', true:'6'})).toEqual(75);
 });

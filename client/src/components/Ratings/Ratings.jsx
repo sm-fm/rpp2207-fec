@@ -56,7 +56,7 @@ const Ratings = (props) => {
 
   let catChange = (e) => {
     getReviewList(product_id, e.target.value);
-  }
+  };
 
   return (
     <div className='ratings'>
