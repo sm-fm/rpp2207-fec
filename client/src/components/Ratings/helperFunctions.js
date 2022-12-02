@@ -31,7 +31,7 @@ let calculateRecommended = (rec) => {
   if (typeof (rec) !== 'object') {
     return null;
   }
-  return (parseInt(rec.true) / parseInt(rec.true) + parseInt(rec.false)).toFixed(0)
+  return Math.round((parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false))) * 100);
 }
 
 let calculateAverageReviewsTests = () => {
@@ -61,13 +61,19 @@ let calculateRecommendedTests = () => {
   testName = 'Test 1 - Should return null for non-object type inputted';
   printResults(expected, actual, testName);
 
-  expected = 55;
+  expected = 74;
   actual = calculateRecommended({false:'54', true:'152'});
   testName = 'Test 2 - Should return a whole number when given clean data';
   printResults(expected, actual, testName);
+
+  expected = 75;
+  actual = calculateRecommended({false:'2', true:'6'});
+  testName = 'Test 3 - Should return a whole number when given clean data';
+  printResults(expected, actual, testName);
+
 }
 // calculateAverageReviewsTests();
-// calculateRecommendedTests();
+calculateRecommendedTests();
 module.exports = {
   calculateAverageReviews: calculateAverageReviews,
   calculateRecommended: calculateRecommended
