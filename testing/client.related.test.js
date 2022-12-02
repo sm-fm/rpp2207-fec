@@ -9,7 +9,6 @@ import {
   useSearchParams
 } from "react-router-dom";
 import nock from 'nock';
-// import origFetch from 'node-fetch'
 // import App from '../client/src/components/App.jsx';
 // import Related from '../client/src/components/Related/Related.jsx';
 // import RelatedProducts from '../client/src/components/Related/RelatedProducts.jsx';
