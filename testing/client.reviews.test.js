@@ -1,4 +1,5 @@
 import RatingsAPI from '../client/src/API/Ratings.js';
+import hf from '../client/src/components/Ratings/helperFunctions.js';
 var expected = [
   {
     "product": "71697",
@@ -112,4 +113,15 @@ test('getAll returns metadata and customer reviews', async () => {
   expect(results[0].product).toEqual(expected[0].product);
   expect(results[0]).toStrictEqual(expected[0]);
   expect(results[1]).toStrictEqual(expected[1]);
+});
+
+test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
+  expect(hf.calculateAverageReviews(undefined)).toBe(null);
+  expect(hf.calculateAverageReviews({1: '20', 2: '19', 3: '38', 4: '43', 5: '86'})).toEqual('3.8');
+  expect(hf.calculateAverageReviews({1: '0', 2: '20', 3: '0', 4: '0', 5: '0'})).toEqual('2.0');
+});
+
+test('Test calculateRcommended from the Ratings helper functions', () => {
+  expect(hf.calculateRecommended(undefined)).toBe(null);
+  expect(hf.calculateRecommended({false:'54', true:'152'})).toEqual('55');
 });
