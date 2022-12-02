@@ -21,11 +21,16 @@ const Overview = (props) => {
     if (!props.objID) {
       api.getAllProducts()
         .then(results => {
+          return results.json();
+        })
+        .then(results => {
           setProduct(results[0]);
           return api.getStylesById(results[0].id)
         })
         .then(styles => {
-          console.log(styles);
+          return styles.json();
+        })
+        .then(styles => {
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
@@ -34,12 +39,16 @@ const Overview = (props) => {
     } else {
       api.getProductById(props.objID)
         .then(result => {
-          console.log(result);
+          return result.json();
+        })
+        .then(result => {
           setProduct(result);
           return api.getStylesById(result.id)
         })
         .then(styles => {
-          console.log(styles);
+          return styles.json();
+        })
+        .then(styles => {
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
