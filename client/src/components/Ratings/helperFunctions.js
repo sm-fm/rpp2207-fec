@@ -27,7 +27,14 @@ let printResults = (expected, actual, testName) => {
   }
 }
 
-let tests = () => {
+let calculateRecommended = (rec) => {
+  if (typeof (rec) !== 'object') {
+    return null;
+  }
+  return (parseInt(rec.true) / parseInt(rec.true) + parseInt(rec.false)).toFixed(0)
+}
+
+let calculateAverageReviewsTests = () => {
   let expected, actual, testName;
 
   expected = null;
@@ -45,7 +52,23 @@ let tests = () => {
   testName = 'Test 3 - If only one rating has votes it should return that rating';
   printResults(expected, actual, testName);
 }
-// tests();
+
+let calculateRecommendedTests = () => {
+  let expected, actual, testName;
+
+  expected = null;
+  actual = calculateRecommended(undefined);
+  testName = 'Test 1 - Should return null for non-object type inputted';
+  printResults(expected, actual, testName);
+
+  expected = 55;
+  actual = calculateRecommended({false:'54', true:'152'});
+  testName = 'Test 2 - Should return a whole number when given clean data';
+  printResults(expected, actual, testName);
+}
+// calculateAverageReviewsTests();
+// calculateRecommendedTests();
 module.exports = {
   calculateAverageReviews: calculateAverageReviews,
+  calculateRecommended: calculateRecommended
 }

@@ -13,6 +13,10 @@
   display: inline;
 }
 
+.ratings .reviewBody{
+  overflow-wrap: break-word;
+}
+
 .ratings .summary {
   white-space: nowrap;
   overflow: hidden;

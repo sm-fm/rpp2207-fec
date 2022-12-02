@@ -46,6 +46,8 @@ const Ratings = (props) => {
       .then(data=> {
         setMetadata(data[1]);
         setReviewData(data[0]);
+
+        setIsLoadingMeta(false);
       })
       .catch(err => {
         console.log(err);
@@ -59,7 +61,8 @@ const Ratings = (props) => {
   return (
     <div className='ratings'>
       <div className='metaDataDisplay'>
-        <Metadata generateStars={props.generateStars} meta={metadata}/>
+        {!isLoadingMeta &&
+        <Metadata generateStars={props.generateStars} meta={metadata}/>}
       </div>
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
