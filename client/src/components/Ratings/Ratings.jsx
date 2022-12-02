@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ratingsAPI from '../../API/Ratings.js';
 import UserReviews from './ReviewCard.jsx';
+import Metadata from './Metadata.jsx';
 
 const Ratings = (props) => {
   // use 71697 for testing
@@ -29,7 +30,6 @@ const Ratings = (props) => {
    * @param {*} count - Tells how many results per page
    */
   let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
-    console.log(sort)
     return ratingsAPI.getReviewList(product_id, sort, page, count)
     .then(data => {
       console.log('Success!', data);
@@ -44,7 +44,6 @@ const Ratings = (props) => {
   useEffect(()=> {
     ratingsAPI.getAll(product_id)
       .then(data=> {
-        console.log(data)
         setMetadata(data[1]);
         setReviewData(data[0]);
       })
@@ -60,22 +59,24 @@ const Ratings = (props) => {
   return (
     <div className='ratings'>
       <div className='metaDataDisplay'>
-
+        <Metadata generateStars={props.generateStars} meta={metadata}/>
       </div>
-      <div className='reviewListHeading'>
-        <label>{reviewData.results.length} reviews, sorted by </label>
-        <select id='sortBy' onChange={catChange}>
-          <option value='relevance'>relevance</option>
-          <option value='newest'>newest</option>
-          <option value='helpful'>most helpful</option>
-        </select>
-      </div>
-      <div className='userReviews'>
-        {reviewData.results.map((elem, idx) => {
-          return (
-            <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
-          )
-        })}
+      <div className='user-review-wrapper'>
+        <div className='reviewListHeading'>
+          <label>{reviewData.results.length} reviews, sorted by </label>
+          <select id='sortBy' onChange={catChange}>
+            <option value='relevance'>relevance</option>
+            <option value='newest'>newest</option>
+            <option value='helpful'>most helpful</option>
+          </select>
+        </div>
+        <div className='userReviews'>
+          {reviewData.results.map((elem, idx) => {
+            return (
+              <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
+            )
+          })}
+        </div>
       </div>
 
     </div>
