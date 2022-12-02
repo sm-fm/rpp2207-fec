@@ -1,8 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import relatedAPI from '../../API/Related.js';
+import RelatedProducts from './RelatedProducts.jsx';
+import YourOutfit from './YourOutfit.jsx';
+import './related.css'
 
-const Related = () => {
+const Related = (props) => {
+  const [relatedProducts, setRelatedProducts] = useState();
+
+  useEffect(() => {
+    relatedAPI.getRelatedProducts(props.objID)
+    .then((products) => {
+      setRelatedProducts(products);
+    })
+  }, [])
+
   return (
-    <h1>Related.jsx</h1>
+      <div className='related-container'>
+        <RelatedProducts relatedProducts={relatedProducts} generateStars={props.generateStars}/>
+        <YourOutfit />
+      </div>
   )
 }
 
