@@ -17,24 +17,16 @@ let calculateAverageReviews = (reviews) => {
     totalVotes += parseInt(reviews[reviewsKeys[i]]);
   }
   return ((starCount / (totalVotes ))).toFixed(1);
-}
-
-let printResults = (expected, actual, testName) => {
-  if (expected == actual) {
-    console.log(`PASSED [${testName}]`)
-  } else {
-    console.log(`FAILED [${testName}] expected [${expected}] but got [${actual}]`)
-  }
-}
+};
 
 let calculateRecommended = (rec) => {
   if (typeof (rec) !== 'object') {
     return null;
   }
-  return (parseInt(rec.true) / parseInt(rec.true) + parseInt(rec.false)).toFixed(0)
-}
+  return (parseInt(rec.true) / parseInt(rec.true) + parseInt(rec.false)).toFixed(0);
+};
 
 module.exports = {
   calculateAverageReviews: calculateAverageReviews,
   calculateRecommended: calculateRecommended
-}
+};
