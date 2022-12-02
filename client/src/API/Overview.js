@@ -1,15 +1,12 @@
-import GITHUB_ACCESS_TOKEN from '../auth.js';
 
 const Overview = {
   getAllProducts: () => {
-    return fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
+    return fetch('http://localhost:3000/products', {
+      method: 'GET'
     })
       .then(results => {
-        return results.json();
+        console.log(results);
+        return results;
       })
       .catch(err => {
         console.log(err);
@@ -17,14 +14,11 @@ const Overview = {
   },
 
   getProductById: (id) => {
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`, {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
+    return fetch(`http://localhost:3000/products/${id}`, {
+      method: 'GET'
     })
       .then(result => {
-        return result.json();
+        return result;
       })
       .catch(err => {
         console.log(err);
@@ -32,14 +26,11 @@ const Overview = {
   },
 
   getStylesById: (id) => {
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/styles`, {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
+    return fetch(`http://localhost:3000/products/${id}/styles`, {
+      method: 'GET'
     })
       .then(result => {
-        return result.json();
+        return result;
       })
       .catch(err => {
         console.log(err);
