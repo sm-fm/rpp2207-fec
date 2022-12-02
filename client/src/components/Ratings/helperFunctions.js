@@ -27,6 +27,13 @@ let printResults = (expected, actual, testName) => {
   }
 }
 
+let calculateRecommended = (rec) => {
+  if (typeof (rec) !== 'object') {
+    return null;
+  }
+  return (parseInt(rec.true) / parseInt(rec.true) + parseInt(rec.false)).toFixed(0)
+}
+
 module.exports = {
   calculateAverageReviews: calculateAverageReviews,
   calculateRecommended: calculateRecommended
