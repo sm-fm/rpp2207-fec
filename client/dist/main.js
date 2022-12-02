@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _auth_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../auth.js */ \"./client/src/auth.js\");\n\nvar Overview = {\n  getAllProducts: function getAllProducts() {\n    fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {\n      method: 'GET',\n      headers: {\n        'Authorization': _auth_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n      }\n    }).then(function (results) {\n      return results.json();\n    }).then(function (results) {\n      console.log(results);\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/API/Overview.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nObject(function webpackMissingModule() { var e = new Error(\"Cannot find module '../auth.js'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }());\n\nvar Overview = {\n  getAllProducts: function getAllProducts() {\n    fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {\n      method: 'GET',\n      headers: {\n        'Authorization': Object(function webpackMissingModule() { var e = new Error(\"Cannot find module '../auth.js'\"); e.code = 'MODULE_NOT_FOUND'; throw e; }())\n      }\n    }).then(function (results) {\n      return results.json();\n    }).then(function (results) {\n      console.log(results);\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/API/Overview.js?");
 
 /***/ }),
 
@@ -28,17 +28,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ \"./node_modules/react-dom/client.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ \"./client/src/style.css\");\n/* harmony import */ var _components_App_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/App.jsx */ \"./client/src/components/App.jsx\");\n\n\n\n\nvar root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById('app'));\nroot.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_components_App_jsx__WEBPACK_IMPORTED_MODULE_3__[\"default\"], null));\n\n//# sourceURL=webpack://my-webpack-project/./client/src/Index.jsx?");
-
-/***/ }),
-
-/***/ "./client/src/auth.js":
-/*!****************************!*\
-  !*** ./client/src/auth.js ***!
-  \****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar GITHUB_ACCESS_TOKEN = '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';\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GITHUB_ACCESS_TOKEN);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/auth.js?");
 
 /***/ }),
 
