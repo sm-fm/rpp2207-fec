@@ -48,7 +48,6 @@ app.get('/products/:query(*)', (req, res) => {
 })
 
 app.get('/reviews', (req, res) => {
-  console.log(req.query)
   fetch(`${baseURL}/reviews/?` + new URLSearchParams({
     product_id: req.query.product_id,
     sort: req.query.sort,

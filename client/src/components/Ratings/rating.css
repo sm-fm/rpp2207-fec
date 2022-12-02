@@ -3,15 +3,18 @@
   width: 75%;
 }
 .ratings .userReview {
-  /* border: 1px solid black; */
   display: inline-block;
-  width: 50%;
   padding: 10px 5px;
+  width: 95%;
 }
 
 #username {
   text-align: left;
   display: inline;
+}
+
+.ratings .reviewBody{
+  overflow-wrap: break-word;
 }
 
 .ratings .summary {
@@ -42,4 +45,17 @@
   background-color: none;
   border: none;
   border-bottom: 1px solid black;
+}
+
+.user-review-wrapper {
+  border: 1px solid black;
+  width: 50%;
+  display: inline-block;
+}
+
+.metaDataDisplay {
+  display: inline-block;
+  position: relative;
+  top: 0px;
+  width: 45%;
 }
