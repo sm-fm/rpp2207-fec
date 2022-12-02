@@ -1,21 +1,15 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Routes,
-  Link,
-  useSearchParams
-} from "react-router-dom";
 import nock from 'nock';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 // import App from '../client/src/components/App.jsx';
 // import Related from '../client/src/components/Related/Related.jsx';
 // import RelatedProducts from '../client/src/components/Related/RelatedProducts.jsx';
 // import YourOutfit from '../client/src/components/Related/YourOutfit.jsx';
 import ProductCard from '../client/src/components/Related/ProductCard.jsx';
-const sampleProduct =  require('./mocks.js').sampleProduct;
-const reviews =  require('./mocks.js').reviews;
+const sampleProduct = require('./mocks.js').sampleProduct;
+const reviews = require('./mocks.js').reviews;
 
 describe("ProductCard component", () => {
 
