@@ -48,12 +48,17 @@ app.get('/products/:query(*)', (req, res) => {
 })
 
 app.get('/reviews', (req, res) => {
-  fetch(`${baseURL}/reviews/?product_id=${req.query.product_id}`, getOptions)
+  console.log(req.query)
+  fetch(`${baseURL}/reviews/?` + new URLSearchParams({
+    product_id: req.query.product_id,
+    sort: req.query.sort,
+    page: req.query.page,
+    count: req.query.count,
+  }), getOptions)
     .then(results => {
       return results.json();
     })
     .then(results => {
-      console.log(results);
       res.send(results);
     })
     .catch(err => {
@@ -62,7 +67,6 @@ app.get('/reviews', (req, res) => {
 })
 
 app.get('/reviews/meta', (req, res) => {
-  console.log(req.query)
   fetch(`${baseURL}/reviews/meta/?product_id=${req.query.product_id}`, getOptions)
   .then(results => {
     return results.json();

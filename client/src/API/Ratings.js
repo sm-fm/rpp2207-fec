@@ -1,20 +1,16 @@
 // import GITHUB_ACCESS_TOKEN from '../auth.js';
-let GITHUB_ACCESS_TOKEN = 'l'
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/?` +
-    new URLSearchParams({
-      product_id: product_id,
-      sort: sort,
-      page: page,
-      count: count,
-    })
-    , {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
-    })
+    return fetch(`reviews/?` +
+      new URLSearchParams({
+        product_id: product_id,
+        sort: sort,
+        page: page,
+        count: count,
+      })
+      , {
+        method: 'GET',
+      })
     .then(data => {
       return data.json();
     })
@@ -22,15 +18,12 @@ const Ratings = {
   ,
   getReviewMetadata: (id) => {
     console.log('id: ', id)
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/reviews/meta/?` +
+    return fetch(`reviews/meta/?` +
     new URLSearchParams({
       product_id: id,
     }),
     {
       method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
     })
     .then(results => {
       return results.json();
