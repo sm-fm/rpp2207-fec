@@ -1,4 +1,3 @@
-// import GITHUB_ACCESS_TOKEN from '../auth.js';
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {
     return fetch(`reviews/?` +
