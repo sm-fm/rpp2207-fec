@@ -1,3 +1,8 @@
 node_modules/
 node_modules
+<<<<<<< HEAD
 .env
+=======
+.env
+client/dist/main.js
+>>>>>>> main

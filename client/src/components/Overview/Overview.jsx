@@ -10,6 +10,7 @@ const Overview = (props) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
+    // api.getAllProducts();
     if (!props.objID) {
       api.getAllProducts()
         .then(results => {

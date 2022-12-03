@@ -6,6 +6,13 @@ import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
 
+/*
+================================
+adding this for ratings - if I forget to remove I'm sorry!
+================================
+*/
+import exampleData from './Ratings/exampleData/exampleDataRatings.js';
+
 const App = () => {
   const params = useParams();
   const id = params.id;
@@ -98,7 +105,7 @@ const App = () => {
       <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
-      <Ratings objID={id}/>
+      <Ratings objID={id} generateStars = {generateStars}/>
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
     </>
   );
