@@ -23,7 +23,7 @@ let ReviewCard = (props) => {
   } else {
     renderBody = shortBody;
   }
-  return(
+  return (
     <div className = 'userReview'>
       <div className='flex-box'>
         <div className='starHolder'>

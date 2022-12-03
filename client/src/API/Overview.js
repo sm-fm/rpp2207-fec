@@ -1,24 +1,26 @@
-// import GITHUB_ACCESS_TOKEN from '../auth.js';
-let GITHUB_ACCESS_TOKEN = 'l'
+
+const fetch = require('node-fetch');
+
 const Overview = {
   getAllProducts: () => {
-    fetch('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products', {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
-    })
+    return fetch('products')
       .then(results => {
         return results.json();
-      })
-      .then(results => {
-        console.log(results);
       })
       .catch(err => {
         console.log(err);
       });
   },
 
+  getProductById: (id) => {
+    return fetch(`products/${id}`)
+      .then(result => {
+        return result.json();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 };
 
 export default Overview;
