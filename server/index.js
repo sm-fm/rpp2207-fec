@@ -78,30 +78,22 @@ app.get('/reviews/meta', (req, res) => {
   });
 })
 
-app.get('/qa/questions', (req, res) => {
-  fetch(`${baseURL}/qa/questions/?product_id=${req.query.product_id}`, getOptions)
-  .then(results => {
-    return results.json();
-  })
-  .then(results => {
-    res.send(results);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-})
-
 app.get('/qa/questions/:query(*)', (req, res) => {
-  fetch(`${baseURL}/qa/questions/${req.params.query}`, getOptions)
-  .then(results => {
-    return results.json();
-  })
-  .then(results => {
-    res.send(results);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+  fetch(`${baseURL}/qa/questions?product_id=${req.params.query}`, getOptions)
+    .then(results => {
+      // console.log(results.body._readableState.buffer.head.data);
+      // console.log(JSON.parse(results.body._readableState.buffer.head.data.toString()))
+      return results.json();
+    })
+    .then(results => {
+      console.log(results);
+      res.status(200);
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(300);
+    });
 })
 
 
