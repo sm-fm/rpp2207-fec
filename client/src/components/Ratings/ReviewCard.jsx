@@ -33,9 +33,9 @@ let ReviewCard = (props) => {
       </div>
       <h3 className='summary'>{props.data.summary}</h3>
       <p className='reviewBody'>{renderBody}</p>
-      {!displayFullBody  &&
+      {!displayFullBody &&
         <p onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
-        {/* Currently there is no function to display LESS - I think we should implement this too */}
+      {/* Currently there is no function to display LESS - I think we should implement this too */}
       {props.data.recommend &&
         <p>✓ I recommend this product</p>}
       {props.data.response !== '' &&
@@ -46,11 +46,11 @@ let ReviewCard = (props) => {
         {props.data.photos.map((element, idx) => {
           return (
             <img key={`${props.data.reviewer_name} image - ${idx + 1}`} className='thumbnail' src={element.url} alt={`${props.data.reviewer_name} image - ${idx + 1}`}/>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ReviewCard;
