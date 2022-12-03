@@ -36,19 +36,18 @@ app.get('/products', (req, res) => {
 
 app.get('/products/:query(*)', (req, res) => {
   fetch(`${baseURL}/products/${req.params.query}`, getOptions)
-  .then(results => {
-    return results.json();
-  })
-  .then(results => {
-    res.send(results);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-})
+    .then(results => {
+      return results.json();
+    })
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.get('/reviews', (req, res) => {
-  console.log(req.query)
   fetch(`${baseURL}/reviews/?` + new URLSearchParams({
     product_id: req.query.product_id,
     sort: req.query.sort,
