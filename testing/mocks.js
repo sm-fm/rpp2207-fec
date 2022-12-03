@@ -229,7 +229,10 @@ const reviews = {
     }
 }
 
+const relatedProducts = [sampleProduct]
+
 module.exports = {
     sampleProduct: sampleProduct,
-    reviews: reviews
+    reviews: reviews,
+    relatedProducts: relatedProducts
 }
