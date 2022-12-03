@@ -40,6 +40,7 @@ const ExpandedView = (props) => {
         </div>
           <img
           src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
+          alt="Image of current style"
           id="expanded-img"
           onClick={() => setZoomView(true)}
           />

@@ -39,6 +39,7 @@ const Images = (props) => {
         <img
           className="specific-img"
           src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
+          alt="Image of current style"
           onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
       </div>
       <div id="style-photos">

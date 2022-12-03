@@ -10,7 +10,10 @@ const SpecificStyle = (props) => {
         ? <FontAwesomeIcon id="checkmark" icon={faCheckCircle} />
         : null
       }
-      <img className="icon" src={props.style.photos[0].thumbnail_url} onClick={() => { props.setChosenStyle(props.style); props.toggleClick(props.style.name); }} />
+      <img className="icon"
+        src={props.style.photos[0].thumbnail_url}
+        alt="thumbnail of current style"
+        onClick={() => { props.setChosenStyle(props.style); props.toggleClick(props.style.name); }} />
     </div>
   )
 };
