@@ -1,26 +1,14 @@
-import GITHUB_ACCESS_TOKEN from '../auth.js';
-
 const RelatedAPI = {
   getRelatedProducts: (id) => {
     var relatedProducts = [];
-    return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}/related`, {
-      method: 'GET',
-      headers: {
-        'Authorization': GITHUB_ACCESS_TOKEN
-      }
-    })
+    return fetch(`products/${id}/related`)
       .then(results => {
         return results.json();
       })
       .then(relatedIDs => {
         return Promise.all(
           relatedIDs.map(id => {
-            return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${id}`, {
-              method: 'GET',
-              headers: {
-                'Authorization': GITHUB_ACCESS_TOKEN
-              }
-            })
+            return fetch(`products/${id}`)
             .then((result) => {
               return result.json();
             })
@@ -32,12 +20,7 @@ const RelatedAPI = {
         console.log('relatedProducts: ', relatedProducts)
         return Promise.all(
           products.map(product => {
-            return fetch(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/products/${product.id}/styles`, {
-              method: 'GET',
-              headers: {
-                'Authorization': GITHUB_ACCESS_TOKEN
-              }
-            })
+            return fetch(`products/${product.id}/styles`)
             .then((result) => {
               return result.json();
             })

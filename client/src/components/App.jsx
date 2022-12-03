@@ -4,7 +4,7 @@ import {
   Switch,
   Route,
   Link,
-  useSearchParams
+  useParams
 } from "react-router-dom";
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
@@ -13,8 +13,16 @@ import Related from './Related/Related.jsx';
 import '../style.css';
 let helperFunctions = require('./helperFunctions.js').helperFunctions;
 
+/*
+================================
+adding this for ratings - if I forget to remove I'm sorry!
+================================
+*/
+import exampleData from './Ratings/exampleData/exampleDataRatings.js';
+
 const App = () => {
-  let id = helperFunctions.getIDFromURL(window.location.href);
+  const params = useParams();
+  const id = params.id;
   const [yourOutfit, setYourOutfit] = useState([]);
 
   const addToOutfit = (product) => {
@@ -100,14 +108,14 @@ const App = () => {
   }
 
   return (
-    <Router>
+    <>
       <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
-      <Ratings objID={id}/>
+      <Ratings objID={id} generateStars = {generateStars}/>
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
-    </Router>
-  )
-}
+    </>
+  );
+};
 
 export default App;
