@@ -4,7 +4,7 @@
   "description": "My webpack project",
   "main": "index.js",
   "scripts": {
-    "test": "npx jest",
+    "test": "npx jest --env=jsdom",
     "build": "webpack --mode=production --node-env=production",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
@@ -42,6 +42,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "nock": "^13.2.9",
+    "node-fetch": "^2.6.7",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
     "uuid": "^9.0.0"

@@ -16,7 +16,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar Overview = {\n  getAllProducts: function getAllProducts() {\n    return fetch('http://localhost:3000/products', {\n      method: 'GET'\n    }).then(function (results) {\n      console.log(results);\n      return results;\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  },\n  getProductById: function getProductById(id) {\n    return fetch(\"http://localhost:3000/products/\".concat(id), {\n      method: 'GET'\n    }).then(function (result) {\n      return result;\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  },\n  getStylesById: function getStylesById(id) {\n    return fetch(\"http://localhost:3000/products/\".concat(id, \"/styles\"), {\n      method: 'GET'\n    }).then(function (result) {\n      return result;\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/API/Overview.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar fetch = __webpack_require__(/*! node-fetch */ \"./node_modules/node-fetch/browser.js\");\nvar Overview = {\n  getAllProducts: function getAllProducts() {\n    return fetch('http://localhost:3000/products', {\n      method: 'GET'\n    }).then(function (results) {\n      console.log(results);\n      return results;\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  },\n  getProductById: function getProductById(id) {\n    return fetch(\"http://localhost:3000/products/\".concat(id), {\n      method: 'GET'\n    }).then(function (result) {\n      return result;\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  },\n  getStylesById: function getStylesById(id) {\n    return fetch(\"http://localhost:3000/products/\".concat(id, \"/styles\"), {\n      method: 'GET'\n    }).then(function (result) {\n      return result;\n    })[\"catch\"](function (err) {\n      console.log(err);\n    });\n  }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Overview);\n\n//# sourceURL=webpack://my-webpack-project/./client/src/API/Overview.js?");
 
 /***/ }),
 
@@ -1253,7 +1253,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/
+/******/ 	
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -1267,17 +1267,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			loaded: false,
 /******/ 			exports: {}
 /******/ 		};
-/******/
+/******/ 	
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
-/******/
+/******/ 	
 /******/ 		// Flag the module as loaded
 /******/ 		module.loaded = true;
-/******/
+/******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/
+/******/ 	
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
@@ -1290,7 +1290,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return getter;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -1302,12 +1302,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			}
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -1318,7 +1318,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nmd = (module) => {
@@ -1327,18 +1327,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 			return module;
 /******/ 		};
 /******/ 	})();
-/******/
+/******/ 	
 /******/ 	/* webpack/runtime/nonce */
 /******/ 	(() => {
 /******/ 		__webpack_require__.nc = undefined;
 /******/ 	})();
-/******/
+/******/ 	
 /************************************************************************/
-/******/
+/******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = __webpack_require__("./client/src/Index.jsx");
-/******/
+/******/ 	
 /******/ })()
 ;

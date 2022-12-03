@@ -1,19 +1,38 @@
-import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import StyleSelector from '/Users/seanmcdaniel/hack-reactor-rpp2207/fec/rpp2207-fec/client/src/components/Overview/StylesSelector/StyleSelector.jsx';
+import chosenStyleData from './mockData.js';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useSearchParams
+} from "react-router-dom";
+const fetch = require('node-fetch');
+// globalThis.fetch = fetch
+// global.window = Object.create(window);
 
 test('renders Style Selector information', async () => {
-  render(<StyleSelector chosenStyle={
-    {
-      "style_id": 444218,
-      "name": "Forest Green & Black",
-      "original_price": "140.00",
-      "sale_price": null
-    }
-  } />);
-  const styleSelectorInfo = screen.getByText(/Forest Green & Black/i);
+  render(<StyleSelector
+    chosenStyle={ chosenStyleData.results[0] }
+    styles={ chosenStyleData.results } />);
+  const styleSelectorInfo = screen.getByRole('heading');
   expect(styleSelectorInfo).toBeInThenDocument();
 })
+
+// describe('StyleSelector component', () => {
+//   it('renders the correct style information passed to it', async () => {
+//     const { container } = render(<StyleSelector chosenStyle={chosenStyleData} />,
+//     {wrapper: Router});
+
+//     await waitFor(() => {
+//       expect(container.getElementById('style-info').length).toBe(1);
+//       expect(container.getElementById('style-info').innerText).toBe('140.00 STYLE > Forest Green & Black');
+
+//     })
+//   })
+// })
 
 // test('getAllProducts returns correct data from API', async () => {
 //   var actual = await Overview.getAllProducts();
