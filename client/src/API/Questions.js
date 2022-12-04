@@ -11,6 +11,7 @@ const QuestionAPI = {
         console.log(err);
       });
   },
+
   getAllAnswers: (question_id) => {
     var options = { method: 'GET' };
 
@@ -22,7 +23,8 @@ const QuestionAPI = {
       .catch(err => {
         console.log(err);
       });
-  }
+  },
+
   addQuestion: (data) => {
     var options = {
       method: 'POST',
@@ -40,6 +42,7 @@ const QuestionAPI = {
         console.log(err);
       });
   },
+
   addAnswer: (question_id, data) => {
     var options = {
       method: 'POST',
@@ -57,6 +60,7 @@ const QuestionAPI = {
         console.log(err);
       });
   },
+
   markQuestionHelpful: (question_id) => {
     var options = { method: 'PUT' };
 
@@ -68,6 +72,7 @@ const QuestionAPI = {
         console.log(err);
       });
   },
+
   markAnswerHelpful: (answer_id) => {
     var options = { method: 'PUT' };
 
@@ -79,6 +84,7 @@ const QuestionAPI = {
         console.log(err);
       });
   },
+
   reportQuestion: (question_id) => {
     var options = { method: 'PUT' };
 
@@ -90,6 +96,7 @@ const QuestionAPI = {
         console.log(err);
       });
   },
+
   reportAnswer: (answer_id) => {
     var options = { method: 'PUT' };
 
@@ -102,20 +109,5 @@ const QuestionAPI = {
       });
   }
 };
-
-var queryBuilder = (type, data) => {
-  switch(type) {
-    case 'gq':
-      return `/qa/q/${data.id}`;
-    case 'ga':
-      return `/qa/a/${data.id}`;
-    case 'aq':
-      return `/qa/q/${data.id}/${data.body}/${data.name}/${data.email}`;
-    case 'aa':
-      return `/qa/a/${data.id}/${data.body}/${data.name}/${data.email}/${JSON.stringify(data.photos)}`;
-    case 'mq':
-      return
-  }
-}
 
 export default QuestionAPI;
