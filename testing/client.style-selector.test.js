@@ -24,6 +24,12 @@ describe('StyleSelector Module', () => {
     expect(styleSelectorInfo).toBeInTheDocument();
   });
 
+  test('doesn\'t render style information when not passed as props', async () => {
+    render(<StyleSelector />);
+    const styleSelectorInfo = screen.queryByTestId('style-info');
+    expect(styleSelectorInfo).toBeNull();
+  });
+
   test('renders correct price for current style in StyleSelector', async () => {
     render(<StyleSelector
       chosenStyle={ chosenStyleData.results[0] }
@@ -33,10 +39,20 @@ describe('StyleSelector Module', () => {
   });
 });
 
-test('renders correct style image for SpecificStyle', async () => {
-  render(<SpecificStyle
-    styleClicked={ chosenStyleData.results[0] }
-    style={ chosenStyleData.results[0] } />);
-  const image = screen.getByAltText('thumbnail of current style');
-  expect(image).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+describe('SpecificStyle Module', () => {
+  test('renders correct style image for SpecificStyle', async () => {
+    render(<SpecificStyle
+      styleClicked={ chosenStyleData.results[0] }
+      style={ chosenStyleData.results[0] } />);
+    const image = screen.getByAltText('thumbnail of current style');
+    expect(image).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+  });
+
+  test('renders checkmark over currently clicked style', async () => {
+    render(<SpecificStyle
+      styleClicked={ chosenStyleData.results[0].name }
+      style={ chosenStyleData.results[0] } />);
+    const checkmark = await screen.getByTestId('checkmark');
+    expect(checkmark).toBeInTheDocument();
+  });
 });

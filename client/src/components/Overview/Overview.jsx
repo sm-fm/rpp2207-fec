@@ -33,6 +33,7 @@ const Overview = (props) => {
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
+          toggleClick(styles.results[0].name);
         })
         .catch(err => console.log(err));
     } else {
@@ -51,6 +52,7 @@ const Overview = (props) => {
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
+          toggleClick(styles.results[0].name);
         })
         .catch(err => console.log(err));
       }
@@ -73,7 +75,10 @@ const Overview = (props) => {
   } else {
     return (
     <div id="main-overview">
-      <ExpandedView chosenStyle={chosenStyle} indexOfExpandedImg={indexOfExpandedImg} photos={photos} />
+      <ExpandedView
+        chosenStyle={chosenStyle}
+        indexOfExpandedImg={indexOfExpandedImg}
+        photos={photos} />
     </div>
     );
   }

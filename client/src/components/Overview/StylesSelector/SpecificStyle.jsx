@@ -7,7 +7,7 @@ const SpecificStyle = (props) => {
   return (
     <div id="specific-style">
       {props.styleClicked === props.style.name
-        ? <FontAwesomeIcon id="checkmark" icon={faCheckCircle} />
+        ? <FontAwesomeIcon id="checkmark" data-testid="checkmark" icon={faCheckCircle} />
         : null
       }
       <img className="icon"
