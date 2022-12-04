@@ -1,6 +1,7 @@
 module.exports = {
   'env': {
     'browser': true,
+    'jest': true,
     'es2021': true,
     'node': true
   },
@@ -56,8 +57,5 @@ module.exports = {
     /* Minuta */
     'comma-style': [2, 'last'],
     'quotes': [1, 'single']
-  },
-  "env": {
-    "jest": true
   }
 };
