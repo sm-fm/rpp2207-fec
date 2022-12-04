@@ -78,25 +78,98 @@ app.get('/reviews/meta', (req, res) => {
   });
 })
 
-app.get('/qa/questions/:query(*)', (req, res) => {
-  fetch(`${baseURL}/qa/questions?product_id=${req.params.query}`, getOptions)
+// GET Questions
+app.get('/qa/questions/:id', (req, res) => {
+  var id = `product_id=${req.params.id}`;
+
+  fetch(`${baseURL}/qa/questions?${id}`, getOptions)
     .then(results => {
-      // console.log(results.body._readableState.buffer.head.data);
-      // console.log(JSON.parse(results.body._readableState.buffer.head.data.toString()))
       return results.json();
     })
     .then(results => {
-      console.log(results);
       res.status(200);
       res.send(results);
     })
     .catch(err => {
-      console.log(err);
-      res.sendStatus(300);
+      res.status(400)
+      res.send(err);
     });
 })
 
+// GET Answers
+app.get('/qa/answers/:id', (req, res) => {
+  var id = req.params.id;
 
+  fetch(`${baseURL}/qa/questions/${id}/answers`, getOptions)
+    .then(results => {
+      return results.json();
+    })
+    .then(results => {
+      res.status(200);
+      res.send(results);
+    })
+    .catch(err => {
+      res.status(400)
+      res.send(err);
+    });
+})
+
+// POST Questions
+app.post('/qa/questions', (req, res) => {
+  var options = {
+    method: 'POST',
+    body: req.body,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  fetch(`${baseURL}/qa/questions`, options)
+    .then(results => {
+      console.log(results);
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      res.status(401)
+      res.send(err);
+    })
+})
+
+// POST Answers
+app.post('/qa/answers/:id', (req, res) => {
+  var options = {
+    method: 'POST',
+    body: req.body,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  fetch(`${baseURL}/qa/questions/${req.params.id}/answers`, options)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      res.status(401)
+      res.send(err);
+    })
+})
+
+// Report or Mark as Helpful
+app.put('/qa/:type/:id/:action', (req, res) => {
+  var type = req.params.type;
+  var action = req.params.action;
+  var id = req.params.id;
+
+  fetch(`${baseURL}/qa/${type}/${id}/${action}`, putOptions)
+    .then(() => {
+      res.sendStatus(204);
+    })
+    .catch(err => {
+      res.status(404)
+      res.send(err);
+    })
+})
 
 
 // PRODUCT ID ROUTE
