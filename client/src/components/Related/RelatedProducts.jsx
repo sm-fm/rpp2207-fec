@@ -31,7 +31,7 @@ const RelatedProducts = (props) => {
       </div>
       <div className='fade-top'>
         { position > 0 ?
-          <div role="button" label="arrow-left" className="arrow-container-left" onClick={() => { setPosition(position - 250); }}>
+          <div role="button" aria-label="arrow-left" className="arrow-container-left" onClick={() => { setPosition(position - 250); }}>
             <div className="arrow-left"></div>
           </div>
           : null
