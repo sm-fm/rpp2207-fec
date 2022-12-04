@@ -9,7 +9,7 @@ const RelatedProducts = (props) => {
 
   return (
     <>
-      <div className='related-products-container' style={{marginLeft: `-${position}px`}}>
+      <div role="listbox" aria-label="related-products" className='related-products-container' style={{marginLeft: `-${position}px`}}>
         {props.relatedProducts ?
 
 
@@ -31,13 +31,13 @@ const RelatedProducts = (props) => {
       </div>
       <div className='fade-top'>
         { position > 0 ?
-          <div className="arrow-container-left" onClick={() => { setPosition(position - 250); }}>
+          <div role="button" label="arrow-left" className="arrow-container-left" onClick={() => { setPosition(position - 250); }}>
             <div className="arrow-left"></div>
           </div>
           : null
         }
         { props && props.relatedProducts && position <= (props.relatedProducts.length - 4) * 250 ?
-          <div className="arrow-container-right" onClick={() => { setPosition(position + 250); }}>
+          <div role="button" aria-label="scroll-right" className="arrow-container-right" onClick={() => { setPosition(position + 250); }}>
             <div className="arrow-right"></div>
           </div>
           : null
