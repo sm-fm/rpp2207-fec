@@ -68,24 +68,33 @@
 	box-sizing: border-box;
 	position: relative;
 	pointer-events: auto;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .product-card-container:first-child {
 	margin-left: 20px;
 }
+
+.add-to-outfit-btn {
+  font-size: 40px;
+  pointer-events: none;
+}
+
 .product-card-image {
 	background: gray;
+  object-fit: cover;
 	height: 70%;
 	width: 100%;
-	object-fit: contain;
 }
 
 .product-card-description {
 	display: flex;
 	flex-direction: column;
-	margin: 5px;
-	justify-content: space-between;
+	justify-content: space-around;
 	height: 30%;
+  width: 220px;
 }
 
 .product-card-category {
@@ -112,11 +121,14 @@
 
 .remove-outfit-btn {
   position: absolute;
-  right: 10px;
+  right: 5px;
   top: 5px;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   opacity: 0.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-outfit-btn:hover, .remove-outfit-btn:hover {
@@ -125,7 +137,9 @@
 
 .remove-outfit-btn:before, .remove-outfit-btn:after {
   position: absolute;
-  left: 15px;
+  margin: auto;
+  left: 0;
+  right: 0;
   content: ' ';
   height: 20px;
   width: 2px;

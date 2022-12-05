@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const RelatedProduct = (props) => {
   const navigate = useNavigate();
-  const [averageRating, setAverageRating] = useState(0);
+  const [averageRating, setAverageRating] = useState();
   const stars = props.generateStars(averageRating, 'related');
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const RelatedProduct = (props) => {
   };
 
   return (
-    !props.isFetching ?
+    !props.isFetching && stars !== 'undefined' ?
       <div className='product-card-container' onClick={() => routeChange(props.product.id)}>
         <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url}>
         </img>
