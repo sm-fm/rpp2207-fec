@@ -34,7 +34,7 @@ const Related = (props) => {
       />
       <div className="your-outfit-header">YOUR OUTFIT</div>
       <YourOutfit
-        currentProductID={props.objID}
+        objID={props.objID}
         yourOutfit={props.yourOutfit}
         addToOutfit={props.addToOutfit}
         removeFromOutfit={props.removeFromOutfit}

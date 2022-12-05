@@ -12,8 +12,9 @@ const App = () => {
   const [yourOutfit, setYourOutfit] = useState([]);
 
   const addToOutfit = (product) => {
+    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
-      setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+      setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
   };
 
