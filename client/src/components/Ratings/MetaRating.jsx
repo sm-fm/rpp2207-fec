@@ -12,9 +12,9 @@ let Metarating = (props) => {
         return (
           <div key={`rating-${idx + 1} stars`} className='individual-rating-bars'>
             <div className='rating-wrapper'>
-              <p>{idx + 1} stars</p>
+              <p style={{'padding-right': '10px'}}>{idx + 1} stars</p>
               <ReviewRectangle idx={idx + 1} val={val}/>
-              <p>{val.votes} votes</p>
+              <p style={{'padding-left': '10px'}}>{val.votes} votes</p>
             </div>
           </div>
 
