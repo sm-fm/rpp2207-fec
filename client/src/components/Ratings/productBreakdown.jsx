@@ -1,8 +1,7 @@
 import React from 'react';
-import ReviewRectangle from './reviewRect.jsx';
+import ReviewRectangle from './productRect.jsx';
 
 let ProductBreakdown = (props) => {
-  console.log(props);
   return (
     <div className='product-breakdown'>
       <h3>Product Breakdown</h3>
@@ -11,7 +10,7 @@ let ProductBreakdown = (props) => {
         return (
           <div key={idx}>
             <p>{val}</p>
-            <ReviewRectangle key={idx} idx={`product-${idx}`} val={{ratio: ratio}} dummy={true}/>
+            <ReviewRectangle key={idx} idx={`product-${idx}`} ratio={ratio}/>
             <br />
           </div>
         );

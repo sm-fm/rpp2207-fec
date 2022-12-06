@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 let Rectangle = (props) => {
-  let isProductB;
-  if (props.dummy !== undefined) {
-    isProductB = true;
-  }
   let [notHover, setHover] = useState(true);
 
-  if (notHover || isProductB) {
+  if (notHover) {
     return (
       <svg width='100px' height='10px'>
         <linearGradient id={`Gradient${props.idx}-1`}>
