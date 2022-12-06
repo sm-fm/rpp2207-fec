@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ratingsAPI from '../../API/Ratings.js';
 import UserReviews from './ReviewCard.jsx';
-import Metadata from './Metadata.jsx';
+import Metadata from './metadata/Metadata.jsx';
 
 const Ratings = (props) => {
   // use 71697 for testing

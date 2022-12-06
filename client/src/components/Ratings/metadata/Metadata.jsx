@@ -1,5 +1,5 @@
 import React from 'react';
-import hf from './helperFunctions.js';
+import hf from '../helperFunctions.js';
 import Metarating from './MetaRating.jsx';
 import ProductBreakdown from './productBreakdown.jsx';
 
