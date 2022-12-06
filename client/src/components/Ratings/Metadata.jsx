@@ -1,5 +1,6 @@
 import React from 'react';
 import hf from './helperFunctions.js';
+import Metarating from './MetaRating.jsx';
 
 let Metadata = (props) => {
   let stars = props.generateStars(averageRating);
@@ -15,6 +16,8 @@ let Metadata = (props) => {
         </div>
       </div>
       <p className='recommended'>{rec}% of users recommend this product.</p>
+      <Metarating data={props.meta.ratings} manipulateShape = {hf.manipulateRatings}/>
+
     </div>
   );
 };
