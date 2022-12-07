@@ -2,8 +2,6 @@ import React from 'react';
 import hf from './helperFunctions.js';
 
 let Metadata = (props) => {
-  console.log(props);
-  console.log(props.generateStars);
   let stars = props.generateStars(averageRating);
   let averageRating = hf.calculateAverageReviews(props.meta.ratings);
   let rec = hf.calculateRecommended(props.meta.recommended);
