@@ -13,13 +13,6 @@ import Related from './Related/Related.jsx';
 import '../style.css';
 let helperFunctions = require('./helperFunctions.js').helperFunctions;
 
-/*
-================================
-adding this for ratings - if I forget to remove I'm sorry!
-================================
-*/
-import exampleData from './Ratings/exampleData/exampleDataRatings.js';
-
 const App = () => {
   const params = useParams();
   const id = params.id;
