@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { parseISO, lightFormat } from 'date-fns';
 
-const Answer = () => {
+const Answer = (props) => {
+  let [date, setDate] = useState()
+
+  useEffect(() => {
+    // var Date = parseISO(props.date);
+    // var str = lightFormat(date, 'd, y');
+    // setDate(parseISO(str)); IDK
+  })
+
   return (
-    <div>
-      <h1>----> Answer</h1>
+    <div id="answer-container">
+      <h1>A: {props.body}</h1>
+      <p>{props.name}, {date}</p>
     </div>
   )
 }

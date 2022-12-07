@@ -15,11 +15,18 @@ const QuestList = (props) => {
       <div>
         {questions.map((q, idx) => {
           return (
-            <Question key={idx} body={q.question_body}/>
+            <Question
+              key={idx}
+              q_ID={q.question_id}
+              body={q.question_body}
+              date={q.question_date}
+              helpful={q.question_helpfulness}
+              name={q.asker_name}
+              answers={q.answers}
+            />
           );
         })}
       </div>
-      <Question />
       <MoreQuest />
     </div>
   )

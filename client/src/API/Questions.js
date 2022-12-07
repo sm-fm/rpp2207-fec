@@ -1,11 +1,14 @@
-const QuestionAPI = {
+const questionAPI = {
   getAllQuestions: (product_id) => {
     var options = { method: 'GET' };
 
-    fetch(`/qa/questions/${product_id}`, options)
+    return fetch(`/qa/questions/${product_id}`, options)
+      .then(results => {
+        return results.json();
+      })
       .then(results => {
         console.log(results);
-        return results;
+        return results.results;
       })
       .catch(err => {
         console.log(err);
@@ -15,10 +18,13 @@ const QuestionAPI = {
   getAllAnswers: (question_id) => {
     var options = { method: 'GET' };
 
-    fetch(`/qa/answers/${question_id}`, options)
+    return fetch(`/qa/answers/${question_id}`, options)
+      .then(results => {
+        return results.json();
+      })
       .then(results => {
         console.log(results);
-        return results;
+        return results.results;
       })
       .catch(err => {
         console.log(err);
@@ -110,4 +116,4 @@ const QuestionAPI = {
   }
 };
 
-export default QuestionAPI;
+export default questionAPI;
