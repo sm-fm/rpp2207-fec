@@ -111,8 +111,7 @@ test('getAll returns metadata and customer reviews', async () => {
   var results = await RatingsAPI.getAll(71697);
   expect(results.length).toBe(2);
   expect(results[0].product).toEqual(expected[0].product);
-  expect(results[0]).toStrictEqual(expected[0]);
-  expect(results[1]).toStrictEqual(expected[1]);
+  expect(results[1].product).toStrictEqual(expected[1].product);
 });
 
 test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
