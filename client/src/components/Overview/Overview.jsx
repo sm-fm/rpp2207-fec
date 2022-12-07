@@ -78,7 +78,8 @@ const Overview = (props) => {
               styles={styles}
               chosenStyle={chosenStyle}
               styleClicked={styleClicked}
-              toggleClick={toggleClick} />
+              toggleClick={toggleClick}
+              setSkus={setSkus} />
             <Images
               id="images-comp"
               chosenStyle={chosenStyle}

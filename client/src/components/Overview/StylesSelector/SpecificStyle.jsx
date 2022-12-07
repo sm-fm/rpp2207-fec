@@ -13,7 +13,10 @@ const SpecificStyle = (props) => {
       <img className="icon"
         src={props.style.photos[0].thumbnail_url}
         alt="thumbnail of current style"
-        onClick={() => { props.setChosenStyle(props.style); props.toggleClick(props.style.name); }} />
+        onClick={() => {
+          props.setChosenStyle(props.style);
+          props.toggleClick(props.style.name);
+          props.setSkus(props.style.skus) }} />
     </div>
   )
 };

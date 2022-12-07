@@ -31,7 +31,7 @@ const SizeSelector = (props) => {
           })}
         </select>
       </div>
-    )
+    );
   }
 };
 
