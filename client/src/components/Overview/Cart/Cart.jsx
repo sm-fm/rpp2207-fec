@@ -3,8 +3,6 @@ import SizeSelector from './SizeSelector.jsx';
 
 const Cart = (props) => {
 
-  console.log(props.skus);
-
   return (
     <div>
       <SizeSelector
