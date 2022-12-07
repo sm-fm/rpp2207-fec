@@ -1,5 +1,10 @@
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import React from 'react';
+import Router from 'react-router-dom';
 import RatingsAPI from '../client/src/API/Ratings.js';
 import hf from '../client/src/components/Ratings/helperFunctions.js';
+import nock from 'nock';
+import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
 var expected = [
   {
     "product": "71697",
@@ -142,4 +147,48 @@ test('Test manipulateRatings from the Ratings helper functions', () => {
     5: {'votes': 10, 'ratio': 0.08}
   });
   expect(hf.manipulateRatings(123)).toBe(undefined);
+});
+
+describe("ReviewCard component", () => {
+
+  it('tests the data being passed to ReviewCard is on the screen', async () => {
+    let sampleReview = {
+      "product": "71697",
+      "page": 0,
+      "count": 5,
+      "results": [
+        {
+          "review_id": 1277082,
+          "rating": 3,
+          "summary": "really like it ",
+          "recommend": true,
+          "response": null,
+          "body": "really like it really like it really like it really like it ",
+          "date": "2022-10-23T00:00:00.000Z",
+          "reviewer_name": "test",
+          "helpfulness": 1,
+          "photos": [
+            {
+              "id": 2456443,
+              "url": "http://res.cloudinary.com/dwcubhwiw/image/upload/v1666565658/cmyyueiv89d6l1cywtoy.png"
+            }
+          ]
+        }]};
+    nock('http://127.0.0.1:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/?product_id=71697')
+      .reply(200, sampleReview);
+
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return "stars"}}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+    />, {wrapper: Router});
+
+    await waitFor(() => {
+      expect(container.getElementsByClassName('userReviews').length).toBe(1);
+    });
+  });
 });
