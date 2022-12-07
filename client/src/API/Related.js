@@ -44,7 +44,6 @@ const RelatedAPI = {
         return json.json();
       })
       .then((product) => {
-        console.log('product in getProductById: ', product);
         return product;
       })
       .then((product) => {
