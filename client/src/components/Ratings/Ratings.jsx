@@ -59,11 +59,17 @@ const Ratings = (props) => {
     getReviewList(product_id, e.target.value);
   };
 
+  let useRating = (e) => {
+    console.log(e.target);
+    console.log(e.target.id);
+
+  };
+
   return (
     <div className='ratings'>
       <div className='metaDataDisplay'>
         {!isLoadingMeta &&
-        <Metadata generateStars={props.generateStars} meta={metadata}/>}
+        <Metadata generateStars={props.generateStars} meta={metadata} useRatings = {useRating}/>}
       </div>
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>

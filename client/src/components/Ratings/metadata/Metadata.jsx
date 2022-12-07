@@ -7,7 +7,7 @@ let Metadata = (props) => {
   let averageRating = hf.calculateAverageReviews(props.meta.ratings);
   let rec = hf.calculateRecommended(props.meta.recommended);
   return (
-    <div>
+    <div className='metadata'>
       <h3>Ratings and Reviews</h3>
       <div className='heading'>
         <h4>{averageRating}</h4>
@@ -16,7 +16,7 @@ let Metadata = (props) => {
         </div>
       </div>
       <p className='recommended'>{rec}% of users recommend this product.</p>
-      <Metarating data={props.meta.ratings} manipulateShape = {hf.manipulateRatings}/>
+      <Metarating data={props.meta.ratings} manipulateShape = {hf.manipulateRatings} useRatings={props.useRatings}/>
       <ProductBreakdown data = {props.meta.characteristics}/>
     </div>
   );
