@@ -10,7 +10,8 @@ const Ratings = (props) => {
     "page": 0,
     "count": 5,
     "results": []
-  }
+  };
+
   const product_id = props.objID;
 
   // Refering to the review list
@@ -84,7 +85,7 @@ const Ratings = (props) => {
 
     </div>
 
-  )
-}
+  );
+};
 
 export default Ratings;

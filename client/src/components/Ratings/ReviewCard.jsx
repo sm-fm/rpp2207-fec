@@ -11,18 +11,21 @@ let ReviewCard = (props) => {
   date = format(date, 'MMM d, y');
 
   const [displayFullBody, setDisplay] = useState(false);
-  let shortBody;
+  let shortBody, shortText;
   if (props.data.body.length > 250) {
     shortBody = props.data.body.slice(0, 250) + '...';
   } else {
     shortBody = props.data.body;
+    shortText = true;
   }
+
   let renderBody = null;
   if (displayFullBody) {
     renderBody = props.data.body;
   } else {
     renderBody = shortBody;
   }
+
   return (
     <div className = 'userReview'>
       <div className='flex-box'>
@@ -33,24 +36,27 @@ let ReviewCard = (props) => {
       </div>
       <h3 className='summary'>{props.data.summary}</h3>
       <p className='reviewBody'>{renderBody}</p>
-      {!displayFullBody  &&
+
+      {(!displayFullBody && !shortText) &&
         <p onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
-        {/* Currently there is no function to display LESS - I think we should implement this too */}
+
       {props.data.recommend &&
         <p>✓ I recommend this product</p>}
+
       {props.data.response !== '' &&
         <p className='companyResponse'>{props.data.response}</p>}
+
       <h6>Helpful? <u>Yes</u> {`(${props.data.helpfulness})`} | <u>Report</u></h6>
 
       <div className='thumbnail-holder'>
         {props.data.photos.map((element, idx) => {
           return (
             <img key={`${props.data.reviewer_name} image - ${idx + 1}`} className='thumbnail' src={element.url} alt={`${props.data.reviewer_name} image - ${idx + 1}`}/>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ReviewCard;
