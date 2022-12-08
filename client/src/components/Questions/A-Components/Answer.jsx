@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { parseISO, lightFormat } from 'date-fns';
+import { format } from 'date-fns';
 
 const Answer = (props) => {
-  let [date, setDate] = useState()
-
-  useEffect(() => {
-    // var Date = parseISO(props.date);
-    // var str = lightFormat(date, 'd, y');
-    // setDate(parseISO(str)); IDK
-  })
+  var date = new Date(props.date);
+  date = format(date, 'MMM d, y');
 
   return (
     <div id="answer-container">

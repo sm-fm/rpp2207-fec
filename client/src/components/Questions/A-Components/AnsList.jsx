@@ -5,11 +5,19 @@ import MoreAns from './MoreAns.jsx';
 
 const AnsList = (props) => {
   let [answers, setAnswers] = useState([]);
+  let [rendered, setRendered] = useState([]);
+  let [num, setNum] = useState(2);
 
   useEffect(() => {
     questionAPI.getAllAnswers(props.q_ID)
       .then(results => {
         setAnswers(results);
+        if (results.length > 2) {
+          setRendered([ answers[0], answers[1] ]);
+        } else {
+          setRendered(answers);
+          setNum(answers.length);
+        }
       })
       .catch(err => console.log(err));
   }, [props.q_ID]);
@@ -17,7 +25,7 @@ const AnsList = (props) => {
   return (
     <div id="answers-container">
       <div>
-        {answers.map((a, idx) => {
+        {rendered.map((a, idx) => {
           return (
             <Answer
               key={idx}
