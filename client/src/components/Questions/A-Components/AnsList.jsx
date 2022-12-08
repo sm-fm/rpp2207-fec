@@ -6,6 +6,7 @@ import MoreAns from './MoreAns.jsx';
 const AnsList = (props) => {
   let [answers, setAnswers] = useState([]);
   let [rendered, setRendered] = useState([]);
+  let [num, setNum] = useState(2);
 
   useEffect(() => {
     questionAPI.getAllAnswers(props.q_ID)
@@ -15,10 +16,24 @@ const AnsList = (props) => {
           setRendered([ results[0], results[1] ]);
         } else {
           setRendered(results);
+          setNum(results.length);
         }
       })
       .catch(err => console.log(err));
   }, [props.q_ID]);
+
+  function handleMore() {
+    var temp = rendered;
+    if (answers.length - rendered.length >= 2) {
+      temp.push(answers[num]);
+      temp.push(answers[num+1]);
+      setNum(num+2);
+    } else {
+      temp.push(answers[num]);
+      setNum(num+1);
+    }
+    setRendered(temp);
+  };
 
   return (
     <div id="answers-container">
@@ -38,7 +53,7 @@ const AnsList = (props) => {
         })}
       </div>
       {rendered.length < answers.length ?
-        <button id="more-a-btn"> More Answers </button>
+        <button id="more-a-btn" onClick={handleMore}> More Answers </button>
       : null}
     </div>
   )
