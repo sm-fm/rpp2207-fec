@@ -25,7 +25,7 @@ let Metarating = (props) => {
     <div className='meta-rating'>
       <h3>Ratings break down</h3>
       {ratingsList &&
-      <p id='ratingsList'>{ratingsList}</p>
+      <p id='ratingsList'>{ratingsList.join(', ')}</p>
       }
       {Object.values(ratings).map((val, idx) => {
         return (
