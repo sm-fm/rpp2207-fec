@@ -12,27 +12,35 @@ const AnsList = (props) => {
     questionAPI.getAllAnswers(props.q_ID)
       .then(results => {
         setAnswers(results);
-        if (results.length > 2) {
+        if (results.length >= 2) {
           setRendered([ results[0], results[1] ]);
+          setNum(2);
         } else {
           setRendered(results);
-          setNum(results.length);
+          setNum(1);
         }
       })
       .catch(err => console.log(err));
   }, [props.q_ID]);
 
   function handleMore() {
-    var temp = rendered;
+    var tempArr = rendered;
+    var tempNum = num;
     if (answers.length - rendered.length >= 2) {
-      temp.push(answers[num]);
-      temp.push(answers[num+1]);
-      setNum(num+2);
+      tempArr.push(answers[num]);
+      tempArr.push(answers[num+1]);
+      tempNum += 2;
     } else {
-      temp.push(answers[num]);
-      setNum(num+1);
+      tempArr.push(answers[num]);
+      tempNum += 1;
     }
-    setRendered(temp);
+    setRendered(tempArr);
+    setNum(tempNum);
+  };
+
+  function handleCollapse() {
+    setRendered([ answers[0], answers[1] ]);
+    setNum(2);
   };
 
   return (
@@ -54,6 +62,9 @@ const AnsList = (props) => {
       </div>
       {rendered.length < answers.length ?
         <button id="more-a-btn" onClick={handleMore}> More Answers </button>
+      : null}
+      {rendered.length === answers.length && num > 2 ?
+        <button id="collapse-a-btn" onClick={handleCollapse}> Collapse Answers </button>
       : null}
     </div>
   )
