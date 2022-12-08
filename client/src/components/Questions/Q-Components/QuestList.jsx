@@ -4,16 +4,23 @@ import MoreQuest from './MoreQuest.jsx';
 
 const QuestList = (props) => {
   let [questions, setQuestions] = useState([]);
+  let [rendered, setRendered] = useState([]);
 
   useEffect(() => {
     setQuestions(props.questions);
-  })
+    if (props.questions.length > 2) {
+      setRendered([ props.questions[0], props.questions[1] ]);
+    } else {
+      setRendered(props.questions);
+    }
+  }, [props.questions]);
+
+  console.log(rendered);
 
   return (
     <div id="questions-container">
-      {/* <h1>{questions.length}</h1> */}
       <div>
-        {questions.map((q, idx) => {
+        {rendered.map((q, idx) => {
           return (
             <Question
               key={idx}
@@ -27,7 +34,9 @@ const QuestList = (props) => {
           );
         })}
       </div>
-      <MoreQuest />
+      {rendered.length < questions.length ?
+        <button id="more-q-btn"> More Questions </button>
+      : null}
     </div>
   )
 }

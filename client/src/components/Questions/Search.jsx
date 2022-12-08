@@ -3,7 +3,12 @@ import React, { useState, useEffect } from 'react';
 const Search = () => {
   return (
     <div id="search-container">
-      <h1>-> Search</h1>
+      <input
+        type="text"
+        id="qna-search"
+        placeholder="Have a question? Search for answers..."
+      />
+      <button> ICON </button>
     </div>
   )
 }

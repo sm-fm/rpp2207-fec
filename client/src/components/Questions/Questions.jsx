@@ -17,7 +17,7 @@ const Questions = (props) => {
 
   return (
     <div id="qna-container">
-      <h1 id="qna-title">Questions & Answers</h1>
+      <h1 id="qna-title">Q & A</h1>
       <Search />
       <QuestList questions={questions}/>
     </div>
