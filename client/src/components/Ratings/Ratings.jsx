@@ -61,9 +61,16 @@ const Ratings = (props) => {
     getReviewList(product_id, e.target.value);
   };
 
-  let useRating = (e) => {
+  let useRating = async (e) => {
+    console.log(e.target);
     if (e.target.id === '') {
       return;
+    }
+
+    if (e.target.id === 'resetRatingsFilters') {
+      setRatings([]);
+      await getReviewList(product_id, category);
+      return true;
     }
     // This will be taken out when I toggle the ratings
     if (ratings.includes(e.target.id)) {

@@ -58,11 +58,6 @@ app.get('/reviews', (req, res) => {
       return results.json();
     })
     .then(results => {
-      console.log(req.query.rating.length);
-      // console.log('second test: ', req.query.rating.length > 2);
-      // console.log('first test: ', (req.query.rating !== '"[]"' && req.query.rating !== '[]'))
-      // console.log((req.query.rating !== '"[]"' || req.query.rating !== '[]') && req.query.length !== 2)
-
       if (req.query.rating.length > 4) {
         let selectedRatings = JSON.parse(req.query.rating);
         let relevantReviews = results.results.filter((val) => {

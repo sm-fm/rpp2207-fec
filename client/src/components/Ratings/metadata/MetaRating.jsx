@@ -21,11 +21,22 @@ let Metarating = (props) => {
     }
   };
 
+  let resetFilters = (e) => {
+    console.log('entered meta rating');
+    props.useRatings(e)
+      .then(() => {
+        setRatingsList([]);
+      });
+  };
+
   return (
     <div className='meta-rating'>
       <h3>Ratings break down</h3>
       {ratingsList &&
-      <p id='ratingsList'>{ratingsList.join(', ')}</p>
+      [<p key='rating-preview-list' id='ratingsList'>{ratingsList.join(', ')}</p>,
+        <p key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</p>
+      ]
+
       }
       {Object.values(ratings).map((val, idx) => {
         return (
