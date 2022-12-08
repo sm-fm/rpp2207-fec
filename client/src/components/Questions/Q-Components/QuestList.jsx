@@ -9,25 +9,33 @@ const QuestList = (props) => {
 
   useEffect(() => {
     setQuestions(props.questions);
-    if (props.questions.length > 2) {
+    if (props.length >= 2) {
       setRendered([ props.questions[0], props.questions[1] ]);
+      setNum(2);
     } else {
       setRendered(props.questions);
-      setNum(props.questions.length);
+      setNum(1);
     }
-  }, [props.questions]);
+  }, [props.questions, props.length]);
 
   function handleMore() {
-    var temp = rendered;
+    var tempArr = rendered;
+    var tempNum = num;
     if (questions.length - rendered.length >= 2) {
-      temp.push(questions[num]);
-      temp.push(questions[num+1]);
-      setNum(num+2);
+      tempArr.push(questions[num]);
+      tempArr.push(questions[num+1]);
+      tempNum += 2;
     } else {
-      temp.push(questions[num]);
-      setNum(num+1);
+      tempArr.push(questions[num]);
+      tempNum += 1;
     }
-    setRendered(temp);
+    setRendered(tempArr);
+    setNum(tempNum);
+  };
+
+  function handleCollapse() {
+    setRendered([ questions[0], questions[1] ]);
+    setNum(2);
   };
 
   return (
@@ -49,6 +57,9 @@ const QuestList = (props) => {
       </div>
       {rendered.length < questions.length ?
         <button id="more-q-btn" onClick={handleMore}> More Questions </button>
+      : null}
+      {rendered.length === questions.length && num > 2 ?
+        <button id="collapse-q-btn" onClick={handleCollapse}> Collapse Questions </button>
       : null}
     </div>
   )

@@ -19,7 +19,7 @@ const Questions = (props) => {
     <div id="qna-container">
       <h1 id="qna-title">Q & A</h1>
       <Search />
-      <QuestList questions={questions}/>
+      <QuestList questions={questions} length={questions.length}/>
     </div>
   )
 }
