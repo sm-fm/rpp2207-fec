@@ -63,22 +63,24 @@ const Ratings = (props) => {
 
   let useRating = async (e) => {
     console.log(e.target);
+    let holder;
     if (e.target.id === '') {
       return;
     }
 
     if (e.target.id === 'resetRatingsFilters') {
       setRatings([]);
-      await getReviewList(product_id, category);
-      return true;
+      return await getReviewList(product_id, category);
     }
     // This will be taken out when I toggle the ratings
     if (ratings.includes(e.target.id)) {
-      ratings.splice(ratings.indexOf(e.target.id), 1);
-      getReviewList(product_id, category, ratings);
+      holder = JSON.parse(JSON.stringify(ratings));
+      holder.splice(holder.indexOf(e.target.id), 1);
+      setRatings(holder);
+      return await getReviewList(product_id, category, holder);
     } else {
       setRatings([...ratings, e.target.id]);
-      getReviewList(product_id, category, [...ratings, e.target.id]);
+      return await getReviewList(product_id, category, [...ratings, e.target.id]);
     }
   };
 
