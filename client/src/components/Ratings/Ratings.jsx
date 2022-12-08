@@ -62,12 +62,12 @@ const Ratings = (props) => {
   };
 
   let useRating = (e) => {
-    console.log(e.target);
-    console.log(e.target.id);
-
+    if (e.target.id === '') {
+      return;
+    }
     // This will be taken out when I toggle the ratings
     if (ratings.includes(e.target.id)) {
-      getReviewList(product_id, category, ratings);
+      return;
     } else {
       setRatings([...ratings, e.target.id]);
       getReviewList(product_id, category, [...ratings, e.target.id]);

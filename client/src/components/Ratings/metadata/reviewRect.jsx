@@ -17,7 +17,7 @@ let Rectangle = (props) => {
     );
   } else {
     return (
-      <svg width='100px' height='10px'>
+      <svg width='100px' height='10px' onClick={props.ratings}>
         <linearGradient id={`Gradient${props.idx}-2`}>
           <stop key={`${props.idx}-stop-1`} className='stop1' offset="0%" stopColor="green" />
           <stop key={`${props.idx}-stop-2`} className='stop2' offset={`${props.val.ratio * 100}%`} stopColor="green" stopOpacity="1" />
