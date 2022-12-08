@@ -22,6 +22,7 @@ const Ratings = (props) => {
   // Refering to metadata
   const [metadata, setMetadata] = useState({});
   const [isLoadingMeta, setIsLoadingMeta] = useState(true);
+  const [ratings, setRatings] = useState([]);
 
   /**
    *
@@ -30,8 +31,8 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
-    return ratingsAPI.getReviewList(product_id, sort, page, count)
+  let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 5) => {
+    return ratingsAPI.getReviewList(product_id, rating, sort, page, count)
       .then(data => {
         console.log('Success!', data);
         setReviewData(data);
@@ -56,6 +57,7 @@ const Ratings = (props) => {
   }, []);
 
   let catChange = (e) => {
+    setCategory(e.target.value);
     getReviewList(product_id, e.target.value);
   };
 
@@ -63,6 +65,13 @@ const Ratings = (props) => {
     console.log(e.target);
     console.log(e.target.id);
 
+    // This will be taken out when I toggle the ratings
+    if (ratings.includes(e.target.id)) {
+      getReviewList(product_id, category, ratings);
+    } else {
+      setRatings([...ratings, e.target.id]);
+      getReviewList(product_id, category, [...ratings, e.target.id]);
+    }
   };
 
   return (
