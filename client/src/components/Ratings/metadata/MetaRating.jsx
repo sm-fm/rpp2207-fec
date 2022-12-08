@@ -7,9 +7,17 @@ let Metarating = (props) => {
   let [ratingsList, setRatingsList] = useState([]);
 
   let trackRatings = (e) => {
+    let holder;
     console.log('Here is the product: ', e.target.id);
     if (!ratingsList.includes(e.target.id)) {
-      setRatingsList([...ratingsList, e.target.id]);
+      holder = [...ratingsList, e.target.id];
+      holder.sort();
+      setRatingsList(holder);
+    } else {
+      holder = JSON.parse(JSON.stringify(ratingsList));
+      holder.splice(holder.indexOf(e.target.id), 1);
+      holder.sort();
+      setRatingsList(holder);
     }
   };
 

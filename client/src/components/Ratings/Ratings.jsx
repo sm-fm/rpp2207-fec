@@ -67,7 +67,8 @@ const Ratings = (props) => {
     }
     // This will be taken out when I toggle the ratings
     if (ratings.includes(e.target.id)) {
-      return;
+      ratings.splice(ratings.indexOf(e.target.id), 1);
+      getReviewList(product_id, category, ratings);
     } else {
       setRatings([...ratings, e.target.id]);
       getReviewList(product_id, category, [...ratings, e.target.id]);
