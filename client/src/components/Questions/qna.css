@@ -23,6 +23,7 @@ strong {
 	border-style: hidden;
 	background-color: white;
 	cursor: pointer;
+	font-family: Times, serif;
 }
 .list-container {
 	width: 100%;
@@ -36,9 +37,12 @@ strong {
 	border-bottom: 2px solid black;
 	padding: 5px;
 	margin-bottom: 10px;
+	border-radius: 2px;
+	font-family: Times, serif;
 }
 #search-input {
 	font-size: 15px;
+	font-family: Times, serif;
 	border-style: hidden;
   background-color: #EEEEEE;
 	color: #202020;
@@ -83,7 +87,7 @@ strong {
 	width: 100%;
 }
 #add-ans {
-	font-size: 11px;
+	font-size: 12px;
 	text-decoration: underline;
 	margin-left: 14px;
 }
@@ -133,7 +137,7 @@ strong {
 
 /* Help/Report */
 .helpful-report,
-#report {
+#report, #reported {
 	display: inline;
 }
 #helpful {
@@ -147,13 +151,14 @@ strong {
 #yes-btn,
 #report-btn,
 #reported {
-	font-size: 11px;
+	font-size: 12px;
 	text-decoration: underline;
 }
 
 #reported {
 	color: red;
 	text-transform: uppercase;
+	margin-left: 10px;
 }
 
 #yes-btn:hover {
