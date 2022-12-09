@@ -13,7 +13,7 @@ const HelpReport = (props) => {
     setId(props.val);
   }, [props.helpful, props.type, props.val]);
 
-  function handleHelpful () {
+  var handleHelpful = () => {
     questionAPI.markHelpful(type, id)
       .then(() => {
         let tmp = helpful + 1;
@@ -21,10 +21,10 @@ const HelpReport = (props) => {
       })
       .catch(err => {
         console.log(err);
-      })
-  }
+      });
+  };
 
-  function handleReport () {
+  var handleReport = () => {
     questionAPI.report(type, id)
       .then(() => {
         setReported(true);
@@ -32,24 +32,30 @@ const HelpReport = (props) => {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   return (
     <span className="helpful-report">
       <span id="helpful">
         Helpful?
-        <button id="yes-btn" className="btn">Yes ({helpful}) </button>
+        <button
+          id="yes-btn"
+          className="btn"
+          onClick={handleHelpful}
+        >Yes ({helpful}) </button>
       </span>
       <span id="report">
         {!reported ?
           <button
             id="report-btn"
             className="btn"
+            onClick={handleReport}
           >Report</button>
-        : <p id="reported">Reported</p>}
+          : <p id="reported">Reported</p>
+        }
       </span>
     </span>
-  )
-}
+  );
+};
 
 export default HelpReport;

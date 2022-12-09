@@ -1,13 +1,12 @@
 const questionAPI = {
-  getAllQuestions: (product_id) => {
+  getAllQuestions: (productId) => {
     var options = { method: 'GET' };
 
-    return fetch(`/qa/questions/${product_id}`, options)
+    return fetch(`/qa/questions/${productId}`, options)
       .then(results => {
         return results.json();
       })
       .then(results => {
-        console.log(results);
         return results.results;
       })
       .catch(err => {
@@ -15,15 +14,14 @@ const questionAPI = {
       });
   },
 
-  getAllAnswers: (question_id) => {
+  getAllAnswers: (questionId) => {
     var options = { method: 'GET' };
 
-    return fetch(`/qa/answers/${question_id}`, options)
+    return fetch(`/qa/answers/${questionId}`, options)
       .then(results => {
         return results.json();
       })
       .then(results => {
-        console.log(results);
         return results.results;
       })
       .catch(err => {
@@ -40,7 +38,7 @@ const questionAPI = {
       }
     };
 
-    fetch(`/qa/questions`, options)
+    fetch('/qa/questions', options)
       .then(results => {
         console.log(results);
       })
@@ -49,7 +47,7 @@ const questionAPI = {
       });
   },
 
-  addAnswer: (question_id, data) => {
+  addAnswer: (questionId, data) => {
     var options = {
       method: 'POST',
       body: JSON.stringify(data),
@@ -58,7 +56,7 @@ const questionAPI = {
       }
     };
 
-    fetch(`/qa/answers`, options)
+    fetch('/qa/answers', options)
       .then(results => {
         console.log(results);
       })
@@ -82,7 +80,7 @@ const questionAPI = {
   report: (type, id) => {
     var options = { method: 'PUT' };
 
-    return fetch(`/qa/${type}/${id}/report`)
+    return fetch(`/qa/${type}/${id}/report`, options)
       .then(results => {
         return results;
       })

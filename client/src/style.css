@@ -224,38 +224,104 @@ strong {
 
 /* Forms */
 .form {
-
+	border: 2px solid black;
+	width: 60%;
+	height: auto;
+  justify-content: center;
+	margin: 5px;
+	background-color: black;
+	font-family: Times, serif;
+	border-radius: 5px;
 }
-#form-header {
+.form-header,
+.form-footer {
+	color: white;
+	width: 100%;
+}
+.form-body {
+	background-color: white;
+	border-radius: 3px;
+	padding: 10px;
+}
 
+#form-close {
+	background-color: black;
+	color: white;
+	float: right;
+	position: relative;
+	margin-right: 5px;
+	font-family: Arial;
+	font-weight: bolder;
+	font-size: 17px;
+	cursor: pointer;
 }
 #form-title {
-
+	margin: auto;
+	width: fit-content;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-size: 25px;
 }
 #form-subtitle {
-
-}
-#form-body {
-
+	margin: auto;
+	width: fit-content;
+	margin-bottom: 10px;
+	font-size: 18px;
 }
 #form-question {
-
+	margin: 10px 0 15px 0;
 }
 #form-label {
-
+	font-weight: bold;
+	margin-bottom: 3px;
 }
 #form-box {
-
+	height: 60px;
 }
+#form-box,
 #form-input {
-
+	font-family: Times, serif;
+	width: 95%;
+	margin: auto;
+	font-size: 15px;
+	border-style: hidden;
+  background-color: #EEEEEE;
+	color: #202020;
+	padding: 5px;
+	border-radius: 2px;
+	border-bottom: 2px solid black;
 }
 #form-below {
-
+	font-style: oblique;
+	font-size: 15px;
 }
 #form-submit {
+	margin: 10px 40% 10px 40%;
 
+	width: 20%;
+	font-size: 17px;
+	background-color: black;
+	color: white;
+	border: 2px solid white;
+	border-radius: 5px;
+	padding: 5px;
+	font-family: Times, serif;
 }
 #form-upload {
+	font-size: 14px;
+	font-family: Times, serif;
+	border: 2px solid black;
+	border-radius: 5px;
+}
 
+#form-close:hover {
+	color: red;
+}
+#form-submit:hover {
+	background-color: white;
+	color: black;
+}
+#form-upload:hover {
+	background-color: black;
+	color: white;
 }

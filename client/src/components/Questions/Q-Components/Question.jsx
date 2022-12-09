@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AnsList from '../A-Components/AnsList.jsx';
 import HelpReport from '../HelpReport.jsx';
 
@@ -16,7 +16,7 @@ const Question = (props) => {
         <AnsList q_ID={props.q_ID}/>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Question;

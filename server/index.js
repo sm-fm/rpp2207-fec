@@ -91,10 +91,10 @@ app.get('/qa/questions/:id', (req, res) => {
       res.send(results);
     })
     .catch(err => {
-      res.status(400)
+      res.status(400);
       res.send(err);
     });
-})
+});
 
 // GET Answers
 app.get('/qa/answers/:id', (req, res) => {
@@ -109,10 +109,10 @@ app.get('/qa/answers/:id', (req, res) => {
       res.send(results);
     })
     .catch(err => {
-      res.status(400)
+      res.status(400);
       res.send(err);
     });
-})
+});
 
 // POST Questions
 app.post('/qa/questions', (req, res) => {
@@ -130,10 +130,10 @@ app.post('/qa/questions', (req, res) => {
       res.sendStatus(201);
     })
     .catch(err => {
-      res.status(401)
+      res.status(401);
       res.send(err);
-    })
-})
+    });
+});
 
 // POST Answers
 app.post('/qa/answers/:id', (req, res) => {
@@ -150,33 +150,39 @@ app.post('/qa/answers/:id', (req, res) => {
       res.sendStatus(201);
     })
     .catch(err => {
-      res.status(401)
+      res.status(401);
       res.send(err);
-    })
-})
+    });
+});
 
 // Report or Mark as Helpful
 app.put('/qa/:type/:id/:action', (req, res) => {
+  var options = {
+    method: 'PUT',
+    headers: {
+      'Authorization': process.env.GITHUB_ACCESS_TOKEN
+    }
+  };
   var type = req.params.type;
   var action = req.params.action;
   var id = req.params.id;
 
-  fetch(`${baseURL}/qa/${type}/${id}/${action}`, putOptions)
+  fetch(`${baseURL}/qa/${type}/${id}/${action}`, options)
     .then(() => {
       res.sendStatus(204);
     })
     .catch(err => {
-      res.status(404)
+      res.status(404);
       res.send(err);
-    })
-})
+    });
+});
 
 
 // PRODUCT ID ROUTE
 app.get('/:id', (req, res) => {
-  res.sendFile('index.html', {root: path.join(__dirname, '..', 'client', 'dist')})
-})
+  res.sendFile('index.html', {root: path.join(__dirname, '..', 'client', 'dist')});
+});
 
 app.listen(PATH, () => {
   console.log(`Server listening to port: ${PATH}`);
-})
+});

@@ -1,28 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const QuestForm = () => {
   let [question, setQuestion] = useState('');
   let [name, setName] = useState('');
   let [email, setEmail] = useState('');
 
-  function handleChange(type, val) {
+  var handleChange = (type, val) => {
     if (type === 'quest') { setQuestion(val); }
     if (type === 'name') { setName(val); }
     if (type === 'email') { setEmail(val); }
-  }
+  };
+
+  var handleClose = () => {
+
+  };
+
+  var submit = () => {
+    var data = {
+      productId: null,
+      body: question,
+      name: name,
+      email: email
+    };
+    return data;
+  };
 
   return (
     <div className="form">
-      <header id="form-header">
+      <header className="form-header">
+        <button
+          id="form-close"
+          className="btn"
+          onClick={handleClose}
+        >X</button>
         <h1 id="form-title">Ask Your Question</h1>
         <h2 id="form-subtitle">About the ITEM_NAME_HERE</h2>
       </header>
-      <div id="form-body">
+      <div className="form-body">
         <div id="form-question">
           <h3 id="form-label">Your Question</h3>
-          <input
+          <textarea
             id="form-box"
+            placeholder="1000 character limit"
             onChange={(e) => handleChange('quest', e.target.value)}
+            maxLength="1000"
           />
         </div>
         <div id="form-question">
@@ -31,8 +52,9 @@ const QuestForm = () => {
             id="form-input"
             placeholder="Example: jackson11!"
             onChange={(e) => handleChange('name', e.target.value)}
+            maxLength="60"
           />
-          <p id="form-below">For privacy reasons don't use your full name or email address</p>
+          <p id="form-below">{'For privacy reasons don\'t use your full name or email address'}</p>
         </div>
         <div id="form-question">
           <h3 id="form-label">Your email</h3>
@@ -40,13 +62,20 @@ const QuestForm = () => {
             id="form-input"
             placeholder="Why did you like the product or not?"
             onChange={(e) => handleChange('email', e.target.value)}
+            maxLength="60"
           />
           <p id="form-below">For authentication reasons, you will not be emailed</p>
         </div>
       </div>
-      <button id="form-submit">Submit</button>
+      <footer className="form-footer">
+        <button
+          id="form-submit"
+          className="btn"
+          onClick={submit}>Submit
+        </button>
+      </footer>
     </div>
-  )
-}
+  );
+};
 
 export default QuestForm;
