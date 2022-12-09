@@ -95,6 +95,7 @@ strong {
 	border-bottom: 2px solid black;
 	padding: 5px;
 	margin-bottom: 10px;
+	border-radius: 2px;
 }
 #search-input {
 	font-size: 15px;
