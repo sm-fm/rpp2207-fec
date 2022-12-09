@@ -31,15 +31,15 @@ const Ratings = (props) => {
    */
   let getReviewList = (id, sort='relevant', page = 1, count = 5) => {
     return ratingsAPI.getReviewList(product_id, sort, page, count)
-    .then(data => {
-      console.log('Success!', data);
-      setReviewData(data);
-      return data;
-    })
-    .catch(err => {
-      console.log('Uh-oh! There was an error: ', err);
-    })
-  }
+      .then(data => {
+        console.log('Success!', data);
+        setReviewData(data);
+        return data;
+      })
+      .catch(err => {
+        console.log('Uh-oh! There was an error: ', err);
+      });
+  };
 
   useEffect(()=> {
     ratingsAPI.getAll(product_id)
@@ -51,7 +51,7 @@ const Ratings = (props) => {
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }, []);
 
   let catChange = (e) => {
@@ -77,7 +77,7 @@ const Ratings = (props) => {
           {reviewData.results.map((elem, idx) => {
             return (
               <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
-            )
+            );
           })}
         </div>
       </div>
