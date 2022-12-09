@@ -8,10 +8,6 @@ const Related = (props) => {
   const [relatedProducts, setRelatedProducts] = useState();
   const [isFetching, setIsFetching] = useState(true);
 
-  // const handleSetIsFetching = () => {
-  //   setIsFetching(!isFetching);
-  // };
-
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
       .then((products) => {
