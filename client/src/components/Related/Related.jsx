@@ -2,33 +2,33 @@ import React, { useState, useEffect } from 'react';
 import relatedAPI from '../../API/Related.js';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
-import './related.css'
+import './related.css';
 
 const Related = (props) => {
   const [relatedProducts, setRelatedProducts] = useState();
+  const [isFetching, setIsFetching] = useState(true);
+
+  const handleSetIsFetching = () => {
+    setIsFetching(!isFetching);
+  };
 
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
-    .then((products) => {
-      setRelatedProducts(products);
-    })
-  }, [])
+      .then((products) => {
+        var productsMap = new Map();
+        products.forEach(product => productsMap.set(product.id, product));
+        setRelatedProducts([...productsMap.values()]);
+      });
+  }, [props.objID]);
 
-<<<<<<< HEAD
-const Related = (props  ) => {
   return (
-    <div>
-      <h1>Related.jsx</h1>
-      <p>{props.generateStars(0.2, 'related')}</p>
+    <div className='related-container'>
+      <div className="related-products-header">RELATED PRODUCTS</div>
+      <RelatedProducts addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={relatedProducts} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
+      <div className="your-outfit-header">YOUR OUTFIT</div>
+      <YourOutfit yourOutfit={props.yourOutfit} removeFromOutfit={props.removeFromOutfit} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
     </div>
-=======
-  return (
-      <div className='related-container'>
-        <RelatedProducts relatedProducts={relatedProducts} generateStars={props.generateStars}/>
-        <YourOutfit />
-      </div>
->>>>>>> 56ed82231899fc23ced72b2d56cfed1bf350c94b
-  )
-}
+  );
+};
 
 export default Related;

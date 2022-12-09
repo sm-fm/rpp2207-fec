@@ -6,7 +6,7 @@ const YourOutfit = (props) => {
     <div className='your-outfit-container'>
       <h1>Outfit.jsx</h1>
     </div>
-  )
-}
+  );
+};
 
 export default YourOutfit;
