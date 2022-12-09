@@ -7,7 +7,8 @@ import {
   useParams
 } from "react-router-dom";
 import Overview from './Overview/Overview.jsx';
-import Questions from './Questions/Questions.jsx';
+import AnsForm from './Questions/A-Components/AnsForm.jsx';
+import QuestForm from './Questions/Q-Components/QuestForm.jsx';
 import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
@@ -110,7 +111,8 @@ const App = () => {
   return (
     <div>
       {/* <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/> */}
-      <Questions objID={id}/>
+      <QuestForm />
+      <AnsForm />
       {/* <Ratings objID={id}/> */}
       {/* <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/> */}
     </div>
