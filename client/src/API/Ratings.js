@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Ratings = {
   getReviewList: (product_id, rating, sort, page, count) => {
-    return fetch('http://localhost:3000/reviews/?' +
+    return fetch('http://127.0.0.1:3000/reviews/?' +
       new URLSearchParams({
         product_id: product_id,
         sort: sort,
@@ -16,7 +16,7 @@ const Ratings = {
       });
   },
   getReviewMetadata: (id) => {
-    return fetch('http://localhost:3000/reviews/meta/?' +
+    return fetch('http://127.0.0.1:3000/reviews/meta/?' +
     new URLSearchParams({
       product_id: id,
     }),
