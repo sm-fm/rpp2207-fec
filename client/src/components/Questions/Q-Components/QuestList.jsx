@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question.jsx';
-import MoreQuest from './MoreQuest.jsx';
 
 const QuestList = (props) => {
   let [questions, setQuestions] = useState([]);
@@ -39,8 +38,8 @@ const QuestList = (props) => {
   };
 
   return (
-    <div id="questions-container">
-      <div>
+    <div id="q-content">
+      <div id ="q-list" className="list-container">
         {rendered.map((q, idx) => {
           return (
             <Question
@@ -55,12 +54,15 @@ const QuestList = (props) => {
           );
         })}
       </div>
-      {rendered.length < questions.length ?
-        <button id="more-q-btn" onClick={handleMore}> More Questions </button>
-      : null}
-      {rendered.length === questions.length && num > 2 ?
-        <button id="collapse-q-btn" onClick={handleCollapse}> Collapse Questions </button>
-      : null}
+      <div className="q-btn-wrapper">
+        {rendered.length < questions.length ?
+          <button id="more-q" className="btn" onClick={handleMore}> More Questions </button>
+        : null}
+        {rendered.length === questions.length && num > 2 ?
+          <button id="collapse-q" className="btn" onClick={handleCollapse}> Collapse Questions </button>
+        : null}
+        <button id="add-q" className="btn">Ask a Question +</button>
+      </div>
     </div>
   )
 }

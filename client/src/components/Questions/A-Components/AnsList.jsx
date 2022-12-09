@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import questionAPI from '../../../API/Questions.js';
 import Answer from './Answer.jsx';
-import MoreAns from './MoreAns.jsx';
 
 const AnsList = (props) => {
   let [answers, setAnswers] = useState([]);
@@ -44,8 +43,8 @@ const AnsList = (props) => {
   };
 
   return (
-    <div id="answers-container">
-      <div>
+    <div id="a-content" className="qna-container">
+      <div id="a-list" className="list-container">
         {rendered.map((a, idx) => {
           return (
             <Answer
@@ -61,10 +60,10 @@ const AnsList = (props) => {
         })}
       </div>
       {rendered.length < answers.length ?
-        <button id="more-a-btn" onClick={handleMore}> More Answers </button>
+        <button id="more-a" className="btn" onClick={handleMore}> More Answers </button>
       : null}
       {rendered.length === answers.length && num > 2 ?
-        <button id="collapse-a-btn" onClick={handleCollapse}> Collapse Answers </button>
+        <button id="collapse-a" className="btn" onClick={handleCollapse}> Collapse Answers </button>
       : null}
     </div>
   )

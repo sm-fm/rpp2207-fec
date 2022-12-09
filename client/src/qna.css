@@ -1,0 +1,164 @@
+strong {
+  font-weight: bold;
+}
+#qna {
+	border: 2px solid black;
+	border-radius: 5px;
+}
+.qna-title {
+  color: black;
+  font-size: 20px;
+	width: fit-content;
+	margin: auto;
+	padding: 10px;
+}
+.qna-container {
+  width: 80%;
+	height: 50%;
+  justify-content: center;
+	margin: 5px;
+}
+.btn {
+  position: relative;
+	border-style: hidden;
+	background-color: white;
+	cursor: pointer;
+}
+.list-container {
+	width: 100%;
+}
+
+/* Search */
+#q-search {
+	width: 95%;
+	background-color: #EEEEEE;
+	margin: auto;
+	border-bottom: 2px solid black;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+#search-input {
+	font-size: 15px;
+	border-style: hidden;
+  background-color: #EEEEEE;
+	color: #202020;
+}
+#q-search-icon {
+	display: inline;
+  color: #202020;
+	padding: 0px 15px 0px 5px;
+}
+
+/* Question List */
+#q-content {
+	margin-bottom: 10px;
+	padding: none;
+}
+.q-btn-wrapper {
+	width: 95%;
+	border-top: 2px solid black;
+	margin: 10px 10px 0px 10px;
+	padding-top: 10px;
+}
+#more-q,
+#collapse-q,
+#add-q {
+	color: black;
+	border: 2px solid black;
+	margin: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 15px;
+}
+#more-q:hover,
+#collapse-q:hover,
+#add-q:hover {
+	color: white;
+	background-color: black;
+}
+
+/* Question */
+.question-container {
+	margin: 10px 10px 15px 15px;
+	width: 100%;
+}
+#add-ans {
+	font-size: 11px;
+	text-decoration: underline;
+	margin-left: 14px;
+}
+#add-ans:hover {
+	color: #4F74F7;
+}
+
+/* Answer List */
+#a-content {
+	padding-left: 5px;
+}
+#a-list {
+	border-left: 3px solid #939393;
+	padding-left: 5px;
+}
+#more-a, #collapse-a {
+	color: #939393;
+	border: 2px solid #939393;
+	border-radius: 5px;
+}
+
+#more-a:hover,
+#collapse-a:hover {
+	color: white;
+	background-color: #939393;
+}
+
+/* Answer */
+#a-name {
+	display: inline;
+	margin-left: 20px;
+}
+#a-date {
+	display: inline;
+	padding-left: 3px;
+	padding-right: 5px;
+}
+.answer-container {
+	width: 100%;
+	margin-bottom: 5px;
+	padding-left: 5px;
+}
+.a-details {
+	display: inline;
+	font-size: 12px;
+}
+
+/* Help/Report */
+.helpful-report,
+#report {
+	display: inline;
+}
+#helpful {
+	display:inline;
+	font-size: 12px;
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+	padding-left: 5px;
+}
+
+#yes-btn,
+#report-btn,
+#reported {
+	font-size: 11px;
+	text-decoration: underline;
+}
+
+#reported {
+	color: red;
+	text-transform: uppercase;
+}
+
+#yes-btn:hover {
+	color: #2ACC4D;
+}
+#report-btn:hover {
+	color: red;
+}

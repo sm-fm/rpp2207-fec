@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 const Search = () => {
   return (
-    <div id="search-container">
+    <div id="q-search">
+      <p id="q-search-icon">I</p>
       <input
         type="text"
-        id="qna-search"
+        id="search-input"
+        size="35"
         placeholder="Have a question? Search for answers..."
       />
-      <button> ICON </button>
     </div>
   )
 }
