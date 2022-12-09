@@ -15,6 +15,8 @@ const Overview = (props) => {
   let [photos, setPhotos] = useState([]);
   let [expandedView, setExpandedView] = useState(false);
   let [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
+  let [skus, setSkus] = useState({});
+  const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
     if (!props.objID) {
@@ -34,6 +36,8 @@ const Overview = (props) => {
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
           toggleClick(styles.results[0].name);
+          setSkus(styles.results[0].skus);
+          setFetching(false);
         })
         .catch(err => console.log(err));
     } else {
@@ -53,6 +57,8 @@ const Overview = (props) => {
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
           toggleClick(styles.results[0].name);
+          setSkus(styles.results[0].skus);
+          setFetching(false);
         })
         .catch(err => console.log(err));
       }
@@ -61,12 +67,29 @@ const Overview = (props) => {
   if (!expandedView) {
     return (
     <div id="main-overview">
-      {Object.keys(chosenStyle).length !== 0
+      {!fetching
         ? <div>
-            <ProductInfo id="productInfo" product={product} />
-            <StyleSelector id="styles" setChosenStyle={setChosenStyle} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
-            <Images id="images-comp" chosenStyle={chosenStyle} photos={photos} setExpandedView={setExpandedView} setIndexOfExpandedImg={setIndexOfExpandedImg} />
-            <Cart id="cart" product={product} />
+            <ProductInfo
+              id="productInfo"
+              product={product} />
+            <StyleSelector
+              id="styles"
+              setChosenStyle={setChosenStyle}
+              styles={styles}
+              chosenStyle={chosenStyle}
+              styleClicked={styleClicked}
+              toggleClick={toggleClick}
+              setSkus={setSkus} />
+            <Images
+              id="images-comp"
+              chosenStyle={chosenStyle}
+              photos={photos}
+              setExpandedView={setExpandedView}
+              setIndexOfExpandedImg={setIndexOfExpandedImg} />
+            <Cart
+              id="cart"
+              product={product}
+              skus={skus} />
             <p>{product.description}</p>
           </div>
         : null}
