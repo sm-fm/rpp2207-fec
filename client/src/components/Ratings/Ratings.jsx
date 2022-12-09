@@ -62,7 +62,6 @@ const Ratings = (props) => {
   };
 
   let useRating = async (e) => {
-    console.log(e.target);
     let holder;
     if (e.target.id === '') {
       return;
