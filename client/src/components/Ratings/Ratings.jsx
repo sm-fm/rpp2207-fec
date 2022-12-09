@@ -18,11 +18,13 @@ const Ratings = (props) => {
   const [reviewData, setReviewData] = useState(holderReviewData);
   const [isLoadingreview, setIsLoadingreview] = useState(true);
   const [category, setCategory] = useState(null);
+  const [reviewError, setReviewError] = useState('Loading reviews.');
 
   // Refering to metadata
   const [metadata, setMetadata] = useState({});
   const [isLoadingMeta, setIsLoadingMeta] = useState(true);
   const [ratings, setRatings] = useState([]);
+  const [metaError, setMetaError] = useState('Loading metadata.');
 
   /**
    *
@@ -32,6 +34,7 @@ const Ratings = (props) => {
    * @param {*} count - Tells how many results per page
    */
   let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 5) => {
+    console.log('hi')
     return ratingsAPI.getReviewList(product_id, rating, sort, page, count)
       .then(data => {
         console.log('Success!', data);
@@ -46,19 +49,29 @@ const Ratings = (props) => {
   useEffect(()=> {
     ratingsAPI.getAll(product_id)
       .then(data=> {
+        if (data[0].results.length === 0) {
+          throw new Error('No data found');
+        }
         setMetadata(data[1]);
         setReviewData(data[0]);
 
         setIsLoadingMeta(false);
+        setIsLoadingreview(false);
+
+        setMetaError('');
+        setReviewError('');
       })
       .catch(err => {
-        console.log(err);
+        console.log('There was an error:', err);
+        let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
+        setMetaError(errMsg);
+        setReviewError(errMsg);
       });
   }, []);
 
   let catChange = (e) => {
     setCategory(e.target.value);
-    getReviewList(product_id, e.target.value);
+    getReviewList(product_id, e.target.value, ratings);
   };
 
   let useRating = async (e) => {
@@ -88,6 +101,12 @@ const Ratings = (props) => {
       <div className='metaDataDisplay'>
         {!isLoadingMeta &&
         <Metadata generateStars={props.generateStars} meta={metadata} useRatings = {useRating}/>}
+        {metaError &&
+        <div>
+          {props.generateStars(0)}
+          <p className='errorMsg'>{metaError}</p>
+        </div>
+        }
       </div>
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
@@ -98,6 +117,7 @@ const Ratings = (props) => {
             <option value='helpful'>most helpful</option>
           </select>
         </div>
+        {!isLoadingreview &&
         <div className='userReviews'>
           {reviewData.results.map((elem, idx) => {
             return (
@@ -105,6 +125,10 @@ const Ratings = (props) => {
             );
           })}
         </div>
+        }
+        {reviewError &&
+        <p className='errorMsg'>{reviewError}</p>}
+
       </div>
 
     </div>

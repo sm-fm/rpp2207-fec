@@ -5,6 +5,7 @@ import RatingsAPI from '../client/src/API/Ratings.js';
 import hf from '../client/src/components/Ratings/helperFunctions.js';
 import nock from 'nock';
 import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
+import Ratings from '../client/src/components/Ratings/Ratings.jsx'
 var expected = [
   {
     "product": "71697",
@@ -112,12 +113,51 @@ var expected = [
   }
 ];
 
-test('getAll returns metadata and customer reviews', async () => {
-  var results = await RatingsAPI.getAll(71697);
-  expect(results.length).toBe(2);
-  expect(results[0].product).toEqual(expected[0].product);
-  expect(results[1].product).toStrictEqual(expected[1].product);
-});
+let sampleReview = {
+  "product": "71697",
+  "page": 0,
+  "count": 5,
+  "results": [
+    {
+      "review_id": 1277082,
+      "rating": 3,
+      "summary": "really like it ",
+      "recommend": true,
+      "response": null,
+      "body": "really like it really like it really like it really like it ",
+      "date": "2022-10-23T00:00:00.000Z",
+      "reviewer_name": "test",
+      "helpfulness": 1,
+      "photos": [
+        {
+          "id": 2456443,
+          "url": "http://res.cloudinary.com/dwcubhwiw/image/upload/v1666565658/cmyyueiv89d6l1cywtoy.png"
+        }
+      ]
+    }
+  ]
+};
+
+let sampleMetaError = {
+  "product_id": "71",
+  "ratings": {},
+  "recommended": {},
+  "characteristics": {}
+};
+
+let sampleReviewError = {
+  "product": "71",
+  "page": 0,
+  "count": 5,
+  "results": []
+};
+
+// test('getAll returns metadata and customer reviews', async () => {
+//   var results = await RatingsAPI.getAll(71697);
+//   expect(results.length).toBe(2);
+//   expect(results[0].product).toEqual(expected[0].product);
+//   expect(results[1].product).toStrictEqual(expected[1].product);
+// });
 
 test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
   expect(hf.calculateAverageReviews(undefined)).toBe(null);
@@ -150,37 +190,7 @@ test('Test manipulateRatings from the Ratings helper functions', () => {
 });
 
 describe("ReviewCard component", () => {
-
   it('tests the data being passed to ReviewCard is on the screen', async () => {
-    let sampleReview = {
-      "product": "71697",
-      "page": 0,
-      "count": 5,
-      "results": [
-        {
-          "review_id": 1277082,
-          "rating": 3,
-          "summary": "really like it ",
-          "recommend": true,
-          "response": null,
-          "body": "really like it really like it really like it really like it ",
-          "date": "2022-10-23T00:00:00.000Z",
-          "reviewer_name": "test",
-          "helpfulness": 1,
-          "photos": [
-            {
-              "id": 2456443,
-              "url": "http://res.cloudinary.com/dwcubhwiw/image/upload/v1666565658/cmyyueiv89d6l1cywtoy.png"
-            }
-          ]
-        }]};
-    nock('http://127.0.0.1:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697')
-      .reply(200, sampleReview);
-
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
@@ -189,6 +199,35 @@ describe("ReviewCard component", () => {
 
     await waitFor(() => {
       expect(container.getElementsByClassName('userReview').length).toEqual(1);
+    });
+  });
+
+});
+
+describe('General test of the Ratings component', () => {
+  it('Should not break when the API does not return the proper data', async () => {
+    nock('http://127.0.0.1:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/?product_id=71')
+      .reply(200, sampleReviewError);
+
+    nock('http://127.0.0.1:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/meta/?product_id=71')
+      .reply(200, sampleMetaError);
+
+    const { container } = render(<Ratings
+      objId={ 71 }
+      generateStars = {() => { return 'stars'; }}
+    />);
+
+    await waitFor(() => {
+      expect(container.getElementsByClassName('metaDataDisplay').length).toEqual(1);
+      expect(container.getElementsByClassName('errorMsg').length).toEqual(2);
     });
   });
 });
