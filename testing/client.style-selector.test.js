@@ -1,5 +1,5 @@
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
-import StyleSelector from '/Users/seanmcdaniel/hack-reactor-rpp2207/fec/rpp2207-fec/client/src/components/Overview/StylesSelector/StyleSelector.jsx';
+import StyleSelector from '../client/src/components/Overview/StylesSelector/StyleSelector.jsx';
 import SpecificStyle from '../client/src/components/Overview/StylesSelector/SpecificStyle.jsx';
 import chosenStyleData from './mockData.js';
 import React from 'react';

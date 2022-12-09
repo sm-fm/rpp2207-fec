@@ -14,7 +14,7 @@ const SizeSelector = (props) => {
     return (
     <div className="size-selector">
       <select name="sizes" className="sizes">
-        <option value={defaultVal} disabled>{defaultVal}</option>
+        <option role="sizes" value={defaultVal} disabled>{defaultVal}</option>
       </select>
     </div>
   );

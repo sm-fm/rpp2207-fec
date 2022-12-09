@@ -6,14 +6,16 @@ const SpecificSize = (props) => {
     props.setDefaultVal(props.size);
   }
 
-  return (
-    <option
-      value={props.size}
-      className="size-item"
-      onClick={handleClick}>
-    {props.size}
-    </option>
-  )
+  if (props.size) {
+    return (
+      <option
+        value={props.size}
+        className="size-item"
+        onClick={handleClick}>
+        {props.size}
+      </option>
+    )
+  }
 };
 
 export default SpecificSize;

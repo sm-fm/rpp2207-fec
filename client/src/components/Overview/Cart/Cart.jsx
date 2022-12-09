@@ -4,7 +4,7 @@ import SizeSelector from './SizeSelector.jsx';
 const Cart = (props) => {
 
   return (
-    <div>
+    <div className="cart-container">
       <SizeSelector
         skus={props.skus} />
     </div>
