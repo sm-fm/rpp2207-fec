@@ -182,13 +182,13 @@ describe("ReviewCard component", () => {
       .reply(200, sampleReview);
 
     const { container } = render(<ReviewCard
-      generateStars={ function() { return "stars"}}
+      generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
       data={sampleReview.results[0]}
     />, {wrapper: Router});
 
     await waitFor(() => {
-      expect(container.getElementsByClassName('userReviews').length).toBe(1);
+      expect(container.getElementsByClassName('userReview').length).toEqual(1);
     });
   });
 });
