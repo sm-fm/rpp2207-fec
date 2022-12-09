@@ -4,6 +4,9 @@ const SpecificSize = (props) => {
 
   const handleClick = (e) => {
     props.setDefaultVal(props.size);
+    props.setSizeSelected(props.size);
+    props.setSkuSelected(props.sku);
+    console.log(props.sku);
   }
 
   if (props.size) {

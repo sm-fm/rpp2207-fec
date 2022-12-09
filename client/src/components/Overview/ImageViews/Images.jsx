@@ -47,13 +47,13 @@ const Images = (props) => {
           alt="Image of current style"
           onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
         </div>
-        <div id="style-photos">
+        {/* <div id="style-photos">
           <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />
           {props.chosenStyle.photos.map((photo, index) => {
             return <SpecificImage photo={photo} key={uuidv4()} setIndexOfMainImg={setIndexOfMainImg} index={index} indexOfMainImg={indexOfMainImg} />
           })}
         <FontAwesomeIcon id="down-arrow" icon={faAngleDown} />
-        </div>
+        </div> */}
       </div>
     )
   } else {
