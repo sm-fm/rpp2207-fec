@@ -38,7 +38,7 @@ let ReviewCard = (props) => {
       <p className='reviewBody'>{renderBody}</p>
 
       {(!displayFullBody && !shortText) &&
-        <p onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
+        <p className='show-more-review' onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
 
       {props.data.recommend &&
         <p>✓ I recommend this product</p>}

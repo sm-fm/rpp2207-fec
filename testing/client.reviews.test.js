@@ -134,8 +134,89 @@ let sampleReview = {
           "url": "http://res.cloudinary.com/dwcubhwiw/image/upload/v1666565658/cmyyueiv89d6l1cywtoy.png"
         }
       ]
+    },
+    {
+      "review_id": 1277442,
+      "rating": 5,
+      "summary": "wer",
+      "recommend": true,
+      "response": null,
+      "body": "sdfwl;kjasdf;lkjasdf;lkjasfd;ljkasdf;lkjasfd;lkjasd;flkjasd;flkjasd;flkjasd;flkjasdf;lkjasdf;lakjsdf;alksdjferewtrretreeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeI need more than 250 characters so that I can pass this test ;lakjsdf;lkjasfd;lkjasdf;lkjasdl;fkjasdl;kfjasl;dkfjas;ldkfjas;ldkfja;lskdjf, give me that sweet sweet code coverage",
+      "date": "2022-10-31T00:00:00.000Z",
+      "reviewer_name": "asd",
+      "helpfulness": 1,
+      "photos": []
+    },
+    {
+      "review_id": 1277436,
+      "rating": 5,
+      "summary": "good",
+      "recommend": true,
+      "response": null,
+      "body": "very good very good very good very good very good very good",
+      "date": "2022-10-30T00:00:00.000Z",
+      "reviewer_name": "Hi",
+      "helpfulness": 0,
+      "photos": []
+    },
+    {
+      "review_id": 1276246,
+      "rating": 3,
+      "summary": "It's okay",
+      "recommend": true,
+      "response": null,
+      "body": "This product is not great, it is not bad, it is just ok. ",
+      "date": "2022-08-27T00:00:00.000Z",
+      "reviewer_name": "test",
+      "helpfulness": 0,
+      "photos": []
+    },
+    {
+      "review_id": 1276245,
+      "rating": 4,
+      "summary": "Ok",
+      "recommend": true,
+      "response": null,
+      "body": "Not great, not bad, just ok. I would not buy it again. ",
+      "date": "2022-08-27T00:00:00.000Z",
+      "reviewer_name": "test",
+      "helpfulness": 0,
+      "photos": []
     }
   ]
+};
+
+let sampleMeta = {
+  "product_id": "71697",
+  "ratings": {
+    "1": "20",
+    "2": "19",
+    "3": "38",
+    "4": "43",
+    "5": "86"
+  },
+  "recommended": {
+    "false": "54",
+    "true": "152"
+  },
+  "characteristics": {
+    "Fit": {
+      "id": 240582,
+      "value": "3.3630573248407643"
+    },
+    "Length": {
+      "id": 240583,
+      "value": "3.2564102564102564"
+    },
+    "Comfort": {
+      "id": 240584,
+      "value": "3.4591194968553459"
+    },
+    "Quality": {
+      "id": 240585,
+      "value": "3.5844155844155844"
+    }
+  }
 };
 
 let sampleMetaError = {
@@ -151,13 +232,6 @@ let sampleReviewError = {
   "count": 5,
   "results": []
 };
-
-// test('getAll returns metadata and customer reviews', async () => {
-//   var results = await RatingsAPI.getAll(71697);
-//   expect(results.length).toBe(2);
-//   expect(results[0].product).toEqual(expected[0].product);
-//   expect(results[1].product).toStrictEqual(expected[1].product);
-// });
 
 test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
   expect(hf.calculateAverageReviews(undefined)).toBe(null);
@@ -202,10 +276,24 @@ describe("ReviewCard component", () => {
     });
   });
 
+  it('should display more text when \'show more\' is pressed', async () => {
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[1]}
+    />, {wrapper: Router});
+
+    await waitFor(() => {
+      let prevLen = container.getElementsByClassName('reviewBody')[0].innerHTML.length;
+      fireEvent.click(container.getElementsByClassName('show-more-review')[0]);
+      let currLen = container.getElementsByClassName('reviewBody')[0].innerHTML.length;
+      expect(prevLen).toBeLessThan(currLen);
+    });
+  });
 });
 
 describe('General test of the Ratings component', () => {
-  it('Should not break when the API does not return the proper data', async () => {
+  it('sad path - Should not break when the API does not return the proper data', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
@@ -221,13 +309,39 @@ describe('General test of the Ratings component', () => {
       .reply(200, sampleMetaError);
 
     const { container } = render(<Ratings
-      objId={ 71 }
+      objID={ 71 }
       generateStars = {() => { return 'stars'; }}
     />);
 
     await waitFor(() => {
       expect(container.getElementsByClassName('metaDataDisplay').length).toEqual(1);
       expect(container.getElementsByClassName('errorMsg').length).toEqual(2);
+    });
+  });
+
+  it('happy path - should properly display data when it recieves data', async () => {
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .reply(200, sampleReview);
+
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/meta/?product_id=71697')
+      .reply(200, sampleMeta);
+
+    const { container } = render(<Ratings
+      objID={ 71697 }
+      generateStars = {() => { return 'stars'; }}
+    />);
+
+    await waitFor(() => {
+      expect(container.getElementsByClassName('metadata').length).toEqual(1);
+      expect(container.getElementsByClassName('userReview').length).toEqual(5);
     });
   });
 });
