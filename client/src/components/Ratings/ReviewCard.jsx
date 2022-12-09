@@ -32,7 +32,7 @@ let ReviewCard = (props) => {
         <div className='starHolder'>
           {props.generateStars(props.data.rating, 'userReview')}
         </div>
-        <h6 id='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
+        <h6 className='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
       </div>
       <h3 className='summary'>{props.data.summary}</h3>
       <p className='reviewBody'>{renderBody}</p>

@@ -34,7 +34,6 @@ const Ratings = (props) => {
    * @param {*} count - Tells how many results per page
    */
   let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 5) => {
-    console.log('hi')
     return ratingsAPI.getReviewList(product_id, rating, sort, page, count)
       .then(data => {
         console.log('Success!', data);
@@ -111,10 +110,10 @@ const Ratings = (props) => {
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
           <label>{reviewData.results.length} reviews, sorted by </label>
-          <select id='sortBy' onChange={catChange}>
-            <option value='relevance'>relevance</option>
-            <option value='newest'>newest</option>
-            <option value='helpful'>most helpful</option>
+          <select data-testid='select' id='sortBy' onChange={catChange}>
+            <option data-testid='select-option' value='relevance'>relevance</option>
+            <option data-testid='select-option' value='newest'>newest</option>
+            <option data-testid='select-option' value='helpful'>most helpful</option>
           </select>
         </div>
         {!isLoadingreview &&
