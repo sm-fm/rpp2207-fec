@@ -206,14 +206,14 @@ describe("ReviewCard component", () => {
 
 describe('General test of the Ratings component', () => {
   it('Should not break when the API does not return the proper data', async () => {
-    nock('http://127.0.0.1:3000')
+    nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
       .get('/reviews/?product_id=71')
       .reply(200, sampleReviewError);
 
-    nock('http://127.0.0.1:3000')
+    nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
