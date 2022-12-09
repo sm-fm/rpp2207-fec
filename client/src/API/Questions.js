@@ -67,51 +67,27 @@ const questionAPI = {
       });
   },
 
-  markQuestionHelpful: (question_id) => {
+  markHelpful: (type, id) => {
     var options = { method: 'PUT' };
 
-    fetch(`/qa/questions/${question_id}/helpful`, options)
+    return fetch(`/qa/${type}/${id}/helpful`, options)
       .then(results => {
-        console.log(results);
+        return results;
       })
       .catch(err => {
-        console.log(err);
+        return err;
       });
   },
 
-  markAnswerHelpful: (answer_id) => {
+  report: (type, id) => {
     var options = { method: 'PUT' };
 
-    fetch(`/qa/answers/${answer_id}/helpful`, options)
+    return fetch(`/qa/${type}/${id}/report`)
       .then(results => {
-        console.log(results);
+        return results;
       })
       .catch(err => {
-        console.log(err);
-      });
-  },
-
-  reportQuestion: (question_id) => {
-    var options = { method: 'PUT' };
-
-    fetch(`/qa/questions/${question_id}/report`)
-      .then(results => {
-        console.log(results);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  },
-
-  reportAnswer: (answer_id) => {
-    var options = { method: 'PUT' };
-
-    fetch(`/qa/answers/${answer_id}/report`)
-      .then(results => {
-        console.log(results);
-      })
-      .catch(err => {
-        console.log(err);
+        return err;
       });
   }
 };

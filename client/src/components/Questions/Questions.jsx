@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import questionAPI from '../../API/Questions.js';
 import Search from './Search.jsx';
 import QuestList from './Q-Components/QuestList.jsx';
-import exampleQuestion from './exData.js';
 
 const Questions = (props) => {
   let [questions, setQuestions] = useState([]);
@@ -16,10 +15,10 @@ const Questions = (props) => {
   }, [props.objID]);
 
   return (
-    <div id="qna-container">
-      <h1 id="qna-title">Questions & Answers</h1>
+    <div id="qna" className="qna-container">
+      <h1 className="qna-title">Q & A</h1>
       <Search />
-      <QuestList questions={questions}/>
+      <QuestList questions={questions} length={questions.length}/>
     </div>
   )
 }
