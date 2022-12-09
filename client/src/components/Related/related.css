@@ -184,3 +184,46 @@
   -webkit-transform: rotate(45deg);
 	transform-origin: right;
 }
+
+.comparison-modal {
+  position: fixed;
+  width: 400px;
+  height: 300px;
+  border: 1px solid black;
+  top: 0;
+  left: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  z-index: 20;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.modal-product-names {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.product-1 {
+  text-align: left;
+  flex: 1;
+}
+
+.product-2 {
+  text-align: right;
+  flex: 1;
+}
+
+.modal-table {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.left-check, .right-check {
+  width: 25px;
+}
