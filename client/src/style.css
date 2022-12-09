@@ -89,7 +89,7 @@ strong {
 
 /* Search */
 #q-search {
-	width: 95%;
+	width: 90%;
 	background-color: #EEEEEE;
 	margin: auto;
 	border-bottom: 2px solid black;
@@ -112,12 +112,12 @@ strong {
 #q-content {
 	margin-bottom: 10px;
 	padding: none;
+	margin: 0 5%;
 }
 .q-btn-wrapper {
-	width: 95%;
+	width: 100%;
 	border-top: 2px solid black;
-	margin: 10px 10px 0px 10px;
-	padding-top: 10px;
+	margin-top: 10px;
 }
 #more-q,
 #collapse-q,
@@ -138,7 +138,7 @@ strong {
 
 /* Question */
 .question-container {
-	margin: 10px 10px 15px 15px;
+	margin: 10px 0 15px 0;
 	width: 100%;
 }
 #add-ans {

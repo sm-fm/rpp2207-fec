@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-=======
 import HelpReport from '../HelpReport.jsx';
->>>>>>> ans-list
 import { format } from 'date-fns';
 
 const Answer = (props) => {
