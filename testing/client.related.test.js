@@ -97,20 +97,20 @@ describe('RelatedProducts component', () => {
   it('tests that the arrow-right button is in the document', async () => {
     renderComponent();
     await waitFor(() => {
-      const rightArrow = screen.getByRole('button', {name: 'scroll-right'});
+      const rightArrow = screen.getByRole('button', {name: 'scroll right'});
       expect(rightArrow).toBeInTheDocument();
     });
   });
   it('tests that clicking the arrow-right button substracts 250 from the margin-left attribute of the related-products listbox', async () => {
     renderComponent();
     fireEvent(
-      screen.getByRole('button', {name: 'scroll-right'}),
+      screen.getByRole('button', {name: 'scroll right'}),
       new MouseEvent('click', {
         bubbles: true,
         cancelable: true,
       }),
     );
-    const products = screen.getByRole('listbox', {name: 'related-products'});
+    const products = screen.getByRole('listbox', {name: 'related products'});
     expect(products).toHaveStyle('margin-left: -250px;');
   });
 });
