@@ -17,7 +17,7 @@ const QuestList = (props) => {
     }
   }, [props.questions, props.length]);
 
-  function handleMore() {
+  var handleMore = () => {
     var tempArr = rendered;
     var tempNum = num;
     if (questions.length - rendered.length >= 2) {
@@ -32,7 +32,7 @@ const QuestList = (props) => {
     setNum(tempNum);
   };
 
-  function handleCollapse() {
+  var handleCollapse = () => {
     setRendered([ questions[0], questions[1] ]);
     setNum(2);
   };
@@ -57,14 +57,14 @@ const QuestList = (props) => {
       <div className="q-btn-wrapper">
         {rendered.length < questions.length ?
           <button id="more-q" className="btn" onClick={handleMore}> More Questions </button>
-        : null}
+          : null}
         {rendered.length === questions.length && num > 2 ?
           <button id="collapse-q" className="btn" onClick={handleCollapse}> Collapse Questions </button>
-        : null}
+          : null}
         <button id="add-q" className="btn">Ask a Question +</button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default QuestList;

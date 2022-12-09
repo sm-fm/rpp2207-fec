@@ -58,7 +58,7 @@ const questionAPI = {
       }
     };
 
-    fetch(`/qa/answers`, options)
+    fetch('/qa/answers', options)
       .then(results => {
         console.log(results);
       })
@@ -82,7 +82,7 @@ const questionAPI = {
   report: (type, id) => {
     var options = { method: 'PUT' };
 
-    return fetch(`/qa/${type}/${id}/report`)
+    return fetch(`/qa/${type}/${id}/report`, options)
       .then(results => {
         return results;
       })

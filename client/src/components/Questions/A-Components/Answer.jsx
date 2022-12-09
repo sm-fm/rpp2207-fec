@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import HelpReport from '../HelpReport.jsx';
 import { format } from 'date-fns';
 
@@ -10,7 +10,7 @@ const Answer = (props) => {
     <div className="answer-container">
       <h1><strong>A: </strong>{props.body}</h1>
       <span className="a-details">
-        {props.name === "Seller" ?
+        {props.name === 'Seller' ?
           <p id="a-name"><strong>{props.name}, </strong></p>
           : <p id="a-name">{props.name}, </p>}
         <p id="a-date">{date}</p>
@@ -21,7 +21,7 @@ const Answer = (props) => {
         />
       </span>
     </div>
-  )
-}
+  );
+};
 
 export default Answer;

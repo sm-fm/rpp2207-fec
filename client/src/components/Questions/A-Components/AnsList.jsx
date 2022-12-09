@@ -22,7 +22,7 @@ const AnsList = (props) => {
       .catch(err => console.log(err));
   }, [props.q_ID]);
 
-  function handleMore() {
+  var handleMore = () => {
     var tempArr = rendered;
     var tempNum = num;
     if (answers.length - rendered.length >= 2) {
@@ -37,7 +37,7 @@ const AnsList = (props) => {
     setNum(tempNum);
   };
 
-  function handleCollapse() {
+  var handleCollapse = () => {
     setRendered([ answers[0], answers[1] ]);
     setNum(2);
   };
@@ -61,12 +61,12 @@ const AnsList = (props) => {
       </div>
       {rendered.length < answers.length ?
         <button id="more-a" className="btn" onClick={handleMore}> More Answers </button>
-      : null}
+        : null}
       {rendered.length === answers.length && num > 2 ?
         <button id="collapse-a" className="btn" onClick={handleCollapse}> Collapse Answers </button>
-      : null}
+        : null}
     </div>
-  )
-}
+  );
+};
 
 export default AnsList;
