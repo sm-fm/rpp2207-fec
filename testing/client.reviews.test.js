@@ -440,18 +440,16 @@ describe('General test of the Ratings component', () => {
       .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
       .reply(200, sampleReviewsNewest);
 
-    const { getByTestId } = render(<Ratings
+    const { container } = render(<Ratings
       objID={ 71697 }
       generateStars = {() => { return 'stars'; }}
     />);
 
-    const dropdown = getByTestId('select');
-    const options = getAllByRole(dropdown, 'option');
-    fireEvent.click(dropdown);
-    fireEvent.click(options[1]);
+    fireEvent.change(container.getElementsByTagName('select')[0], {target: {value: 'newest'}});
     // console.log(options)
+    let options = container.getElementsByTagName('option');
     await waitFor(() => {
-      // expect(dropdown.value).toBe(options[1].text);
+      expect(container.getElementsByTagName('select')[0].value).toBe(options[1].text);
       // expect(options[0].selected).toBeFalsy();
       // expect(options[1].selected).toBeTruthy();
       // expect(options[2].selected).toBeFalsy();
