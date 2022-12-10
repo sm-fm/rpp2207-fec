@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import questionAPI from '../../API/Questions.js';
 import Search from './Search.jsx';
 import QuestList from './Q-Components/QuestList.jsx';
+import './qna.css';
 
 const Questions = (props) => {
   let [data, setData] = useState([]);
