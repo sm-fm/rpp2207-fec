@@ -10,6 +10,10 @@ const ExpandedView = (props) => {
 
   const [indexOfCurrentImg, setIndexOfCurrentImg] = useState(props.indexOfExpandedImg);
   const [zoomView, setZoomView] = useState(false);
+<<<<<<< HEAD
+=======
+  const [photos, setPhotos] = useState(props.photos);
+>>>>>>> size-selector
 
   const handleLeftClick = () => {
     setIndexOfCurrentImg(indexOfCurrentImg - 1);
@@ -24,6 +28,7 @@ const ExpandedView = (props) => {
       <div id="expanded-view">
         {indexOfCurrentImg === 0
             ? null
+<<<<<<< HEAD
             : <FontAwesomeIcon id="left-arrow" icon={faAngleLeft} onClick={() => handleLeftClick()} />
           }
           {indexOfCurrentImg === props.photos.length - 1
@@ -40,6 +45,41 @@ const ExpandedView = (props) => {
         </div>
           <img
           src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
+=======
+            : <FontAwesomeIcon
+              id="left-arrow"
+              data-testid="left-arrow"
+              icon={faAngleLeft}
+              onClick={() => handleLeftClick()} />
+          }
+          {photos && indexOfCurrentImg === photos.length - 1
+            ? null
+            : <FontAwesomeIcon
+              id="right-arrow"
+              data-testid="right-arrow"
+              icon={faAngleRight}
+              onClick={() => handleRightClick()} />
+            }
+        <div id="circle-expanded-view">
+          {photos ?
+            photos.map((photo, index) => {
+              const highlight = {
+                transform: indexOfCurrentImg === index ? 'scale(2)' : null
+              };
+              return <FontAwesomeIcon
+                     id="circle"
+                     data-testid={`circle ${index}`}
+                     style={highlight}
+                     icon={faCircle}
+                     key={uuidv4()}
+                     onClick={() => setIndexOfCurrentImg(index)} />
+            })
+          : null}
+        </div>
+          <img
+          src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
+          alt="Image of current style"
+>>>>>>> size-selector
           id="expanded-img"
           onClick={() => setZoomView(true)}
           />

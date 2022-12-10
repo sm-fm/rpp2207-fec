@@ -17,11 +17,25 @@ const Zoom = (props) => {
 
   return (
     <div id="zoom-container"
+<<<<<<< HEAD
       onMouseMove={handleMouseMove}
       onClick={() => props.setZoomView(false)}>
       <img
         src={props.img}
         id="zoom" />
+=======
+      role="zoom-container"
+      aria-describedby="zoom-2.5"
+      onMouseMove={handleMouseMove}
+      onClick={() => props.setZoomView(false)}>
+      {props.img
+        ?
+        <img
+          src={props.img}
+          id="zoom"
+          alt="main image zoomed" />
+        : null}
+>>>>>>> size-selector
     </div>
   )
 }
