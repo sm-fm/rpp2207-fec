@@ -1,11 +1,11 @@
-import { render, screen, waitFor, fireEvent, getAllByRole } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import React from 'react';
 import Router from 'react-router-dom';
-import RatingsAPI from '../client/src/API/Ratings.js';
+// import RatingsAPI from '../client/src/API/Ratings.js';
 import hf from '../client/src/components/Ratings/helperFunctions.js';
 import nock from 'nock';
 import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
-import Ratings from '../client/src/components/Ratings/Ratings.jsx'
+import Ratings from '../client/src/components/Ratings/Ratings.jsx';
 var expected = [
   {
     "product": "71697",
@@ -446,13 +446,9 @@ describe('General test of the Ratings component', () => {
     />);
 
     fireEvent.change(container.getElementsByTagName('select')[0], {target: {value: 'newest'}});
-    // console.log(options)
     let options = container.getElementsByTagName('option');
     await waitFor(() => {
       expect(container.getElementsByTagName('select')[0].value).toBe(options[1].text);
-      // expect(options[0].selected).toBeFalsy();
-      // expect(options[1].selected).toBeTruthy();
-      // expect(options[2].selected).toBeFalsy();
     });
   });
 });
