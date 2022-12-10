@@ -344,7 +344,7 @@ test('Test manipulateRatings from the Ratings helper functions', () => {
 });
 
 describe('ReviewCard component', () => {
-  it('tests the data being passed to ReviewCard is on the screen', async () => {
+  test('tests the data being passed to ReviewCard is on the screen', async () => {
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
@@ -356,7 +356,7 @@ describe('ReviewCard component', () => {
     });
   });
 
-  it('should display more text when \'show more\' is pressed', async () => {
+  test('should display more text when \'show more\' is pressed', async () => {
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
@@ -373,7 +373,7 @@ describe('ReviewCard component', () => {
 });
 
 describe('General test of the Ratings component', () => {
-  it('sad path - Should not break when the API does not return the proper data', async () => {
+  test('sad path - Should not break when the API does not return the proper data', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
@@ -399,7 +399,7 @@ describe('General test of the Ratings component', () => {
     });
   });
 
-  it('happy path - should properly display data when it recieves data', async () => {
+  test('happy path - should properly display data when it recieves data', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
@@ -425,7 +425,7 @@ describe('General test of the Ratings component', () => {
     });
   });
 
-  it('should respond to changes in sort by drop downs', async () => {
+  test('should respond to changes in sort by drop downs', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
