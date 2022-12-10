@@ -19,39 +19,6 @@ const Images = (props) => {
     setIndexOfMainImg(indexOfMainImg + 1);
   }
 
-<<<<<<< HEAD
-  return (
-    <div>
-      <div id="main-img">
-        {indexOfMainImg === 0
-          ? null
-          : <FontAwesomeIcon
-            id="left-arrow"
-            icon={faAngleLeft}
-            onClick={() => handleLeftClick()} />
-        }
-        {indexOfMainImg === props.photos.length - 1
-          ? null
-          : <FontAwesomeIcon
-              id="right-arrow"
-              icon={faAngleRight}
-              onClick={() => handleRightClick()} />
-          }
-        <img
-          className="specific-img"
-          src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
-          onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
-      </div>
-      <div id="style-photos">
-        <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />
-        {props.chosenStyle.photos.map((photo, index) => {
-          return <SpecificImage photo={photo} key={uuidv4()} setIndexOfMainImg={setIndexOfMainImg} index={index} indexOfMainImg={indexOfMainImg} />
-        })}
-       <FontAwesomeIcon id="down-arrow" icon={faAngleDown} />
-      </div>
-    </div>
-  )
-=======
   if (props.photos && props.chosenStyle) {
     return (
       <div>
@@ -98,7 +65,6 @@ const Images = (props) => {
   } else {
     return null;
   }
->>>>>>> size-selector
 };
 
 export default Images;

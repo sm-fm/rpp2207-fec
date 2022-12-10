@@ -7,7 +7,7 @@ require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.json());
+
 
 const PATH = 3000;
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
@@ -22,16 +22,16 @@ const getOptions =
 // API ROUTES
 app.get('/products', (req, res) => {
   fetch(`${baseURL}/products`, getOptions)
-  .then(results => {
-    return results.json();
-  })
-  .then(results => {
-    res.status(200).send(results);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-})
+    .then(results => {
+      return results.json();
+    })
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.get('/products/:query(*)', (req, res) => {
   fetch(`${baseURL}/products/${req.params.query}`, getOptions)

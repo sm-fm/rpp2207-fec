@@ -8,11 +8,6 @@ const SpecificImage = (props) => {
 
   return (
     <div>
-<<<<<<< HEAD
-      <img id="thumbnail-img" style={highlight} src={props.photo.thumbnail_url} onClick={() => { props.setIndexOfMainImg(props.index); }} />
-    </div>
-  )
-=======
     {props.photo
       ?
         <img
@@ -24,7 +19,6 @@ const SpecificImage = (props) => {
       : null}
       </div>
   );
->>>>>>> size-selector
 }
 
 export default SpecificImage;

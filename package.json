@@ -40,10 +40,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
-<<<<<<< HEAD
-    "jest-environment-jsdom": "^29.3.1",
-=======
->>>>>>> size-selector
     "nock": "^13.2.9",
     "node-fetch": "^2.6.7",
     "react-dom": "^18.2.0",

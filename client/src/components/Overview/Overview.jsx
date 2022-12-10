@@ -15,16 +15,10 @@ const Overview = (props) => {
   let [photos, setPhotos] = useState([]);
   let [expandedView, setExpandedView] = useState(false);
   let [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
-<<<<<<< HEAD
-
-  useEffect(() => {
-    // api.getAllProducts();
-=======
   let [skus, setSkus] = useState({});
   const [fetching, setFetching] = useState(true);
 
   useEffect(() => {
->>>>>>> size-selector
     if (!props.objID) {
       api.getAllProducts()
         .then(results => {
@@ -41,12 +35,9 @@ const Overview = (props) => {
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
-<<<<<<< HEAD
-=======
           toggleClick(styles.results[0].name);
           setSkus(styles.results[0].skus);
           setFetching(false);
->>>>>>> size-selector
         })
         .catch(err => console.log(err));
     } else {
@@ -56,7 +47,7 @@ const Overview = (props) => {
         })
         .then(result => {
           setProduct(result);
-          return api.getStylesById(result.id)
+          return api.getStylesById(result.id);
         })
         .then(styles => {
           return styles.json();
@@ -65,28 +56,17 @@ const Overview = (props) => {
           setStyles(styles.results);
           setChosenStyle(styles.results[0]);
           setPhotos(styles.results[0].photos);
-<<<<<<< HEAD
-=======
           toggleClick(styles.results[0].name);
           setSkus(styles.results[0].skus);
           setFetching(false);
->>>>>>> size-selector
         })
         .catch(err => console.log(err));
-      }
-  }, []);
+    }
+  }, [props.objID]);
 
   if (!expandedView) {
     return (
     <div id="main-overview">
-<<<<<<< HEAD
-      {Object.keys(chosenStyle).length !== 0
-        ? <div>
-            <ProductInfo id="productInfo" product={product} />
-            <StyleSelector id="styles" setChosenStyle={setChosenStyle} styles={styles} chosenStyle={chosenStyle} styleClicked={styleClicked} toggleClick={toggleClick} />
-            <Images id="images-comp" chosenStyle={chosenStyle} photos={photos} setExpandedView={setExpandedView} setIndexOfExpandedImg={setIndexOfExpandedImg} />
-            <Cart id="cart" product={product} />
-=======
       {!fetching
         ? <div>
             <ProductInfo
@@ -110,7 +90,6 @@ const Overview = (props) => {
               id="cart"
               product={product}
               skus={skus} />
->>>>>>> size-selector
             <p>{product.description}</p>
           </div>
         : null}
@@ -119,14 +98,10 @@ const Overview = (props) => {
   } else {
     return (
     <div id="main-overview">
-<<<<<<< HEAD
-      <ExpandedView chosenStyle={chosenStyle} indexOfExpandedImg={indexOfExpandedImg} photos={photos} />
-=======
       <ExpandedView
         chosenStyle={chosenStyle}
         indexOfExpandedImg={indexOfExpandedImg}
         photos={photos} />
->>>>>>> size-selector
     </div>
     );
   }

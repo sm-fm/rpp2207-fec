@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-<<<<<<< HEAD
-
-const Cart = (props) => {
-
-=======
 import SizeSelector from './SizeSelector.jsx';
 
 const Cart = (props) => {
@@ -14,7 +9,6 @@ const Cart = (props) => {
         skus={props.skus} />
     </div>
   );
->>>>>>> size-selector
 };
 
 export default Cart;
