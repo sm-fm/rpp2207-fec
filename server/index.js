@@ -57,10 +57,18 @@ app.get('/reviews', (req, res) => {
       return results.json();
     })
     .then(results => {
-      res.send(results);
+      if (req.query.rating.length > 4) {
+        let selectedRatings = JSON.parse(req.query.rating);
+        let relevantReviews = results.results.filter((val) => {
+          return selectedRatings.includes(val.rating.toString());
+        });
+        results.results = relevantReviews;
+      }
+      res.status(200).send(results);
     })
     .catch(err => {
       console.log(err);
+      res.status(400).send(err);
     });
 });
 
@@ -70,10 +78,11 @@ app.get('/reviews/meta', (req, res) => {
       return results.json();
     })
     .then(results => {
-      res.send(results);
+      res.status(200).send(results);
     })
     .catch(err => {
       console.log(err);
+      res.status(400).send(err);
     });
 });
 
