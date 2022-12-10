@@ -20,9 +20,24 @@ const Related = (props) => {
   return (
     <div className='related-container'>
       <div className="related-products-header">RELATED PRODUCTS</div>
-      <RelatedProducts addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={relatedProducts} generateStars={props.generateStars} isFetching={isFetching}setIsFetching={setIsFetching}/>
+      <RelatedProducts
+        addToOutfit={props.addToOutfit}
+        yourOutfit={props.yourOutfit}
+        relatedProducts={relatedProducts}
+        generateStars={props.generateStars}
+        isFetching={isFetching}
+        setIsFetching={setIsFetching}
+      />
       <div className="your-outfit-header">YOUR OUTFIT</div>
-      <YourOutfit yourOutfit={props.yourOutfit} removeFromOutfit={props.removeFromOutfit} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
+      <YourOutfit
+        objID={props.objID}
+        yourOutfit={props.yourOutfit}
+        addToOutfit={props.addToOutfit}
+        removeFromOutfit={props.removeFromOutfit}
+        generateStars={props.generateStars}
+        isFetching={isFetching}
+        setIsFetching={setIsFetching}
+      />
     </div>
   );
 };

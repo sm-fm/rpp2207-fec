@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
+import relatedAPI from '../../API/Related.js';
 
 const YourOutfit = (props) => {
   const [position, setPosition] = useState(0);
   const componentName = 'YourOutfit';
+  const [currentProduct, setCurrentProduct] = useState();
+  const [isFetching, setIsFetching] = useState(true);
+
+  useEffect(() => {
+    relatedAPI.getProductById(props.objID)
+      .then((product) => {
+        setCurrentProduct(product);
+        setIsFetching(false);
+      });
+  }, [props.objID]);
 
   return (
-    <>
-      <div className='your-outfit-container' style={{marginLeft: `-${position}px`}}>
-        {props.yourOutfit ?
-          props.yourOutfit.map((product) => {
+    !isFetching ?
+      <>
+        <div className='your-outfit-container' style={{marginLeft: `-${position}px`}}>
+          <div className='product-card-container' onClick={() => { props.addToOutfit(currentProduct); }}>
+            <div className='add-to-outfit-btn'>+</div>
+          </div>
+          { props.yourOutfit.map((product) => {
             return <ProductCard
               key={product.id}
               product={product}
@@ -19,25 +33,27 @@ const YourOutfit = (props) => {
               parentComponent={componentName}
               removeFromOutfit={props.removeFromOutfit}
             />;
-          })
-          : null
-        }
-      </div>
-      <div className='fade-bottom'>
-        { position > 0 ?
-          <div className="arrow-container-left">
-            <div className="arrow-left" onClick={() => { setPosition(position - 250); }}></div>
-          </div>
-          : null
-        }
-        { props && props.yourOutfit && position <= (props.yourOutfit.length - 4) * 250 ?
-          <div className="arrow-container-right">
-            <div className="arrow-right" onClick={() => { setPosition(position + 250); }}></div>
-          </div>
-          : null
-        }
-      </div>
-    </>
+          })}
+        </div>
+        <div className='fade-bottom'>
+          { position > 0 ?
+            <div className='arrow-container-left'>
+              <div className='arrow-left' onClick={() => { setPosition(position - 250); }}></div>
+            </div>
+            : null
+          }
+          { props && props.yourOutfit && position <= (props.yourOutfit.length - 3) * 250 ?
+            <div className='arrow-container-right'>
+              <div className='arrow-right' onClick={() => { setPosition(position + 250); }}></div>
+            </div>
+            : null
+          }
+        </div>
+
+      </>
+      :
+      null
+
   );
 };
 
