@@ -1,4 +1,3 @@
-const env = require('dotenv');
 const fetch = require('node-fetch');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -49,7 +48,7 @@ app.get('/products/:query(*)', (req, res) => {
 
 app.get('/reviews', (req, res) => {
   fetch(`${baseURL}/reviews/?` + new URLSearchParams({
-    product_id: req.query.product_id,
+    'product_id': req.query.product_id,
     sort: req.query.sort,
     page: req.query.page,
     count: req.query.count,
