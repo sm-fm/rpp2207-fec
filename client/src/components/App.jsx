@@ -95,14 +95,13 @@ const App = () => {
   };
 
   return (
-    <>
-      <h1>App.jsx</h1>
+    <div>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Questions objID={id}/>
-      <Ratings objID={id} generateStars = {generateStars}/>
+      <Ratings objID={id} generateStars={generateStars}/>
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
-    </>
-  );
-};
+    </div>
+  )
+}
 
 export default App;
