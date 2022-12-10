@@ -1,12 +1,9 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   Routes,
-  Link,
-  useSearchParams
-} from "react-router-dom";
+} from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import './style.css';
 import App from './components/App.jsx';
