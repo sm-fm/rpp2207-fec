@@ -65,10 +65,11 @@ app.get('/reviews', (req, res) => {
         });
         results.results = relevantReviews;
       }
-      res.send(results);
+      res.status(200).send(results);
     })
     .catch(err => {
       console.log(err);
+      res.status(400).send(err);
     });
 });
 
@@ -78,10 +79,11 @@ app.get('/reviews/meta', (req, res) => {
       return results.json();
     })
     .then(results => {
-      res.send(results);
+      res.status(200).send(results);
     })
     .catch(err => {
       console.log(err);
+      res.status(400).send(err);
     });
 });
 
