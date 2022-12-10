@@ -33,7 +33,7 @@ let Metarating = (props) => {
   return (
     <div className='meta-rating'>
       <h3>Ratings break down</h3>
-      {ratingsList &&
+      {ratingsList.length !== 0 &&
       [<p key='rating-preview-list' id='ratingsList'>{ratingsList.join(', ')}</p>,
         <p key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</p>
       ]

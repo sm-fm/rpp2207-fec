@@ -320,11 +320,18 @@ test('Test calculateRcommended from the Ratings helper functions', () => {
 
 test('Test manipulateRatings from the Ratings helper functions', () => {
   expect(hf.manipulateRatings({1: '20'})).toStrictEqual({
-    1: {'votes': 20, 'ratio': 1.00}
+    1: {'votes': 20, 'ratio': 1.00},
+    2: {'votes': 0, 'ratio': 0},
+    3: {'votes': 0, 'ratio': 0},
+    4: {'votes': 0, 'ratio': 0},
+    5: {'votes': 0, 'ratio': 0},
   });
   expect(hf.manipulateRatings({1: '20', 2: '20'})).toStrictEqual({
     1: {'votes': 20, 'ratio': 0.50},
-    2: {'votes': 20, 'ratio': 0.50}
+    2: {'votes': 20, 'ratio': 0.50},
+    3: {'votes': 0, 'ratio': 0},
+    4: {'votes': 0, 'ratio': 0},
+    5: {'votes': 0, 'ratio': 0},
   });
   expect(hf.manipulateRatings({1: '20', 2: '19', 3: '38', 4: '43', 5: '10'})).toStrictEqual({
     1: {'votes': 20, 'ratio': 0.15},
@@ -336,7 +343,7 @@ test('Test manipulateRatings from the Ratings helper functions', () => {
   expect(hf.manipulateRatings(123)).toBe(undefined);
 });
 
-describe("ReviewCard component", () => {
+describe('ReviewCard component', () => {
   it('tests the data being passed to ReviewCard is on the screen', async () => {
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}

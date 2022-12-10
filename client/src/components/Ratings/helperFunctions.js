@@ -42,6 +42,11 @@ let manipulateRatings = (obj) => {
     resultObj[currKey] = {'votes': currVotes, 'ratio': parseFloat((currVotes / totalVotes).toFixed(2))};
   }
 
+  for (let i = 0; i < 5; i++) {
+    if (resultObj[i + 1] === undefined) {
+      resultObj[i + 1] = {'votes': 0, 'ratio': 0};
+    }
+  }
   return resultObj;
 };
 
