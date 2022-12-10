@@ -30,9 +30,7 @@ const SizeSelector = (props) => {
           size={specificSku.size}
           sku={specificSku}
           key={uuidv4()}
-          setDefaultVal={setDefaultVal}
-          setSizeSelected={props.setSizeSelected}
-          setSkuSelected={props.setSkuSelected} />);
+          setDefaultVal={setDefaultVal} />);
         preventDuplicates.push(specificSku.size);
       }
     }

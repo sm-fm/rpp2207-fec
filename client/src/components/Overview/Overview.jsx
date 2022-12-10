@@ -88,7 +88,6 @@ const Overview = (props) => {
               setIndexOfExpandedImg={setIndexOfExpandedImg} />
             <Cart
               id="cart"
-              product={product}
               skus={skus} />
             <p>{product.description}</p>
           </div>

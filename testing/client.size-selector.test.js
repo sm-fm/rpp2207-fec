@@ -22,7 +22,7 @@ describe('SizeSelector module', () => {
         skus={chosenStyleData.results[0].skus} />
     );
     const sizeSelections = screen.queryAllByRole('option');
-    expect(sizeSelections.length).toEqual(7);
+    expect(sizeSelections.length).toEqual(6);
   });
 
   test('Size selector button should be inactive if there is no stock available', async () => {
