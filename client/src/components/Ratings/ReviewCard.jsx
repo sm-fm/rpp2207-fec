@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import format from 'date-fns/format';
-// import './rating.css';
 
 let ReviewCard = (props) => {
   // May want to refactor this to happen before the data is returned to this component
