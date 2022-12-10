@@ -223,6 +223,12 @@ strong {
 }
 
 /* Forms */
+
+/*
+Possible switch the design to something more like the main qna
+Find way to darken background when on modal
+Figure out how to get item name ( Use getProductById in Overview.js )
+*/
 .form {
 	border: 2px solid black;
 	width: 60%;
@@ -232,6 +238,8 @@ strong {
 	background-color: black;
 	font-family: Times, serif;
 	border-radius: 5px;
+
+	margin: 5px 20%;
 }
 .form-header,
 .form-footer {
