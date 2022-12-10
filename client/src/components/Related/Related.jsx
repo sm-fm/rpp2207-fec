@@ -8,10 +8,6 @@ const Related = (props) => {
   const [relatedProducts, setRelatedProducts] = useState();
   const [isFetching, setIsFetching] = useState(true);
 
-  const handleSetIsFetching = () => {
-    setIsFetching(!isFetching);
-  };
-
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
       .then((products) => {
@@ -24,7 +20,7 @@ const Related = (props) => {
   return (
     <div className='related-container'>
       <div className="related-products-header">RELATED PRODUCTS</div>
-      <RelatedProducts addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={relatedProducts} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
+      <RelatedProducts addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={relatedProducts} generateStars={props.generateStars} isFetching={isFetching}setIsFetching={setIsFetching}/>
       <div className="your-outfit-header">YOUR OUTFIT</div>
       <YourOutfit yourOutfit={props.yourOutfit} removeFromOutfit={props.removeFromOutfit} generateStars={props.generateStars} setIsFetching={setIsFetching}/>
     </div>
