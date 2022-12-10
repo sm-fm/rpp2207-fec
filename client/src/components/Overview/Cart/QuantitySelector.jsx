@@ -9,7 +9,7 @@ const QuantitySelector = (props) => {
   const [quantityArray, setQuantityArray] = useState([]);
 
   useEffect(() => {
-    if (Object.keys(props.skuSelected).length > 0) {
+    if (props.skuSelected && Object.keys(props.skuSelected).length > 0) {
       setSizeIsSelected(true);
       setQuantity(props.allSkus[props.skuSelected].quantity);
     }
@@ -27,7 +27,7 @@ const QuantitySelector = (props) => {
     return arr;
   }
 
-  if (!sizeIsSelected || quantity === null) {
+  if (!sizeIsSelected || quantity === null || !props) {
     return (
       <div className="quantity-selector">
         <select name="quantity" className="quantity">
@@ -38,7 +38,7 @@ const QuantitySelector = (props) => {
   } else {
     return (
       <div className="quantity-selector">
-        <select name="quantity" className="quantity">
+        <select role="quantity" name="quantity" className="quantity">
           <option value={1}>1</option>
           {createQuantityDropDown()}
         </select>

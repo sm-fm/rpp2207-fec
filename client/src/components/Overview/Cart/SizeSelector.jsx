@@ -30,7 +30,8 @@ const SizeSelector = (props) => {
           size={specificSku.size}
           sku={specificSku}
           key={uuidv4()}
-          setDefaultVal={setDefaultVal} />);
+          setDefaultVal={setDefaultVal}
+          data-testid="size" />);
         preventDuplicates.push(specificSku.size);
       }
     }
@@ -48,7 +49,7 @@ const SizeSelector = (props) => {
   } else {
     return (
       <div className="size-selector">
-        <select name="sizes" className="sizes" onChange={handleChange}>
+        <select data-testid="select" name="sizes" className="sizes" onChange={handleChange}>
           <option value={defaultVal}>{defaultVal}</option>
           {createSizeDropDown()}
         </select>
