@@ -12,7 +12,8 @@ const Ratings = (props) => {
     "results": []
   };
 
-  const product_id = props.objID;
+  let product_id;
+  product_id = props.objID;
 
   // Refering to the review list
   const [reviewData, setReviewData] = useState(holderReviewData);
@@ -66,7 +67,7 @@ const Ratings = (props) => {
         setMetaError(errMsg);
         setReviewError(errMsg);
       });
-  }, []);
+  }, [props.objID]);
 
   let catChange = (e) => {
     setCategory(e.target.value);
