@@ -1,10 +1,5 @@
 node_modules/
 node_modules
 .env
-<<<<<<< HEAD
 client/dist
-=======
-auth.js
-client/dist/main.js
->>>>>>> size-selector
 coverage/
