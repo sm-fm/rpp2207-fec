@@ -10,6 +10,7 @@ const SpecificQuantity = (props) => {
     <option
       value={props.num}
       className="single-quantity"
+      data-testid="quantity"
       onClick={handleClick}>
         {props.num}
       </option>

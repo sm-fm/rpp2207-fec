@@ -59,7 +59,7 @@ describe('Integration between SizeSelector and Quantity Selector buttons', () =>
       skus={chosenStyleData.results[0].skus} />);
     const sizeSelection = screen.getByTestId('select');
     fireEvent.change(sizeSelection, {target: {value: 'S'}});
-    const newSizeSelection = screen.queryAllByTestId('size');
-    expect(newSizeSelection[0]).toBe('S');
+    const newSizeSelection = screen.queryAllByTestId('quantity');
+    expect(newSizeSelection.length).toBe(15);
   });
 });

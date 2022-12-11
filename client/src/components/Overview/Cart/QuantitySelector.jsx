@@ -39,7 +39,7 @@ const QuantitySelector = (props) => {
     return (
       <div className="quantity-selector">
         <select role="quantity" name="quantity" className="quantity">
-          <option value={1}>1</option>
+          <option data-testid="quantity" value={1}>1</option>
           {createQuantityDropDown()}
         </select>
      </div>
