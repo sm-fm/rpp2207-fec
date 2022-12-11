@@ -188,3 +188,7 @@ CSS-RESET: end
 	width: 100vw;
 	overflow: hidden;
 }
+
+.size-needed {
+	color: red;
+}

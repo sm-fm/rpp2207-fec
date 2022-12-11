@@ -31,7 +31,9 @@ describe('SizeSelector module', () => {
         skus={{"null": {
           "quantity": null,
           "size": null
-      }}} />
+        }}}
+        setSizeOptions={() => {}}
+       />
     );
     const disabledSizeSelectorbtn = screen.getByRole('sizes');
     expect(disabledSizeSelectorbtn).toHaveAttribute('disabled');

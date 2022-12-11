@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as Select from 'react-select';
 import SpecificSize from './SpecificSize.jsx';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -50,16 +51,38 @@ const SizeSelector = (props) => {
       </select>
     </div>
   );
-  } else {
+  }
+  if (props.needSize) {
     return (
       <div className="size-selector">
-        <select data-testid="select" name="sizes" className="sizes" onChange={handleChange}>
+        <p className="size-needed">Please select a size</p>
+        <select
+          data-testid="select"
+          name="sizes"
+          className="sizes"
+          ref={props.sizeDropDown}
+          onChange={handleChange}
+          options={createSizeDropDown()} >
           <option value={defaultVal}>{defaultVal}</option>
           {createSizeDropDown()}
         </select>
       </div>
     );
   }
+  return (
+    <div className="size-selector">
+      <select
+        data-testid="select"
+        name="sizes"
+        className="sizes"
+        ref={props.sizeDropDown}
+        onChange={handleChange}
+        options={createSizeDropDown()} >
+        <option value={defaultVal}>{defaultVal}</option>
+        {createSizeDropDown()}
+      </select>
+    </div>
+  );
 };
 
 export default SizeSelector;

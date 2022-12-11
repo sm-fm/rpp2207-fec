@@ -6,7 +6,8 @@ const AddToCart = (props) => {
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
 
   const handleOptionsClick = () => {
-
+    props.handleFocusSizeDropDrow();
+    props.setNeedSize(true);
   };
 
   const handlePutClick = () => {
@@ -23,7 +24,7 @@ const AddToCart = (props) => {
       });
   };
 
-  if (props.sizeOptions === 'OUT OF STOCK') {
+  if (!props || props.sizeOptions === 'OUT OF STOCK') {
     return null;
   }
 

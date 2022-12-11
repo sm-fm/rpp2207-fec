@@ -88,7 +88,9 @@ const Overview = (props) => {
               setIndexOfExpandedImg={setIndexOfExpandedImg} />
             <Cart
               id="cart"
-              skus={skus} />
+              product={product}
+              skus={skus}
+              addToOutfit={props.addToOutfit} />
             <p>{product.description}</p>
           </div>
         : null}
