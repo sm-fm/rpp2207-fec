@@ -48,6 +48,25 @@ app.get('/products/:query(*)', (req, res) => {
   });
 })
 
+app.post('/cart', (req, res) => {
+  var options = {
+    method: 'POST',
+    body: req.body,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  fetch(`${baseURL}/cart?sku_id=${req.body.sku_id}`, options)
+    .then(results => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log('bad:', err);
+      res.sendStatus(401);
+    });
+})
+
 app.get('/reviews', (req, res) => {
   fetch(`${baseURL}/reviews/?product_id=${req.query.product_id}`, getOptions)
   .then(results => {

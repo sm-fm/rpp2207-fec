@@ -7,7 +7,8 @@ const Cart = (props) => {
   const [sizeSelected, setSizeSelected] = useState('');
   const [skuSelected, setSkuSelected] = useState('');
   const [quantity, setQuantity] = useState(0);
-  const [sizeOptions, setSizeOptions] = useState('Select a size')
+  const [sizeOptions, setSizeOptions] = useState('Select a size');
+  const [countPurchasing, setCountPurchasing] = useState(0);
 
   return (
     <div className="cart-container">
@@ -20,9 +21,13 @@ const Cart = (props) => {
         skuSelected={skuSelected}
         sizeSelected={sizeSelected}
         setQuantity={setQuantity}
+        setCountPurchasing={setCountPurchasing}
         allSkus={props.skus} />
       <AddToCart
-        sizeOptions={sizeOptions} />
+        sizeOptions={sizeOptions}
+        skuSelected={skuSelected}
+        allSkus={props.skus}
+        countPurchasing={countPurchasing} />
     </div>
   );
 };

@@ -35,6 +35,22 @@ const Overview = {
       .catch(err => {
         console.log(err);
       });
+  },
+
+  addToCart: (data) => {
+    return fetch('http://localhost:3000/cart', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(() => {
+      return;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 };
 

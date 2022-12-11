@@ -15,6 +15,10 @@ const QuantitySelector = (props) => {
     }
   });
 
+  const handleChange = (e) => {
+    props.setCountPurchasing(e.target.value);
+  };
+
   const createQuantityDropDown = () => {
     var arr = [];
     var q = quantity > 15 ? 15: quantity;
@@ -38,7 +42,7 @@ const QuantitySelector = (props) => {
   } else {
     return (
       <div className="quantity-selector">
-        <select role="quantity" name="quantity" className="quantity">
+        <select role="quantity" name="quantity" className="quantity" onChange={handleChange}>
           <option data-testid="quantity" value={1}>1</option>
           {createQuantityDropDown()}
         </select>
