@@ -11,7 +11,8 @@ const SpecificSize = (props) => {
       <option
         value={props.size}
         className="size-item"
-        onClick={handleClick}>
+        onClick={handleClick}
+        >
         {props.size}
       </option>
     )
