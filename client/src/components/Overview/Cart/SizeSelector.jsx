@@ -6,12 +6,16 @@ const SizeSelector = (props) => {
   const [defaultVal, setDefaultVal] = useState('Select a size');
 
   useEffect(() => {
-    Object.keys(props.skus)[0] === 'null' ? setDefaultVal('OUT OF STOCK') : null;
+    if (Object.keys(props.skus)[0] === 'null') {
+      setDefaultVal('OUT OF STOCK');
+      props.setSizeOptions('OUT OF STOCK');
+    }
   });
 
   const handleChange = (e) => {
     props.setSizeSelected(e.target.value);
     setDefaultVal(e.target.value);
+    props.setSizeOptions(e.target.value);
     Object.keys(props.skus).forEach(sku => {
       if (props.skus[sku].size === e.target.value) {
         props.setSkuSelected(sku);
