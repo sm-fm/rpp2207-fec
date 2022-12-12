@@ -15,7 +15,10 @@
   padding: 10px 5px;
   width: 95%;
 }
-
+.userReviews {
+  height: 80vh;
+  overflow-y: scroll;
+}
 #username {
   text-align: left;
   display: inline;
