@@ -56,10 +56,6 @@ const Ratings = (props) => {
     }
     let dataHolder = JSON.parse(JSON.stringify(allData));
     let relevantReviews = dataHolder.results.filter((val) => {
-      // console.log('ratings: ', ratingsList);
-      // console.log('current review: ', val);
-      // console.log('review rating: ', val.rating);
-      // console.log('conditioanl: ', ratingsList.includes(val.rating.toString()));
       return ratingsList.includes(val.rating.toString());
     });
     dataHolder.results = relevantReviews;
