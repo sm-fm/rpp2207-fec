@@ -64,6 +64,9 @@
     "webpack-dev-server": "^4.10.1"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "moduleNameMapper":{
+      "^.+\\.(css|less)$": "<rootDir>/config/CSSStub.js"
+ }
   }
 }

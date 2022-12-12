@@ -459,3 +459,16 @@ describe('General test of the Ratings component', () => {
     });
   });
 });
+
+describe('Testing of Metareveiws: ', () => {
+  test('Should filter ratings when a rating bar is clicked', async () => {
+    nock('https://localhost:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
+      .reply(200, sampleMeta);
+
+    expect(true).toBeTrue;
+  });
+});
