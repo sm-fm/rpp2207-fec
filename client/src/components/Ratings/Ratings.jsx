@@ -96,10 +96,6 @@ const Ratings = (props) => {
     }
   };
 
-  let tester = (e) => {
-    console.log(e);
-  }
-
   return (
     <div className='ratings'>
       <div className='metaDataDisplay'>
@@ -115,7 +111,7 @@ const Ratings = (props) => {
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
           <label>{reviewData.results.length} reviews, sorted by </label>
-          <select onLoad = {() => {tester(e)}} data-testid='select' id='sortBy' onChange={catChange}>
+          <select data-testid='select' id='sortBy' onChange={catChange}>
             <option data-testid='select-option' value='relevance'>relevance</option>
             <option data-testid='select-option' value='newest'>newest</option>
             <option data-testid='select-option' value='helpful'>most helpful</option>
