@@ -97,9 +97,9 @@ const App = () => {
   return (
     <div>
       <h1>App.jsx</h1>
-      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
-      <Questions objID={id}/>
+      {/* <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/> */}
+      {/* <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/> */}
+      {/* <Questions objID={id}/> */}
       <Ratings objID={id} generateStars={generateStars}/>
     </div>
   );

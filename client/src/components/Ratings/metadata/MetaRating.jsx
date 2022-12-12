@@ -5,22 +5,18 @@ let Metarating = (props) => {
   var ratings = props.manipulateShape(props.data);
 
   let [ratingsList, setRatingsList] = useState([]);
+  let [errMsg, setErrMsg] = useState('');
 
   let trackRatings = (e) => {
     props.useRatings(e)
-      .then(() => {
-        let holder;
-        if (!ratingsList.includes(e.target.id)) {
-          holder = [...ratingsList, e.target.id];
-          holder.sort();
-          setRatingsList(holder);
-        } else {
-          holder = JSON.parse(JSON.stringify(ratingsList));
-          holder.splice(holder.indexOf(e.target.id), 1);
-          holder.sort();
-          setRatingsList(holder);
-        }
+      .then(data => {
+        console.log(data);
+        setRatingsList(data);
+      })
+      .catch(err => {
+        setErrMsg('There was an error when trying to filter the data, please try again later.');
       });
+    // setRatingsList();
   };
 
   let resetFilters = (e) => {
@@ -33,6 +29,8 @@ let Metarating = (props) => {
   return (
     <div className='meta-rating'>
       <h3>Ratings break down</h3>
+      {errMsg !== '' &&
+      <p className='errorMsg'>{errMsg}</p>}
       {ratingsList.length !== 0 &&
       [<p key='rating-preview-list' id='ratingsList'>{ratingsList.join(', ')}</p>,
         <p key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</p>

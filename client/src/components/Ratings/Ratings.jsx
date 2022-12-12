@@ -17,6 +17,7 @@ const Ratings = (props) => {
   product_id = props.objID;
 
   // Refering to the review list
+  const [allData, setAllData] = useState([]);
   const [reviewData, setReviewData] = useState(holderReviewData);
   const [isLoadingreview, setIsLoadingreview] = useState(true);
   const [category, setCategory] = useState(null);
@@ -47,6 +48,24 @@ const Ratings = (props) => {
       });
   };
 
+  let filterReviewList = (ratingsList) => {
+    if (ratingsList.length === 0) {
+      setReviewData(allData);
+      return;
+    }
+    let dataHolder = JSON.parse(JSON.stringify(allData));
+    let relevantReviews = dataHolder.results.filter((val) => {
+      // console.log('ratings: ', ratingsList);
+      // console.log('current review: ', val);
+      // console.log('review rating: ', val.rating);
+      // console.log('conditioanl: ', ratingsList.includes(val.rating.toString()));
+      return ratingsList.includes(val.rating.toString());
+    });
+    dataHolder.results = relevantReviews;
+    setReviewData(dataHolder);
+    return ratingsList;
+  };
+
   useEffect(()=> {
     ratingsAPI.getAll(product_id)
       .then(data=> {
@@ -55,6 +74,7 @@ const Ratings = (props) => {
         }
         setMetadata(data[1]);
         setReviewData(data[0]);
+        setAllData(data[0]);
 
         setIsLoadingMeta(false);
         setIsLoadingreview(false);
@@ -83,17 +103,20 @@ const Ratings = (props) => {
 
     if (e.target.id === 'resetRatingsFilters') {
       setRatings([]);
-      return await getReviewList(product_id, category);
+      // return await getReviewList(product_id, category);
+      return filterReviewList([]);
     }
     // This will be taken out when I toggle the ratings
     if (ratings.includes(e.target.id)) {
       holder = JSON.parse(JSON.stringify(ratings));
       holder.splice(holder.indexOf(e.target.id), 1);
       setRatings(holder);
-      return await getReviewList(product_id, category, holder);
+      return filterReviewList(holder);
+      // return await getReviewList(product_id, category, holder);
     } else {
       setRatings([...ratings, e.target.id]);
-      return await getReviewList(product_id, category, [...ratings, e.target.id]);
+      return filterReviewList([...ratings, e.target.id]);
+      // return await getReviewList(product_id, category, [...ratings, e.target.id]);
     }
   };
 
