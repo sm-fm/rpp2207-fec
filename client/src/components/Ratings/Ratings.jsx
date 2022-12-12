@@ -22,6 +22,7 @@ const Ratings = (props) => {
   const [isLoadingreview, setIsLoadingreview] = useState(true);
   const [category, setCategory] = useState(null);
   const [reviewError, setReviewError] = useState('Loading reviews.');
+  const [reviewListDisplayLength, setReviewListDisplayLength] = useState(2);
 
   // Refering to metadata
   const [metadata, setMetadata] = useState({});
@@ -120,6 +121,14 @@ const Ratings = (props) => {
     }
   };
 
+  let incrementReviewsList = () => {
+    setReviewListDisplayLength(reviewListDisplayLength + 2);
+  };
+
+  let collapseReviewList = () => {
+    setReviewListDisplayLength(2);
+  };
+
   return (
     <div className='ratings'>
       <div className='metaDataDisplay'>
@@ -134,7 +143,7 @@ const Ratings = (props) => {
       </div>
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
-          <label>{reviewData.results.length} reviews, sorted by </label>
+          <label>{reviewListDisplayLength} reviews, sorted by </label>
           <select data-testid='select' id='sortBy' onChange={catChange}>
             <option data-testid='select-option' value='relevance'>relevance</option>
             <option data-testid='select-option' value='newest'>newest</option>
@@ -144,10 +153,17 @@ const Ratings = (props) => {
         {!isLoadingreview &&
         <div className='userReviews'>
           {reviewData.results.map((elem, idx) => {
-            return (
-              <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
-            );
+            if (idx < reviewListDisplayLength) {
+              return (
+                <UserReviews generateStars = {props.generateStars} key={`reviews-${idx}`} data={elem}/>
+              );
+            } else {
+              return null;
+            }
           })}
+          <p onClick={incrementReviewsList}>Show more</p>
+          {reviewListDisplayLength > 2 &&
+          <p onClick={collapseReviewList}>Collapse reviews</p>}
         </div>
         }
         {reviewError &&
