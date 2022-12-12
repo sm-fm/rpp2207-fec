@@ -12,8 +12,9 @@ const App = () => {
   const [yourOutfit, setYourOutfit] = useState([]);
 
   const addToOutfit = (product) => {
+    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
-      setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+      setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
   };
 
@@ -94,13 +95,13 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
-      <Questions objID={id}/>
-      <Ratings objID={id} generateStars = {generateStars}/>
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
-    </>
+      <Questions objID={id}/>
+      <Ratings objID={id} generateStars={generateStars}/>
+    </div>
   );
 };
 

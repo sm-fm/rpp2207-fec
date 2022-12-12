@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const RelatedProduct = (props) => {
   const navigate = useNavigate();
-  const [averageRating, setAverageRating] = useState(0);
+  const [averageRating, setAverageRating] = useState();
   const stars = props.generateStars(averageRating, 'related');
 
   useEffect(() => {
