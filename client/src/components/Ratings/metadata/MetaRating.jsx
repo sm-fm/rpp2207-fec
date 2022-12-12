@@ -11,9 +11,13 @@ let Metarating = (props) => {
     props.useRatings(e)
       .then(data => {
         console.log(data);
-        setRatingsList(data);
+        let newList = data || [];
+        newList.sort();
+        setRatingsList(newList);
+        setErrMsg('');
       })
       .catch(err => {
+        console.log(err);
         setErrMsg('There was an error when trying to filter the data, please try again later.');
       });
     // setRatingsList();

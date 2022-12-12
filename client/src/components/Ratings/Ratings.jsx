@@ -161,8 +161,10 @@ const Ratings = (props) => {
               return null;
             }
           })}
+          {(reviewData.results.length >= 2 && reviewListDisplayLength < reviewData.results.length) &&
           <p onClick={incrementReviewsList}>Show more</p>
-          {reviewListDisplayLength > 2 &&
+          }
+          {(reviewListDisplayLength > 2) &&
           <p onClick={collapseReviewList}>Collapse reviews</p>}
         </div>
         }
