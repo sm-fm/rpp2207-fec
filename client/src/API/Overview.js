@@ -1,10 +1,12 @@
-const fetch = require('node-fetch');
 
 const Overview = {
   getAllProducts: () => {
-    return fetch('products')
+    return fetch('http://localhost:3000/products', {
+      method: 'GET'
+    })
       .then(results => {
-        return results.json();
+        console.log(results);
+        return results;
       })
       .catch(err => {
         console.log(err);
@@ -12,9 +14,23 @@ const Overview = {
   },
 
   getProductById: (id) => {
-    return fetch(`products/${id}`)
+    return fetch(`http://localhost:3000/products/${id}`, {
+      method: 'GET'
+    })
       .then(result => {
-        return result.json();
+        return result;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+
+  getStylesById: (id) => {
+    return fetch(`http://localhost:3000/products/${id}/styles`, {
+      method: 'GET'
+    })
+      .then(result => {
+        return result;
       })
       .catch(err => {
         console.log(err);
