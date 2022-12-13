@@ -6,7 +6,6 @@ const QuantitySelector = (props) => {
 
   const [sizeIsSelected, setSizeIsSelected] = useState(false);
   const [quantity, setQuantity] = useState(null);
-  const [quantityArray, setQuantityArray] = useState([]);
 
   useEffect(() => {
     if (props.skuSelected && Object.keys(props.skuSelected).length > 0) {
@@ -21,7 +20,7 @@ const QuantitySelector = (props) => {
 
   const createQuantityDropDown = () => {
     var arr = [];
-    var q = quantity > 15 ? 15: quantity;
+    var q = quantity > 15 ? 15 : quantity;
     for (var i = 2; i < q + 1; i++) {
       arr.push(<SpecificQuantity
         num={i}
@@ -29,7 +28,7 @@ const QuantitySelector = (props) => {
         key={uuidv4()} />);
     }
     return arr;
-  }
+  };
 
   if (!sizeIsSelected || quantity === null || !props) {
     return (
@@ -46,10 +45,10 @@ const QuantitySelector = (props) => {
           <option data-testid="quantity" value={1}>1</option>
           {createQuantityDropDown()}
         </select>
-     </div>
+      </div>
     );
   }
 
- };
+};
 
- export default QuantitySelector;
+export default QuantitySelector;

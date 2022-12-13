@@ -5,10 +5,11 @@ import Images from './ImageViews/Images.jsx';
 import StyleSelector from './StylesSelector/StyleSelector.jsx';
 import Cart from './Cart/Cart.jsx';
 import ExpandedView from './ImageViews/ExpandedView.jsx';
+import RatingsAPI from '../../API/Ratings.js';
 
 const Overview = (props) => {
 
-  let [product, setProduct] = useState({});
+  const [product, setProduct] = useState({});
   let [styles, setStyles] = useState([]);
   let [chosenStyle, setChosenStyle] = useState({});
   let [styleClicked, toggleClick] = useState('');
@@ -17,6 +18,7 @@ const Overview = (props) => {
   let [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
   let [skus, setSkus] = useState({});
   const [fetching, setFetching] = useState(true);
+  const [averageRating, setAverageRating] = useState();
 
   useEffect(() => {
     if (!props.objID) {
@@ -26,7 +28,13 @@ const Overview = (props) => {
         })
         .then(results => {
           setProduct(results[0]);
-          return api.getStylesById(results[0].id)
+          console.log(product);
+          return RatingsAPI.getReviewMetadata(product.id);
+        })
+        .then(metadata => {
+          // setAverageRating(getAverageRating(metadata.ratings));
+          console.log(metadata);
+          return api.getStylesById(product.id);
         })
         .then(styles => {
           return styles.json();
@@ -47,7 +55,13 @@ const Overview = (props) => {
         })
         .then(result => {
           setProduct(result);
-          return api.getStylesById(result.id);
+          console.log(product);
+          return RatingsAPI.getReviewMetadata(result.id);
+        })
+        .then(metadata => {
+          console.log(metadata);
+          // setAverageRating(getAverageRating(metadata.ratings));
+          return api.getStylesById(product.id);
         })
         .then(styles => {
           return styles.json();
