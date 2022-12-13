@@ -27,7 +27,7 @@ describe('Add to cart module', () => {
 
   test('Message "Please select a size" should display if btn is clicked without size selected', async () => {
     render(<Cart skus={chosenStyleData.results[0].skus} />);
-    const addtoCartBtn = screen.getByRole('button');
+    const addtoCartBtn = screen.getByRole('button', {name: 'Add to Cart'});
     fireEvent.click(addtoCartBtn);
     const message = screen.getByText(/Please select a size/i);
     expect(message).toBeInTheDocument();
