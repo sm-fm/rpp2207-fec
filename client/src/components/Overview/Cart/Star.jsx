@@ -2,6 +2,7 @@ import React from 'react';
 
 const Star = (props) => {
   const handleClick = () => {
+    props.product.styles = props.styles;
     props.addToOutfit(props.product);
   };
 

@@ -41,7 +41,8 @@ const Cart = (props) => {
         setNeedSize={setNeedSize} />
       <Star
         addToOutfit={props.addToOutfit}
-        product={props.product} />
+        product={props.product}
+        styles={props.styles} />
     </div>
   );
 };
