@@ -22,6 +22,9 @@ const Related = (props) => {
         setRelatedProducts([...productsMap.values()]);
       });
     overviewAPI.getProductById(props.objID)
+      .then((result) => {
+        return result.json();
+      })
       .then((product) => {
         setCurrentProduct(product);
       });

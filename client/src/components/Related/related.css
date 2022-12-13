@@ -109,14 +109,14 @@
 	font-size: 12px;
 }
 
-.open-comparison-btn, .remove-outfit-btn {
+.open-comparison-btn, .close-btn {
 	position: absolute;
 	right: 3px;
 	top: 3px;
 	cursor: pointer;
 }
 
-.remove-outfit-btn {
+.close-btn {
   opacity: .7;
   position: absolute;
   right: 5px;
@@ -132,11 +132,11 @@
   opacity: .7;
 }
 
-.remove-outfit-btn:hover, .add-outfit-btn:hover, .remove-outfit-btn:hover {
+.close-btn:hover, .add-outfit-btn:hover, .close-btn:hover {
   opacity: 1;
 }
 
-.remove-outfit-btn:before, .remove-outfit-btn:after {
+.close-btn:before, .close-btn:after {
   position: absolute;
   margin: auto;
   left: 0;
@@ -146,10 +146,10 @@
   width: 2px;
   background: black
 }
-.remove-outfit-btn:before {
+.close-btn:before {
   transform: rotate(45deg);
 }
-.remove-outfit-btn:after {
+.close-btn:after {
   transform: rotate(-45deg);
 }
 

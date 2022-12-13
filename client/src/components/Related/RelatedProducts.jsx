@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
 
-
-
 const RelatedProducts = (props) => {
   const [position, setPosition] = useState(0);
   const componentName = 'RelatedProducts';
   const [modalShowing, setModalShowing] = useState(false);
-  const [modalProduct, setModalProduct] = useState({});
-  const [allFeatures, setAllFeatures] = useState(props.currentProduct.features);
-  // const allFeatures = [...props.currentProduct.features, ...props.product.features]
-  // .filter((v, i, a)=>a.findIndex(v2=>(v.feature === v2.feature && v.value === v2.value)) === i);
+  const [currentProduct, setCurrentProduct] = useState({});
+  const [comparisonProduct, setComparisonProduct] = useState({});
 
-  // useEffect(() => {
-  //   setAllFeatures([...props.currentProduct.features]);
-  // }, [props.currentProduct]);
+  useEffect(() => {
+    setCurrentProduct(props.currentProduct);
+  }, [props.currentProduct]);
+
+  const getFeatures = () => {
+    console.log('currentProduct.features: ', currentProduct.features);
+    console.log('comparisonProduct.features: ', comparisonProduct.features);
+    return [...currentProduct.features, ...comparisonProduct.features]
+      .filter((v, i, a)=>a.findIndex(v2=>(v.feature === v2.feature && v.value === v2.value)) === i);
+  };
 
   return (
     <>
@@ -22,10 +25,9 @@ const RelatedProducts = (props) => {
         {props.relatedProducts ?
           props.relatedProducts.map((product) => {
             return <ProductCard
+              modalShowing={modalShowing}
               setModalShowing={setModalShowing}
-              setModalProduct={setModalProduct}
-              allFeatures={allFeatures}
-              setAllFeatures={setAllFeatures}
+              setComparisonProduct={setComparisonProduct}
               key={product.id}
               product={product}
               generateStars={props.generateStars}
@@ -58,22 +60,24 @@ const RelatedProducts = (props) => {
         <div className='comparison-modal'>
           <div className='modal-top'>COMPARING</div>
           <div className='modal-product-names'>
-            <div className='product-1'>{props.currentProduct.name}</div>
-            <div className='product-2'>{modalProduct.name}</div>
+            <div className='product-1'>{currentProduct.name}</div>
+            <div className='product-2'>{comparisonProduct.name}</div>
           </div>
           <table className='modal-table'>
             <tbody>
-              {allFeatures.map((feature, index) => {
+              {getFeatures().map((feature, index) => {
                 return (
                   <tr key={`${feature}-${index}`}>
-                    <td className='left-check'>{props.currentProduct.features.includes(feature) ? '✓' : null}</td>
+                    {console.log(currentProduct.features, comparisonProduct.features)}
+                    <td className='left-check'>{currentProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
                     <td>{feature.value} {feature.feature}</td>
-                    <td className='right-check'>{modalProduct.features.includes(feature) ? '✓' : null}</td>
+                    <td className='right-check'>{comparisonProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
+          <div className="close-btn" onClick={() => { setModalShowing(false); }}></div>
         </div>
         : null}
     </>

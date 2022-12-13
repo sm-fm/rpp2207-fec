@@ -22,8 +22,7 @@ const RelatedProduct = (props) => {
   };
 
   const displayComparison = (e) => {
-    props.setModalProduct(props.product);
-    props.setAllFeatures([...props.allFeatures, ...props.product.features]);
+    props.setComparisonProduct(props.product);
     props.setModalShowing(true);
     e.stopPropagation();
   };
@@ -51,7 +50,7 @@ const RelatedProduct = (props) => {
             l11.547-1.2L16.026,0.6L20.388,10.918z"/>
             </svg>
             :
-            <div className="remove-outfit-btn" onClick={() => { props.removeFromOutfit(props.product); }}></div>
+            <div className="close-btn" onClick={() => { props.removeFromOutfit(props.product); }}></div>
           }
 
           <div className='product-card-description'>
