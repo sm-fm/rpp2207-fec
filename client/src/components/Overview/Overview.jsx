@@ -26,7 +26,7 @@ const Overview = (props) => {
         })
         .then(results => {
           setProduct(results[0]);
-          return api.getStylesById(results[0].id)
+          return api.getStylesById(results[0].id);
         })
         .then(styles => {
           return styles.json();
@@ -46,6 +46,7 @@ const Overview = (props) => {
           return result.json();
         })
         .then(result => {
+          console.log(result);
           setProduct(result);
           return api.getStylesById(result.id);
         })

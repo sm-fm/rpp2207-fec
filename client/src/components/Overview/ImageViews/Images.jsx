@@ -34,34 +34,36 @@ const Images = (props) => {
           {indexOfMainImg === props.photos.length - 1
             ? null
             : <FontAwesomeIcon
-                id="right-arrow"
-                role="btn"
-                aria-label="right-btn"
-                data-testid="right-btn"
-                icon={faAngleRight}
-                onClick={() => handleRightClick()} />
-            }
+              id="right-arrow"
+              role="btn"
+              aria-label="right-btn"
+              data-testid="right-btn"
+              icon={faAngleRight}
+              onClick={() => handleRightClick()} />
+          }
           <img
-          className="specific-img"
-          src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
-          alt="Image of current style"
-          onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
+            className="specific-img"
+            src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
+            alt="Image of current style"
+            onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
+          <div id="style-photos-window">
+            <div id="style-photos">
+              <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />
+              {props.chosenStyle.photos.map((photo, index) => {
+                return <SpecificImage
+                  id="style-img"
+                  photo={photo}
+                  key={uuidv4()}
+                  setIndexOfMainImg={setIndexOfMainImg}
+                  index={index}
+                  indexOfMainImg={indexOfMainImg} />
+              })}
+              <FontAwesomeIcon id="down-arrow" icon={faAngleDown} />
+            </div>
+          </div>
         </div>
-        {/* <div id="style-photos">
-          <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />
-          {props.chosenStyle.photos.map((photo, index) => {
-            return <SpecificImage
-              id="style-img"
-              photo={photo}
-              key={uuidv4()}
-              setIndexOfMainImg={setIndexOfMainImg}
-              index={index}
-              indexOfMainImg={indexOfMainImg} />
-          })}
-        <FontAwesomeIcon id="down-arrow" icon={faAngleDown} />
-        </div> */}
       </div>
-    )
+    );
   } else {
     return null;
   }

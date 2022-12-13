@@ -14,11 +14,11 @@ const ExpandedView = (props) => {
 
   const handleLeftClick = () => {
     setIndexOfCurrentImg(indexOfCurrentImg - 1);
-  }
+  };
 
   const handleRightClick = () => {
     setIndexOfCurrentImg(indexOfCurrentImg + 1);
-  }
+  };
 
   if (!zoomView) {
     return (
