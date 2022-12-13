@@ -1,0 +1,88 @@
+.ratings {
+  /* border: 1px solid black; */
+  width: 75%;
+  margin: auto;
+}
+
+.metadata {
+  /* border: 1px solid black; */
+  min-width: 250px;
+  max-width: 300px;
+  margin: auto;
+}
+.ratings .userReview {
+  display: inline-block;
+  padding: 10px 5px;
+  width: 95%;
+}
+
+#username {
+  text-align: left;
+  display: inline;
+}
+
+.ratings .reviewBody{
+  overflow-wrap: break-word;
+}
+
+.ratings .summary {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ratings .flex-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ratings .thumbnail{
+  display: inline-block;
+  height: 50px;
+  padding: 5px 10px 0px 10px;
+}
+
+.ratings .thumbnail-holder {
+  /* border: 1px solid black; */
+  display: flex;
+  padding-bottom: 5px;
+  justify-content: center;
+  border-bottom: 1px solid black;
+}
+
+.ratings select {
+  background-color: none;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.user-review-wrapper {
+  /* border: 1px solid black; */
+  width: 50%;
+  display: inline-block;
+}
+
+.metaDataDisplay {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  width: 45%;
+}
+
+.rating-wrapper p, .rating-wrapper svg {
+  display: inline-block;
+}
+
+#ratings-list {
+  display: inline-block;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ratings-list:first-child {
+  padding-left: 0px;
+}
+
+#ratings-list:last-child {
+  padding-right: 0px;
+}

@@ -137,6 +137,10 @@ CSS-RESET: end
 	border-bottom: 5px solid black;
 }
 
+#style-img {
+	position: absolute;
+}
+
 #right-arrow {
 	right: 0;
 	top: 50%;

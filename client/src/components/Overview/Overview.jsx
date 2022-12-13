@@ -47,7 +47,7 @@ const Overview = (props) => {
         })
         .then(result => {
           setProduct(result);
-          return api.getStylesById(result.id)
+          return api.getStylesById(result.id);
         })
         .then(styles => {
           return styles.json();
@@ -61,14 +61,14 @@ const Overview = (props) => {
           setFetching(false);
         })
         .catch(err => console.log(err));
-      }
-  }, []);
+    }
+  }, [props.objID]);
 
   if (!expandedView) {
     return (
-    <div id="main-overview">
-      {!fetching
-        ? <div>
+      <div id="main-overview">
+        {!fetching
+          ? <div>
             <ProductInfo
               id="productInfo"
               product={product} />
@@ -93,17 +93,17 @@ const Overview = (props) => {
               addToOutfit={props.addToOutfit} />
             <p>{product.description}</p>
           </div>
-        : null}
-    </div>
-    )
+          : null}
+      </div>
+    );
   } else {
     return (
-    <div id="main-overview">
-      <ExpandedView
-        chosenStyle={chosenStyle}
-        indexOfExpandedImg={indexOfExpandedImg}
-        photos={photos} />
-    </div>
+      <div id="main-overview">
+        <ExpandedView
+          chosenStyle={chosenStyle}
+          indexOfExpandedImg={indexOfExpandedImg}
+          photos={photos} />
+      </div>
     );
   }
 };

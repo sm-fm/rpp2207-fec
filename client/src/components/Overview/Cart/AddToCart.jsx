@@ -12,7 +12,7 @@ const AddToCart = (props) => {
 
   const handlePutClick = () => {
     const data = {
-      sku_id: props.skuSelected,
+      'sku_id': props.skuSelected,
       count: props.countPurchasing
     };
     API.addToCart(data)
@@ -35,7 +35,7 @@ const AddToCart = (props) => {
           className='add-to-cart-btn'
           onClick={handleOptionsClick} >
             Add to Cart
-          </button>
+        </button>
       </div>
     );
   }
@@ -48,7 +48,7 @@ const AddToCart = (props) => {
           className='add-to-cart-btn'
           onClick={handlePutClick} >
             Add to Cart
-          </button>
+        </button>
       </div>
     );
   }
@@ -59,7 +59,7 @@ const AddToCart = (props) => {
         className='add-to-cart-btn'
         onClick={handlePutClick} >
           Add to Cart
-        </button>
+      </button>
     </div>
   );
 };

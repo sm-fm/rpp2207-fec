@@ -14,13 +14,13 @@ describe('Add to cart module', () => {
       countPurchasing={3}
       handleFocusSizeDropDown={() => {}}
       setNeedSize={() => {}} />);
-      const AddToCartBtn = screen.getByRole('button');
-      expect(AddToCartBtn).toBeInTheDocument();
+    const AddToCartBtn = screen.getByRole('button');
+    expect(AddToCartBtn).toBeInTheDocument();
   });
 
   test('Button should not render when no sizes are in stock', async () => {
     render(<AddToCart
-    sizeOptions="OUT OF STOCK" />);
+      sizeOptions="OUT OF STOCK" />);
     const AddToCartBtn = screen.queryByRole('button');
     expect(AddToCartBtn).toBeNull();
   });

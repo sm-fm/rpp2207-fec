@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import * as Select from 'react-select';
 import SpecificSize from './SpecificSize.jsx';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,7 +20,7 @@ const SizeSelector = (props) => {
       if (props.skus[sku].size === e.target.value) {
         props.setSkuSelected(sku);
       }
-    })
+    });
   };
 
   const createSizeDropDown = () => {
@@ -41,16 +40,16 @@ const SizeSelector = (props) => {
       }
     }
     return componentArr;
-  }
+  };
 
   if (defaultVal === 'OUT OF STOCK') {
     return (
-    <div className="size-selector">
-      <select name="sizes" className="sizes">
-        <option role="sizes" value={defaultVal} disabled>{defaultVal}</option>
-      </select>
-    </div>
-  );
+      <div className="size-selector">
+        <select name="sizes" className="sizes">
+          <option role="sizes" value={defaultVal} disabled>{defaultVal}</option>
+        </select>
+      </div>
+    );
   }
   if (props.needSize) {
     return (

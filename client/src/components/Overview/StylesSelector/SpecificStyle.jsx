@@ -19,7 +19,7 @@ const SpecificStyle = (props) => {
           props.setSkus(props.style.skus);
         }} />
     </div>
-  )
+  );
 };
 
 export default SpecificStyle;

@@ -1,8 +1,7 @@
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
 import '@testing-library/jest-dom';
 import chosenStyleData from './mockData.js';
-import Cart from '../client/src/components/Overview/Cart/Cart.jsx';
 import SizeSelector from '../client/src/components/Overview/Cart/SizeSelector.jsx';
 import SpecificSize from '../client/src/components/Overview/Cart/SpecificSize.jsx';
 
@@ -33,7 +32,7 @@ describe('SizeSelector module', () => {
           "size": null
         }}}
         setSizeOptions={() => {}}
-       />
+      />
     );
     const disabledSizeSelectorbtn = screen.getByRole('sizes');
     expect(disabledSizeSelectorbtn).toHaveAttribute('disabled');
@@ -77,4 +76,4 @@ describe('SpecificSize module', () => {
     const firstOption = screen.queryAllByRole('option')[0];
     expect(firstOption.value).toBe('S');
   });
-})
+});

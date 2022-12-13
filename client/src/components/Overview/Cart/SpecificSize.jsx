@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const SpecificSize = (props) => {
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     props.setDefaultVal(props.size);
-  }
+  };
 
   if (props.size) {
     return (
@@ -12,10 +12,10 @@ const SpecificSize = (props) => {
         value={props.size}
         className="size-item"
         onClick={handleClick}
-        >
+      >
         {props.size}
       </option>
-    )
+    );
   }
 };
 
