@@ -38,7 +38,7 @@
   justify-content: space-between;
 }
 
-.ratings .thumbnail{
+.ratings .review-thumbnail{
   display: inline-block;
   height: 50px;
   padding: 5px 10px 0px 10px;
@@ -59,7 +59,6 @@
 }
 
 .user-review-wrapper {
-  /* border: 1px solid black; */
   width: 50%;
   display: inline-block;
 }
@@ -88,4 +87,23 @@
 
 #ratings-list:last-child {
   padding-right: 0px;
+}
+
+.reviews-modal {
+  border: 1px solid black;
+  position: absolute;
+  top: 5%;
+  margin: auto;
+  left: 2%;
+}
+
+.reviews-modal .exit-modal {
+  position: relative;
+  padding: 5px;
+  right: 0px;
+  left: 95%
+}
+
+.reviews-modal .exit-modal:hover {
+  color: rgb(100, 100, 100);
 }
