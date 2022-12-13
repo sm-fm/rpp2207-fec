@@ -203,7 +203,7 @@
 .comparison-modal {
   position: fixed;
   width: 400px;
-  height: 300px;
+  min-height: 300px;
   border: 1px solid black;
   top: 0;
   left: 0;
@@ -236,9 +236,10 @@
 .modal-table {
   text-align: center;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .left-check, .right-check {
   width: 25px;
+  font-size: 32px;
 }

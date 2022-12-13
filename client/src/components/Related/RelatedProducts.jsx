@@ -13,8 +13,6 @@ const RelatedProducts = (props) => {
   }, [props.currentProduct]);
 
   const getFeatures = () => {
-    console.log('currentProduct.features: ', currentProduct.features);
-    console.log('comparisonProduct.features: ', comparisonProduct.features);
     return [...currentProduct.features, ...comparisonProduct.features]
       .filter((v, i, a)=>a.findIndex(v2=>(v.feature === v2.feature && v.value === v2.value)) === i);
   };
@@ -68,7 +66,6 @@ const RelatedProducts = (props) => {
               {getFeatures().map((feature, index) => {
                 return (
                   <tr key={`${feature}-${index}`}>
-                    {console.log(currentProduct.features, comparisonProduct.features)}
                     <td className='left-check'>{currentProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
                     <td>{feature.value} {feature.feature}</td>
                     <td className='right-check'>{comparisonProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
