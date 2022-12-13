@@ -90,20 +90,33 @@
 }
 
 .reviews-modal {
-  border: 1px solid black;
   position: absolute;
   top: 5%;
   margin: auto;
   left: 2%;
 }
 
-.reviews-modal .exit-modal {
+/* .reviews-modal .exit-modal {
   position: relative;
   padding: 5px;
   right: 0px;
   left: 95%
+} */
+
+
+#reviews-modal-overlay {
+  position: relative;
+  z-index: 3;
+  width: 5px;
 }
 
-.reviews-modal .exit-modal:hover {
+#reviews-modal-overlay:hover {
   color: rgb(100, 100, 100);
+}
+
+.reviews-modal img {
+  position: absolute;
+  max-width: 150vh;
+  max-height: 80vh;
+  z-index: 2;
 }
