@@ -6,6 +6,8 @@ let ReviewCard = (props) => {
   // May want to refactor this to happen before the data is returned to this component
   //   could have the date object inside data already have this work done.
   // Could even do this with the body - could send an already shortened portion of the body
+  // TODO: Need to implement rating helpfulness put request- Users can rate helpfulness
+
   var date = new Date(props.data.date);
   date = format(date, 'MMM d, y');
 

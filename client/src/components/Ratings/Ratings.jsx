@@ -37,11 +37,11 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 5) => {
+  let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 100) => {
     return ratingsAPI.getReviewList(product_id, rating, sort, page, count)
       .then(data => {
         console.log('Success!', data);
-        setReviewData(data);
+        setAllData(data);
         return data;
       })
       .catch(err => {
@@ -62,6 +62,11 @@ const Ratings = (props) => {
     setReviewData(dataHolder);
     return ratingsList;
   };
+
+  useEffect(() => {
+    filterReviewList(ratings);
+  }, [allData]);
+
 
   useEffect(()=> {
     ratingsAPI.getAll(product_id)
