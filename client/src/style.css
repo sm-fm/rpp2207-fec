@@ -121,16 +121,27 @@ CSS-RESET: end
 	left: 0;
 }
 
-#style-photos {
+#style-photos-window {
 	display: flex;
 	flex-direction: column;
 	justify-content: left;
 	align-items: left;
 	gap: 20px;
-	max-height: 300px;
+	max-height: 550px;
 	max-width: 75px;
 	border: 1px solid blue;
 	position: absolute;
+	top: 0;
+	overflow: hidden;
+}
+
+#style-photos {
+  gap: 15px;
+	display: flex;
+	flex-direction: column;
+	margin-top: -75px;
+	/* manipulate this based on what photos need to show */
+	transition: margin-top 1s ease;
 }
 
 #highlight-img {
