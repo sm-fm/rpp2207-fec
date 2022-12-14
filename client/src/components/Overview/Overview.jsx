@@ -34,7 +34,7 @@ const Overview = (props) => {
         .then(metadata => {
           // setAverageRating(getAverageRating(metadata.ratings));
           console.log(metadata);
-          return api.getStylesById(product.id);
+          return api.getStylesById(metadata.product_id);
         })
         .then(styles => {
           return styles.json();
@@ -61,7 +61,7 @@ const Overview = (props) => {
         .then(metadata => {
           console.log(metadata);
           // setAverageRating(getAverageRating(metadata.ratings));
-          return api.getStylesById(product.id);
+          return api.getStylesById(metadata.product_id);
         })
         .then(styles => {
           return styles.json();
