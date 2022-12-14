@@ -13,11 +13,11 @@ const Images = (props) => {
 
   const handleLeftClick = () => {
     setIndexOfMainImg(indexOfMainImg - 1);
-  }
+  };
 
   const handleRightClick = () => {
     setIndexOfMainImg(indexOfMainImg + 1);
-  }
+  };
 
   if (props.photos && props.chosenStyle) {
     return (
@@ -56,7 +56,7 @@ const Images = (props) => {
                   key={uuidv4()}
                   setIndexOfMainImg={setIndexOfMainImg}
                   index={index}
-                  indexOfMainImg={indexOfMainImg} />
+                  indexOfMainImg={indexOfMainImg} />;
               })}
               <FontAwesomeIcon id="down-arrow" icon={faAngleDown} />
             </div>

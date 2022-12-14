@@ -24,21 +24,21 @@ const ExpandedView = (props) => {
     return (
       <div id="expanded-view">
         {indexOfCurrentImg === 0
-            ? null
-            : <FontAwesomeIcon
-              id="left-arrow"
-              data-testid="left-arrow"
-              icon={faAngleLeft}
-              onClick={() => handleLeftClick()} />
-          }
-          {photos && indexOfCurrentImg === photos.length - 1
-            ? null
-            : <FontAwesomeIcon
-              id="right-arrow"
-              data-testid="right-arrow"
-              icon={faAngleRight}
-              onClick={() => handleRightClick()} />
-            }
+          ? null
+          : <FontAwesomeIcon
+            id="left-arrow"
+            data-testid="left-arrow"
+            icon={faAngleLeft}
+            onClick={() => handleLeftClick()} />
+        }
+        {photos && indexOfCurrentImg === photos.length - 1
+          ? null
+          : <FontAwesomeIcon
+            id="right-arrow"
+            data-testid="right-arrow"
+            icon={faAngleRight}
+            onClick={() => handleRightClick()} />
+        }
         <div id="circle-expanded-view">
           {photos ?
             photos.map((photo, index) => {
@@ -46,21 +46,21 @@ const ExpandedView = (props) => {
                 transform: indexOfCurrentImg === index ? 'scale(2)' : null
               };
               return <FontAwesomeIcon
-                     id="circle"
-                     data-testid={`circle ${index}`}
-                     style={highlight}
-                     icon={faCircle}
-                     key={uuidv4()}
-                     onClick={() => setIndexOfCurrentImg(index)} />
+                id="circle"
+                data-testid={`circle ${index}`}
+                style={highlight}
+                icon={faCircle}
+                key={uuidv4()}
+                onClick={() => setIndexOfCurrentImg(index)} />
             })
-          : null}
+            : null}
         </div>
-          <img
+        <img
           src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
           alt="Image of current style"
           id="expanded-img"
           onClick={() => setZoomView(true)}
-          />
+        />
       </div>
     );
   } else {
