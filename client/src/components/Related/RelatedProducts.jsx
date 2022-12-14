@@ -55,7 +55,7 @@ const RelatedProducts = (props) => {
         }
       </div>
       {modalShowing ?
-        <div className='comparison-modal'>
+        <div className='comparison-modal' role='dialog' aria-label='comparison window'>
           <div className='modal-top'>COMPARING</div>
           <div className='modal-product-names'>
             <div className='product-1'>{currentProduct.name}</div>

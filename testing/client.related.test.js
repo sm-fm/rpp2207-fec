@@ -11,6 +11,7 @@ import ProductCard from '../client/src/components/Related/ProductCard.jsx';
 const sampleProduct = require('./mocks.js').sampleProduct;
 const reviews = require('./mocks.js').reviews;
 const relatedProducts = require('./mocks.js').relatedProducts;
+const generateStars = require('./mocks.js').generateStars;
 
 beforeAll(() => {
   nock('http://127.0.0.1:3000')
@@ -25,7 +26,7 @@ describe('ProductCard component', () => {
   const renderComponent = () => {
     return render(<ProductCard
       product={sampleProduct}
-      generateStars={ function() { return 'stars'; }}
+      generateStars={ generateStars }
       setIsFetching={ function() { return; }}
     />, {wrapper: Router});
   };
@@ -34,6 +35,40 @@ describe('ProductCard component', () => {
     const { container } = renderComponent();
     await waitFor(() => {
       expect(container.getElementsByClassName('product-card-name').length).toBe(1);
+    });
+  });
+  it('tests that the product-card-image element is in the document', async () => {
+    const { container } = renderComponent();
+    await waitFor(() => {
+      expect(container.getElementsByClassName('product-card-image').length).toBe(1);
+    });
+  });
+  it('tests that the open-comparison-btn element is in the document', async () => {
+    const renderComponent = () => {
+      return render(<ProductCard
+        product={sampleProduct}
+        generateStars={ generateStars }
+        setIsFetching={ function() { return; }}
+        parentComponent={ 'RelatedProducts' }
+      />, {wrapper: Router});
+    };
+    const { container } = renderComponent();
+    await waitFor(() => {
+      expect(container.getElementsByClassName('open-comparison-btn').length).toBe(1);
+    });
+  });
+  it('tests that the close-btn element is in the document', async () => {
+    const renderComponent = () => {
+      return render(<ProductCard
+        product={sampleProduct}
+        generateStars={ generateStars }
+        setIsFetching={ function() { return; }}
+        parentComponent={ 'YourOutfit' }
+      />, {wrapper: Router});
+    };
+    const { container } = renderComponent();
+    await waitFor(() => {
+      expect(container.getElementsByClassName('close-btn').length).toBe(1);
     });
   });
   it('tests that the name passed to ProductCard is on the screen', async () => {
@@ -58,10 +93,9 @@ describe('ProductCard component', () => {
     });
   });
   it('tests that the data returned by generateStars is on the screen', async () => {
-    renderComponent();
+    const { container } = renderComponent();
     await waitFor(() => {
-      const name = screen.getByText('stars');
-      expect(name).toBeInTheDocument();
+      expect(container.getElementsByClassName('product-card-stars').length).toBe(1);
     });
   });
 });
