@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from './ProductCard.jsx';
-
-
 
 const RelatedProducts = (props) => {
   const [position, setPosition] = useState(0);
   const componentName = 'RelatedProducts';
+  const [modalShowing, setModalShowing] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState({});
+  const [comparisonProduct, setComparisonProduct] = useState({});
+
+  useEffect(() => {
+    setCurrentProduct(props.currentProduct);
+  }, [props.currentProduct]);
+
+  const getFeatures = () => {
+    return [...currentProduct.features, ...comparisonProduct.features]
+      .filter((v, i, a)=>a.findIndex(v2=>(v.feature === v2.feature && v.value === v2.value)) === i);
+  };
 
   return (
     <>
       <div className='related-products-container' role="listbox" aria-label="related products" style={{marginLeft: `-${position}px`}}>
         {props.relatedProducts ?
-
-
           props.relatedProducts.map((product) => {
             return <ProductCard
+              modalShowing={modalShowing}
+              setModalShowing={setModalShowing}
+              setComparisonProduct={setComparisonProduct}
               key={product.id}
               product={product}
               generateStars={props.generateStars}
@@ -43,6 +54,29 @@ const RelatedProducts = (props) => {
           : null
         }
       </div>
+      {modalShowing ?
+        <div className='comparison-modal'>
+          <div className='modal-top'>COMPARING</div>
+          <div className='modal-product-names'>
+            <div className='product-1'>{currentProduct.name}</div>
+            <div className='product-2'>{comparisonProduct.name}</div>
+          </div>
+          <table className='modal-table'>
+            <tbody>
+              {getFeatures().map((feature, index) => {
+                return (
+                  <tr key={`${feature}-${index}`}>
+                    <td className='left-check'>{currentProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
+                    <td>{feature.value} {feature.feature}</td>
+                    <td className='right-check'>{comparisonProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <div className="close-btn" onClick={() => { setModalShowing(false); }}></div>
+        </div>
+        : null}
     </>
   );
 };
