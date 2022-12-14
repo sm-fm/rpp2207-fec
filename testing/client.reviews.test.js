@@ -404,7 +404,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100&rating=%22%5B%5D%22')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -421,7 +421,7 @@ describe('General test of the Ratings component', () => {
 
     await waitFor(() => {
       expect(container.getElementsByClassName('metadata').length).toEqual(1);
-      expect(container.getElementsByClassName('userReview').length).toEqual(5);
+      expect(container.getElementsByClassName('userReview').length).toEqual(2);
     });
   });
 

@@ -38,7 +38,7 @@ const Ratings = (props) => {
    * @param {*} count - Tells how many results per page
    */
   let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 5) => {
-    return ratingsAPI.getReviewList(product_id, rating, sort, page, count)
+    return ratingsAPI.getReviewList(product_id, sort, page, count, rating)
       .then(data => {
         console.log('Success!', data);
         setReviewData(data);
