@@ -21,62 +21,33 @@ const Overview = (props) => {
   const [averageRating, setAverageRating] = useState();
 
   useEffect(() => {
-    if (!props.objID) {
-      api.getAllProducts()
-        .then(results => {
-          return results.json();
-        })
-        .then(results => {
-          setProduct(results[0]);
-          console.log(product);
-          return RatingsAPI.getReviewMetadata(product.id);
-        })
-        .then(metadata => {
-          // setAverageRating(getAverageRating(metadata.ratings));
-          console.log(metadata);
-          return api.getStylesById(metadata.product_id);
-        })
-        .then(styles => {
-          return styles.json();
-        })
-        .then(styles => {
-          setStyles(styles.results);
-          setChosenStyle(styles.results[0]);
-          setPhotos(styles.results[0].photos);
-          toggleClick(styles.results[0].name);
-          setSkus(styles.results[0].skus);
-          setFetching(false);
-        })
-        .catch(err => console.log(err));
-    } else {
-      api.getProductById(props.objID)
-        .then(result => {
-          return result.json();
-        })
-        .then(result => {
-          console.log(result);
-          setProduct(result);
-          console.log(product);
-          return RatingsAPI.getReviewMetadata(result.id);
-        })
-        .then(metadata => {
-          console.log(metadata);
-          // setAverageRating(getAverageRating(metadata.ratings));
-          return api.getStylesById(metadata.product_id);
-        })
-        .then(styles => {
-          return styles.json();
-        })
-        .then(styles => {
-          setStyles(styles.results);
-          setChosenStyle(styles.results[0]);
-          setPhotos(styles.results[0].photos);
-          toggleClick(styles.results[0].name);
-          setSkus(styles.results[0].skus);
-          setFetching(false);
-        })
-        .catch(err => console.log(err));
-    }
+    api.getProductById(props.objID)
+      .then(result => {
+        return result.json();
+      })
+      .then(result => {
+        console.log(result);
+        setProduct(result);
+        console.log(product);
+        return RatingsAPI.getReviewMetadata(result.id);
+      })
+      .then(metadata => {
+        console.log(metadata);
+        // setAverageRating(getAverageRating(metadata.ratings));
+        return api.getStylesById(metadata.product_id);
+      })
+      .then(styles => {
+        return styles.json();
+      })
+      .then(styles => {
+        setStyles(styles.results);
+        setChosenStyle(styles.results[0]);
+        setPhotos(styles.results[0].photos);
+        toggleClick(styles.results[0].name);
+        setSkus(styles.results[0].skus);
+        setFetching(false);
+      })
+      .catch(err => console.log(err));
   }, [props.objID]);
 
   if (!expandedView) {

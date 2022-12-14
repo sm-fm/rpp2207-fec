@@ -30,6 +30,7 @@ app.get('/products', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.sendStatus(401);
     });
 });
 
@@ -43,6 +44,7 @@ app.get('/products/:query(*)', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.sendStatus(401);
     });
 });
 
@@ -56,14 +58,14 @@ app.post('/cart', (req, res) => {
   };
 
   fetch(`${baseURL}/cart?sku_id=${req.body.sku_id}`, options)
-    .then(results => {
+    .then(() => {
       res.sendStatus(201);
     })
     .catch(err => {
       console.log('bad:', err);
       res.sendStatus(401);
     });
-})
+});
 
 app.get('/reviews', (req, res) => {
   fetch(`${baseURL}/reviews/?` + new URLSearchParams({

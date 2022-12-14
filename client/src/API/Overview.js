@@ -45,12 +45,12 @@ const Overview = {
         'Content-Type': 'application/json'
       }
     })
-    .then(() => {
-      return;
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .then(() => {
+        return;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };
 
