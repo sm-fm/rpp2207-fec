@@ -12,7 +12,7 @@ let Rectangle = (props) => {
           <stop key={`${props.idx}-stop-3`} className='stop3' offset={`${props.val.ratio * 100}%`} stopColor="rgb(213, 216, 222)" />
           <stop key={`${props.idx}-stop-4`} className='stop4' offset="100%" stopColor="rgb(213, 216, 222)" stopOpacity="1" />
         </linearGradient>
-        <rect onMouseEnter= {() => { setHover(!notHover); }} width='100px' height='10px' id = {props.idx} fill={`url(#Gradient${props.idx}-1)`} rx='2' ry = '2'/>
+        <rect className='ratings-bar' onMouseEnter= {() => { setHover(!notHover); }} width='100px' height='10px' id = {props.idx} fill={`url(#Gradient${props.idx}-1)`} rx='2' ry = '2'/>
       </svg>
     );
   } else {
@@ -24,7 +24,7 @@ let Rectangle = (props) => {
           <stop key={`${props.idx}-stop-3`} className='stop3' offset={`${props.val.ratio * 100}% `} stopColor="gray" />
           <stop key={`${props.idx}-stop-4`} className='stop4' offset="100%" stopColor="gray" stopOpacity="1" />
         </linearGradient>
-        <rect onMouseLeave = {() => { setHover(!notHover); }} width='100px' height='10px' id = {props.idx} fill={`url(#Gradient${props.idx}-2)`} rx='2' ry = '2'/>
+        <rect className='ratings-bar' onMouseLeave = {() => { setHover(!notHover); }} width='100px' height='10px' id = {props.idx} fill={`url(#Gradient${props.idx}-2)`} rx='2' ry = '2'/>
       </svg>
     );
   }
