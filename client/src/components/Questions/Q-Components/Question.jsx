@@ -6,7 +6,11 @@ const Question = (props) => {
   return (
     <div className="question-container">
       <h1><strong>Q: </strong>{props.body}</h1>
-      <button id="add-ans" className="btn"> Add an Answer </button>
+      <button
+        id="add-ans"
+        className="btn"
+        onClick={props.openForm}
+      > Add an Answer </button>
       <HelpReport
         val={props.q_ID}
         type={'questions'}
