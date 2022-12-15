@@ -109,12 +109,12 @@ const App = () => {
 
   return (
     <div>
-      {/* <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/> */}
+      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
       <Questions objID={id}/>
-      {/* <Ratings objID={id} generateStars={generateStars}/> */}
-      {/* <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/> */}
+      <Ratings objID={id} generateStars={generateStars}/>
     </div>
-  )
+  );
 }
 
 export default App;
