@@ -195,12 +195,13 @@ Figure out how to get item name ( Use getProductById in Overview.js )
 	width: 60%;
 	height: auto;
   justify-content: center;
-	margin: 20px 20%;
+	margin: 40px 20% 20% 20%;
 	background-color: black;
 	font-family: Times, serif;
 	border-radius: 5px;
 	z-index: 1;
 	position: fixed;
+	top: 0;
 }
 .form-header,
 .form-footer {
