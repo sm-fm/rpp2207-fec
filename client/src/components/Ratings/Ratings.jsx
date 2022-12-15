@@ -37,10 +37,9 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 5) => {
-    return ratingsAPI.getReviewList(product_id, sort, page, count, rating)
+  let getReviewList = (id, sort = 'relevant', page = 1, count = 5) => {
+    return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
-        console.log('Success!', data);
         setReviewData(data);
         return data;
       })
@@ -84,7 +83,7 @@ const Ratings = (props) => {
         setReviewError('');
       })
       .catch(err => {
-        console.log('There was an error:', err);
+        // console.log('There was an error:', err);
         let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
         setMetaError(errMsg);
         setReviewError(errMsg);

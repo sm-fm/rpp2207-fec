@@ -378,7 +378,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71')
+      .get('/reviews/?product_id=71&sort=relevant&page=1&count=100')
       .reply(200, sampleReviewError);
 
     nock('http://localhost:3000')
@@ -404,7 +404,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -430,7 +430,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -444,7 +444,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=newest&page=&count=5')
       .reply(200, sampleReviewsNewest);
 
     const { container } = render(<Ratings
@@ -466,7 +466,7 @@ describe('Testing of Metareveiws: ', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5')
       .reply(200, sampleMeta);
 
     expect(true).toBeTrue;
