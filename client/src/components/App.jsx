@@ -115,6 +115,6 @@ const App = () => {
       <Ratings objID={id} generateStars={generateStars}/>
     </div>
   );
-}
+};
 
 export default App;
