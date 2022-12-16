@@ -50,6 +50,7 @@ const QuestList = (props) => {
               helpful={q.question_helpfulness}
               name={q.asker_name}
               answers={q.answers}
+              openForm={props.openAnsForm}
             />
           );
         })}
@@ -61,7 +62,7 @@ const QuestList = (props) => {
         {rendered.length === questions.length && num > 2 ?
           <button id="collapse-q" className="btn" onClick={handleCollapse}> Collapse Questions </button>
           : null}
-        <button id="add-q" className="btn">Ask a Question +</button>
+        <button id="add-q" className="btn" onClick={props.openQuestForm}>Ask a Question +</button>
       </div>
     </div>
   );
