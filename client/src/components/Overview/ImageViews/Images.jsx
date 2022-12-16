@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { v4 as uuidv4 } from 'uuid';
 import SpecificImage from './SpecificImage.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,16 +11,9 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 const Images = (props) => {
 
   const [indexOfMainImg, setIndexOfMainImg] = useState(0);
-  const [photos, setPhotos] = useState(props.photos);
-  const [firstPhotoIndex, setFirstPhotoIndex] = useState(0);
-  const [lastPhotoIndex, setLastPhotoIndex] = useState(props.photos.length - 1);
-
-  // useEffect(() => {
-  //   if (props.photos.length > 6) {
-  //     setLastPhotoIndex(5);
-  //     setPhotos(props.photos.slice(0, 6));
-  //   }
-  // });
+  const [marginTop, setMarginTop] = useState(0);
+  const [firstImgIndex, setFirstImgIndex] = useState(0);
+  const [lastImgIndex, setLastImgIndex] = useState(6);
 
   const handleLeftClick = () => {
     setIndexOfMainImg(indexOfMainImg - 1);
@@ -30,14 +24,26 @@ const Images = (props) => {
   };
 
   const handleUpClick = () => {
-    setPhotos(photos.slice(1, props.photos[photos[photos.length]]));
+    if (props.photos[0] !== props.photos[firstImgIndex]) {
+      setFirstImgIndex(firstImgIndex - 1);
+      setLastImgIndex(lastImgIndex - 1);
+      setMarginTop(marginTop + 95);
+      var node = document.getElementById('style-photos');
+      var carousel = ReactDOM.findDOMNode(node);
+      carousel.style.marginTop = `${marginTop + 95}px`;
+    }
   };
 
   const handleDownClick = () => {
-
+    if (props.photos[lastImgIndex - 1]) {
+      setFirstImgIndex(firstImgIndex + 1);
+      setLastImgIndex(lastImgIndex + 1);
+      setMarginTop(marginTop - 95);
+      var node = document.getElementById('style-photos');
+      var carousel = ReactDOM.findDOMNode(node);
+      carousel.style.marginTop = `${marginTop - 95}px`;
+    }
   };
-
-  console.log(props.photos, props.chosenStyle.photos);
 
   if (props.photos && props.chosenStyle) {
     return (
@@ -66,7 +72,7 @@ const Images = (props) => {
             src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
             alt="Image of current style"
             onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
-          {props.photos.length > 6
+          {firstImgIndex !== 0
             ? <FontAwesomeIcon id="up-arrow" icon={faAngleUp} onClick={handleUpClick} />
             : <div style={{paddingTop: '35px'}}></div>}
           <div id="style-photos-window">
@@ -82,7 +88,7 @@ const Images = (props) => {
               })}
             </div>
           </div>
-          {props.photos.length > 6
+          {lastImgIndex !== 12
             ? <FontAwesomeIcon id="down-arrow" icon={faAngleDown} onClick={handleDownClick} />
             : null}
         </div>

@@ -88,6 +88,7 @@ CSS-RESET: end
 	position: absolute;
 	top: 0;
 	right: 0;
+	background-color: whitesmoke;
 }
 
 .icon {
@@ -126,8 +127,9 @@ CSS-RESET: end
 	flex-direction: column;
 	justify-content: left;
 	align-items: left;
-	gap: 20px;
+	gap: 15px;
 	max-height: 475px;
+	min-height: 475px;
 	max-width: 75px;
 	border: 1px solid blue;
 	position: absolute;
@@ -137,11 +139,11 @@ CSS-RESET: end
 }
 
 #style-photos {
-  gap: 20px;
+  gap: 15px;
 	display: flex;
 	flex-direction: column;
 	max-height: 550px;
-	margin-top: 0px;
+	margin-top: 0;
 	/* manipulate this based on what photos need to show */
 	transition: margin-top 1s ease;
 }
@@ -150,14 +152,16 @@ CSS-RESET: end
 	position: absolute;
 	top: 2.5%;
 	width: 8%;
-	height: 30px;
+	height: 25px;
+	color: whitesmoke;
 }
 
 #down-arrow {
 	position: absolute;
 	bottom: 2.5%;
 	width: 8%;
-	height: 30px;
+	height: 25px;
+	color: whitesmoke;
 }
 
 #highlight-img {
@@ -174,6 +178,7 @@ CSS-RESET: end
 	width: 10%;
 	height: 35px;
 	position: absolute;
+	color: whitesmoke;
 }
 
 #left-arrow {
@@ -182,6 +187,7 @@ CSS-RESET: end
 	width: 25%;
 	height: 35px;
 	position: absolute;
+	color: whitesmoke;
 }
 
 #expanded-img {
