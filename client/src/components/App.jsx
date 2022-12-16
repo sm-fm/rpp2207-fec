@@ -8,8 +8,8 @@ import '../style.css';
 
 const App = () => {
   const params = useParams();
-  const id = params.id || '71697';
-  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')));
+  const id = params.id;
+  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
 
   const addToOutfit = (product) => {
     console.log(yourOutfit, product);
