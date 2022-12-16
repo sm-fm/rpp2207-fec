@@ -464,16 +464,16 @@ describe('General test of the Ratings component', () => {
 });
 
 describe('Testing of Metareveiws: ', () => {
-  test('Should filter ratings when a rating bar is clicked', async () => {
-    nock('https://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5')
-      .reply(200, sampleMeta);
+  // test('Should filter ratings when a rating bar is clicked', async () => {
+  //   nock('https://localhost:3000')
+  //     .defaultReplyHeaders({
+  //       'access-control-allow-origin': '*',
+  //     })
+  //     .get('/reviews/?product_id=71697&sort=newest&page=1&count=5')
+  //     .reply(200, sampleMeta);
 
-    expect(true).toBeTrue;
-  });
+  //   expect(true).toBeTrue;
+  // });
 
   test('Should call the ratings filter function when a rating is clicked', async () => {
     let testClick = 0;
