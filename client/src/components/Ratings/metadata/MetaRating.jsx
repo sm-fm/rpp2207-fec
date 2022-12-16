@@ -10,7 +10,6 @@ let Metarating = (props) => {
   let trackRatings = (e) => {
     props.useRatings(e)
       .then(data => {
-        console.log(data);
         let newList = data || [];
         newList.sort();
         setRatingsList(newList);
@@ -37,7 +36,7 @@ let Metarating = (props) => {
       <p className='errorMsg'>{errMsg}</p>}
       {ratingsList.length !== 0 &&
       [<p key='rating-preview-list' id='ratingsList'>{ratingsList.join(', ')}</p>,
-        <p key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</p>
+        <p className= 'reviews-reset-filter' key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</p>
       ]
 
       }

@@ -14,7 +14,7 @@ const Ratings = (props) => {
   };
 
   let product_id;
-  product_id = props.objID;
+  product_id = props.objID || 71697;
 
   // Refering to the review list
   const [allData, setAllData] = useState([]);
