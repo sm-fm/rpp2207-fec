@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, getByText } from '@testing-library/react';
 import React from 'react';
 import Router from 'react-router-dom';
 // import RatingsAPI from '../client/src/API/Ratings.js';
@@ -6,6 +6,9 @@ import hf from '../client/src/components/Ratings/helperFunctions.js';
 import nock from 'nock';
 import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
 import Ratings from '../client/src/components/Ratings/Ratings.jsx';
+import MetaData from '../client/src/components/Ratings/metadata/Metadata.jsx';
+import MetaRating from '../client/src/components/Ratings/metadata/MetaRating.jsx';
+
 var expected = [
   {
     "product": "71697",
@@ -378,7 +381,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71')
+      .get('/reviews/?product_id=71&sort=relevant&page=1&count=100')
       .reply(200, sampleReviewError);
 
     nock('http://localhost:3000')
@@ -404,7 +407,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -421,7 +424,7 @@ describe('General test of the Ratings component', () => {
 
     await waitFor(() => {
       expect(container.getElementsByClassName('metadata').length).toEqual(1);
-      expect(container.getElementsByClassName('userReview').length).toEqual(5);
+      expect(container.getElementsByClassName('userReview').length).toEqual(2);
     });
   });
 
@@ -430,7 +433,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -444,7 +447,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=newest&page=&count=5')
       .reply(200, sampleReviewsNewest);
 
     const { container } = render(<Ratings
@@ -461,14 +464,57 @@ describe('General test of the Ratings component', () => {
 });
 
 describe('Testing of Metareveiws: ', () => {
-  test('Should filter ratings when a rating bar is clicked', async () => {
-    nock('https://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
-      .reply(200, sampleMeta);
+  // test('Should filter ratings when a rating bar is clicked', async () => {
+  //   nock('https://localhost:3000')
+  //     .defaultReplyHeaders({
+  //       'access-control-allow-origin': '*',
+  //     })
+  //     .get('/reviews/?product_id=71697&sort=newest&page=1&count=5')
+  //     .reply(200, sampleMeta);
 
-    expect(true).toBeTrue;
+  //   expect(true).toBeTrue;
+  // });
+
+  test('Should call the ratings filter function when a rating is clicked', async () => {
+    let testClick = 0;
+    const { container } = render(<MetaData
+      meta={sampleMeta}
+      generateStars = {() => { return 'stars'; }}
+      useRatings = {() => {
+        return new Promise((resolve) => {
+          testClick++;
+          resolve([]);
+        });
+      }}
+    />);
+
+    await waitFor(() => {
+      let rects = container.getElementsByTagName('svg');
+      fireEvent.click(rects[0]);
+      expect(testClick).toBeGreaterThan(1);
+    });
+  });
+
+  test('Should reset filters when the reset filters link is pressed', async () => {
+    const { container } = render(<MetaRating
+      data={sampleMeta.ratings}
+      manipulateShape = {hf.manipulateRatings}
+      useRatings = {() => {
+        return new Promise((resolve) => {
+          resolve([1]);
+        });
+      }}
+    />);
+
+    let rects = container.getElementsByTagName('rect');
+    fireEvent.click(rects[0]);
+    fireEvent.click(rects[1]);
+    await waitFor(async () => {
+      expect(getByText(container, 'Reset Filters')).toBeTruthy();
+      fireEvent.click(container.getElementsByClassName('reviews-reset-filter')[0]);
+      await waitFor( () => {
+        expect(container.getElementsByClassName('rating-preview-list').length).toBe(0);
+      });
+    });
   });
 });

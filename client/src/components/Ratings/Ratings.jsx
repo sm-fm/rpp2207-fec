@@ -14,7 +14,7 @@ const Ratings = (props) => {
   };
 
   let product_id;
-  product_id = props.objID;
+  product_id = props.objID || 71697;
 
   // Refering to the review list
   const [allData, setAllData] = useState([]);
@@ -37,15 +37,16 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', rating = [], page = 1, count = 100) => {
-    return ratingsAPI.getReviewList(product_id, rating, sort, page, count)
+  let getReviewList = (id, sort = 'relevant', page = 1, count = 5) => {
+    return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
         console.log('Success!', data);
         setAllData(data);
         return data;
       })
       .catch(err => {
-        console.log('Uh-oh! There was an error: ', err);
+        // console.log('Uh-oh! There was an error: ', err);
+        setReviewError('Something went wrong, please try again later.');
       });
   };
 
@@ -85,7 +86,7 @@ const Ratings = (props) => {
         setReviewError('');
       })
       .catch(err => {
-        console.log('There was an error:', err);
+        // console.log('There was an error:', err);
         let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
         setMetaError(errMsg);
         setReviewError(errMsg);
