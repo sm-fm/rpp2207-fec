@@ -127,21 +127,37 @@ CSS-RESET: end
 	justify-content: left;
 	align-items: left;
 	gap: 20px;
-	max-height: 550px;
+	max-height: 475px;
 	max-width: 75px;
 	border: 1px solid blue;
 	position: absolute;
 	top: 0;
 	overflow: hidden;
+	margin-top: 63px;
 }
 
 #style-photos {
-  gap: 15px;
+  gap: 20px;
 	display: flex;
 	flex-direction: column;
-	margin-top: -75px;
+	max-height: 550px;
+	margin-top: 0px;
 	/* manipulate this based on what photos need to show */
 	transition: margin-top 1s ease;
+}
+
+#up-arrow {
+	position: absolute;
+	top: 2.5%;
+	width: 8%;
+	height: 30px;
+}
+
+#down-arrow {
+	position: absolute;
+	bottom: 2.5%;
+	width: 8%;
+	height: 30px;
 }
 
 #highlight-img {
@@ -163,7 +179,7 @@ CSS-RESET: end
 #left-arrow {
 	left: 0;
 	top: 50%;
-	width: 10%;
+	width: 25%;
 	height: 35px;
 	position: absolute;
 }

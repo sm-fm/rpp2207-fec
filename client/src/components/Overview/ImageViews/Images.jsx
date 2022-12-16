@@ -10,6 +10,16 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 const Images = (props) => {
 
   const [indexOfMainImg, setIndexOfMainImg] = useState(0);
+  const [photos, setPhotos] = useState(props.photos);
+  const [firstPhotoIndex, setFirstPhotoIndex] = useState(0);
+  const [lastPhotoIndex, setLastPhotoIndex] = useState(props.photos.length - 1);
+
+  // useEffect(() => {
+  //   if (props.photos.length > 6) {
+  //     setLastPhotoIndex(5);
+  //     setPhotos(props.photos.slice(0, 6));
+  //   }
+  // });
 
   const handleLeftClick = () => {
     setIndexOfMainImg(indexOfMainImg - 1);
@@ -18,6 +28,16 @@ const Images = (props) => {
   const handleRightClick = () => {
     setIndexOfMainImg(indexOfMainImg + 1);
   };
+
+  const handleUpClick = () => {
+    setPhotos(photos.slice(1, props.photos[photos[photos.length]]));
+  };
+
+  const handleDownClick = () => {
+
+  };
+
+  console.log(props.photos, props.chosenStyle.photos);
 
   if (props.photos && props.chosenStyle) {
     return (
@@ -46,9 +66,11 @@ const Images = (props) => {
             src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
             alt="Image of current style"
             onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
+          {props.photos.length > 6
+            ? <FontAwesomeIcon id="up-arrow" icon={faAngleUp} onClick={handleUpClick} />
+            : <div style={{paddingTop: '35px'}}></div>}
           <div id="style-photos-window">
             <div id="style-photos">
-              <FontAwesomeIcon id="up-arrow" icon={faAngleUp} />
               {props.chosenStyle.photos.map((photo, index) => {
                 return <SpecificImage
                   id="style-img"
@@ -58,9 +80,11 @@ const Images = (props) => {
                   index={index}
                   indexOfMainImg={indexOfMainImg} />;
               })}
-              <FontAwesomeIcon id="down-arrow" icon={faAngleDown} />
             </div>
           </div>
+          {props.photos.length > 6
+            ? <FontAwesomeIcon id="down-arrow" icon={faAngleDown} onClick={handleDownClick} />
+            : null}
         </div>
       </div>
     );
