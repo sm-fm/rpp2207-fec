@@ -28,7 +28,6 @@ const Overview = (props) => {
         return result.json();
       })
       .then(result => {
-        console.log(result);
         setProduct(result);
         return RatingsAPI.getReviewMetadata(result.id);
       })

@@ -5,7 +5,6 @@ const Star = (props) => {
     props.product.styles = {};
     props.product.styles.results = props.styles;
     props.addToOutfit(props.product);
-    console.log(props.product);
   };
 
   return (
