@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ratingsAPI from '../../API/Ratings.js';
 import UserReviews from './ReviewCard.jsx';
 import Metadata from './metadata/Metadata.jsx';
+import hf from './helperFunctions.js';
 import './rating.css';
 
 const Ratings = (props) => {
@@ -23,6 +24,7 @@ const Ratings = (props) => {
   const [category, setCategory] = useState(null);
   const [reviewError, setReviewError] = useState('Loading reviews.');
   const [reviewListDisplayLength, setReviewListDisplayLength] = useState(2);
+  const [numberReviewsDisplayed, setNumberReviewsDisplayed] = useState(0);
 
   // Refering to metadata
   const [metadata, setMetadata] = useState({});
@@ -37,7 +39,7 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', page = 1, count = 5) => {
+  let getReviewList = (id, sort = 'relevant', page = 1, count = 100) => {
     return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
         console.log('Success!', data);
@@ -45,7 +47,6 @@ const Ratings = (props) => {
         return data;
       })
       .catch(err => {
-        // console.log('Uh-oh! There was an error: ', err);
         setReviewError('Something went wrong, please try again later.');
       });
   };
@@ -68,6 +69,9 @@ const Ratings = (props) => {
     filterReviewList(ratings);
   }, [allData]);
 
+  useEffect(() => {
+    refreshReviewList;
+  }, [reviewData]);
 
   useEffect(()=> {
     ratingsAPI.getAll(product_id)
@@ -86,7 +90,6 @@ const Ratings = (props) => {
         setReviewError('');
       })
       .catch(err => {
-        // console.log('There was an error:', err);
         let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
         setMetaError(errMsg);
         setReviewError(errMsg);
@@ -95,7 +98,7 @@ const Ratings = (props) => {
 
   let catChange = (e) => {
     setCategory(e.target.value);
-    getReviewList(product_id, e.target.value, ratings);
+    getReviewList(product_id, e.target.value);
   };
 
   let useRating = async (e) => {
@@ -106,30 +109,32 @@ const Ratings = (props) => {
 
     if (e.target.id === 'resetRatingsFilters') {
       setRatings([]);
-      // return await getReviewList(product_id, category);
       return filterReviewList([]);
     }
-    // This will be taken out when I toggle the ratings
     if (ratings.includes(e.target.id)) {
       holder = JSON.parse(JSON.stringify(ratings));
       holder.splice(holder.indexOf(e.target.id), 1);
       setRatings(holder);
       return filterReviewList(holder);
-      // return await getReviewList(product_id, category, holder);
     } else {
       setRatings([...ratings, e.target.id]);
       return filterReviewList([...ratings, e.target.id]);
-      // return await getReviewList(product_id, category, [...ratings, e.target.id]);
     }
   };
 
   let incrementReviewsList = () => {
-    setReviewListDisplayLength(reviewListDisplayLength + 2);
+    setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength + 2));
   };
 
   let collapseReviewList = () => {
-    setReviewListDisplayLength(2);
+    setReviewListDisplayLength(hf.returnMin(reviewData.results.length, 2));
   };
+
+  let refreshReviewList = () => {
+    console.log(reviewData.results);
+    console.log(reviewListDisplayLength);
+    setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
+  }
 
   return (
     <div className='ratings'>

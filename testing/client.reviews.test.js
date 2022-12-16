@@ -346,6 +346,13 @@ test('Test manipulateRatings from the Ratings helper functions', () => {
   expect(hf.manipulateRatings(123)).toBe(undefined);
 });
 
+test('review returnMin function', () => {
+  expect(hf.returnMin(1, 2)).toBe(1);
+  expect(hf.returnMin(2, 1)).toBe(1);
+  expect(hf.returnMin('hi', 'a')).toBe('a');
+  expect(hf.returnMin('', 1)).toBe(undefined);
+});
+
 describe('ReviewCard component', () => {
   test('tests the data being passed to ReviewCard is on the screen', async () => {
     const { container } = render(<ReviewCard
