@@ -62,7 +62,22 @@ app.post('/cart', (req, res) => {
       res.sendStatus(201);
     })
     .catch(err => {
-      console.log('bad:', err);
+      console.log(err);
+      res.sendStatus(401);
+    });
+});
+
+app.get('/allReviews/:id', (req, res) => {
+  console.log(req.params.id);
+  fetch(`${baseURL}/reviews?product_id=${req.params.id}`, getOptions)
+    .then(results => {
+      return results.json();
+    })
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
       res.sendStatus(401);
     });
 });

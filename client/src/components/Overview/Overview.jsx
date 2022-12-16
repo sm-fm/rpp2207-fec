@@ -10,15 +10,17 @@ import RatingsAPI from '../../API/Ratings.js';
 const Overview = (props) => {
 
   const [product, setProduct] = useState({});
-  let [styles, setStyles] = useState([]);
-  let [chosenStyle, setChosenStyle] = useState({});
-  let [styleClicked, toggleClick] = useState('');
-  let [photos, setPhotos] = useState([]);
-  let [expandedView, setExpandedView] = useState(false);
-  let [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
-  let [skus, setSkus] = useState({});
+  const [styles, setStyles] = useState([]);
+  const [chosenStyle, setChosenStyle] = useState({});
+  const [styleClicked, toggleClick] = useState('');
+  const [photos, setPhotos] = useState([]);
+  const [expandedView, setExpandedView] = useState(false);
+  const [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
+  const [skus, setSkus] = useState({});
   const [fetching, setFetching] = useState(true);
   const [averageRating, setAverageRating] = useState();
+  const [reviews, setReviews] = useState();
+  const stars = props.generateStars(averageRating, 'overview');
 
   useEffect(() => {
     api.getProductById(props.objID)
@@ -28,12 +30,10 @@ const Overview = (props) => {
       .then(result => {
         console.log(result);
         setProduct(result);
-        console.log(product);
         return RatingsAPI.getReviewMetadata(result.id);
       })
       .then(metadata => {
-        console.log(metadata);
-        // setAverageRating(getAverageRating(metadata.ratings));
+        setAverageRating(api.getAverageRating(metadata.ratings));
         return api.getStylesById(metadata.product_id);
       })
       .then(styles => {
@@ -46,6 +46,10 @@ const Overview = (props) => {
         toggleClick(styles.results[0].name);
         setSkus(styles.results[0].skus);
         setFetching(false);
+        return api.getAllReviews(styles.product_id);
+      })
+      .then(reviews => {
+        setReviews(reviews);
       })
       .catch(err => console.log(err));
   }, [props.objID]);
@@ -57,7 +61,9 @@ const Overview = (props) => {
           ? <div>
             <ProductInfo
               id="productInfo"
-              product={product} />
+              stars={stars}
+              reviews={reviews}
+              setScrollToRatings={props.setScrollToRatings} />
             <StyleSelector
               id="styles"
               setChosenStyle={setChosenStyle}

@@ -207,3 +207,8 @@ CSS-RESET: end
 .size-needed {
 	color: red;
 }
+
+.review-count {
+	border-bottom: 1px solid black;
+	max-width: 120px;
+}
