@@ -476,32 +476,14 @@ describe('Testing of Metareveiws: ', () => {
   });
 
   test('Should call the ratings filter function when a rating is clicked', async () => {
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
-      .reply(200, sampleReview);
-
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/meta/?product_id=71697')
-      .reply(200, sampleMeta);
-
     let testClick = 0;
     const { container } = render(<MetaData
       meta={sampleMeta}
       generateStars = {() => { return 'stars'; }}
       useRatings = {() => {
-        return new Promise((resolve, reject) => {
-          if (true) {
-            testClick++;
-            resolve([]);
-          } else {
-            reject([]);
-          }
+        return new Promise((resolve) => {
+          testClick++;
+          resolve([]);
         });
       }}
     />);
@@ -514,30 +496,12 @@ describe('Testing of Metareveiws: ', () => {
   });
 
   test('Should reset filters when the reset filters link is pressed', async () => {
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
-      .reply(200, sampleReview);
-
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/meta/?product_id=71697')
-      .reply(200, sampleMeta);
-
     const { container } = render(<MetaRating
       data={sampleMeta.ratings}
       manipulateShape = {hf.manipulateRatings}
       useRatings = {() => {
-        return new Promise((resolve, reject) => {
-          if (true) {
-            resolve([1]);
-          } else {
-            reject([1]);
-          }
+        return new Promise((resolve) => {
+          resolve([1]);
         });
       }}
     />);
