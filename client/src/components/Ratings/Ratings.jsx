@@ -44,7 +44,8 @@ const Ratings = (props) => {
         return data;
       })
       .catch(err => {
-        console.log('Uh-oh! There was an error: ', err);
+        // console.log('Uh-oh! There was an error: ', err);
+        setReviewError('Something went wrong, please try again later.');
       });
   };
 
@@ -55,10 +56,6 @@ const Ratings = (props) => {
     }
     let dataHolder = JSON.parse(JSON.stringify(allData));
     let relevantReviews = dataHolder.results.filter((val) => {
-      // console.log('ratings: ', ratingsList);
-      // console.log('current review: ', val);
-      // console.log('review rating: ', val.rating);
-      // console.log('conditioanl: ', ratingsList.includes(val.rating.toString()));
       return ratingsList.includes(val.rating.toString());
     });
     dataHolder.results = relevantReviews;
@@ -83,7 +80,7 @@ const Ratings = (props) => {
         setReviewError('');
       })
       .catch(err => {
-        console.log('There was an error:', err);
+        // console.log('There was an error:', err);
         let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
         setMetaError(errMsg);
         setReviewError(errMsg);
