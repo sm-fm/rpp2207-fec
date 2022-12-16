@@ -24,11 +24,13 @@ beforeAll(() => {
 
 describe('ProductCard component', () => {
   const renderComponent = () => {
-    return render(<ProductCard
-      product={sampleProduct}
-      generateStars={ generateStars }
-      setIsFetching={ function() { return; }}
-    />, {wrapper: Router});
+    return render(
+      <ProductCard
+        product={sampleProduct}
+        generateStars={ generateStars }
+        setIsFetching={ function() { return; }}
+        parentComponent={ 'RelatedProducts' }
+      />, {wrapper: Router});
   };
 
   it('tests that the product-card-container element is in the document', async () => {
@@ -44,33 +46,28 @@ describe('ProductCard component', () => {
     });
   });
   it('tests that the open-comparison-btn element is in the document', async () => {
-    const renderComponent = () => {
-      return render(<ProductCard
-        product={sampleProduct}
-        generateStars={ generateStars }
-        setIsFetching={ function() { return; }}
-        parentComponent={ 'RelatedProducts' }
-      />, {wrapper: Router});
-    };
     const { container } = renderComponent();
     await waitFor(() => {
       expect(container.getElementsByClassName('open-comparison-btn').length).toBe(1);
     });
   });
+
   it('tests that the close-btn element is in the document', async () => {
     const renderComponent = () => {
-      return render(<ProductCard
-        product={sampleProduct}
-        generateStars={ generateStars }
-        setIsFetching={ function() { return; }}
-        parentComponent={ 'YourOutfit' }
-      />, {wrapper: Router});
+      return render(
+        <ProductCard
+          product={sampleProduct}
+          generateStars={ generateStars }
+          setIsFetching={ function() { return; }}
+          parentComponent={ 'YourOutfit' }
+        />, {wrapper: Router});
     };
     const { container } = renderComponent();
     await waitFor(() => {
       expect(container.getElementsByClassName('close-btn').length).toBe(1);
     });
   });
+
   it('tests that the name passed to ProductCard is on the screen', async () => {
     renderComponent();
     await waitFor(() => {
@@ -107,13 +104,12 @@ describe('RelatedProducts component', () => {
         addToOutfit={() => { return; }}
         yourOutfit={() => { return; }}
         relatedProducts={relatedProducts}
-        generateStars={ function() { return 'stars'; }}
-        isFetching={() => { return false; }}
+        generateStars={ generateStars }
+        isFetching={false}
         setIsFetching={() => { return; }}
-        position={0}
+        currentProduct={ relatedProducts[0] }
       />, {wrapper: Router});
   };
-
   it('tests that the expected classes are present in the document', async () => {
     const { container } = renderComponent();
     await waitFor(() => {
@@ -146,5 +142,17 @@ describe('RelatedProducts component', () => {
     );
     const products = screen.getByRole('listbox', {name: 'related products'});
     expect(products).toHaveStyle('margin-left: -250px;');
+  });
+  it('tests that clicking the open-comparison-btn opens the modal window', async () => {
+    await renderComponent();
+    fireEvent(
+      screen.getAllByRole('button', {name: 'open comparison'})[0],
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    const modal = screen.getByRole('dialog', {name: 'comparison window'});
+    expect(modal).toBeInTheDocument();
   });
 });
