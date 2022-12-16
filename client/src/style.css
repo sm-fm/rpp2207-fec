@@ -154,6 +154,7 @@ CSS-RESET: end
 	width: 8%;
 	height: 25px;
 	color: whitesmoke;
+	left: 0;
 }
 
 #down-arrow {
@@ -162,6 +163,7 @@ CSS-RESET: end
 	width: 8%;
 	height: 25px;
 	color: whitesmoke;
+	left: 0;
 }
 
 #highlight-img {

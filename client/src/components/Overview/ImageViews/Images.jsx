@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 import { v4 as uuidv4 } from 'uuid';
 import SpecificImage from './SpecificImage.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -29,8 +28,7 @@ const Images = (props) => {
       setLastImgIndex(lastImgIndex - 1);
       setMarginTop(marginTop + 95);
       var node = document.getElementById('style-photos');
-      var carousel = ReactDOM.findDOMNode(node);
-      carousel.style.marginTop = `${marginTop + 95}px`;
+      node.style.marginTop = `${marginTop + 95}px`;
     }
   };
 
@@ -40,8 +38,7 @@ const Images = (props) => {
       setLastImgIndex(lastImgIndex + 1);
       setMarginTop(marginTop - 95);
       var node = document.getElementById('style-photos');
-      var carousel = ReactDOM.findDOMNode(node);
-      carousel.style.marginTop = `${marginTop - 95}px`;
+      node.style.marginTop = `${marginTop - 95}px`;
     }
   };
 
@@ -71,10 +68,11 @@ const Images = (props) => {
             className="specific-img"
             src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
             alt="Image of current style"
-            onClick={() => { props.setExpandedView(true); props.setIndexOfExpandedImg(indexOfMainImg); }}/>
-          {firstImgIndex !== 0
-            ? <FontAwesomeIcon id="up-arrow" icon={faAngleUp} onClick={handleUpClick} />
-            : <div style={{paddingTop: '35px'}}></div>}
+            onClick={() => {
+              props.setExpandedView(true);
+              props.setIndexOfExpandedImg(indexOfMainImg);
+            }}/>
+          <FontAwesomeIcon id="up-arrow" icon={faAngleUp} onClick={handleUpClick} />
           <div id="style-photos-window">
             <div id="style-photos">
               {props.chosenStyle.photos.map((photo, index) => {
@@ -88,9 +86,7 @@ const Images = (props) => {
               })}
             </div>
           </div>
-          {lastImgIndex !== 12
-            ? <FontAwesomeIcon id="down-arrow" icon={faAngleDown} onClick={handleDownClick} />
-            : null}
+          <FontAwesomeIcon id="down-arrow" icon={faAngleDown} onClick={handleDownClick} />
         </div>
       </div>
     );
