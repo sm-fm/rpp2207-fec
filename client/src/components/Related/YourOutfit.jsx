@@ -6,22 +6,21 @@ const YourOutfit = (props) => {
   const [position, setPosition] = useState(0);
   const componentName = 'YourOutfit';
   const [currentProduct, setCurrentProduct] = useState();
-  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     relatedAPI.getProductById(props.objID)
       .then((product) => {
         setCurrentProduct(product);
-        setIsFetching(false);
+        props.setIsFetching(false);
       });
   }, [props.objID]);
 
   return (
-    !isFetching ?
+    !props.isFetching ?
       <>
         <div className='your-outfit-container' style={{marginLeft: `-${position}px`}}>
           <div className='product-card-container' onClick={() => { props.addToOutfit(currentProduct); }}>
-            <div className='add-to-outfit-btn'>+</div>
+            <div className='add-to-outfit-btn' role='button' aria-label='add to your outfit'>+</div>
           </div>
           { props.yourOutfit.map((product) => {
             return <ProductCard

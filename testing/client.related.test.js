@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect';
 import nock from 'nock';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import App from './mockApp.jsx';
 import RelatedProducts from '../client/src/components/Related/RelatedProducts.jsx';
 import YourOutfit from '../client/src/components/Related/YourOutfit.jsx';
 const sampleProduct = require('./mocks.js').sampleProduct;
@@ -19,8 +20,10 @@ beforeAll(() => {
     })
     .get('/reviews/meta')
     .reply(200, reviews)
-    .get('/products/.*$')
-    .reply(200, relatedProducts);
+    .get('/products/')
+    .reply(200, relatedProducts)
+    .get(/products\/[a-zA-Z0-9-]\/related*/g)
+    .reply(200, [11111, 11112, 11113, 11114, 71702]);
   // .get('/products/:id/styles')
   // .reply(200, styles);
 });
@@ -41,14 +44,19 @@ const RelatedProductsComponent = () => {
 const YourOutfitComponent = () => {
   return render(
     <YourOutfit
-      addToOutfit={() => { return; }}
-      yourOutfit={() => { return; }}
       relatedProducts={relatedProducts}
       generateStars={ generateStars }
       isFetching={false}
       setIsFetching={() => { return; }}
       currentProduct={ relatedProducts[0] }
       objID={71702}
+      yourOutfit={[]}
+    />, {wrapper: Router});
+};
+
+const AppComponent = () => {
+  return render(
+    <App
     />, {wrapper: Router});
 };
 
@@ -145,14 +153,13 @@ describe('ProductCard components inside RelatedProducts', () => {
   });
   it('tests that the data returned by generateStars is on the screen', async () => {
     const { container } = await RelatedProductsComponent();
-    screen.debug();
     const stars = container.getElementsByClassName('product-card-stars');
     expect(stars.length).toBe(5);
   });
   it('tests that clicking the open-comparison-btn opens the modal window', async () => {
     await RelatedProductsComponent();
     fireEvent(
-      screen.getAllByRole('button', {name: 'open comparison'})[0],
+      await screen.getAllByRole('button', {name: 'open comparison'})[0],
       new MouseEvent('click', {
         bubbles: true,
         cancelable: true,
@@ -166,10 +173,28 @@ describe('ProductCard components inside RelatedProducts', () => {
 describe('YourOutfit component', () => {
   it('tests that the expected classes are present in the document', async () => {
     const { container } = await YourOutfitComponent();
-    await waitFor(() => {
-      expect(container.getElementsByClassName('your-outfit-container').length).toBe(1);
-      expect(container.getElementsByClassName('product-card-container').length).toBe(1);
-    });
+    const yourOutfitContainer = await container.getElementsByClassName('your-outfit-container');
+    const productCardContainer = await container.getElementsByClassName('product-card-container');
+    const addToOutfitBtn = await container.getElementsByClassName('add-to-outfit-btn');
+    const fadeBottom = await container.getElementsByClassName('fade-bottom');
+    expect(yourOutfitContainer.length).toBe(1);
+    expect(productCardContainer.length).toBe(1);
+    expect(addToOutfitBtn.length).toBe(1);
+    expect(fadeBottom.length).toBe(1);
+  });
+
+  it('tests that clicking the add-to-outfit button adds the product to yourOutfit', async () => {
+    await AppComponent();
+    fireEvent(
+      await screen.findByRole('button', {name: 'add to your outfit'}),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    screen.debug();
+    // const modal = screen.getByRole('dialog', {name: 'comparison window'});
+    // expect(modal).toBeInTheDocument();
   });
 });
 
