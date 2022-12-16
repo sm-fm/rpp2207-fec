@@ -1,14 +1,5 @@
 node_modules/
 node_modules
 .env
-<<<<<<< HEAD
-<<<<<<< HEAD
-client/dist
-=======
-auth.js
-client/dist/main.js
->>>>>>> size-selector
-=======
 client/dist/
->>>>>>> qna
 coverage/
