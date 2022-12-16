@@ -16,10 +16,16 @@ const Images = (props) => {
 
   const handleLeftClick = () => {
     setIndexOfMainImg(indexOfMainImg - 1);
+    if (firstImgIndex >= indexOfMainImg) {
+      handleUpClick();
+    }
   };
 
   const handleRightClick = () => {
     setIndexOfMainImg(indexOfMainImg + 1);
+    if (indexOfMainImg + 1 >= 5) {
+      handleDownClick();
+    }
   };
 
   const handleUpClick = () => {
