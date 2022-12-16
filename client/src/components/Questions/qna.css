@@ -4,7 +4,7 @@ strong {
 #qna {
 	border: 2px solid black;
 	border-radius: 5px;
-	margin: 5px 5% 5px 5%;
+	margin: 5px 3% 5px 3%;
 
 }
 .qna-title {
@@ -43,9 +43,9 @@ strong {
 	font-family: Times, serif;
 }
 #search-input {
-	font-size: 15px;
-	width: 100%;
+	font-size: 17px;
 	font-family: Times, serif;
+	width: 100%;
 	border-style: hidden;
   background-color: #EEEEEE;
 	color: #202020;
@@ -76,7 +76,7 @@ strong {
 	margin: 5px;
 	border-radius: 5px;
 	padding: 5px;
-	font-size: 15px;
+	font-size: 17px;
 }
 #more-q:hover,
 #collapse-q:hover,
@@ -89,9 +89,10 @@ strong {
 .question-container {
 	margin: 10px 0 15px 0;
 	width: 100%;
+	font-size: 19px;
 }
 #add-ans {
-	font-size: 12px;
+	font-size: 14px;
 	text-decoration: underline;
 	margin-left: 14px;
 }
@@ -111,6 +112,7 @@ strong {
 	color: #939393;
 	border: 2px solid #939393;
 	border-radius: 5px;
+	font-size: 14px;
 }
 
 #more-a:hover,
@@ -131,87 +133,25 @@ strong {
 }
 .answer-container {
 	width: 100%;
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 	padding-left: 5px;
 }
 .a-details {
 	display: inline;
-	font-size: 12px;
+	font-size: 14px;
 }
-
-/* Help/Report */
-.helpful-report,
-#report, #reported {
-	display: inline;
+.thumbnail-container {
+	margin-left: 20px;
 }
-#helpful {
-	display:inline;
-	font-size: 12px;
-	border-right: 2px solid black;
-	border-left: 2px solid black;
-	padding-left: 5px;
-}
-
-#yes-btn,
-#report-btn,
-#reported {
-	font-size: 12px;
-	text-decoration: underline;
-}
-
-#reported {
-	color: red;
-	text-transform: uppercase;
-	margin-left: 10px;
-}
-
-#yes-btn:hover {
-	color: #2ACC4D;
-}
-#report-btn:hover {
-	color: red;
-}
-
-/* Answer List */
-#a-content {
-	padding-left: 5px;
-}
-#a-list {
-	border-left: 3px solid #939393;
-	padding-left: 5px;
-}
-#more-a, #collapse-a {
-	color: #939393;
+.thumbnail {
+	max-width: 80px;
+	max-height: 80px;
+	margin: 5px 10px 0 0;
+	padding: 3px;
 	border: 2px solid #939393;
 	border-radius: 5px;
 }
 
-#more-a:hover,
-#collapse-a:hover {
-	color: white;
-	background-color: #939393;
-}
-
-/* Answer */
-#a-name {
-	display: inline;
-	margin-left: 20px;
-}
-#a-date {
-	display: inline;
-	padding-left: 3px;
-	padding-right: 5px;
-}
-.answer-container {
-	width: 100%;
-	margin-bottom: 5px;
-	padding-left: 5px;
-}
-.a-details {
-	display: inline;
-	font-size: 12px;
-}
-
 /* Help/Report */
 .helpful-report,
 #report, #reported {
@@ -219,7 +159,7 @@ strong {
 }
 #helpful {
 	display:inline;
-	font-size: 12px;
+	font-size: 14px;
 	border-right: 2px solid black;
 	border-left: 2px solid black;
 	padding-left: 5px;
@@ -228,7 +168,7 @@ strong {
 #yes-btn,
 #report-btn,
 #reported {
-	font-size: 12px;
+	font-size: 14px;
 	text-decoration: underline;
 }
 
@@ -255,12 +195,13 @@ Figure out how to get item name ( Use getProductById in Overview.js )
 	width: 60%;
 	height: auto;
   justify-content: center;
-	margin: 5px;
+	margin: 40px 20% 20% 20%;
 	background-color: black;
 	font-family: Times, serif;
 	border-radius: 5px;
-
-	margin: 5px 20%;
+	z-index: 6;
+	position: fixed;
+	top: 0;
 }
 .form-header,
 .form-footer {
