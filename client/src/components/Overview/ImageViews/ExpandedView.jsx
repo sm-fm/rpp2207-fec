@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuidv4 } from 'uuid';
 import Zoom from './Zoom.jsx';
 
@@ -23,6 +24,10 @@ const ExpandedView = (props) => {
   if (!zoomView) {
     return (
       <div id="expanded-view">
+        <FontAwesomeIcon
+          id="exit-expanded"
+          icon={faX}
+          onClick={() => props.setExpandedView(false)} />
         {indexOfCurrentImg === 0
           ? null
           : <FontAwesomeIcon

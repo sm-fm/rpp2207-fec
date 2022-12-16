@@ -216,6 +216,15 @@ CSS-RESET: end
 	padding: 5px;
 }
 
+#exit-expanded {
+	position: absolute;
+	right: 0;
+	top: 2%;
+	width: 10%;
+	height: 25px;
+	color: whitesmoke;
+}
+
 #zoom {
 	transform-origin: center;
 	height: 100vh;

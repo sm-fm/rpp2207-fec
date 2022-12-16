@@ -95,7 +95,8 @@ const Overview = (props) => {
         <ExpandedView
           chosenStyle={chosenStyle}
           indexOfExpandedImg={indexOfExpandedImg}
-          photos={photos} />
+          photos={photos}
+          setExpandedView={setExpandedView} />
       </div>
     );
   }
