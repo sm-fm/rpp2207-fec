@@ -5,7 +5,6 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './mockApp.jsx';
 import RelatedProducts from '../client/src/components/Related/RelatedProducts.jsx';
-import YourOutfit from '../client/src/components/Related/YourOutfit.jsx';
 const sampleProduct = require('./mocks.js').sampleProduct;
 const styles = require('./mocks.js').styles;
 const sampleReview = require('./mocks.js').sampleReview;
@@ -58,22 +57,10 @@ const RelatedProductsComponent = () => {
     />, {wrapper: Router});
 };
 
-const YourOutfitComponent = () => {
-  return render(
-    <YourOutfit
-      relatedProducts={relatedProducts}
-      generateStars={ generateStars }
-      isFetching={false}
-      setIsFetching={() => { return; }}
-      currentProduct={ relatedProducts[0] }
-      objID={71704}
-      yourOutfit={[]}
-    />, {wrapper: Router});
-};
-
 const AppComponent = () => {
   return render(
     <App
+      yourOutfit={[]}
     />, {wrapper: Router});
 };
 
@@ -139,43 +126,43 @@ describe('RelatedProducts component', () => {
 });
 
 describe('ProductCard components inside RelatedProducts', () => {
-  it('tests that the product-card-container element is in the document', async () => {
+  it('tests that the expected number of product-card-container elements are on the screen', async () => {
     const { container } = await RelatedProductsComponent();
     const productCard = await container.getElementsByClassName('product-card-name');
     expect(productCard.length).toBe(5);
   });
-  it('tests that the product-card-image element is in the document', async () => {
+  it('tests that the expected number of product-card-image elements are on the screen', async () => {
     const { container } = await RelatedProductsComponent();
     const productCardImage = await container.getElementsByClassName('product-card-image');
     expect(productCardImage.length).toBe(5);
   });
-  it('tests that the open-comparison-btn element is in the document', async () => {
+  it('tests that the expected number of open-comparison-btn elements are on the screen', async () => {
     const { container } = await RelatedProductsComponent();
     const openComparisonButton = await container.getElementsByClassName('open-comparison-btn');
     expect(openComparisonButton.length).toBe(5);
   });
-  it('tests that the name passed to ProductCard is on the screen', async () => {
+  it('tests that a name passed to ProductCard is on the screen', async () => {
     await RelatedProductsComponent();
     const name = await screen.findByText('Product #1');
     expect(name).toBeInTheDocument();
   });
-  it('tests that the category passed to ProductCard is on the screen', async () => {
+  it('tests that a category passed to ProductCard is on the screen', async () => {
     await RelatedProductsComponent();
     const category = await screen.findAllByText('Kicks');
     expect(category.length).toBe(5);
   });
-  it('tests that the price passed to ProductCard is on the screen', async () => {
+  it('tests that a price passed to ProductCard is on the screen', async () => {
     await RelatedProductsComponent();
     const price = await screen.findByText(/5.55/);
     expect(price).toBeInTheDocument();
   });
-  it('tests that the data returned by generateStars is on the screen', async () => {
+  it('tests that the expected number of product-card-stars elements are on the screen', async () => {
     const { container } = await RelatedProductsComponent();
     const stars = container.getElementsByClassName('product-card-stars');
     expect(stars.length).toBe(5);
   });
   it('tests that clicking the open-comparison-btn opens the modal window', async () => {
-    await RelatedProductsComponent();
+    const { container } = await RelatedProductsComponent();
     fireEvent(
       await screen.getAllByRole('button', {name: 'open comparison'})[0],
       new MouseEvent('click', {
@@ -184,7 +171,54 @@ describe('ProductCard components inside RelatedProducts', () => {
       }),
     );
     const modal = screen.getByRole('dialog', {name: 'comparison window'});
+    const modalTable = container.getElementsByClassName('modal-table');
+    const modalTableBody = container.getElementsByClassName('modal-table-body');
+    const modalCloseButton = screen.getByRole('button', {name: 'close comparison'});
+    const featureRows = container.getElementsByClassName('feature-row');
+    const featureCells = container.getElementsByClassName('feature-cell');
+    const leftChecks = container.getElementsByClassName('left-check');
+    const rightChecks = container.getElementsByClassName('right-check');
+    const product1Name = container.getElementsByClassName('product-1');
+    const product2Name = container.getElementsByClassName('product-2');
+    const feature1 = await screen.findByText(/Rubber/);
+    const feature2 = await screen.findByText(/FullControlSkin/);
+    const feature3 = await screen.findByText(/ControlSupport Arch Bridge/);
+    const feature4 = await screen.findByText(/Double Stitch/);
+    expect(featureRows.length).toBe(4);
+    expect(featureCells.length).toBe(4);
+    expect(product1Name.length).toBe(1);
+    expect(product2Name.length).toBe(1);
+    expect(feature1).toBeInTheDocument();
+    expect(feature2).toBeInTheDocument();
+    expect(feature3).toBeInTheDocument();
+    expect(feature4).toBeInTheDocument();
     expect(modal).toBeInTheDocument();
+    expect(modalTable.length).toBe(1);
+    expect(modalTableBody.length).toBe(1);
+    expect(modalCloseButton).toBeInTheDocument();
+    expect(leftChecks.length).toBe(4);
+    expect(rightChecks.length).toBe(4);
+  });
+  it('tests that clicking the x button on the modal closes the modal window', async () => {
+    await RelatedProductsComponent();
+    fireEvent(
+      await screen.getAllByRole('button', {name: 'open comparison'})[0],
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    fireEvent(
+      await screen.findByRole('button', {name: 'close comparison'}),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    const modal = screen.queryByRole('dialog', {name: 'comparison window'});
+    const modalCloseButton = screen.queryByRole('button', {name: 'close comparison window'});
+    expect(modal).not.toBeInTheDocument();
+    expect(modalCloseButton).not.toBeInTheDocument();
   });
 });
 
@@ -198,14 +232,47 @@ describe('YourOutfit component', () => {
         cancelable: true,
       }),
     );
-    screen.debug();
-    const yourOutfitContainer = await container.getElementsByClassName('your-outfit-container');
     const productCardContainer = await container.getElementsByClassName('product-card-container');
-    const addToOutfitBtn = await container.getElementsByClassName('add-to-outfit-btn');
-    const fadeBottom = await container.getElementsByClassName('fade-bottom');
-    expect(yourOutfitContainer.length).toBe(1);
     expect(productCardContainer.length).toBe(2);
-    expect(addToOutfitBtn.length).toBe(1);
-    expect(fadeBottom.length).toBe(1);
+  });
+  it('tests that clicking the x button on a product in yourOutfit removes the item', async () => {
+    const { container } = await AppComponent();
+    fireEvent(
+      await screen.findByRole('button', {name: 'add to your outfit'}),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    fireEvent(
+      await screen.findByRole('button', {name: 'remove from your outfit'}),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    const productCardContainer = await container.getElementsByClassName('product-card-container');
+    expect(productCardContainer.length).toBe(1);
+  });
+  it('tests that clicking the arrow-right & arrow-left buttons in yourOutfit functions as expected', async () => {
+    const AppComponent = () => {
+      return render(
+        <App
+          yourOutfit={relatedProducts}
+        />, {wrapper: Router});
+    };
+
+    await AppComponent();
+    const rightArrow = await screen.findByRole('button', {name: 'scroll right'});
+    expect(rightArrow).toBeInTheDocument();
+    fireEvent(
+      await screen.findByRole('button', {name: 'scroll right'}),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    const leftArrow = await screen.findByRole('button', {name: 'scroll left'});
+    expect(leftArrow).toBeInTheDocument();
   });
 });

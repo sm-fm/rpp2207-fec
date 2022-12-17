@@ -8,6 +8,7 @@ const YourOutfit = (props) => {
   const [currentProduct, setCurrentProduct] = useState();
 
   useEffect(() => {
+    console.log('yourOutfit in YourOutfit.jsx: ', props.yourOutfit);
     relatedAPI.getProductById(props.objID)
       .then((product) => {
         setCurrentProduct(product);
@@ -44,13 +45,13 @@ const YourOutfit = (props) => {
         <div className='fade-bottom'>
           { position > 0 ?
             <div className='arrow-container-left'>
-              <div className='arrow-left' onClick={() => { setPosition(position - 250); }}></div>
+              <div className='arrow-left' role='button' aria-label='scroll left' onClick={() => { setPosition(position - 250); }}></div>
             </div>
             : null
           }
           { props && props.yourOutfit && position <= (props.yourOutfit.length - 3) * 250 ?
             <div className='arrow-container-right'>
-              <div className='arrow-right' onClick={() => { setPosition(position + 250); }}></div>
+              <div className='arrow-right' role='button' aria-label='scroll right' onClick={() => { setPosition(position + 250); }}></div>
             </div>
             : null
           }

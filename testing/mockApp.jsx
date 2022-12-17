@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Related from '../client/src/components/Related/Related.jsx';
 
-const App = () => {
+const App = (props) => {
   const id = 71704;
-  const [yourOutfit, setYourOutfit] = useState([]);
+  const [yourOutfit, setYourOutfit] = useState(props.yourOutfit);
 
   const addToOutfit = (product) => {
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
