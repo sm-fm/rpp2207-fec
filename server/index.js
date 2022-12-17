@@ -19,6 +19,13 @@ const getOptions =
   }
 };
 
+const putOptions = {
+  method: 'PUT',
+  headers: {
+    'Authorization': process.env.GITHUB_ACCESS_TOKEN
+  }
+};
+
 // API ROUTES
 app.get('/products', (req, res) => {
   fetch(`${baseURL}/products`, getOptions)
@@ -75,6 +82,18 @@ app.get('/reviews/meta', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.status(400).send(err);
+    });
+});
+
+app.put('/reviews/helpful/', (req, res) => {
+  console.log(req.query);
+  fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
+    .then((data) => {
+      console.log('data: ', data);
+      res.status(200).send(true);
+    })
+    .catch(err => {
       res.status(400).send(err);
     });
 });

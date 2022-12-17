@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 import Modal from './modal.jsx';
+import API from '../../API/Ratings.js';
 
 let ReviewCard = (props) => {
   // May want to refactor this to happen before the data is returned to this component
@@ -13,6 +14,8 @@ let ReviewCard = (props) => {
 
   const [displayFullBody, setDisplay] = useState(false);
   const [modal, setModal] = useState(null);
+  const [helpfulness, setHelpfulness] = useState(props.data.helpfulness);
+
   let shortBody, shortText;
   if (props.data.body.length > 250) {
     shortBody = props.data.body.slice(0, 250) + '...';
@@ -37,6 +40,18 @@ let ReviewCard = (props) => {
     setModal(null);
   };
 
+  let onHelpfulClick = (e) => {
+    API.helpfulReview(e.target.parentNode.id)
+      .then(data => {
+        if (data) {
+          setHelpfulness(helpfulness + 1);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className = 'userReview'>
       <div className='flex-box'>
@@ -57,7 +72,7 @@ let ReviewCard = (props) => {
       {props.data.response !== '' &&
         <p className='companyResponse'>{props.data.response}</p>}
 
-      <h6>Helpful? <u>Yes</u> {`(${props.data.helpfulness})`} | <u>Report</u></h6>
+      <h6 id={props.data.review_id}>Helpful? <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u> {`(${helpfulness})`} | <u>Report</u></h6>
 
       <div className='thumbnail-holder'>
         {props.data.photos.map((element, idx) => {

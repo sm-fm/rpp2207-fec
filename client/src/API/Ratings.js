@@ -26,6 +26,22 @@ const Ratings = {
         return results.json();
       });
   },
+  helpfulReview: (review_id) => {
+    return fetch('http://localhost:3000/reviews/helpful/?' +
+    new URLSearchParams({
+      review_id: review_id,
+    }),
+    {
+      method: 'PUT',
+    }
+    )
+      .then(() => {
+        return true;
+      })
+      .catch(err => {
+        return err;
+      });
+  },
   getAll: (product_id, sort = 'relevant', page = 1, count = 100) => {
     return Promise.all([Ratings.getReviewList(product_id, sort, page, count), Ratings.getReviewMetadata(product_id)])
       .then(data => {
