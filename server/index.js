@@ -100,7 +100,6 @@ app.put('/reviews/helpful/', (req, res) => {
 
 //report a review
 app.put('/reviews/report/', (req, res) => {
-  console.log(req.query);
   fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
     .then((data) => {
       res.status(200).send(true);

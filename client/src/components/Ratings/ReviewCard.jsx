@@ -52,12 +52,9 @@ let ReviewCard = (props) => {
   };
 
   let onReportClick = (e) => {
-    console.log('hi')
     API.reportReview(e.target.parentNode.id)
       .then(data => {
-        console.log('data: ', data)
         if (data === true) {
-          console.log('setttings')
           setReported(true);
         }
       })
