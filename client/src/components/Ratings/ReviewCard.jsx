@@ -13,6 +13,7 @@ let ReviewCard = (props) => {
   const [displayFullBody, setDisplay] = useState(false);
   const [modal, setModal] = useState(null);
   const [helpfulness, setHelpfulness] = useState(props.data.helpfulness);
+  const [reviewed, setReviewed] = useState(false);
   const [reported, setReported] = useState(false);
 
   let shortBody, shortText;
@@ -44,6 +45,7 @@ let ReviewCard = (props) => {
       .then(data => {
         if (data) {
           setHelpfulness(helpfulness + 1);
+          setReviewed(true);
         }
       })
       .catch(err => {
@@ -85,12 +87,15 @@ let ReviewCard = (props) => {
 
       <h6 id={props.data.review_id} className='reviews-helpfulness'>
         Helpful?
-        <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u>
-        {`(${helpfulness})`} |
-        {reported &&
-          <u style={{color: 'red'}}>REPORTED</u>
+        {!reviewed ?
+          <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u> :
+          <u className='reviews-helpful'>Yes</u>
         }
-        {!reported &&
+
+        {`(${helpfulness})`} |
+
+        {reported ?
+          <u style={{color: 'red'}}>REPORTED</u> :
           <u className='reviews-report' onClick={onReportClick}>Report</u>
         }
       </h6>
