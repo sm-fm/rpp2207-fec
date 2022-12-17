@@ -585,6 +585,10 @@ describe('Testing of reviews', () => {
     fireEvent.click(container.getElementsByClassName('review-thumbnail')[0]);
     await waitFor(() => {
       expect(container.getElementsByClassName('reviews-modal').length).toBe(1);
+      fireEvent.click(container.getElementsByClassName('review-exit-modal')[0]);
+      expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
+    });
+    await waitFor(() => {
     });
   });
 });
