@@ -17,9 +17,10 @@ const App = () => {
     }
   };
 
-  const removeFromOutfit = (product) => {
+  const removeFromOutfit = (product, e) => {
     const id = product.id;
     setYourOutfit(yourOutfit.filter(outfit => outfit.id !== id));
+    e.stopPropagation();
   };
 
   const fullStar = (id, st, key) => {
