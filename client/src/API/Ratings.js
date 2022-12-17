@@ -42,6 +42,21 @@ const Ratings = {
         return err;
       });
   },
+  reportReview: (review_id) => {
+    return fetch('http://localhost:3000/reviews/report/?' +
+    new URLSearchParams({
+      review_id: review_id,
+    }),
+    {
+      method: 'PUT'
+    })
+      .then(() => {
+        return true;
+      })
+      .catch(err => {
+        return err;
+      });
+  },
   getAll: (product_id, sort = 'relevant', page = 1, count = 100) => {
     return Promise.all([Ratings.getReviewList(product_id, sort, page, count), Ratings.getReviewMetadata(product_id)])
       .then(data => {
