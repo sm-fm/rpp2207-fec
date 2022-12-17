@@ -113,3 +113,10 @@
   max-height: 80vh;
   z-index: 1;
 }
+
+.review-form-modal {
+  background-color: white;
+  min-height: 50px;
+  min-width: 50vh;
+  margin: auto;
+}

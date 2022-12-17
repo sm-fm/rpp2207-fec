@@ -4,6 +4,7 @@ import UserReviews from './ReviewCard.jsx';
 import Metadata from './metadata/Metadata.jsx';
 import hf from './helperFunctions.js';
 import './rating.css';
+import ReviewForm from './ReviewForm.jsx';
 
 const Ratings = (props) => {
   // use 71697 for testing
@@ -32,6 +33,8 @@ const Ratings = (props) => {
   const [ratings, setRatings] = useState([]);
   const [metaError, setMetaError] = useState('Loading metadata.');
 
+
+  const [reviewForm, setReviewForm] = useState(false);
   /**
    *
    * @param {*} id - product_id which can be found from the url
@@ -134,7 +137,12 @@ const Ratings = (props) => {
     console.log(reviewData.results);
     console.log(reviewListDisplayLength);
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
-  }
+  };
+
+  let enableReviewForm = (e) => {
+    console.log(e);
+    setReviewForm(true);
+  };
 
   return (
     <div className='ratings'>
@@ -173,6 +181,13 @@ const Ratings = (props) => {
           }
           {(reviewListDisplayLength > 2) &&
           <p onClick={collapseReviewList}>Collapse reviews</p>}
+
+          <p onClick={enableReviewForm}>Review Form</p>
+          {reviewForm &&
+            <>
+              <ReviewForm/>
+            </>
+          }
         </div>
         }
         {reviewError &&
