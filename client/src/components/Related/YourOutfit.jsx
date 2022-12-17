@@ -10,7 +10,6 @@ const YourOutfit = (props) => {
   useEffect(() => {
     relatedAPI.getProductById(props.objID)
       .then((product) => {
-        console.log('PRODUCT FROM YOUROUTFIT USEEFFECT: ', product);
         setCurrentProduct(product);
       });
   }, [props.objID]);
@@ -24,12 +23,10 @@ const YourOutfit = (props) => {
       <>
         <div className='your-outfit-container' style={{marginLeft: `-${position}px`}}>
           <div className='product-card-container' onClick={() => {
-            console.log('CURRENT PRODUCT from YOUROUTFIT: ', currentProduct);
             props.addToOutfit(currentProduct);
           }}>
             <div className='add-to-outfit-btn' role='button' aria-label='add to your outfit'>+</div>
           </div>
-          {console.log('YOUROUTFIT: ', props.yourOutfit)}
           { props.yourOutfit.length > 0 ?
             props.yourOutfit.map((product) => {
               return <ProductCard
