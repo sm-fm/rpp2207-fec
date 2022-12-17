@@ -8,7 +8,6 @@ const YourOutfit = (props) => {
   const [currentProduct, setCurrentProduct] = useState();
 
   useEffect(() => {
-    console.log('yourOutfit in YourOutfit.jsx: ', props.yourOutfit);
     relatedAPI.getProductById(props.objID)
       .then((product) => {
         setCurrentProduct(product);

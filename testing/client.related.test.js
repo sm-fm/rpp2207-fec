@@ -170,6 +170,7 @@ describe('ProductCard components inside RelatedProducts', () => {
         cancelable: true,
       }),
     );
+    screen.debug();
     const modal = screen.getByRole('dialog', {name: 'comparison window'});
     const modalTable = container.getElementsByClassName('modal-table');
     const modalTableBody = container.getElementsByClassName('modal-table-body');
@@ -180,10 +181,10 @@ describe('ProductCard components inside RelatedProducts', () => {
     const rightChecks = container.getElementsByClassName('right-check');
     const product1Name = container.getElementsByClassName('product-1');
     const product2Name = container.getElementsByClassName('product-2');
-    const feature1 = await screen.findByText(/Rubber/);
-    const feature2 = await screen.findByText(/FullControlSkin/);
-    const feature3 = await screen.findByText(/ControlSupport Arch Bridge/);
-    const feature4 = await screen.findByText(/Double Stitch/);
+    const feature1 = await screen.findByText(/.*Rubber\s*Sole\s*/);
+    const feature2 = await screen.findByText(/.*FullControlSkin\s*Material\s*/);
+    const feature3 = await screen.findByText(/.*ControlSupport Arch Bridge\s*Mid-Sole\s*/);
+    const feature4 = await screen.findByText(/.*Double Stitch\s*Stitching\s*/);
     expect(featureRows.length).toBe(4);
     expect(featureCells.length).toBe(4);
     expect(product1Name.length).toBe(1);
@@ -274,5 +275,13 @@ describe('YourOutfit component', () => {
     );
     const leftArrow = await screen.findByRole('button', {name: 'scroll left'});
     expect(leftArrow).toBeInTheDocument();
+    fireEvent(
+      await screen.findByRole('button', {name: 'scroll left'}),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    expect(leftArrow).not.toBeInTheDocument();
   });
 });
