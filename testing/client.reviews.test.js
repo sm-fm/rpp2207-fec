@@ -525,3 +525,32 @@ describe('Testing of Metareveiws: ', () => {
     });
   });
 });
+
+describe('Testing of reviews', () => {
+  test('Clicking on \'yes\' helpful will increment the helpful button', async () => {
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/helpful/?review_id=1277082')
+      .reply(200, true);
+
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+      onHelpfulClick={ () => {
+        return new Promise(resolve => {
+          resolve(true);
+        });
+      }
+      }
+    />, {wrapper: Router});
+
+    expect(getByText(container, '(1)', {exact: false})).toBeTruthy();
+    fireEvent.click(container.getElementsByClassName('reviews-helpful')[0]);
+    await waitFor(() => {
+      expect(getByText(container, '(2)', {exact: false})).toBeTruthy();
+    });
+  });
+});
