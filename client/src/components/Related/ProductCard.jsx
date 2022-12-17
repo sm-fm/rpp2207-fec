@@ -41,7 +41,7 @@ const RelatedProduct = (props) => {
     !props.isFetching ?
       <>
         <div className='product-card-container' onClick={() => routeChange(props.product.id)}>
-          <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url}>
+          <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url || 'https://ca.slack-edge.com/T5B2RG0JW-U03P8D7RN6S-0c1ef7a3f508-512'}>
           </img>
           {props.parentComponent === 'RelatedProducts'
             ?
