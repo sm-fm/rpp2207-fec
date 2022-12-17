@@ -6,14 +6,18 @@ const ProductCard = (props) => {
   const navigate = useNavigate();
   const [averageRating, setAverageRating] = useState();
   const stars = props.generateStars(averageRating, 'related');
+  const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
     ratingsAPI.getReviewMetadata(props.product.id)
       .then((metadata) => {
         setAverageRating(getAverageRating(metadata.ratings));
-        props.setIsFetching(false);
       });
   }, []);
+
+  useEffect(() => {
+    setIsFetching(false);
+  }, [averageRating]);
 
   const routeChange = () => {
     const path = `/${props.product.id.toString()}`;
@@ -37,7 +41,7 @@ const ProductCard = (props) => {
   };
 
   return (
-    !props.isFetching ?
+    !isFetching ?
       <>
         <div className='product-card-container' onClick={() => routeChange(props.product.id)}>
           <img className='product-card-image' src={props.product.styles.results[0].photos[0].thumbnail_url}>

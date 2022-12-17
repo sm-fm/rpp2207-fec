@@ -12,7 +12,8 @@ const App = () => {
   const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
 
   const addToOutfit = (product) => {
-    console.log(yourOutfit, product);
+    console.log('PRODUCT FROM ADD TO PRODUCT: ');
+    console.log(product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
       setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }

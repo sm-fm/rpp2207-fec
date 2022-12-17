@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Related from '../client/src/components/Related/Related.jsx';
 
 const App = () => {
   const id = 71704;
-  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
+  const [yourOutfit, setYourOutfit] = useState([]);
 
   const addToOutfit = (product) => {
-    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
       setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
@@ -87,10 +86,6 @@ const App = () => {
     }
     return stars;
   };
-
-  useEffect(() => {
-    localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
-  }, [yourOutfit]);
 
   return (
     <div>

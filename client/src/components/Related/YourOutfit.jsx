@@ -10,29 +10,39 @@ const YourOutfit = (props) => {
   useEffect(() => {
     relatedAPI.getProductById(props.objID)
       .then((product) => {
+        console.log('PRODUCT FROM YOUROUTFIT USEEFFECT: ', product);
         setCurrentProduct(product);
-        props.setIsFetching(false);
       });
   }, [props.objID]);
 
+  useEffect(() => {
+    props.setIsFetching(false);
+  }, [currentProduct]);
+
   return (
-    !props.isFetching ?
+    !props.isFetching && currentProduct ?
       <>
         <div className='your-outfit-container' style={{marginLeft: `-${position}px`}}>
-          <div className='product-card-container' onClick={() => { props.addToOutfit(currentProduct); }}>
+          <div className='product-card-container' onClick={() => {
+            console.log('CURRENT PRODUCT from YOUROUTFIT: ', currentProduct);
+            props.addToOutfit(currentProduct);
+          }}>
             <div className='add-to-outfit-btn' role='button' aria-label='add to your outfit'>+</div>
           </div>
-          { props.yourOutfit.map((product) => {
-            return <ProductCard
-              key={product.id}
-              product={product}
-              generateStars={props.generateStars}
-              isFetching={props.isFetching}
-              setIsFetching={props.setIsFetching}
-              parentComponent={componentName}
-              removeFromOutfit={props.removeFromOutfit}
-            />;
-          })}
+          {console.log('YOUROUTFIT: ', props.yourOutfit)}
+          { props.yourOutfit.length > 0 ?
+            props.yourOutfit.map((product) => {
+              return <ProductCard
+                key={product.id}
+                product={product}
+                generateStars={props.generateStars}
+                isFetching={props.isFetching}
+                setIsFetching={props.setIsFetching}
+                parentComponent={componentName}
+                removeFromOutfit={props.removeFromOutfit}
+              />;
+            })
+            : null }
         </div>
         <div className='fade-bottom'>
           { position > 0 ?

@@ -17,6 +17,7 @@ const Related = (props) => {
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
       .then((products) => {
+        // console.log('PRODUCTS: ', products);
         var productsMap = new Map();
         products.forEach(product => productsMap.set(product.id, product));
         setRelatedProducts([...productsMap.values()]);
