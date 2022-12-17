@@ -572,4 +572,19 @@ describe('Testing of reviews', () => {
       expect(getByText(container, 'REPORTED', {exact: false})).toBeTruthy();
     });
   });
+
+  test('Clicking on a review thumbnail loads a modal', async () => {
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+
+    />, {wrapper: Router});
+
+    expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
+    fireEvent.click(container.getElementsByClassName('review-thumbnail')[0]);
+    await waitFor(() => {
+      expect(container.getElementsByClassName('reviews-modal').length).toBe(1);
+    });
+  });
 });
