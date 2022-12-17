@@ -9,6 +9,18 @@ const Answer = (props) => {
   return (
     <div className="answer-container">
       <h1><strong>A: </strong>{props.body}</h1>
+      <div className="thumbnail-container">
+        {props.photos.map((photo, idx) => {
+          return (
+            <img
+              key={idx}
+              className='thumbnail'
+              src={photo.url}
+              alt={''}
+            />
+          );
+        })}
+      </div>
       <span className="a-details">
         {props.name === 'Seller' ?
           <p id="a-name"><strong>{props.name}, </strong></p>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
@@ -9,11 +9,12 @@ import '../style.css';
 const App = () => {
   const params = useParams();
   const id = params.id;
-  const [yourOutfit, setYourOutfit] = useState([]);
+  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
 
   const addToOutfit = (product) => {
+    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
-      setYourOutfit(yourOutfit => ([...yourOutfit, product]));
+      setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
   };
 
@@ -93,14 +94,19 @@ const App = () => {
     return stars;
   };
 
+  useEffect(() => {
+    localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
+  }, [yourOutfit]);
+
   return (
     <div>
+      <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
       <Questions objID={id}/>
       <Ratings objID={id} generateStars={generateStars}/>
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
     </div>
-  )
-}
+  );
+};
 
 export default App;

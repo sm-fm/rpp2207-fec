@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 const questionAPI = {
   getAllQuestions: (productId) => {
     var options = { method: 'GET' };

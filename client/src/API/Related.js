@@ -38,6 +38,24 @@ const RelatedAPI = {
         console.log(err);
       });
   },
+  getProductById: (id) => {
+    return fetch(`products/${id}`)
+      .then(json => {
+        return json.json();
+      })
+      .then((product) => {
+        return product;
+      })
+      .then((product) => {
+        return fetch(`products/${product.id}/styles`)
+          .then((json) => {
+            return json.json();
+          })
+          .then((styles) => {
+            return {...product, styles};
+          });
+      });
+  }
 };
 
 export default RelatedAPI;

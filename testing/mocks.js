@@ -229,7 +229,20 @@ const reviews = {
   }
 };
 
+const product1 = {...sampleProduct};
+const product2 = {...sampleProduct};
+const product3 = {...sampleProduct};
+const product4 = {...sampleProduct};
+const product5 = {...sampleProduct};
+Object.assign(product1, {'id': 11111, 'name': 'Product #1', 'default_price': '1.11'});
+Object.assign(product2, {'id': 11112, 'name': 'Product #2', 'default_price': '2.22'});
+Object.assign(product3, {'id': 11113, 'name': 'Product #3', 'default_price': '3.33'});
+Object.assign(product4, {'id': 11114, 'name': 'Product #4', 'default_price': '4.44'});
+Object.assign(product5, {'id': 11115, 'name': 'Product #5', 'default_price': '5.55'});
+const relatedProducts = [product1, product2, product3, product4, product5];
+
 module.exports = {
   sampleProduct: sampleProduct,
-  reviews: reviews
+  reviews: reviews,
+  relatedProducts: relatedProducts
 };
