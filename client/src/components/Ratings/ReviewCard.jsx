@@ -66,48 +66,53 @@ let ReviewCard = (props) => {
       });
   };
 
-  if (!reported) {
-
-    return (
-      <div className = 'userReview'>
-        <div className='flex-box'>
-          <div className='starHolder'>
-            {props.generateStars(props.data.rating, 'userReview')}
-          </div>
-          <h6 className='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
+  return (
+    <div className = 'userReview'>
+      <div className='flex-box'>
+        <div className='starHolder'>
+          {props.generateStars(props.data.rating, 'userReview')}
         </div>
-        <h3 className='summary'>{props.data.summary}</h3>
-        <p className='reviewBody'>{renderBody}</p>
-
-        {(!displayFullBody && !shortText) &&
-          <p className='show-more-review' onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
-
-        {props.data.recommend &&
-          <p>✓ I recommend this product</p>}
-
-        {props.data.response !== '' &&
-          <p className='companyResponse'>{props.data.response}</p>}
-
-        <h6 id={props.data.review_id}>Helpful? <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u> {`(${helpfulness})`} | <u onClick={onReportClick}>Report</u></h6>
-
-        <div className='thumbnail-holder'>
-          {props.data.photos.map((element, idx) => {
-            return (
-              <img key={`${props.data.reviewer_name} image - ${idx + 1}`}
-                className='review-thumbnail'
-                src={element.url}
-                alt={`${props.data.reviewer_name} image - ${idx + 1}`}
-                onClick={imageModal}
-              />
-            );
-          })}
-          {modal}
-        </div>
+        <h6 className='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
       </div>
-    );
-  } else {
-    return null;
-  }
+      <h3 className='summary'>{props.data.summary}</h3>
+      <p className='reviewBody'>{renderBody}</p>
+
+      {(!displayFullBody && !shortText) &&
+        <p className='show-more-review' onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
+
+      {props.data.recommend &&
+        <p>✓ I recommend this product</p>}
+
+      {props.data.response !== '' &&
+        <p className='companyResponse'>{props.data.response}</p>}
+
+      <h6 id={props.data.review_id}>
+        Helpful?
+        <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u>
+        {`(${helpfulness})`} |
+        {reported &&
+          <u style={{color: 'red'}}>REPORTED</u>
+        }
+        {!reported &&
+        <u onClick={onReportClick}>Report</u>
+        }
+      </h6>
+
+      <div className='thumbnail-holder'>
+        {props.data.photos.map((element, idx) => {
+          return (
+            <img key={`${props.data.reviewer_name} image - ${idx + 1}`}
+              className='review-thumbnail'
+              src={element.url}
+              alt={`${props.data.reviewer_name} image - ${idx + 1}`}
+              onClick={imageModal}
+            />
+          );
+        })}
+        {modal}
+      </div>
+    </div>
+  );
 };
 
 export default ReviewCard;
