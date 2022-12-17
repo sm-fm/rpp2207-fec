@@ -553,4 +553,27 @@ describe('Testing of reviews', () => {
       expect(getByText(container, '(2)', {exact: false})).toBeTruthy();
     });
   });
+
+  test('Clicking on \'reported\' will change the text of reported', async () => {
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        method: 'PUT',
+        'access-control-allow-origin': '*',
+      })
+      .put("/reviews/report/?review_id=1277082")
+      .reply(200, true);
+
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+
+    />, {wrapper: Router});
+
+    expect(getByText(container, 'Report', {exact: false})).toBeTruthy();
+    fireEvent.click(container.getElementsByClassName('reviews-report')[0]);
+    await waitFor(() => {
+      expect(getByText(container, 'REPORTED', {exact: false})).toBeTruthy();
+    });
+  });
 });

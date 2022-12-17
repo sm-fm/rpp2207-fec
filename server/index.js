@@ -103,7 +103,6 @@ app.put('/reviews/report/', (req, res) => {
   console.log(req.query);
   fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
     .then((data) => {
-      console.log('data: ', data);
       res.status(200).send(true);
     })
     .catch(err => {

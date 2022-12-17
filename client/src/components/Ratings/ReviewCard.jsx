@@ -52,10 +52,12 @@ let ReviewCard = (props) => {
   };
 
   let onReportClick = (e) => {
-    console.log(e.target);
+    console.log('hi')
     API.reportReview(e.target.parentNode.id)
       .then(data => {
+        console.log('data: ', data)
         if (data === true) {
+          console.log('setttings')
           setReported(true);
         }
       })
@@ -84,7 +86,7 @@ let ReviewCard = (props) => {
       {props.data.response !== '' &&
         <p className='companyResponse'>{props.data.response}</p>}
 
-      <h6 id={props.data.review_id}>
+      <h6 id={props.data.review_id} className='reviews-helpfulness'>
         Helpful?
         <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u>
         {`(${helpfulness})`} |
@@ -92,7 +94,7 @@ let ReviewCard = (props) => {
           <u style={{color: 'red'}}>REPORTED</u>
         }
         {!reported &&
-          <u onClick={onReportClick}>Report</u>
+          <u className='reviews-report' onClick={onReportClick}>Report</u>
         }
       </h6>
 

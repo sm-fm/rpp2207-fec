@@ -29,7 +29,7 @@ const Ratings = {
   helpfulReview: (review_id) => {
     return fetch('http://localhost:3000/reviews/helpful/?' +
     new URLSearchParams({
-      review_id: review_id,
+      review_id: review_id
     }),
     {
       method: 'PUT',
@@ -43,13 +43,10 @@ const Ratings = {
       });
   },
   reportReview: (review_id) => {
-    return fetch('http://localhost:3000/reviews/report/?' +
-    new URLSearchParams({
-      review_id: review_id,
-    }),
-    {
-      method: 'PUT'
-    })
+    return fetch(`http://localhost:3000/reviews/report/?review_id=${review_id}`,
+      {
+        method: 'PUT'
+      })
       .then(() => {
         return true;
       })
