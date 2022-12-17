@@ -11,7 +11,6 @@ const sampleReview = require('./mocks.js').sampleReview;
 const relatedProducts = require('./mocks.js').relatedProducts;
 const generateStars = require('./mocks.js').generateStars;
 
-// UNIT TESTS
 beforeAll(() => {
   nock('http://localhost:3000')
     .defaultReplyHeaders({
@@ -170,35 +169,8 @@ describe('ProductCard components inside RelatedProducts', () => {
         cancelable: true,
       }),
     );
-    screen.debug();
     const modal = screen.getByRole('dialog', {name: 'comparison window'});
-    const modalTable = container.getElementsByClassName('modal-table');
-    const modalTableBody = container.getElementsByClassName('modal-table-body');
-    const modalCloseButton = screen.getByRole('button', {name: 'close comparison'});
-    const featureRows = container.getElementsByClassName('feature-row');
-    const featureCells = container.getElementsByClassName('feature-cell');
-    const leftChecks = container.getElementsByClassName('left-check');
-    const rightChecks = container.getElementsByClassName('right-check');
-    const product1Name = container.getElementsByClassName('product-1');
-    const product2Name = container.getElementsByClassName('product-2');
-    const feature1 = await screen.findByText(/.*Rubber\s*Sole\s*/);
-    const feature2 = await screen.findByText(/.*FullControlSkin\s*Material\s*/);
-    const feature3 = await screen.findByText(/.*ControlSupport Arch Bridge\s*Mid-Sole\s*/);
-    const feature4 = await screen.findByText(/.*Double Stitch\s*Stitching\s*/);
-    expect(featureRows.length).toBe(4);
-    expect(featureCells.length).toBe(4);
-    expect(product1Name.length).toBe(1);
-    expect(product2Name.length).toBe(1);
-    expect(feature1).toBeInTheDocument();
-    expect(feature2).toBeInTheDocument();
-    expect(feature3).toBeInTheDocument();
-    expect(feature4).toBeInTheDocument();
     expect(modal).toBeInTheDocument();
-    expect(modalTable.length).toBe(1);
-    expect(modalTableBody.length).toBe(1);
-    expect(modalCloseButton).toBeInTheDocument();
-    expect(leftChecks.length).toBe(4);
-    expect(rightChecks.length).toBe(4);
   });
   it('tests that clicking the x button on the modal closes the modal window', async () => {
     await RelatedProductsComponent();
