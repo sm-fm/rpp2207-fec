@@ -539,17 +539,13 @@ describe('Testing of reviews', () => {
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
       data={sampleReview.results[0]}
-      onHelpfulClick={ () => {
-        return new Promise(resolve => {
-          resolve(true);
-        });
-      }
-      }
     />, {wrapper: Router});
 
     expect(getByText(container, '(1)', {exact: false})).toBeTruthy();
     fireEvent.click(container.getElementsByClassName('reviews-helpful')[0]);
     await waitFor(() => {
+      expect(getByText(container, '(2)', {exact: false})).toBeTruthy();
+      fireEvent.click(container.getElementsByClassName('reviews-helpful')[0]);
       expect(getByText(container, '(2)', {exact: false})).toBeTruthy();
     });
   });
