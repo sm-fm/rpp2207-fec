@@ -94,7 +94,7 @@ let ReviewCard = (props) => {
           <u style={{color: 'red'}}>REPORTED</u>
         }
         {!reported &&
-        <u onClick={onReportClick}>Report</u>
+          <u onClick={onReportClick}>Report</u>
         }
       </h6>
 
