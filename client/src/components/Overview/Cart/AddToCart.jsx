@@ -6,7 +6,7 @@ const AddToCart = (props) => {
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
 
   const handleOptionsClick = () => {
-    props.handleFocusSizeDropDrow();
+    // props.handleFocusSizeDropDrow();
     props.setNeedSize(true);
   };
 
