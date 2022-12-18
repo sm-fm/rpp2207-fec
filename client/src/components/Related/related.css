@@ -1,6 +1,6 @@
 
 .related-container {
-	width: 1020px;
+  width: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -10,14 +10,14 @@
 }
 
 .related-products-header, .your-outfit-header {
-	width: 1020px;
+	width: 100%;
 	text-align: left;
 	margin-left: 20px;
 }
 
 .related-products-container, .your-outfit-container {
 	height: 380px;
-	min-width: 1020px;
+	min-width: 100%;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: row;
@@ -30,7 +30,7 @@
 
 .fade-top {
 	height: 380px;
-	width: 1020px;
+	width: 100%;
 	margin: 0 auto;
 	background-image: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 75%,rgba(255,255,255,1) 90%);
 	z-index: 5;
@@ -44,7 +44,7 @@
 
 .fade-bottom {
 	height: 380px;
-	width: 1020px;
+	width: 100%;
 	margin: 0 auto;
 	background-image: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,0) 75%,rgba(255,255,255,1) 90%);
 	z-index: 5;
@@ -117,19 +117,17 @@
 }
 
 .close-btn {
-  opacity: .7;
-  position: absolute;
   right: 5px;
   top: 5px;
   width: 24px;
   height: 24px;
-  opacity: 0.7;
   display: flex;
   justify-content: center;
   align-items: center;
   background: white;
   border-radius: 50%;
-  opacity: .7;
+  border: 1px solid black;
+  opacity: .8;
 }
 
 .close-btn:hover, .add-outfit-btn:hover, .close-btn:hover {
@@ -142,7 +140,7 @@
   left: 0;
   right: 0;
   content: ' ';
-  height: 20px;
+  height: 16px;
   width: 2px;
   background: black
 }

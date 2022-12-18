@@ -42,14 +42,13 @@ const YourOutfit = (props) => {
             </div>
             : null
           }
-          { props && props.yourOutfit && position <= (props.yourOutfit.length - 3) * 250 ?
+          { props && props.yourOutfit && (props.yourOutfit.length * 250) - position > props.relatedContainerWidth - 450 ?
             <div className='arrow-container-right'>
               <div className='arrow-right' onClick={() => { setPosition(position + 250); }}></div>
             </div>
             : null
           }
         </div>
-
       </>
       :
       null
