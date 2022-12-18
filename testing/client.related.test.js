@@ -161,7 +161,7 @@ describe('ProductCard components inside RelatedProducts', () => {
     expect(stars.length).toBe(5);
   });
   it('tests that clicking the open-comparison-btn opens the modal window', async () => {
-    const { container } = await RelatedProductsComponent();
+    await RelatedProductsComponent();
     fireEvent(
       await screen.getAllByRole('button', {name: 'open comparison'})[0],
       new MouseEvent('click', {
