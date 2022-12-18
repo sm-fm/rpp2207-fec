@@ -444,8 +444,7 @@ CSS-RESET: end
 }
 
 .slogan-description {
-	min-width: 400px;
-	max-width: 772px;
+	width: 772px;
 	display: inline-block;
 	margin-left: 80px;
 	height: 157px;
