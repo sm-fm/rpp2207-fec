@@ -19,7 +19,7 @@ describe('StyleSelector Module', () => {
     render(<StyleSelector
       chosenStyle={ chosenStyleData.results[0] }
       styles={ chosenStyleData.results } />);
-    const styleSelectorInfo = screen.getByText(/STYLE > Forest Green & Black/i);
+    const styleSelectorInfo = screen.getByText(/Forest Green & Black/i);
     expect(styleSelectorInfo).toBeInTheDocument();
   });
 
