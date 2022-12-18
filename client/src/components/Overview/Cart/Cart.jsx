@@ -19,30 +19,34 @@ const Cart = (props) => {
 
   return (
     <div className="cart-container">
-      <SizeSelector
-        skus={props.skus}
-        setSizeSelected={setSizeSelected}
-        setSkuSelected={setSkuSelected}
-        setSizeOptions={setSizeOptions}
-        sizeDropDown={sizeDropDown}
-        needSize={needSize} />
-      <QuantitySelector
-        skuSelected={skuSelected}
-        sizeSelected={sizeSelected}
-        setQuantity={setQuantity}
-        setCountPurchasing={setCountPurchasing}
-        allSkus={props.skus} />
-      <AddToCart
-        sizeOptions={sizeOptions}
-        skuSelected={skuSelected}
-        allSkus={props.skus}
-        countPurchasing={countPurchasing}
-        handleFocusSizeDropDrow={handleFocusSizeDropDrow}
-        setNeedSize={setNeedSize} />
-      <Star
-        addToOutfit={props.addToOutfit}
-        product={props.product}
-        styles={props.styles} />
+      <div className="size-selector-quantity-container">
+        <SizeSelector
+          skus={props.skus}
+          setSizeSelected={setSizeSelected}
+          setSkuSelected={setSkuSelected}
+          setSizeOptions={setSizeOptions}
+          sizeDropDown={sizeDropDown}
+          needSize={needSize} />
+        <QuantitySelector
+          skuSelected={skuSelected}
+          sizeSelected={sizeSelected}
+          setQuantity={setQuantity}
+          setCountPurchasing={setCountPurchasing}
+          allSkus={props.skus} />
+      </div>
+      <div className="add-to-cart-star-container">
+        <AddToCart
+          sizeOptions={sizeOptions}
+          skuSelected={skuSelected}
+          allSkus={props.skus}
+          countPurchasing={countPurchasing}
+          handleFocusSizeDropDrow={handleFocusSizeDropDrow}
+          setNeedSize={setNeedSize} />
+        <Star
+          addToOutfit={props.addToOutfit}
+          product={props.product}
+          styles={props.styles} />
+      </div>
     </div>
   );
 };

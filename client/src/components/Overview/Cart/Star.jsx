@@ -9,7 +9,7 @@ const Star = (props) => {
 
   return (
     <div className="star-container">
-      <button onClick={handleClick}>*</button>
+      <button className="star" onClick={handleClick}>*</button>
     </div>
   );
 };

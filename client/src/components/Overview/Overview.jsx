@@ -6,6 +6,7 @@ import StyleSelector from './StylesSelector/StyleSelector.jsx';
 import Cart from './Cart/Cart.jsx';
 import ExpandedView from './ImageViews/ExpandedView.jsx';
 import RatingsAPI from '../../API/Ratings.js';
+import Description from './ProductInfo/Description.jsx';
 
 const Overview = (props) => {
 
@@ -28,6 +29,7 @@ const Overview = (props) => {
         return result.json();
       })
       .then(result => {
+        console.log(result);
         setProduct(result);
         return RatingsAPI.getReviewMetadata(result.id);
       })
@@ -58,33 +60,43 @@ const Overview = (props) => {
       <div id="main-overview">
         {!fetching
           ? <div>
-            <ProductInfo
-              id="productInfo"
-              stars={stars}
-              reviews={reviews}
-              setScrollToRatings={props.setScrollToRatings} />
-            <StyleSelector
-              id="styles"
-              setChosenStyle={setChosenStyle}
-              styles={styles}
-              chosenStyle={chosenStyle}
-              styleClicked={styleClicked}
-              toggleClick={toggleClick}
-              setSkus={setSkus} />
-            <Images
-              id="images-comp"
-              chosenStyle={chosenStyle}
-              photos={photos}
-              setExpandedView={setExpandedView}
-              setIndexOfExpandedImg={setIndexOfExpandedImg} />
-            <Cart
-              id="cart"
-              chosenStyle={chosenStyle}
-              skus={skus}
-              product={product}
-              addToOutfit={props.addToOutfit}
-              styles={styles} />
-            <p>{product.description}</p>
+            <div id="product-styles-cart">
+              <div id="productInfo">
+                <ProductInfo
+                  product={product}
+                  stars={stars}
+                  reviews={reviews}
+                  setScrollToRatings={props.setScrollToRatings} />
+              </div>
+              <div id="styles">
+                <StyleSelector
+                  setChosenStyle={setChosenStyle}
+                  styles={styles}
+                  chosenStyle={chosenStyle}
+                  styleClicked={styleClicked}
+                  toggleClick={toggleClick}
+                  setSkus={setSkus} />
+              </div>
+              <div id="cart">
+                <Cart
+                  chosenStyle={chosenStyle}
+                  skus={skus}
+                  product={product}
+                  addToOutfit={props.addToOutfit}
+                  styles={styles} />
+              </div>
+            </div>
+            <div id="images-comp">
+              <Images
+                chosenStyle={chosenStyle}
+                photos={photos}
+                setExpandedView={setExpandedView}
+                setIndexOfExpandedImg={setIndexOfExpandedImg} />
+            </div>
+            <div id="description-container">
+              <Description
+                product={product} />
+            </div>
           </div>
           : null}
       </div>
