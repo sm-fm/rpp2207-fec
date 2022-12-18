@@ -1,6 +1,7 @@
 
 .related-container {
   width: 100%;
+  max-width: 1020px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
