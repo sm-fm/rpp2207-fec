@@ -43,15 +43,13 @@ const Related = (props) => {
 
     window.addEventListener('resize', debouncedHandleResize);
 
-    return _ => {
+    return () => {
       window.removeEventListener('resize', debouncedHandleResize);
     };
   }, []);
 
   return (
     <div className='related-container' ref={elementRef}>
-      {console.log('related-container width: ', relatedContainerWidth)}
-      {console.log('window width: ', windowWidth)}
       <div className="related-products-header">RELATED PRODUCTS</div>
       <RelatedProducts
         relatedContainerWidth={relatedContainerWidth}
