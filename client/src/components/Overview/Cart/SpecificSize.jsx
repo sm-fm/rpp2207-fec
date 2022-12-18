@@ -12,6 +12,8 @@ const SpecificSize = (props) => {
         props.setSkuSelected(sku);
       }
     });
+    console.log('changing size');
+    props.setSizeChanged(true);
     props.setOpen(false);
   };
 

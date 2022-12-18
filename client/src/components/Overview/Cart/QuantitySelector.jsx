@@ -6,6 +6,7 @@ const QuantitySelector = (props) => {
 
   const [sizeIsSelected, setSizeIsSelected] = useState(false);
   const [quantity, setQuantity] = useState(null);
+  const [quantChosen, setQuantChosen] = useState();
 
   useEffect(() => {
     if (props.skuSelected && Object.keys(props.skuSelected).length > 0) {
@@ -25,6 +26,7 @@ const QuantitySelector = (props) => {
       arr.push(<SpecificQuantity
         num={i}
         setQuantity={props.setQuantity}
+        setQuantChosen={setQuantChosen}
         key={uuidv4()} />);
     }
     return arr;
@@ -33,18 +35,21 @@ const QuantitySelector = (props) => {
   if (!sizeIsSelected || quantity === null || !props) {
     return (
       <div className="quantity-selector">
-        <select name="quantity" className="quantity">
-          <option role="quantity" value="--" disabled>--</option>
-        </select>
+        <button name="quantity" className="quantity">
+          -- <>&or;</>
+        </button>
       </div>
     );
   } else {
+    if (!quantChosen || quantChosen > props.allSkus[props.skuSelected].quantity) { setQuantChosen(1); }
     return (
       <div className="quantity-selector">
-        <select role="quantity" name="quantity" className="quantity" onChange={handleChange}>
-          <option data-testid="quantity" value={1}>1</option>
+        <button role="quantity" name="quantity" className="quantity" onClick={handleChange}>
+          {quantChosen} <>&or;</>
+        </button>
+        <ul>
           {createQuantityDropDown()}
-        </select>
+        </ul>
       </div>
     );
   }

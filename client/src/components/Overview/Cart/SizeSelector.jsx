@@ -45,7 +45,8 @@ const SizeSelector = (props) => {
           setSizeOptions={props.setSizeOptions}
           setNeedSize={props.setNeedSize}
           setSkuSelected={props.setSkuSelected}
-          open={open} />);
+          open={open}
+          setSizeChanged={props.setSizeChanged} />);
         preventDuplicates.push(specificSku.size);
       }
     }
