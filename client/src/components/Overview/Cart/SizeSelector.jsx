@@ -56,7 +56,7 @@ const SizeSelector = (props) => {
   if (defaultVal === 'OUT OF STOCK') {
     return (
       <div className="size-selector">
-        <button name="sizes" className="sizes" disabled>-</button>
+        <button name="sizes" className="sizes-btn" disabled>-</button>
       </div>
     );
   }
@@ -86,10 +86,10 @@ const SizeSelector = (props) => {
       <div className="size-selector">
         <button
           onClick={handleChange}
-          className="sizes">
+          className="sizes-btn">
           {currentVal} <>&or;</>
         </button>
-        <ul>
+        <ul className="list">
           {createSizeDropDown()}
         </ul>
       </div>
@@ -100,7 +100,7 @@ const SizeSelector = (props) => {
       <div className="size-selector">
         <button
           onClick={handleChange}
-          className="sizes">
+          className="sizes-btn">
           {defaultVal} <>&or;</>
         </button>
       </div>

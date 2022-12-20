@@ -7,6 +7,7 @@ const QuantitySelector = (props) => {
   const [sizeIsSelected, setSizeIsSelected] = useState(false);
   const [quantity, setQuantity] = useState(null);
   const [quantChosen, setQuantChosen] = useState();
+  const [quantClicked, setQuantClicked] = useState(false);
 
   useEffect(() => {
     if (props.skuSelected && Object.keys(props.skuSelected).length > 0) {
@@ -15,8 +16,9 @@ const QuantitySelector = (props) => {
     }
   });
 
-  const handleChange = (e) => {
+  const handleClick = (e) => {
     props.setCountPurchasing(e.target.value);
+    setQuantClicked(true);
   };
 
   const createQuantityDropDown = () => {
@@ -27,6 +29,7 @@ const QuantitySelector = (props) => {
         num={i}
         setQuantity={props.setQuantity}
         setQuantChosen={setQuantChosen}
+        setQuantClicked={setQuantClicked}
         key={uuidv4()} />);
     }
     return arr;
@@ -35,7 +38,7 @@ const QuantitySelector = (props) => {
   if (!sizeIsSelected || quantity === null || !props) {
     return (
       <div className="quantity-selector">
-        <button name="quantity" className="quantity">
+        <button name="quantity" className="quantity-btn">
           -- <>&or;</>
         </button>
       </div>
@@ -44,11 +47,13 @@ const QuantitySelector = (props) => {
     if (!quantChosen || quantChosen > props.allSkus[props.skuSelected].quantity) { setQuantChosen(1); }
     return (
       <div className="quantity-selector">
-        <button role="quantity" name="quantity" className="quantity" onClick={handleChange}>
+        <button role="quantity" name="quantity" className="quantity-btn" onClick={handleClick}>
           {quantChosen} <>&or;</>
         </button>
         <ul>
-          {createQuantityDropDown()}
+          {quantClicked
+            ? createQuantityDropDown()
+            : null}
         </ul>
       </div>
     );

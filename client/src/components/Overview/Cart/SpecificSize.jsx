@@ -19,14 +19,16 @@ const SpecificSize = (props) => {
 
   if (props.size) {
     return (
-      <li
-        value={props.size}
-        type="number"
-        className="size-item"
-        onClick={handleClick}
-      >
-        {props.size}
-      </li>
+      <div className="sizes-container">
+        <li
+          value={props.size}
+          type="number"
+          className="size-item"
+          onClick={handleClick}
+        >
+          {props.size}
+        </li>
+      </div>
     );
   }
 };
