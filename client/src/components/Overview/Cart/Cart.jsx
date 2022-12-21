@@ -17,7 +17,7 @@ const Cart = (props) => {
   const handleFocusSizeDropDrow = () => {
     sizeDropDown.current.focus();
   };
-  console.log(sizeChanged);
+
   return (
     <div className="cart-container">
       <div className="size-selector-quantity-container">
