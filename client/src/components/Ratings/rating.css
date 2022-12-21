@@ -1,13 +1,24 @@
 .ratings {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 75%;
+  margin: auto;
+}
+
+.metadata {
+  /* border: 1px solid black; */
+  min-width: 250px;
+  max-width: 300px;
+  margin: auto;
 }
 .ratings .userReview {
   display: inline-block;
   padding: 10px 5px;
   width: 95%;
 }
-
+.userReviews {
+  height: 80vh;
+  overflow-y: scroll;
+}
 #username {
   text-align: left;
   display: inline;
@@ -27,7 +38,7 @@
   justify-content: space-between;
 }
 
-.ratings .thumbnail{
+.ratings .review-thumbnail{
   display: inline-block;
   height: 50px;
   padding: 5px 10px 0px 10px;
@@ -48,7 +59,6 @@
 }
 
 .user-review-wrapper {
-  border: 1px solid black;
   width: 50%;
   display: inline-block;
 }
@@ -56,6 +66,50 @@
 .metaDataDisplay {
   display: inline-block;
   position: relative;
-  top: 0px;
+  vertical-align: top;
   width: 45%;
+}
+
+.rating-wrapper p, .rating-wrapper svg {
+  display: inline-block;
+}
+
+#ratings-list {
+  display: inline-block;
+  margin: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ratings-list:first-child {
+  padding-left: 0px;
+}
+
+#ratings-list:last-child {
+  padding-right: 0px;
+}
+
+.reviews-modal {
+  position: fixed;
+  left: 20%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+}
+
+#reviews-modal-overlay {
+  position: fixed;
+  z-index: 5;
+  width: 5px;
+  padding: 5px;
+}
+
+#reviews-modal-overlay:hover {
+  color: rgb(100, 100, 100);
+}
+
+.reviews-modal img {
+  position: fixed;
+  max-width: 150vh;
+  max-height: 80vh;
+  z-index: 1;
 }
