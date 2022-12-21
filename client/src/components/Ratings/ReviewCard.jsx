@@ -32,7 +32,11 @@ let ReviewCard = (props) => {
   }
 
   let imageModal = (e) => {
-    setModal(<Modal src={e.target.src} onClick={onModalClick} desc = {'reviewCard'}/>);
+    let componentInfo = (
+      <img src={e.target.src}
+        alt='Sorry, the image could not be loaded at this time, please try again later.'/>
+    );
+    setModal(<Modal src={e.target.src} onClick={onModalClick} componentData={componentInfo}/>);
   };
 
   let onModalClick = () => {

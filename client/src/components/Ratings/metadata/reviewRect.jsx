@@ -24,7 +24,7 @@ let Rectangle = (props) => {
           <stop key={`${props.idx}-stop-3`} className='stop3' offset={`${props.val.ratio * 100}% `} stopColor="gray" />
           <stop key={`${props.idx}-stop-4`} className='stop4' offset="100%" stopColor="gray" stopOpacity="1" />
         </linearGradient>
-        <rect className='ratings-bar' onMouseLeave = {() => { setHover(!notHover); }} width='100px' height='10px' id = {props.idx} fill={`url(#Gradient${props.idx}-2)`} rx='2' ry = '2'/>
+        <rect className='ratings-bar reviews-pointer' onMouseLeave = {() => { setHover(!notHover); }} width='100px' height='10px' id = {props.idx} fill={`url(#Gradient${props.idx}-2)`} rx='2' ry = '2'/>
       </svg>
     );
   }

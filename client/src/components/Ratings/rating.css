@@ -89,15 +89,9 @@
   padding-right: 0px;
 }
 
-.reviews-modal {
-  position: fixed;
-  left: 20%;
-  top: 10%;
-  transform: translate(-50%, -50%);
-}
-
 #reviews-modal-overlay {
-  position: fixed;
+  z-index:12;
+  position: absolute;
   z-index: 5;
   width: 5px;
   padding: 5px;
@@ -111,12 +105,25 @@
   position: fixed;
   max-width: 150vh;
   max-height: 80vh;
-  z-index: 1;
+  border: 1px solid black;
 }
 
-.review-form-modal {
+.reviews-modal {
+  position: fixed;
   background-color: white;
+  z-index: 10;
   min-height: 50px;
   min-width: 50vh;
+  max-width: 66vh;
   margin: auto;
+  left: 16%;
+  top: 10%;
+}
+
+.reviews-modal .review-review-form {
+  padding: 30px 10px 10px 10px;
+}
+
+.reviews-pointer {
+  cursor: pointer;
 }

@@ -139,9 +139,9 @@ const Ratings = (props) => {
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
   };
 
-  let enableReviewForm = (e) => {
-    console.log(e);
-    setReviewForm(true);
+  let toggleReviewForm = (e) => {
+    console.log('enable form review: ', e);
+    setReviewForm(!reviewForm);
   };
 
   return (
@@ -159,7 +159,7 @@ const Ratings = (props) => {
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
           <label>{reviewListDisplayLength} reviews, sorted by </label>
-          <select data-testid='select' id='sortBy' onChange={catChange}>
+          <select data-testid='select' id='sortBy' onChange={catChange} className='reviews-pointer'>
             <option data-testid='select-option' value='relevance'>relevance</option>
             <option data-testid='select-option' value='newest'>newest</option>
             <option data-testid='select-option' value='helpful'>most helpful</option>
@@ -176,18 +176,21 @@ const Ratings = (props) => {
               return null;
             }
           })}
-          {(reviewData.results.length >= 2 && reviewListDisplayLength < reviewData.results.length) &&
-          <p onClick={incrementReviewsList}>Show more</p>
-          }
-          {(reviewListDisplayLength > 2) &&
-          <p onClick={collapseReviewList}>Collapse reviews</p>}
 
-          <p onClick={enableReviewForm}>Review Form</p>
+          {(reviewData.results.length >= 2 && reviewListDisplayLength < reviewData.results.length) &&
+          <p onClick={incrementReviewsList} className='reviews-pointer'>Show more</p>
+          }
+
+          {(reviewListDisplayLength > 2) &&
+          <p onClick={collapseReviewList} className='reviews-pointer'>Collapse reviews</p>}
+
+          <p onClick={toggleReviewForm} className='reviews-pointer'>Review Form</p>
           {reviewForm &&
             <>
-              <ReviewForm/>
+              <ReviewForm toggleReviewForm = {toggleReviewForm}/>
             </>
           }
+
         </div>
         }
         {reviewError &&
