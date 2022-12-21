@@ -134,13 +134,10 @@ const Ratings = (props) => {
   };
 
   let refreshReviewList = () => {
-    console.log(reviewData.results);
-    console.log(reviewListDisplayLength);
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
   };
 
-  let toggleReviewForm = (e) => {
-    console.log('enable form review: ', e);
+  let toggleReviewForm = () => {
     setReviewForm(!reviewForm);
   };
 

@@ -30,10 +30,11 @@ let ReviewForm = (props) => {
 
   let componentInformation = (
     <div className='review-review-form'>
+      <h3>Have feedback for this product? Leave a review!</h3>
       <table>
         <tbody>
           <tr>
-            <td>Select an overall rating:</td>
+            <td>How would you rate this product?</td>
             <td>{hf.reviewFormStars(overallRating, 'review-form', overallRatingClickHandler)}</td>
             <td>{overallRatingMeanings[overallRating.toString()] || ''}</td>
           </tr>

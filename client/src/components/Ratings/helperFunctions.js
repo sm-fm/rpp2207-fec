@@ -63,7 +63,7 @@ let reviewFormStars = (numberStars, key, clickHandler) => {
   const fullStar = (id, st, key) => {
     if (st === 'f') {
       return (
-        <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
+        <svg key={`${key}-${id}`} width="15px" height="15px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
           <defs>
             <linearGradient id="grad-full">
               <stop offset="100%" stopColor="black"/>
@@ -75,7 +75,7 @@ let reviewFormStars = (numberStars, key, clickHandler) => {
       );
     } else if (st === 'e') {
       return (
-        <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
+        <svg key={`${key}-${id}`} width="15px" height="15px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
           <defs>
             <linearGradient id="grad-full">
               <stop offset="100%" stopColor="white"/>
