@@ -127,3 +127,7 @@
 .reviews-pointer {
   cursor: pointer;
 }
+
+.review-review-form td {
+  padding: 0 5px;
+}

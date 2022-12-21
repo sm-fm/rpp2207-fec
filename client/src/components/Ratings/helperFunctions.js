@@ -3,6 +3,8 @@
  * @param {*} reviews - Object returned by the ratings property in the metadata API call
  *                      Has the shape of: {1: '20', 2: '19', 3: '38', 4: '43', 5: '86'}
  */
+
+import React from 'react';
 let calculateAverageReviews = (reviews) => {
   if (typeof(reviews) !== 'object') {
     return null;
@@ -57,9 +59,58 @@ let returnMin = (a, b) => {
   return (a > b) ? b : a;
 };
 
-module.exports = {
+let reviewFormStars = (numberStars, key, clickHandler) => {
+  const fullStar = (id, st, key) => {
+    if (st === 'f') {
+      return (
+        <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
+          <defs>
+            <linearGradient id="grad-full">
+              <stop offset="100%" stopColor="black"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#grad-full)" className={`${key}-${id}`} stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+        l11.547-1.2L16.026,0.6L20.388,10.918z"/>
+        </svg>
+      );
+    } else if (st === 'e') {
+      return (
+        <svg key={`${key}-${id}`} width="11px" height="11px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
+          <defs>
+            <linearGradient id="grad-full">
+              <stop offset="100%" stopColor="white"/>
+            </linearGradient>
+          </defs>
+          <path className={`${key}-${id}`} fill="white" stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+        l11.547-1.2L16.026,0.6L20.388,10.918z"/>
+        </svg>
+      );
+    }
+  };
+
+  const generateStars = (rating, key) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push(fullStar(i, 'f', key));
+      } else if ( i > fullStars - 1) {
+        stars.push(fullStar(i, 'e', key));
+      }
+    }
+    return stars;
+  };
+  if (numberStars === undefined) {
+    return generateStars(0, key);
+  } else {
+    return generateStars(numberStars, key);
+  }
+};
+
+export default {
   calculateAverageReviews: calculateAverageReviews,
   calculateRecommended: calculateRecommended,
   manipulateRatings: manipulateRatings,
-  returnMin: returnMin
+  returnMin: returnMin,
+  reviewFormStars: reviewFormStars
 };
