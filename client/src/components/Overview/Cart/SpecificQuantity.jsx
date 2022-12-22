@@ -8,17 +8,21 @@ const SpecificQuantity = (props) => {
     props.setQuantClicked(false);
   };
 
-  return (
-    <div className="quant-container">
-      <li
-        value={props.num}
-        className="single-quantity"
-        data-testid="quantity"
-        onClick={handleClick}>
-        {props.num}
-      </li>
-    </div>
-  );
+  if (props.num) {
+    return (
+      <div className="quant-container">
+        <li
+          value={props.num}
+          className="single-quantity"
+          data-testid="quantity"
+          onClick={handleClick}>
+          {props.num}
+        </li>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default SpecificQuantity;

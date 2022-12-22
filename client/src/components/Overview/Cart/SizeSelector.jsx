@@ -13,17 +13,8 @@ const SizeSelector = (props) => {
     }
   });
 
-  const handleChange = (e) => {
-    // !open ? setOpen(true) : null;
+  const handleChange = () => {
     setOpen(!open);
-    props.setSizeSelected(e.target.value);
-    setDefaultVal(e.target.value);
-    props.setSizeOptions(e.target.value);
-    Object.keys(props.skus).forEach(sku => {
-      if (props.skus[sku].size === e.target.value) {
-        props.setSkuSelected(sku);
-      }
-    });
   };
 
   const createSizeDropDown = () => {
@@ -61,24 +52,8 @@ const SizeSelector = (props) => {
     );
   }
   if (props.needSize) {
-    console.log('here');
     alert('Please select a size');
     !open ? setOpen(true) : null;
-    // return (
-    //   <div className="size-selector">
-    //     <p className="size-needed">Please select a size</p>
-    //     <select
-    //       data-testid="select"
-    //       name="sizes"
-    //       className="sizes"
-    //       ref={props.sizeDropDown}
-    //       onChange={handleChange}
-    //       options={createSizeDropDown()} >
-    //       <option value={defaultVal}>{defaultVal}</option>
-    //       {createSizeDropDown()}
-    //     </select>
-    //   </div>
-    // );
   }
   if (open) {
     var currentVal = defaultVal || 'Select a size';
@@ -86,6 +61,7 @@ const SizeSelector = (props) => {
       <div className="size-selector">
         <button
           onClick={handleChange}
+          role="sizes-btn"
           className="sizes-btn">
           {currentVal} <>&or;</>
         </button>
@@ -99,7 +75,9 @@ const SizeSelector = (props) => {
     return (
       <div className="size-selector">
         <button
+          value={defaultVal}
           onClick={handleChange}
+          role="sizes-btn"
           className="sizes-btn">
           {defaultVal} <>&or;</>
         </button>
@@ -117,3 +95,11 @@ export default SizeSelector;
 //         options={createSizeDropDown()} >
 //         <option value={defaultVal}>{defaultVal}</option>
 //         {createSizeDropDown()}
+// props.setSizeSelected(e.target.value);
+// setDefaultVal(e.target.value);
+// props.setSizeOptions(e.target.value);
+// Object.keys(props.skus).forEach(sku => {
+//   if (props.skus[sku].size === e.target.value) {
+//     props.setSkuSelected(sku);
+//   }
+// });

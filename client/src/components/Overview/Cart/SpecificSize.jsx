@@ -12,7 +12,6 @@ const SpecificSize = (props) => {
         props.setSkuSelected(sku);
       }
     });
-    console.log('changing size');
     props.setSizeChanged(true);
     props.setOpen(false);
   };
@@ -22,7 +21,7 @@ const SpecificSize = (props) => {
       <div className="sizes-container">
         <li
           value={props.size}
-          type="number"
+          role="size"
           className="size-item"
           onClick={handleClick}
         >

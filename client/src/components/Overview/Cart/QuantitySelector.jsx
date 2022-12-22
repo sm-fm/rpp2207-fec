@@ -10,14 +10,13 @@ const QuantitySelector = (props) => {
   const [quantClicked, setQuantClicked] = useState(false);
 
   useEffect(() => {
-    if (props.skuSelected && Object.keys(props.skuSelected).length > 0) {
+    if (props.skuSelected) {
       setSizeIsSelected(true);
       setQuantity(props.allSkus[props.skuSelected].quantity);
     }
   });
 
-  const handleClick = (e) => {
-    props.setCountPurchasing(e.target.value);
+  const handleClick = () => {
     setQuantClicked(true);
   };
 
@@ -38,7 +37,7 @@ const QuantitySelector = (props) => {
   if (!sizeIsSelected || quantity === null || !props) {
     return (
       <div className="quantity-selector">
-        <button name="quantity" className="quantity-btn">
+        <button name="quantity" className="quantity-btn" disabled>
           -- <>&or;</>
         </button>
       </div>
