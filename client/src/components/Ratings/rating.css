@@ -154,6 +154,7 @@
 
 .review-review-form .text-input {
   width: 300px;
+  max-width: 300px;
 }
 
 .review-review-form .discloser {
@@ -161,5 +162,6 @@
   color: rgb(100, 100, 100);
 }
 
-.submitBtn {
+.vertical-align {
+  vertical-align: middle;
 }

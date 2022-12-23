@@ -141,7 +141,7 @@ let ReviewForm = (props) => {
           {Object.keys(props.availableOptions).map(option => {
             return (
               <tr key={'review-form-characteristic-' + option}>
-                <td key={'review-form-characteristic-' + option}>{option}</td>
+                <td key={'review-form-characteristic-' + option} className='vertical-align'>{option}</td>
                 <td>
                   <table>
                     <tbody>
@@ -182,13 +182,17 @@ let ReviewForm = (props) => {
           </tr>
 
           <tr>
-            <td>Review Body</td>
+            <td className='vertical-align'>Review Body</td>
             <td>
               <textarea
                 className='text-input reviewBody'
                 placeholder='Why did you like the product or not?'
                 onChange={handleReviewSummary}></textarea>
             </td>
+          </tr>
+          <tr>
+            <td>Have a photo? Upload it!</td>
+            <td><button>Upload photos</button></td>
           </tr>
 
           <tr>
