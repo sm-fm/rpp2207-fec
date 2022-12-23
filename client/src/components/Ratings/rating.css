@@ -151,3 +151,7 @@
 .characteristic-radio {
   text-align: center;
 }
+
+.review-review-form .text-input {
+  width: 300px;
+}

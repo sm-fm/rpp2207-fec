@@ -6,7 +6,17 @@ import hf from './helperFunctions.js';
 let ReviewForm = (props) => {
   const [overallRating, setOverallRating] = useState('');
   const [recommend, setRecommend] = useState(false);
-  console.log('props: ', props);
+  const [characteristics, setCharacteristics] = useState({});
+
+  useEffect(() => {
+    let characteristics = Object.keys(props.availableOptions).map(val => {
+      console.log(val);
+      console.log(props.availableOptions[val]);
+      return {name: val, id: props.availableOptions[val].id, value: 0};
+    });
+    setCharacteristics(characteristics);
+  }, [props.availableOptions]);
+
   let onExit = (e) => {
     props.toggleReviewForm(e);
   };
@@ -73,6 +83,18 @@ let ReviewForm = (props) => {
     setRecommend(e.target.value);
   };
 
+  let handleCharacteristics = (e) => {
+    let newObj = JSON.parse(JSON.stringify(characteristics));
+    newObj = newObj.map(val => {
+      if (val.name === e.target.name) {
+        return {id: val.id, name: val.name, value: e.target.value};
+      } else {
+        return val;
+      }
+    });
+    setCharacteristics(newObj);
+  };
+
   let componentInformation = (
     <div className='review-review-form'>
       <h3>Have feedback for this product? Leave a review!</h3>
@@ -97,12 +119,11 @@ let ReviewForm = (props) => {
       <table>
         <tbody className='internal-characteristic-table'>
           <tr>
-            <td colSpan={2}>
+            <td colSpan={2} style={{'textAlign': 'center'}}>
               Rank particular attributes of this product
             </td>
           </tr>
           {Object.keys(props.availableOptions).map(option => {
-            console.log(option);
             return (
               <tr key={'review-form-characteristic-' + option}>
                 <td key={'review-form-characteristic-' + option}>{option}</td>
@@ -113,7 +134,7 @@ let ReviewForm = (props) => {
 
                         {[1, 2, 3, 4, 5].map(vals => {
                           return (
-                            <td key={'holder'} className='characteristic-label'>
+                            <td key={'characteristic-label' + vals} className='characteristic-label'>
                               <label htmlFor={option}>{characteristicMeanings[option][vals]}</label>
                             </td>
                           );
@@ -123,8 +144,8 @@ let ReviewForm = (props) => {
                       <tr>
                         {[1, 2, 3, 4, 5].map(vals => {
                           return (
-                            <td key={'holder'} className='characteristic-radio'>
-                              <input type='radio' id={vals} name={option} value={vals}></input>
+                            <td key={'radio - ' + vals} className='characteristic-radio'>
+                              <input type='radio' id={vals} name={option} value={vals} onChange={handleCharacteristics}></input>
                             </td>
                           );
                         })}
@@ -135,7 +156,17 @@ let ReviewForm = (props) => {
               </tr>
             );
           })}
+          <tr>
+            <td>Review Summary</td>
+            <td><input className='text-input' type='textbox' placeholder='Example: Best Purchase Ever!'></input></td>
+          </tr>
 
+          <tr>
+            <td>Review Body</td>
+            <td>
+              <textarea className='text-input' placeholder='Why did you like the product or not?'></textarea>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
