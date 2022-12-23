@@ -8,17 +8,17 @@ const SpecificImage = (props) => {
 
   return (
     <div>
-    {props.photo
-      ?
+      {props.photo
+        ?
         <img
           id="thumbnail-img"
           alt="thumbnail of image style"
           style={highlight}
           src={props.photo.thumbnail_url}
           onClick={() => { props.setIndexOfMainImg(props.index); }} />
-      : null}
-      </div>
+        : null}
+    </div>
   );
-}
+};
 
 export default SpecificImage;

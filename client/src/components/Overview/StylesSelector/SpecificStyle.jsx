@@ -16,9 +16,10 @@ const SpecificStyle = (props) => {
         onClick={() => {
           props.setChosenStyle(props.style);
           props.toggleClick(props.style.name);
-          props.setSkus(props.style.skus) }} />
+          props.setSkus(props.style.skus);
+        }} />
     </div>
-  )
+  );
 };
 
 export default SpecificStyle;
