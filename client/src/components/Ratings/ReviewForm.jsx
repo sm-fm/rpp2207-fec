@@ -7,11 +7,11 @@ let ReviewForm = (props) => {
   const [overallRating, setOverallRating] = useState('');
   const [recommend, setRecommend] = useState(false);
   const [characteristics, setCharacteristics] = useState({});
+  const [reviewBody, setReviewBody] = useState('');
+  const [reviewSummary, setReviewSummary] = useState('');
 
   useEffect(() => {
     let characteristics = Object.keys(props.availableOptions).map(val => {
-      console.log(val);
-      console.log(props.availableOptions[val]);
       return {name: val, id: props.availableOptions[val].id, value: 0};
     });
     setCharacteristics(characteristics);
@@ -95,6 +95,15 @@ let ReviewForm = (props) => {
     setCharacteristics(newObj);
   };
 
+  let handleReviewSummary = (e) => {
+    let elementClass = e.target.className.split(' ')[1];
+    if (elementClass === 'reviewBody') {
+      setReviewBody(e.target.value);
+    } else if (elementClass === 'reviewSummary') {
+      setReviewSummary(e.target.value);
+    }
+  };
+
   let componentInformation = (
     <div className='review-review-form'>
       <h3>Have feedback for this product? Leave a review!</h3>
@@ -158,13 +167,21 @@ let ReviewForm = (props) => {
           })}
           <tr>
             <td>Review Summary</td>
-            <td><input className='text-input' type='textbox' placeholder='Example: Best Purchase Ever!'></input></td>
+            <td><input
+              className='text-input reviewSummary'
+              type='textbox'
+              placeholder='Example: Best Purchase Ever!'
+              onChange={handleReviewSummary}></input>
+            </td>
           </tr>
 
           <tr>
             <td>Review Body</td>
             <td>
-              <textarea className='text-input' placeholder='Why did you like the product or not?'></textarea>
+              <textarea
+                className='text-input reviewBody'
+                placeholder='Why did you like the product or not?'
+                onChange={handleReviewSummary}></textarea>
             </td>
           </tr>
         </tbody>
