@@ -1,8 +1,11 @@
 
 const Overview = {
   getAllProducts: () => {
-    return fetch('http://localhost:3000/products', {
-      method: 'GET'
+    return fetch('products', {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(results => {
         console.log(results);
@@ -14,8 +17,11 @@ const Overview = {
   },
 
   getProductById: (id) => {
-    return fetch(`http://localhost:3000/products/${id}`, {
-      method: 'GET'
+    return fetch(`products/${id}`, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(result => {
         return result;
@@ -26,8 +32,11 @@ const Overview = {
   },
 
   getStylesById: (id) => {
-    return fetch(`http://localhost:3000/products/${id}/styles`, {
-      method: 'GET'
+    return fetch(`products/${id}/styles`, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(result => {
         return result;
