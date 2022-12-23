@@ -15,7 +15,7 @@ const SpecificStyle = (props) => {
         alt="thumbnail of current style"
         onClick={() => {
           props.setChosenStyle(props.style);
-          props.toggleClick(props.style.name);
+          props.setStyleClicked(props.style.name);
           props.setSkus(props.style.skus);
         }} />
     </div>

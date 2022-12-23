@@ -21,6 +21,7 @@ const Related = (props) => {
         products.forEach(product => productsMap.set(product.id, product));
         setRelatedProducts([...productsMap.values()]);
       });
+      //won't need this call anymore, just change to current info based on inherited state
     overviewAPI.getProductById(props.objID)
       .then((result) => {
         return result.json();

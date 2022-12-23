@@ -7,6 +7,7 @@ import {
 import ReactDOM from 'react-dom/client';
 import './style.css';
 import App from './components/App.jsx';
+import FetchData from './FetchData.jsx';
 
 
 const root = ReactDOM.createRoot(document.getElementById('app'));

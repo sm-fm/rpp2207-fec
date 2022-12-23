@@ -27,7 +27,7 @@ const StyleSelector = (props) => {
             setChosenStyle={props.setChosenStyle}
             key={uuidv4()}
             styleClicked={props.styleClicked}
-            toggleClick={props.toggleClick}
+            setStyleClicked={props.setStyleClicked}
             setSkus={props.setSkus} />;
         })}
       </div>
