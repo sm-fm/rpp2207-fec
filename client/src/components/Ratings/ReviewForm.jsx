@@ -9,6 +9,8 @@ let ReviewForm = (props) => {
   const [characteristics, setCharacteristics] = useState({});
   const [reviewBody, setReviewBody] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
+  const [nickname, setNickname] = useState('');
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     let characteristics = Object.keys(props.availableOptions).map(val => {
@@ -101,6 +103,10 @@ let ReviewForm = (props) => {
       setReviewBody(e.target.value);
     } else if (elementClass === 'reviewSummary') {
       setReviewSummary(e.target.value);
+    } else if (elementClass === 'nickname') {
+      setNickname(e.target.value);
+    } else if (elementClass === 'email') {
+      setEmail(e.target.value);
     }
   };
 
@@ -182,6 +188,46 @@ let ReviewForm = (props) => {
                 className='text-input reviewBody'
                 placeholder='Why did you like the product or not?'
                 onChange={handleReviewSummary}></textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Nickname</td>
+            <td>
+              <input
+                className='text-input nickname'
+                type='textbox'
+                placeholder='Example: Jackson11!'
+                onChange={handleReviewSummary}></input>
+            </td>
+          </tr>
+
+          <tr>
+            <td colSpan={2} className='discloser'>
+              *For privacy reasons, do not use your full name or email address.
+            </td>
+          </tr>
+
+          <tr>
+            <td>Email</td>
+            <td>
+              <input
+                className='text-input email'
+                type='textbox'
+                placeholder='Example: jackson11@email.com'
+                onChange={handleReviewSummary}></input>
+            </td>
+          </tr>
+
+          <tr>
+            <td colSpan={2} className='discloser'>
+              *For authentication reasons, you will not be emailed.
+            </td>
+          </tr>
+
+          <tr>
+            <td colSpan={2} className='submitBtn' align='right'>
+              <button>Submit your review</button>
             </td>
           </tr>
         </tbody>
