@@ -95,7 +95,7 @@ let ReviewForm = (props) => {
         </tbody>
       </table>
       <table>
-        <tbody>
+        <tbody className='internal-characteristic-table'>
           <tr>
             <td colSpan={2}>
               Rank particular attributes of this product
@@ -107,16 +107,30 @@ let ReviewForm = (props) => {
               <tr key={'review-form-characteristic-' + option}>
                 <td key={'review-form-characteristic-' + option}>{option}</td>
                 <td>
-                  <input type='radio' id='1' name={option} value={1}></input>
-                  <label htmlFor={option}>{characteristicMeanings[option][1]}</label>
-                  <input type='radio' id='2' name={option} value={2} ></input>
-                  <label htmlFor={option}>{characteristicMeanings[option][2]}</label>
-                  <input type='radio' id='3' name={option} value={3} ></input>
-                  <label htmlFor={option}>{characteristicMeanings[option][3]}</label>
-                  <input type='radio' id='4' name={option} value={4} ></input>
-                  <label htmlFor={option}>{characteristicMeanings[option][4]}</label>
-                  <input type='radio' id='5' name={option} value={5} ></input>
-                  <label htmlFor={option}>{characteristicMeanings[option][5]}</label>
+                  <table>
+                    <tbody>
+                      <tr>
+
+                        {[1, 2, 3, 4, 5].map(vals => {
+                          return (
+                            <td key={'holder'} className='characteristic-label'>
+                              <label htmlFor={option}>{characteristicMeanings[option][vals]}</label>
+                            </td>
+                          );
+                        })}
+                      </tr>
+
+                      <tr>
+                        {[1, 2, 3, 4, 5].map(vals => {
+                          return (
+                            <td key={'holder'} className='characteristic-radio'>
+                              <input type='radio' id={vals} name={option} value={vals}></input>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    </tbody>
+                  </table>
                 </td>
               </tr>
             );
