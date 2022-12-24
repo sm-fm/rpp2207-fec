@@ -85,7 +85,6 @@ const Ratings = (props) => {
         setMetadata(data[1]);
         setReviewData(data[0]);
         setAllData(data[0]);
-        console.log('MetaData: ', data[1]);
 
         setIsLoadingMeta(false);
         setIsLoadingreview(false);

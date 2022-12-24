@@ -17,66 +17,68 @@ let sampleReviewsNewest = reviewData.sampleReviewsNewest;
 let formValidationRules = reviewData.validationRules;
 let sampleFormData = reviewData.sampleDataOne;
 
-test('Testing review form validation function', () => {
-  expect(
-    hf.reviewFormValidation(sampleFormData, formValidationRules).email.length
-  ).toBe(2);
+describe('Testing all helper functions', () => {
+  test('Testing review form validation function', () => {
+    expect(
+      hf.reviewFormValidation(sampleFormData, formValidationRules).email.length
+    ).toBe(2);
 
-  expect(
-    hf.reviewFormValidation(sampleFormData, formValidationRules).reviewBody
-  ).toBeTruthy();
+    expect(
+      hf.reviewFormValidation(sampleFormData, formValidationRules).reviewBody
+    ).toBeTruthy();
 
-  expect(
-    hf.reviewFormValidation(sampleFormData, formValidationRules).rating
-  ).toBeUndefined();
+    expect(
+      hf.reviewFormValidation(sampleFormData, formValidationRules).rating
+    ).toBeUndefined();
 
-  expect(
-    hf.reviewFormValidation(sampleFormData, formValidationRules).characteristics
-  ).toBeUndefined();
+    expect(
+      hf.reviewFormValidation(sampleFormData, formValidationRules).characteristics
+    ).toBeUndefined();
 
-});
-test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
-  expect(hf.calculateAverageReviews(undefined)).toBe(null);
-  expect(hf.calculateAverageReviews({1: '20', 2: '19', 3: '38', 4: '43', 5: '86'})).toEqual('3.8');
-  expect(hf.calculateAverageReviews({1: '0', 2: '20', 3: '0', 4: '0', 5: '0'})).toEqual('2.0');
-});
-
-test('Test calculateRcommended from the Ratings helper functions', () => {
-  expect(hf.calculateRecommended(undefined)).toBe(null);
-  expect(hf.calculateRecommended({false: '54', true: '152'})).toEqual(74);
-  expect(hf.calculateRecommended({false: '2', true: '6'})).toEqual(75);
-});
-
-test('Test manipulateRatings from the Ratings helper functions', () => {
-  expect(hf.manipulateRatings({1: '20'})).toStrictEqual({
-    1: {'votes': 20, 'ratio': 1.00},
-    2: {'votes': 0, 'ratio': 0},
-    3: {'votes': 0, 'ratio': 0},
-    4: {'votes': 0, 'ratio': 0},
-    5: {'votes': 0, 'ratio': 0},
   });
-  expect(hf.manipulateRatings({1: '20', 2: '20'})).toStrictEqual({
-    1: {'votes': 20, 'ratio': 0.50},
-    2: {'votes': 20, 'ratio': 0.50},
-    3: {'votes': 0, 'ratio': 0},
-    4: {'votes': 0, 'ratio': 0},
-    5: {'votes': 0, 'ratio': 0},
+  test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
+    expect(hf.calculateAverageReviews(undefined)).toBe(null);
+    expect(hf.calculateAverageReviews({1: '20', 2: '19', 3: '38', 4: '43', 5: '86'})).toEqual('3.8');
+    expect(hf.calculateAverageReviews({1: '0', 2: '20', 3: '0', 4: '0', 5: '0'})).toEqual('2.0');
   });
-  expect(hf.manipulateRatings({1: '20', 2: '19', 3: '38', 4: '43', 5: '10'})).toStrictEqual({
-    1: {'votes': 20, 'ratio': 0.15},
-    2: {'votes': 19, 'ratio': 0.15},
-    3: {'votes': 38, 'ratio': 0.29},
-    4: {'votes': 43, 'ratio': 0.33},
-    5: {'votes': 10, 'ratio': 0.08}
-  });
-  expect(hf.manipulateRatings(123)).toBe(undefined);
-});
 
-test('review returnMin function', () => {
-  expect(hf.returnMin(1, 2)).toBe(1);
-  expect(hf.returnMin(2, 1)).toBe(1);
-  expect(hf.returnMin('hi', 'a')).toBe('a');
-  expect(hf.returnMin('', 1)).toBe(undefined);
+  test('Test calculateRcommended from the Ratings helper functions', () => {
+    expect(hf.calculateRecommended(undefined)).toBe(null);
+    expect(hf.calculateRecommended({false: '54', true: '152'})).toEqual(74);
+    expect(hf.calculateRecommended({false: '2', true: '6'})).toEqual(75);
+  });
+
+  test('Test manipulateRatings from the Ratings helper functions', () => {
+    expect(hf.manipulateRatings({1: '20'})).toStrictEqual({
+      1: {'votes': 20, 'ratio': 1.00},
+      2: {'votes': 0, 'ratio': 0},
+      3: {'votes': 0, 'ratio': 0},
+      4: {'votes': 0, 'ratio': 0},
+      5: {'votes': 0, 'ratio': 0},
+    });
+    expect(hf.manipulateRatings({1: '20', 2: '20'})).toStrictEqual({
+      1: {'votes': 20, 'ratio': 0.50},
+      2: {'votes': 20, 'ratio': 0.50},
+      3: {'votes': 0, 'ratio': 0},
+      4: {'votes': 0, 'ratio': 0},
+      5: {'votes': 0, 'ratio': 0},
+    });
+    expect(hf.manipulateRatings({1: '20', 2: '19', 3: '38', 4: '43', 5: '10'})).toStrictEqual({
+      1: {'votes': 20, 'ratio': 0.15},
+      2: {'votes': 19, 'ratio': 0.15},
+      3: {'votes': 38, 'ratio': 0.29},
+      4: {'votes': 43, 'ratio': 0.33},
+      5: {'votes': 10, 'ratio': 0.08}
+    });
+    expect(hf.manipulateRatings(123)).toBe(undefined);
+  });
+
+  test('review returnMin function', () => {
+    expect(hf.returnMin(1, 2)).toBe(1);
+    expect(hf.returnMin(2, 1)).toBe(1);
+    expect(hf.returnMin('hi', 'a')).toBe('a');
+    expect(hf.returnMin('', 1)).toBe(undefined);
+  });
 });
 
 describe('ReviewCard component', () => {

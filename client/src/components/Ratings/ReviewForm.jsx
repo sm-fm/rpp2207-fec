@@ -110,6 +110,20 @@ let ReviewForm = (props) => {
     }
   };
 
+  let dataValidation = () => {
+    let currentData = {
+      characteristics: characteristics,
+      email: email,
+      nickName: nickname,
+      rating: overallRating,
+      recommend: recommend,
+      reviewBody: reviewBody,
+      reviewSummary: reviewSummary
+    };
+    console.log(currentData);
+    console.log(hf.reviewFormValidation(currentData, hf.validationRules));
+  };
+
   let componentInformation = (
     <div className='review-review-form'>
       <h3>Have feedback for this product? Leave a review!</h3>
@@ -231,7 +245,7 @@ let ReviewForm = (props) => {
 
           <tr>
             <td colSpan={2} className='submitBtn' align='right'>
-              <button>Submit your review</button>
+              <button onClick={dataValidation}>Submit your review</button>
             </td>
           </tr>
         </tbody>
