@@ -1,7 +1,6 @@
 import { render, screen, waitFor, fireEvent, getByText } from '@testing-library/react';
 import React from 'react';
 import Router from 'react-router-dom';
-// import RatingsAPI from '../client/src/API/Ratings.js';
 import hf from '../client/src/components/Ratings/helperFunctions.js';
 import nock from 'nock';
 import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
@@ -10,18 +9,31 @@ import MetaData from '../client/src/components/Ratings/metadata/Metadata.jsx';
 import MetaRating from '../client/src/components/Ratings/metadata/MetaRating.jsx';
 import reviewData from './reviewData.js';
 
-var expected = reviewData.expected;
 var sampleReview = reviewData.sampleReview;
 let sampleMeta = reviewData.sampleMeta;
 let sampleMetaError = reviewData.sampleMetaError;
 let sampleReviewError = reviewData.sampleReviewError;
 let sampleReviewsNewest = reviewData.sampleReviewsNewest;
+let formValidationRules = reviewData.validationRules;
+let sampleFormData = reviewData.sampleDataOne;
 
 test('Testing review form validation function', () => {
-  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).email.length).toBe(2);
-  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).reviewBody).toBeTruthy();
-  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).rating).toBeUndefined();
-  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).characteristics).toBeUndefined();
+  expect(
+    hf.reviewFormValidation(sampleFormData, formValidationRules).email.length
+  ).toBe(2);
+
+  expect(
+    hf.reviewFormValidation(sampleFormData, formValidationRules).reviewBody
+  ).toBeTruthy();
+
+  expect(
+    hf.reviewFormValidation(sampleFormData, formValidationRules).rating
+  ).toBeUndefined();
+
+  expect(
+    hf.reviewFormValidation(sampleFormData, formValidationRules).characteristics
+  ).toBeUndefined();
+
 });
 test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
   expect(hf.calculateAverageReviews(undefined)).toBe(null);
