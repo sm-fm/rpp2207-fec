@@ -137,13 +137,13 @@ let validationRules = {
   rating: [
     [
       ((b) => { return Boolean(b); }).bind(null),
-      'Overall Rating is a required field.'
+      'Overall Rating is a required field'
     ],
   ],
   recommend: [
     [
       ((b) => { return Boolean(b); }).bind(null),
-      'Recommended is a required field.'
+      'Recommended is a required field'
     ]
   ],
   characteristics: [
@@ -156,7 +156,7 @@ let validationRules = {
         }
         return true;
       }).bind(null),
-      'All characteristics are required field(s).'
+      'All attributes are required field(s)'
     ]
   ],
   reviewSummary: [
@@ -168,27 +168,27 @@ let validationRules = {
   reviewBody: [
     [
       ((b) => { return b.length >= 50; }).bind(null),
-      'The review body must have more than 50 characters.'
+      'The review body must have more than 50 characters'
     ],
     [
       ((b) => { return b.length <= 1000; }).bind(null),
-      'The review body must not exceed 1000 characters.'
+      'The review body must not exceed 1000 characters'
     ],
   ],
   nickName: [
     [
       ((b) => { return b.length <= 60; }).bind(null),
-      'The nickname must not exceed 60 characters.'
+      'The nickname must not exceed 60 characters'
     ]
   ],
   email: [
     [
       ((b) => { return (b.includes('@') && b.includes('.')); }).bind(null),
-      'The email entered is not valid.',
+      'The email entered is not valid',
     ],
     [
       ((b) => { return b.length <= 60; }).bind(null),
-      'The email must not exceed 60 characters.'
+      'The email must not exceed 60 characters'
     ]
   ]
 };

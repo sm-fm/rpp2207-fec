@@ -92,7 +92,7 @@ const Ratings = (props) => {
         setMetaError('');
         setReviewError('');
       })
-      .catch(err => {
+      .catch(() => {
         let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
         setMetaError(errMsg);
         setReviewError(errMsg);

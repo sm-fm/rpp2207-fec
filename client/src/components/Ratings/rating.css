@@ -115,9 +115,11 @@
   min-height: 50px;
   min-width: 60vh;
   max-width: 66vh;
+  max-height: 90%;
   margin: auto;
   left: 16%;
-  top: 10%;
+  top: 5%;
+  overflow-y: auto;
 }
 
 .reviews-modal .review-review-form {
@@ -164,4 +166,8 @@
 
 .vertical-align {
   vertical-align: middle;
+}
+
+.review-review-form .review-form-err {
+  color: rgb(200, 0, 0);
 }

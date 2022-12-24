@@ -11,6 +11,7 @@ let ReviewForm = (props) => {
   const [reviewSummary, setReviewSummary] = useState('');
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const [submissionError, setSubmissionError] = useState([]);
 
   useEffect(() => {
     let characteristics = Object.keys(props.availableOptions).map(val => {
@@ -121,7 +122,8 @@ let ReviewForm = (props) => {
       reviewSummary: reviewSummary
     };
     console.log(currentData);
-    console.log(hf.reviewFormValidation(currentData, hf.validationRules));
+    let errors = hf.reviewFormValidation(currentData, hf.validationRules);
+    setSubmissionError(Object.values(errors));
   };
 
   let componentInformation = (
@@ -248,6 +250,14 @@ let ReviewForm = (props) => {
               <button onClick={dataValidation}>Submit your review</button>
             </td>
           </tr>
+
+          {!!(submissionError.length) &&
+            <>
+              <tr>
+                <td colSpan={2} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}</td>
+              </tr>
+            </>
+          }
         </tbody>
       </table>
     </div>
