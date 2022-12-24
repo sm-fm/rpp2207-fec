@@ -8,6 +8,7 @@ import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
 import Ratings from '../client/src/components/Ratings/Ratings.jsx';
 import MetaData from '../client/src/components/Ratings/metadata/Metadata.jsx';
 import MetaRating from '../client/src/components/Ratings/metadata/MetaRating.jsx';
+import reviewData from './reviewData.js';
 
 var expected = [
   {
@@ -309,6 +310,12 @@ let sampleReviewsNewest = {
   ]
 };
 
+test('Testing review form validation function', () => {
+  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).email.length).toBe(2);
+  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).reviewBody).toBeTruthy();
+  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).rating).toBeUndefined();
+  expect(hf.reviewFormValidation(reviewData.sampleDataOne, reviewData.validationRules).characteristics).toBeUndefined();
+});
 test('Test calculateAverageReviews from the Ratings helperfunction suite', () => {
   expect(hf.calculateAverageReviews(undefined)).toBe(null);
   expect(hf.calculateAverageReviews({1: '20', 2: '19', 3: '38', 4: '43', 5: '86'})).toEqual('3.8');

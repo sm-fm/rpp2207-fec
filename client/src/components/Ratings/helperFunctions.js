@@ -107,10 +107,37 @@ let reviewFormStars = (numberStars, key, clickHandler) => {
   }
 };
 
+let reviewFormValidation = (inputData, validationRules) => {
+  let errors = {};
+  const createPredicate = ([test, errMsg]) => {
+    return (a) => {
+      return test(a) ? null : errMsg;
+    };
+  };
+
+  let currentElement, validations, testResult;
+  for (let i = 0; i < Object.keys(validationRules).length; i++) {
+    currentElement = Object.keys(validationRules)[i];
+    for (let j = 0; j < validationRules[currentElement].length; j++) {
+      validations = createPredicate(validationRules[currentElement][j]);
+      testResult = validations(inputData[currentElement]);
+      if (testResult) {
+        if (errors[currentElement] === undefined) {
+          errors[currentElement] = testResult;
+        } else {
+          errors[currentElement] = [errors[currentElement], testResult];
+        }
+      }
+    }
+  }
+  return errors;
+};
+
 export default {
   calculateAverageReviews: calculateAverageReviews,
   calculateRecommended: calculateRecommended,
   manipulateRatings: manipulateRatings,
   returnMin: returnMin,
-  reviewFormStars: reviewFormStars
+  reviewFormStars: reviewFormStars,
+  reviewFormValidation: reviewFormValidation
 };

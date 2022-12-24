@@ -5,7 +5,7 @@ import hf from './helperFunctions.js';
 
 let ReviewForm = (props) => {
   const [overallRating, setOverallRating] = useState('');
-  const [recommend, setRecommend] = useState(false);
+  const [recommend, setRecommend] = useState(undefined);
   const [characteristics, setCharacteristics] = useState({});
   const [reviewBody, setReviewBody] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
