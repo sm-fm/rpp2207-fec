@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import OverviewAPI from './API/Overview.js';
 import QuestionsAPI from './API/Questions.js';
 import RatingsAPI from './API/Ratings.js';
@@ -7,31 +6,33 @@ import RelatedAPI from './API/Related.js';
 
 function FetchData(WrappedComponent, id) {
 
-    class WithData extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          product: {},
-          avgRatings: '',
-          styles: {},
-          chosenStyle: {},
-          photos: {},
-          toggleClick: '',
-          skus: {},
-          reviews: {},
-          data: {},
-          questions: {},
-          allData: {},
-          reviewData: {},
-          metaData: {},
-          relatedProducts: {},
-          currentProduct: {},
-          yourOutfit: [],
-          fetching: true
-        };
-      }
+  class WithData extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        id: '',
+        product: {},
+        avgRatings: '',
+        styles: {},
+        chosenStyle: {},
+        photos: {},
+        toggleClick: '',
+        skus: {},
+        reviews: {},
+        data: {},
+        questions: {},
+        allData: {},
+        reviewData: {},
+        metaData: {},
+        relatedProducts: {},
+        currentProduct: {},
+        yourOutfit: [],
+        fetching: true
+      };
+    }
 
       componentDidMount() {
+        this.setState({ id });
         OverviewAPI.getProductById(id)
           .then(result => {
             return result.json();
@@ -80,7 +81,6 @@ function FetchData(WrappedComponent, id) {
               data: results,
               questions: results
             });
-            //potentially add getAllQuestions request here
             return RelatedAPI.getRelatedProducts(id);
           })
           .then(products => {

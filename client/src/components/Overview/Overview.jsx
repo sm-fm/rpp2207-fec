@@ -17,7 +17,7 @@ const Overview = (props) => {
   const [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
   const [skus, setSkus] = useState(props.data.skus);
   const reviews = props.data.reviews;
-  const stars = props.generateStars(props.data.averageRating, 'overview');
+  const stars = props.generateStars(props.data.avgRatings, 'overview');
 
   if (!expandedView) {
     return (

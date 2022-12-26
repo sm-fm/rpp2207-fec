@@ -5,18 +5,13 @@ import Questions from './Questions/Questions.jsx';
 import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
-import FetchData from '../FetchData.jsx';
 
-const App = () => {
+const App = (props) => {
   const params = useParams();
   const id = params.id || '71697';
   const [yourOutfit, setYourOutfit] = useState([]);
   const [scrollToRatings, setScrollToRatings] = useState(false);
   const ratingsRef = useRef(null);
-  let OverviewWithFetch = FetchData(Overview, id);
-  let QuestionsWithFetch = FetchData(Questions, id);
-  let RatingsWithFetch = FetchData(Ratings, id);
-  let RelatedWithFetch = FetchData(Related, id);
 
   const addToOutfit = (product) => {
     console.log(yourOutfit, product);
@@ -112,11 +107,11 @@ const App = () => {
   return (
     <div>
       <h1>App.jsx</h1>
-      <OverviewWithFetch objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} />
-      <RelatedWithFetch objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
-      <QuestionsWithFetch objID={id}/>
+      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
+      <Questions objID={id}/>
       <div ref={ratingsRef}>
-        <RatingsWithFetch objID={id} generateStars={generateStars} />
+        <Ratings objID={id} generateStars={generateStars} />
       </div>
     </div>
   );
