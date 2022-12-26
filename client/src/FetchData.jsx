@@ -27,7 +27,8 @@ function FetchData(WrappedComponent, id) {
         relatedProducts: {},
         currentProduct: {},
         yourOutfit: [],
-        fetching: true
+        fetching: true,
+        error: false
       };
     }
 
@@ -93,18 +94,22 @@ function FetchData(WrappedComponent, id) {
           .then(() => {
             this.setState({fetching: false});
           })
-          .catch(err => console.log(err));
+          .catch(err => {
+            console.log(err);
+            this.setState({error: true});
+          });
       }
 
 
       render() {
-        return (
-          !this.state.fetching
-            ? <WrappedComponent
-              data={this.state}
-              {...this.props} />
-            : <p>Loading</p>
-        );
+        if (this.state.error) {
+          return <p>There was an error fetching the data</p>
+        }
+        if (!this.state.fetching) {
+          return <WrappedComponent data={this.state} {...this.props} />
+        } else {
+          return <p>Loading...</p>
+        }
       }
   }
   return WithData;
