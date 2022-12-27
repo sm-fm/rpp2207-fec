@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const QuestForm = () => {
+const QuestForm = ({ closeForm }) => {
   let [question, setQuestion] = useState('');
   let [name, setName] = useState('');
   let [email, setEmail] = useState('');
@@ -9,10 +9,6 @@ const QuestForm = () => {
     if (type === 'quest') { setQuestion(val); }
     if (type === 'name') { setName(val); }
     if (type === 'email') { setEmail(val); }
-  };
-
-  var handleClose = () => {
-
   };
 
   var submit = () => {
@@ -31,7 +27,7 @@ const QuestForm = () => {
         <button
           id="form-close"
           className="btn"
-          onClick={handleClose}
+          onClick={closeForm}
         >X</button>
         <h1 id="form-title">Ask Your Question</h1>
         <h2 id="form-subtitle">About the ITEM_NAME_HERE</h2>

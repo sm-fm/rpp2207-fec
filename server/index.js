@@ -19,6 +19,13 @@ const getOptions =
   }
 };
 
+const putOptions = {
+  method: 'PUT',
+  headers: {
+    'Authorization': process.env.GITHUB_ACCESS_TOKEN
+  }
+};
+
 // API ROUTES
 app.get('/products', (req, res) => {
   fetch(`${baseURL}/products`, getOptions)
@@ -93,13 +100,6 @@ app.get('/reviews', (req, res) => {
       return results.json();
     })
     .then(results => {
-      if (req.query.rating.length > 4) {
-        let selectedRatings = JSON.parse(req.query.rating);
-        let relevantReviews = results.results.filter((val) => {
-          return selectedRatings.includes(val.rating.toString());
-        });
-        results.results = relevantReviews;
-      }
       res.status(200).send(results);
     })
     .catch(err => {
@@ -122,6 +122,28 @@ app.get('/reviews/meta', (req, res) => {
     });
 });
 
+// Increment review helpfulness
+app.put('/reviews/helpful/', (req, res) => {
+  fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
+    .then((data) => {
+      console.log('data: ', data);
+      res.status(200).send(true);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
+
+//report a review
+app.put('/reviews/report/', (req, res) => {
+  fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
+    .then((data) => {
+      res.status(200).send(true);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+});
 // GET Questions
 app.get('/qa/questions/:id', (req, res) => {
   var id = `product_id=${req.params.id}`;

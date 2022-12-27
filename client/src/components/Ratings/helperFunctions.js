@@ -50,8 +50,16 @@ let manipulateRatings = (obj) => {
   return resultObj;
 };
 
+let returnMin = (a, b) => {
+  if (typeof(a) !== typeof(b)) {
+    return undefined;
+  }
+  return (a > b) ? b : a;
+};
+
 module.exports = {
   calculateAverageReviews: calculateAverageReviews,
   calculateRecommended: calculateRecommended,
   manipulateRatings: manipulateRatings,
+  returnMin: returnMin
 };

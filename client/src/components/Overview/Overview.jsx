@@ -1,107 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import api from '../../API/Overview.js';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import Images from './ImageViews/Images.jsx';
 import StyleSelector from './StylesSelector/StyleSelector.jsx';
 import Cart from './Cart/Cart.jsx';
 import ExpandedView from './ImageViews/ExpandedView.jsx';
-import RatingsAPI from '../../API/Ratings.js';
 import Description from './ProductInfo/Description.jsx';
 
 const Overview = (props) => {
-
-  const [product, setProduct] = useState({});
-  const [styles, setStyles] = useState([]);
-  const [chosenStyle, setChosenStyle] = useState({});
-  const [styleClicked, toggleClick] = useState('');
-  const [photos, setPhotos] = useState([]);
+  const product = props.data.product;
+  const styles = props.data.styles;
+  const [chosenStyle, setChosenStyle] = useState(props.data.chosenStyle);
+  const [styleClicked, setStyleClicked] = useState(props.data.toggleClick);
+  const photos = props.data.photos;
   const [expandedView, setExpandedView] = useState(false);
   const [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
-  const [skus, setSkus] = useState({});
-  const [fetching, setFetching] = useState(true);
-  const [averageRating, setAverageRating] = useState();
-  const [reviews, setReviews] = useState();
-  const stars = props.generateStars(averageRating, 'overview');
+  const [skus, setSkus] = useState(props.data.skus);
+  const reviews = props.data.reviews;
+  const stars = props.generateStars(props.data.avgRatings, 'overview');
 
-  useEffect(() => {
-    api.getProductById(props.objID)
-      .then(result => {
-        return result.json();
-      })
-      .then(result => {
-        console.log(result);
-        setProduct(result);
-        return RatingsAPI.getReviewMetadata(result.id);
-      })
-      .then(metadata => {
-        setAverageRating(api.getAverageRating(metadata.ratings));
-        return api.getStylesById(metadata.product_id);
-      })
-      .then(styles => {
-        return styles.json();
-      })
-      .then(styles => {
-        setStyles(styles.results);
-        setChosenStyle(styles.results[0]);
-        setPhotos(styles.results[0].photos);
-        toggleClick(styles.results[0].name);
-        setSkus(styles.results[0].skus);
-        setFetching(false);
-        return api.getAllReviews(styles.product_id);
-      })
-      .then(reviews => {
-        setReviews(reviews);
-      })
-      .catch(err => console.log(err));
-  }, [props.objID]);
-
+  if (Object.keys(props.data).length === 0) {
+    return (
+      <>
+        <p>Something went wrong</p>;
+      </>
+    );
+  }
   if (!expandedView) {
     return (
       <div id="main-overview">
-        {!fetching
-          ? <div>
-            <div id="product-styles-cart">
-              <div id="productInfo">
-                <ProductInfo
-                  product={product}
-                  stars={stars}
-                  reviews={reviews}
-                  setScrollToRatings={props.setScrollToRatings} />
-              </div>
-              <div id="styles">
-                <StyleSelector
-                  setChosenStyle={setChosenStyle}
-                  styles={styles}
-                  chosenStyle={chosenStyle}
-                  styleClicked={styleClicked}
-                  toggleClick={toggleClick}
-                  setSkus={setSkus} />
-              </div>
-              <div id="cart">
-                <Cart
-                  chosenStyle={chosenStyle}
-                  skus={skus}
-                  product={product}
-                  addToOutfit={props.addToOutfit}
-                  styles={styles} />
-              </div>
+        <div>
+          <div id="product-styles-cart">
+            <div id="productInfo">
+              <ProductInfo
+                product={product}
+                stars={stars}
+                reviews={reviews}
+                setScrollToRatings={props.setScrollToRatings} />
             </div>
-            <div id="images-comp">
-              <Images
+            <div id="styles">
+              <StyleSelector
+                setChosenStyle={setChosenStyle}
+                styles={styles}
                 chosenStyle={chosenStyle}
-                photos={photos}
-                setExpandedView={setExpandedView}
-                setIndexOfExpandedImg={setIndexOfExpandedImg} />
+                styleClicked={styleClicked}
+                setStyleClicked={setStyleClicked}
+                setSkus={setSkus} />
             </div>
-            <div id="description-container">
-              <Description
-                product={product} />
+            <div id="cart">
+              <Cart
+                chosenStyle={chosenStyle}
+                skus={skus}
+                product={product}
+                addToOutfit={props.addToOutfit}
+                styles={styles} />
             </div>
           </div>
-          : null}
+          <div id="images-comp">
+            <Images
+              chosenStyle={chosenStyle}
+              photos={photos}
+              setExpandedView={setExpandedView}
+              setIndexOfExpandedImg={setIndexOfExpandedImg} />
+          </div>
+          <div id="description-container">
+            <Description
+              product={product} />
+          </div>
+        </div>
       </div>
     );
-  } else {
+  }
+  if (expandedView) {
     return (
       <div id="main-overview">
         <ExpandedView
