@@ -7,6 +7,7 @@ require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
 
 
 const PATH = 3000;
@@ -25,6 +26,7 @@ const putOptions = {
     'Authorization': process.env.GITHUB_ACCESS_TOKEN
   }
 };
+
 
 // API ROUTES
 app.get('/products', (req, res) => {
@@ -105,6 +107,30 @@ app.put('/reviews/report/', (req, res) => {
       res.status(200).send(true);
     })
     .catch(err => {
+      res.status(400).send(err);
+    });
+});
+// Adds user review to the database
+
+
+app.post('/reviews/userReview/', (req, res) => {
+  console.log(JSON.stringify(req.body));
+  const postOptions = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'Authorization': process.env.GITHUB_ACCESS_TOKEN,
+    },
+    body: JSON.stringify(req.body)
+  };
+  fetch(`${baseURL}/reviews/`, postOptions)
+    .then((data) => {
+      console.log('success!', data.status);
+      res.status(201).send(data);
+    })
+    .catch((err) => {
+      console.log('fail :(');
       res.status(400).send(err);
     });
 });

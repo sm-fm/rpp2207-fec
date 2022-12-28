@@ -2,8 +2,10 @@ import React from 'react';
 import {useEffect, useState} from 'react';
 import Modal from './modal.jsx';
 import hf from './helperFunctions.js';
+import api from '../../API/Ratings.js';
 
 let ReviewForm = (props) => {
+  console.log(props);
   const [overallRating, setOverallRating] = useState('');
   const [recommend, setRecommend] = useState(undefined);
   const [characteristics, setCharacteristics] = useState({});
@@ -90,7 +92,7 @@ let ReviewForm = (props) => {
     let newObj = JSON.parse(JSON.stringify(characteristics));
     newObj = newObj.map(val => {
       if (val.name === e.target.name) {
-        return {id: val.id, name: val.name, value: e.target.value};
+        return {id: val.id, name: val.name, value: parseInt(e.target.value)};
       } else {
         return val;
       }
@@ -121,9 +123,15 @@ let ReviewForm = (props) => {
       reviewBody: reviewBody,
       reviewSummary: reviewSummary
     };
-    console.log(currentData);
+
     let errors = hf.reviewFormValidation(currentData, hf.validationRules);
-    setSubmissionError(Object.values(errors));
+    if (Object.keys(errors).length) {
+      setSubmissionError(Object.values(errors));
+    } else {
+      setSubmissionError({});
+      api.userReview(parseInt(props.product_id), currentData);
+
+    }
   };
 
   let componentInformation = (
@@ -254,7 +262,7 @@ let ReviewForm = (props) => {
           {!!(submissionError.length) &&
             <>
               <tr>
-                <td colSpan={2} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}</td>
+                <td colSpan={2} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}.</td>
               </tr>
             </>
           }

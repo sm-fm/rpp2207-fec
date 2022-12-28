@@ -184,7 +184,7 @@ const Ratings = (props) => {
           <p onClick={toggleReviewForm} className='reviews-pointer'>Review Form</p>
           {reviewForm &&
             <>
-              <ReviewForm toggleReviewForm = {toggleReviewForm} generateStars={props.generateStars} availableOptions={metadata.characteristics}/>
+              <ReviewForm toggleReviewForm = {toggleReviewForm} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id}/>
             </>
           }
 

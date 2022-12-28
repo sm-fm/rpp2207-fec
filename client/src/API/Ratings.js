@@ -59,6 +59,39 @@ const Ratings = {
       .then(data => {
         return data;
       });
+  },
+  userReview: (review_id, {rating, recommend, characteristics, reviewSummary, reviewBody, nickName, email, photos = []}) => {
+    console.log('hi there: ', review_id, {rating, recommend, characteristics, reviewSummary, reviewBody, nickName, email});
+    let chars = {};
+    for (let i = 0; i < characteristics.length; i++) {
+      chars[characteristics[i].id] = characteristics[i].value;
+    }
+
+    return fetch('http://localhost:3000/reviews/userReview/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        product_id: review_id,
+        rating: rating,
+        summary: reviewSummary,
+        body: reviewBody,
+        recommend: JSON.parse(recommend),
+        name: nickName,
+        email: email,
+        photos: photos,
+        characteristics: chars,
+      })
+    })
+      .then(() => {
+        return true;
+      })
+      .catch((err) => {
+        return err;
+      });
+
   }
 };
 
