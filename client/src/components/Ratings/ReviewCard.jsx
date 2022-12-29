@@ -72,7 +72,7 @@ let ReviewCard = (props) => {
     <div className = 'userReview'>
       <div className='flex-box'>
         <div className='starHolder'>
-          {props.generateStars(props.data.rating, 'userReview')}
+          {props.generateStars(props.data.rating, 'userReview', 'rgb(100, 100, 100)', '12px')}
         </div>
         <h6 className='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
       </div>

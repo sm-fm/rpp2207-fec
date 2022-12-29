@@ -149,7 +149,7 @@ let ReviewForm = (props) => {
   let componentInformation = (
     <div className='review-review-form'>
       <h3>Have feedback for this product? Leave a review!</h3>
-      <table>
+      <table className='general-review'>
         <tbody>
           <tr>
             <td>How would you rate this product?</td>
@@ -167,10 +167,13 @@ let ReviewForm = (props) => {
           </tr>
         </tbody>
       </table>
-      <table>
-        <tbody className='internal-characteristic-table'>
+      <table className='second-table'>
+        <tbody>
           <tr>
-            <td colSpan={2} style={{'textAlign': 'center'}}>
+            <td colSpan={2} ><div className='general-review-spacer'></div></td>
+          </tr>
+          <tr>
+            <td className='title' colSpan={2} style={{'textAlign': 'center'}}>
               Rank particular attributes of this product
             </td>
           </tr>
@@ -180,7 +183,7 @@ let ReviewForm = (props) => {
                 <td key={'review-form-characteristic-' + option} className='vertical-align'>{option}</td>
                 <td>
                   <table>
-                    <tbody>
+                    <tbody className='characteristics-table'>
                       <tr>
 
                         {[1, 2, 3, 4, 5].map(vals => {
@@ -207,29 +210,29 @@ let ReviewForm = (props) => {
               </tr>
             );
           })}
+
           <tr>
-            <td>Review Summary</td>
+            <td colSpan={2} ><div className='general-review-spacer'></div></td>
+          </tr>
+          <tr>
+            <td>Title</td>
             <td><input
               className='text-input reviewSummary'
               type='textbox'
               placeholder='Example: Best Purchase Ever!'
-              onChange={handleReviewSummary}></input>
+              onChange={handleReviewSummary}
+              maxLength={60}></input>
             </td>
           </tr>
 
           <tr>
-            <td className='vertical-align'>Review Body</td>
+            <td className='vertical-align'>Review</td>
             <td>
               <textarea
                 className='text-input reviewBody'
                 placeholder='Why did you like the product or not?'
-                onChange={handleReviewSummary}></textarea>
-            </td>
-          </tr>
-          <tr>
-            <td>Have a photo? Upload it!</td>
-            <td>
-              <button onClick={() => { setDisplayPhotoModal(!displayPhotoModal); }}>Upload photos</button>
+                onChange={handleReviewSummary}
+                maxLength={1000}></textarea>
             </td>
           </tr>
 
@@ -240,7 +243,8 @@ let ReviewForm = (props) => {
                 className='text-input nickname'
                 type='textbox'
                 placeholder='Example: Jackson11!'
-                onChange={handleReviewSummary}></input>
+                onChange={handleReviewSummary}
+                maxLength={60}></input>
             </td>
           </tr>
 
@@ -251,13 +255,14 @@ let ReviewForm = (props) => {
           </tr>
 
           <tr>
-            <td>Email</td>
+            <td >Email </td>
             <td>
               <input
                 className='text-input email'
                 type='textbox'
                 placeholder='Example: jackson11@email.com'
-                onChange={handleReviewSummary}></input>
+                onChange={handleReviewSummary}
+                maxLength={60}></input>
             </td>
           </tr>
 
@@ -270,6 +275,7 @@ let ReviewForm = (props) => {
           <tr>
             <td colSpan={2} className='submitBtn' align='right'>
               <button onClick={dataValidation}>Submit your review</button>
+              <button onClick={() => { setDisplayPhotoModal(!displayPhotoModal); }}>Upload photos</button>
             </td>
           </tr>
 

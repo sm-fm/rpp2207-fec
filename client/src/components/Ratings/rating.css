@@ -1,7 +1,8 @@
 .ratings {
-  /* border: 1px solid black; */
+  color: rgb(80, 80, 80);
   width: 75%;
   margin: auto;
+  letter-spacing: 1px;
 }
 
 .metadata {
@@ -18,6 +19,8 @@
 .userReviews {
   height: 80vh;
   overflow-y: scroll;
+  margin-top: 10px;
+  min-width: 250px;
 }
 #username {
   text-align: left;
@@ -42,10 +45,10 @@
   display: inline-block;
   height: 50px;
   padding: 5px 10px 0px 10px;
+  border-radius:20%;
 }
 
 .ratings .thumbnail-holder {
-  /* border: 1px solid black; */
   display: flex;
   padding-bottom: 5px;
   justify-content: center;
@@ -68,6 +71,7 @@
   position: relative;
   vertical-align: top;
   width: 45%;
+  min-width: 250px;
 }
 
 .rating-wrapper p, .rating-wrapper svg {
@@ -105,7 +109,12 @@
   position: fixed;
   max-width: 150vh;
   max-height: 80vh;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  float: right;
+  margin: auto;
+  right: 10%;
+  left: 10%;
+  border: 1px solid rgb(60, 60, 60);
 }
 
 .reviews-modal {
@@ -114,18 +123,22 @@
   z-index: 10;
   min-height: 50px;
   min-width: 60vh;
-  max-width: 66vh;
-  max-height: 90%;
   margin: auto;
   left: 16%;
+  right: 16%;
   top: 5%;
   overflow-y: auto;
 }
 
 .reviews-modal .review-review-form,
 .reviews-modal .photo-modal {
-  border: 1px solid black;
+  border: 1px solid rgb(60, 60, 60);
   padding: 30px 10px 10px 20px;
+}
+
+.reviews-modal, .review-review-form {
+  max-width: 66vh;
+  max-height: 90%;
 }
 
 .reviews-pointer,
@@ -135,6 +148,10 @@
 
 .review-review-form td {
   padding: 5px 5px;
+}
+
+.characteristics-table td {
+  width: 75px;
 }
 
 .review-review-form h3 {
@@ -158,8 +175,8 @@
 }
 
 .review-review-form .text-input {
-  width: 300px;
-  max-width: 300px;
+  width: 92%;
+  /* max-width: 300px; */
 }
 
 .review-review-form .discloser {
@@ -218,18 +235,95 @@
 
 .user-review-wrapper .review-form,
 .user-review-wrapper .show-more,
-.user-review-wrapper .collapse-review {
-  margin-left: 10px;
+.user-review-wrapper .collapse-review,
+.review-review-form button {
+  margin-right: 10px;
   background-color: white;
   border: 1px solid rgb(70, 70, 70);
   padding: 10px;
   color: rgb(70, 70, 70);
   font-size: 15px;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
-.user-review-wrapper .review-form .plus-styling {
-  font-size: 16px;
+.user-review-wrapper .review-form:hover,
+.user-review-wrapper .show-more:hover,
+.user-review-wrapper .collapse-review:hover,
+.review-review-form button:hover {
+  margin-right: 10px;
+  background-color: rgb(70, 70, 70);
+  border: 1px solid rgb(70, 70, 70);
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+  margin-top: 5px;
+  cursor: pointer;
 }
+
+.review-review-form button,
+.review-review-form button:hover {
+  font-size: 14px;
+  padding: 7px;
+}
+
+
 .errorMsg {
   color: rgb(80, 80, 80);
+}
+
+.ratings .metadata h3{
+  font-size: 23px;
+  font-weight: 700;
+  color: rgb(70, 70, 70)
+}
+
+.metadata h4 {
+  padding-top: 15px;
+  padding-bottom: 3px;
+  font-weight: 700;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
+.metadata .heading {
+  padding-bottom: 10px;
+}
+
+.metadata .recommended {
+  padding-bottom: 5px;
+  font-size: 14px;
+  color: rgb(90, 90, 90)
+}
+
+.metadata h5 {
+  color: rgb(70, 70, 70);
+  font-size: 17px;
+  padding: 10px 0;
+  font-weight: 700;
+}
+
+.individual-rating-bars .star-number,
+.product-breakdown .product-breakdown-title {
+  color: rgb(110, 110, 110);
+  padding: 3px 0;
+  font-size: 16px;
+}
+
+.review-review-form .general-review-spacer {
+  width: 50%;
+  margin: auto;
+  border-bottom: 1px solid rgb(60, 60, 60);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.second-table .title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.review-review-form .general-review,
+.review-review-form .second-table {
+  margin: 0 auto;
 }
