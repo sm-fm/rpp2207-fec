@@ -99,15 +99,15 @@ const App = () => {
   }, [yourOutfit]);
 
   let clickTracking = ((e) => {
-    console.log(e.target);
+    // console.log(e.target);
   });
 
   return (
     <div onClick={clickTracking}>
       <h1>App.jsx</h1>
-      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
+      {/* <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
-      <Questions objID={id}/>
+      <Questions objID={id}/> */}
       <Ratings objID={id} generateStars={generateStars}/>
     </div>
   );

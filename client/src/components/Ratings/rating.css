@@ -122,11 +122,14 @@
   overflow-y: auto;
 }
 
-.reviews-modal .review-review-form {
+.reviews-modal .review-review-form,
+.reviews-modal .photo-modal {
+  border: 1px solid black;
   padding: 30px 10px 10px 20px;
 }
 
-.reviews-pointer {
+.reviews-pointer,
+.userReview .show-more-review {
   cursor: pointer;
 }
 
@@ -170,4 +173,63 @@
 
 .review-review-form .review-form-err {
   color: rgb(200, 0, 0);
+}
+.photo-modal {
+  z-index: 100;
+}
+
+.userReview .username,
+.userReview .show-more-review {
+  font-size: 13px;
+  color: rgb(100, 100, 100);
+  font-weight: 100px;
+}
+
+.userReview .show-more-review {
+  padding-bottom: 5px;
+}
+
+.userReview .reviewBody,
+.userReview .reviews-helpfulness,
+.userReview .recommend {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  font-size: 15px;
+  font-weight: 300px;
+  color: rgb(80, 80, 80);
+}
+
+.userReview .summary {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 7px 0;
+  color: rgb(60, 60, 60);
+}
+
+.reviewListHeading .heading {
+  font-weight: 700;
+  font-size: 17px;
+  color: rgb(80, 80, 80)
+}
+
+.reviewListHeading .heading select {
+  font-size: 16px;
+}
+
+.user-review-wrapper .review-form,
+.user-review-wrapper .show-more,
+.user-review-wrapper .collapse-review {
+  margin-left: 10px;
+  background-color: white;
+  border: 1px solid rgb(70, 70, 70);
+  padding: 10px;
+  color: rgb(70, 70, 70);
+  font-size: 15px;
+}
+
+.user-review-wrapper .review-form .plus-styling {
+  font-size: 16px;
+}
+.errorMsg {
+  color: rgb(80, 80, 80);
 }

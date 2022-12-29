@@ -83,19 +83,19 @@ let ReviewCard = (props) => {
         <p className='show-more-review' onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
 
       {props.data.recommend &&
-        <p>✓ I recommend this product</p>}
+        <p className='recommend'>✓ I recommend this product</p>}
 
       {props.data.response !== '' &&
         <p className='companyResponse'>{props.data.response}</p>}
 
       <h6 id={props.data.review_id} className='reviews-helpfulness'>
-        Helpful?
+        Helpful?&nbsp;
         {!reviewed ?
           <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u> :
           <u className='reviews-helpful'>Yes</u>
         }
 
-        {`(${helpfulness})`} |
+        {`  (${helpfulness})`} | &nbsp;
 
         {reported ?
           <u style={{color: 'red'}}>REPORTED</u> :

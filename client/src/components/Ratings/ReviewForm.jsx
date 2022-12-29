@@ -14,6 +14,8 @@ let ReviewForm = (props) => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [submissionError, setSubmissionError] = useState([]);
+  const [photoList, setPhotoList] = useState([]);
+  const [displayPhotoModal, setDisplayPhotoModal] = useState(false);
 
   useEffect(() => {
     let characteristics = Object.keys(props.availableOptions).map(val => {
@@ -112,6 +114,16 @@ let ReviewForm = (props) => {
       setEmail(e.target.value);
     }
   };
+
+  let photoInputHandler = (e) => {
+    console.log(e);
+  }
+  let photoForm = (
+    <div className='photo-modal'>
+      <input type='file' onChange={photoInputHandler}/>
+      <p>hi</p>
+    </div>
+  );
 
   let dataValidation = () => {
     let currentData = {
@@ -216,7 +228,9 @@ let ReviewForm = (props) => {
           </tr>
           <tr>
             <td>Have a photo? Upload it!</td>
-            <td><button>Upload photos</button></td>
+            <td>
+              <button onClick={() => { setDisplayPhotoModal(!displayPhotoModal); }}>Upload photos</button>
+            </td>
           </tr>
 
           <tr>
@@ -273,7 +287,9 @@ let ReviewForm = (props) => {
 
   return (
     <div className='review-form-modal'>
-      <Modal onClick={onExit} componentData = {componentInformation} additionalStyling={{border: '1px solid black'}}/>
+      {displayPhotoModal &&
+      <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {setDisplayPhotoModal(false)}}/>}
+      <Modal onClick={onExit} componentData = {componentInformation}/>
     </div>
   );
 };

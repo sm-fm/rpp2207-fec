@@ -114,7 +114,6 @@ app.put('/reviews/report/', (req, res) => {
 
 
 app.post('/reviews/userReview/', (req, res) => {
-  console.log(JSON.stringify(req.body));
   const postOptions = {
     method: 'POST',
     headers: {
@@ -126,11 +125,9 @@ app.post('/reviews/userReview/', (req, res) => {
   };
   fetch(`${baseURL}/reviews/`, postOptions)
     .then((data) => {
-      console.log('success!', data.status);
       res.status(201).send(data);
     })
     .catch((err) => {
-      console.log('fail :(');
       res.status(400).send(err);
     });
 });

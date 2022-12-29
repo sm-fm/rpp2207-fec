@@ -91,7 +91,6 @@ const Ratings = {
       .catch((err) => {
         return err;
       });
-
   }
 };
 

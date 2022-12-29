@@ -155,8 +155,8 @@ const Ratings = (props) => {
       </div>
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
-          <label>{reviewListDisplayLength} reviews, sorted by </label>
-          <select data-testid='select' id='sortBy' onChange={catChange} className='reviews-pointer'>
+          <label className='heading'>{reviewListDisplayLength} reviews, sorted by </label>
+          <select data-testid='select' id='sortBy' onChange={catChange} className='reviews-pointer heading'>
             <option data-testid='select-option' value='relevance'>relevance</option>
             <option data-testid='select-option' value='newest'>newest</option>
             <option data-testid='select-option' value='helpful'>most helpful</option>
@@ -175,13 +175,13 @@ const Ratings = (props) => {
           })}
 
           {(reviewData.results.length >= 2 && reviewListDisplayLength < reviewData.results.length) &&
-          <p onClick={incrementReviewsList} className='reviews-pointer'>Show more</p>
+          <button onClick={incrementReviewsList} className='reviews-pointer show-more'>Show More</button>
           }
 
           {(reviewListDisplayLength > 2) &&
-          <p onClick={collapseReviewList} className='reviews-pointer'>Collapse reviews</p>}
+          <button onClick={collapseReviewList} className='reviews-pointer collapse-review'>Collapse Reviews</button>}
 
-          <p onClick={toggleReviewForm} className='reviews-pointer'>Review Form</p>
+          <button onClick={toggleReviewForm} className='reviews-pointer review-form'>Add a Review &nbsp;&nbsp; +</button>
           {reviewForm &&
             <>
               <ReviewForm toggleReviewForm = {toggleReviewForm} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id}/>
