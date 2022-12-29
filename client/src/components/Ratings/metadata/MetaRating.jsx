@@ -44,8 +44,8 @@ let Metarating = (props) => {
         return (
           <div key={`rating-${idx + 1} stars`} className='individual-rating-bars'>
             <div className='rating-wrapper' onClick={props.useRatings}>
-              <p style={{'paddingRight': '10px'}} className='star-number'>{idx + 1} stars</p>
-              <ReviewRectangle idx={idx + 1} val={val} ratings = {trackRatings}/>
+              <p style={{'paddingRight': '10px'}} className='star-number'><u>{idx + 1} stars</u></p>
+              <ReviewRectangle idx={idx + 1} val={val} ratings = {trackRatings} width={'175px'} height={'8px'}/>
               <p style={{'paddingLeft': '10px'}} className='star-number'>{val.votes} votes</p>
             </div>
           </div>
