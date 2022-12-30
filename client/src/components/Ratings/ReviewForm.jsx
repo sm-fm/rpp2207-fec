@@ -153,9 +153,19 @@ let ReviewForm = (props) => {
           <tr>
             <td>Would you recommend this item?</td>
             <td colSpan={2}>
-              <input type='radio' id='recommend' name='recommendSt' value={true} onChange={handleRecommend}></input>
+              <input
+                type='radio'
+                id='recommend'
+                name='recommendSt'
+                value={true}
+                onChange={handleRecommend}></input>
               <label htmlFor='recommend'>Yes</label>
-              <input type='radio' value={false} name='recommendSt' id='dontRecommend' onChange={handleRecommend}></input>
+              <input
+                type='radio'
+                value={false}
+                name='recommendSt'
+                id='dontRecommend'
+                onChange={handleRecommend}></input>
               <label htmlFor='dontRecommend'>No</label>
             </td>
           </tr>
@@ -287,18 +297,15 @@ let ReviewForm = (props) => {
 
   return (
     <div className='review-form-modal'>
-      {displayPhotoModal ?
-        <>
-          <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {
-            setDisplayPhotoModal(false);
-            setPhotoList([]);
-          }}/>
-          <Modal onClick={onExit} componentData = {componentInformation} additionalStyling={{'display': 'none'}}/>
-        </>
-        :
+      <>
+        {displayPhotoModal &&
+        <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {
+          setDisplayPhotoModal(false);
+          setPhotoList([]);
+        }}/>
+        }
         <Modal onClick={onExit} componentData = {componentInformation}/>
-
-      }
+      </>
 
     </div>
   );
