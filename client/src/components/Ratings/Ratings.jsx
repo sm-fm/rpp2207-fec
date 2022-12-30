@@ -73,11 +73,17 @@ const Ratings = (props) => {
   }, [reviewData]);
 
   useEffect(()=> {
-    setIsLoadingMeta(false);
-    setIsLoadingreview(false);
+    if (!Object.keys(metadata.ratings).length) {
+      setMetaError('Uh-oh! Something went wrong, please try again later.');
+      setReviewError('Uh-oh! Something went wrong, please try again later.');
 
-    setMetaError('');
-    setReviewError('');
+    } else {
+      setIsLoadingMeta(false);
+      setIsLoadingreview(false);
+
+      setMetaError('');
+      setReviewError('');
+    }
   }, [allData]);
 
   let catChange = (e) => {

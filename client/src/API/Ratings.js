@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const baseURL = 'http://localhost:3000/'
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {
     return fetch('reviews/?' +
@@ -52,13 +53,16 @@ const Ratings = {
       });
   },
   reportReview: (review_id) => {
-    return fetch(`reviews/report/?review_id=${review_id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
+    return fetch(baseURL + 'reviews/report/?' +
+    new URLSearchParams({
+      review_id: review_id
+    }),
+    {
+      method: 'PUT',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(() => {
         return true;
       })
