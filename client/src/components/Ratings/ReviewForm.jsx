@@ -110,7 +110,7 @@ let ReviewForm = (props) => {
           <tr>
             <td>How would you rate this product?</td>
             <td>{hf.reviewFormStars(overallRating, 'review-form', overallRatingClickHandler)}</td>
-            <td>{overallRatingMeanings[overallRating.toString()] || ''}</td>
+            <td className='rating-meaning-holder'>{overallRatingMeanings[overallRating.toString()] || ''}</td>
           </tr>
           <tr>
             <td>Would you recommend this item?</td>
@@ -238,7 +238,7 @@ let ReviewForm = (props) => {
           {!!(submissionError.length) &&
             <>
               <tr>
-                <td colSpan={2} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}.</td>
+                <td colSpan={2} style={{'maxWidth':'500px'}} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}.</td>
               </tr>
             </>
           }
