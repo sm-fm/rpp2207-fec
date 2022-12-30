@@ -289,7 +289,10 @@ let ReviewForm = (props) => {
     <div className='review-form-modal'>
       {displayPhotoModal ?
         <>
-          <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {setDisplayPhotoModal(false)}}/>
+          <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {
+            setDisplayPhotoModal(false);
+            setPhotoList([]);
+          }}/>
           <Modal onClick={onExit} componentData = {componentInformation} additionalStyling={{'display': 'none'}}/>
         </>
         :
