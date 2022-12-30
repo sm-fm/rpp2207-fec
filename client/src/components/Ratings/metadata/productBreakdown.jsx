@@ -7,7 +7,6 @@ let ProductBreakdown = (props) => {
     <div className='product-breakdown'>
       {Object.keys(props.data).map((val, idx) => {
         let ratio = (parseFloat(props.data[val].value) / 5);
-        console.log(characteristicMeanings[val]);
         return (
           <div key={idx} className='individual-characteristic'>
             <p className='product-breakdown-title'>{val}</p>

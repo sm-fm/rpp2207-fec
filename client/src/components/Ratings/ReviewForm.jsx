@@ -4,9 +4,10 @@ import Modal from './modal.jsx';
 import hf from './helperFunctions.js';
 import api from '../../API/Ratings.js';
 import characteristicMeanings from './characteristicMeaning.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCamera} from '@fortawesome/free-solid-svg-icons';
 
 let ReviewForm = (props) => {
-  console.log(props);
   const [overallRating, setOverallRating] = useState('');
   const [recommend, setRecommend] = useState(undefined);
   const [characteristics, setCharacteristics] = useState({});
@@ -16,6 +17,7 @@ let ReviewForm = (props) => {
   const [email, setEmail] = useState('');
   const [submissionError, setSubmissionError] = useState([]);
   const [photoList, setPhotoList] = useState([]);
+  const [selectedPhoto, setSelectedPhoto] = useState();
   const [displayPhotoModal, setDisplayPhotoModal] = useState(false);
 
   useEffect(() => {
@@ -71,13 +73,48 @@ let ReviewForm = (props) => {
     }
   };
 
-  let photoInputHandler = (e) => {
-    console.log(e);
-  }
+  let photoChangeHanlder = (e) => {
+    setSelectedPhoto(e.target.files[0]);
+  };
+
+  useEffect(() => {
+    if (selectedPhoto && photoList.length < 5) {
+      setPhotoList([...photoList, URL.createObjectURL(selectedPhoto)]);
+    }
+  }, [selectedPhoto]);
+
+  let photoSubmission = () => {
+    setDisplayPhotoModal(false);
+  };
+
   let photoForm = (
     <div className='photo-modal'>
-      <input type='file' onChange={photoInputHandler}/>
-      <p>hi</p>
+      <label htmlFor = 'photo-upload'>
+        Upload your photo
+        <FontAwesomeIcon className='camera-icon' icon={faCamera}/>
+        {photoList.length < 5 ?
+          <>
+            <input type='file' id='photo-upload' onChange={photoChangeHanlder} accept='image/png, image/jpg, image/jpeg'/>
+            <p className='discloser'>* Please use .png, .jpg, or .jpeg. Submit up to 5 images.</p>
+          </>
+          :
+          <>
+            <input type='file' id='photo-upload' onChange={photoChangeHanlder} accept='image/png, image/jpg, image/jpeg' disabled/>
+            <p className='discloser'>* You have reached the maximum number of uploads.</p>
+          </>
+        }
+      </label>
+      <div>
+        <button onClick={photoSubmission}>Submit</button>
+      </div>
+
+      <div className='photo-submission-thumbnails'>
+        {photoList.map((val, idx) => {
+          return (
+            <img key={'photo-submission' + idx} src = {val}/>
+          );
+        })}
+      </div>
     </div>
   );
 
@@ -103,6 +140,7 @@ let ReviewForm = (props) => {
   };
 
   let componentInformation = (
+
     <div className='review-review-form'>
       <h3>Have feedback for this product? Leave a review!</h3>
       <table className='general-review'>
@@ -249,9 +287,16 @@ let ReviewForm = (props) => {
 
   return (
     <div className='review-form-modal'>
-      {displayPhotoModal &&
-      <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {setDisplayPhotoModal(false)}}/>}
-      <Modal onClick={onExit} componentData = {componentInformation}/>
+      {displayPhotoModal ?
+        <>
+          <Modal componentData={photoForm} additionalStyling={{'zIndex': 100}} onClick={() => {setDisplayPhotoModal(false)}}/>
+          <Modal onClick={onExit} componentData = {componentInformation} additionalStyling={{'display': 'none'}}/>
+        </>
+        :
+        <Modal onClick={onExit} componentData = {componentInformation}/>
+
+      }
+
     </div>
   );
 };
