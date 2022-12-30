@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {
-    return fetch('http://localhost:3000/reviews/?' +
+    return fetch('http://3.145.6.92:3000:3000/reviews/?' +
       new URLSearchParams({
         product_id: product_id,
         sort: sort,
@@ -15,7 +15,7 @@ const Ratings = {
       });
   },
   getReviewMetadata: (id) => {
-    return fetch('http://localhost:3000/reviews/meta/?' +
+    return fetch('http://3.145.6.92:3000:3000/reviews/meta/?' +
     new URLSearchParams({
       product_id: id,
     }),
@@ -27,7 +27,7 @@ const Ratings = {
       });
   },
   helpfulReview: (review_id) => {
-    return fetch('http://localhost:3000/reviews/helpful/?' +
+    return fetch('http://3.145.6.92:3000:3000/reviews/helpful/?' +
     new URLSearchParams({
       review_id: review_id
     }),
@@ -43,7 +43,7 @@ const Ratings = {
       });
   },
   reportReview: (review_id) => {
-    return fetch(`http://localhost:3000/reviews/report/?review_id=${review_id}`,
+    return fetch(`http://3.145.6.92:3000:3000/reviews/report/?review_id=${review_id}`,
       {
         method: 'PUT'
       })
