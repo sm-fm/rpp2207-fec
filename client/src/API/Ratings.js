@@ -9,6 +9,9 @@ const Ratings = {
         count: count
       }), {
       method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(data => {
         return data.json();
@@ -21,6 +24,9 @@ const Ratings = {
     }),
     {
       method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(results => {
         return results.json();
@@ -33,6 +39,9 @@ const Ratings = {
     }),
     {
       method: 'PUT',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     }
     )
       .then(() => {
@@ -45,7 +54,10 @@ const Ratings = {
   reportReview: (review_id) => {
     return fetch(`reviews/report/?review_id=${review_id}`,
       {
-        method: 'PUT'
+        method: 'PUT',
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
       })
       .then(() => {
         return true;

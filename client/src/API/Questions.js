@@ -2,7 +2,12 @@ const fetch = require('node-fetch');
 
 const questionAPI = {
   getAllQuestions: (productId) => {
-    var options = { method: 'GET' };
+    var options = {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
 
     return fetch(`qa/questions/${productId}`, options)
       .then(results => {
@@ -17,7 +22,12 @@ const questionAPI = {
   },
 
   getAllAnswers: (questionId) => {
-    var options = { method: 'GET' };
+    var options = {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
 
     return fetch(`qa/answers/${questionId}`, options)
       .then(results => {
@@ -36,7 +46,8 @@ const questionAPI = {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     };
 
@@ -54,7 +65,8 @@ const questionAPI = {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     };
 
@@ -68,7 +80,12 @@ const questionAPI = {
   },
 
   markHelpful: (type, id) => {
-    var options = { method: 'PUT' };
+    var options = {
+      method: 'PUT',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
 
     return fetch(`qa/${type}/${id}/helpful`, options)
       .then(results => {
@@ -80,7 +97,12 @@ const questionAPI = {
   },
 
   report: (type, id) => {
-    var options = { method: 'PUT' };
+    var options = {
+      method: 'PUT',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    };
 
     return fetch(`qa/${type}/${id}/report`, options)
       .then(results => {

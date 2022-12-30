@@ -2,7 +2,10 @@
 const Overview = {
   getAllProducts: () => {
     return fetch('products', {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(results => {
         console.log(results);
@@ -15,7 +18,10 @@ const Overview = {
 
   getProductById: (id) => {
     return fetch(`products/${id}`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(result => {
         return result;
@@ -27,7 +33,10 @@ const Overview = {
 
   getStylesById: (id) => {
     return fetch(`products/${id}/styles`, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
     })
       .then(result => {
         return result;
@@ -42,7 +51,8 @@ const Overview = {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     })
       .then(() => {
@@ -54,7 +64,12 @@ const Overview = {
   },
 
   getAllReviews: (id) => {
-    return fetch(`allReviews/${id}`)
+    return fetch(`allReviews/${id}`, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(result => {
         return result.json();
       })

@@ -3,14 +3,22 @@ const fetch = require('node-fetch');
 const RelatedAPI = {
   getRelatedProducts: (id) => {
     var relatedProducts = [];
-    return fetch(`products/${id}/related`)
+    return fetch(`products/${id}/related`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(results => {
         return results.json();
       })
       .then(relatedIDs => {
         return Promise.all(
           relatedIDs.map(id => {
-            return fetch(`products/${id}`)
+            return fetch(`products/${id}`, {
+              headers: {
+                'Access-Control-Allow-Origin': '*'
+              }
+            })
               .then((result) => {
                 return result.json();
               });
@@ -21,7 +29,11 @@ const RelatedAPI = {
         relatedProducts = products;
         return Promise.all(
           products.map(product => {
-            return fetch(`products/${product.id}/styles`)
+            return fetch(`products/${product.id}/styles`, {
+              headers: {
+                'Access-Control-Allow-Origin': '*'
+              }
+            })
               .then((result) => {
                 return result.json();
               });
@@ -39,7 +51,11 @@ const RelatedAPI = {
       });
   },
   getProductById: (id) => {
-    return fetch(`products/${id}`)
+    return fetch(`products/${id}`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(json => {
         return json.json();
       })
@@ -47,7 +63,11 @@ const RelatedAPI = {
         return product;
       })
       .then((product) => {
-        return fetch(`products/${product.id}/styles`)
+        return fetch(`products/${product.id}/styles`, {
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          }
+        })
           .then((json) => {
             return json.json();
           })
