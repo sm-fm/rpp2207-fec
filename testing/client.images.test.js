@@ -14,7 +14,6 @@ import {
 } from "react-router-dom";
 import '@testing-library/jest-dom';
 const fetch = require('node-fetch');
-const onClick = jest.fn();
 
 // OVERALL IMAGES COMPONENT ---------------------------------------------------------------
 describe('Overall Images component', () => {
