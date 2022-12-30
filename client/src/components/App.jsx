@@ -111,7 +111,7 @@ const App = (props) => {
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
       <Questions objID={id}/>
       <div ref={ratingsRef}>
-        <Ratings objID={id} generateStars={generateStars} />
+        <Ratings objID={id} generateStars={generateStars} data={props.data}/>
       </div>
     </div>
   );

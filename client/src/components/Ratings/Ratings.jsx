@@ -6,7 +6,6 @@ import hf from './helperFunctions.js';
 import './rating.css';
 
 const Ratings = (props) => {
-  // use 71697 for testing
   const holderReviewData = {
     "product": "2",
     "page": 0,
@@ -18,8 +17,8 @@ const Ratings = (props) => {
   product_id = props.objID || 71697;
 
   // Refering to the review list
-  const [allData, setAllData] = useState([]);
-  const [reviewData, setReviewData] = useState(holderReviewData);
+  const [allData, setAllData] = useState(props.data.allData);
+  const [reviewData, setReviewData] = useState(props.data.allData);
   const [isLoadingreview, setIsLoadingreview] = useState(true);
   const [category, setCategory] = useState(null);
   const [reviewError, setReviewError] = useState('Loading reviews.');
@@ -27,7 +26,7 @@ const Ratings = (props) => {
   const [numberReviewsDisplayed, setNumberReviewsDisplayed] = useState(0);
 
   // Refering to metadata
-  const [metadata, setMetadata] = useState({});
+  const [metadata, setMetadata] = useState(props.data.metaData);
   const [isLoadingMeta, setIsLoadingMeta] = useState(true);
   const [ratings, setRatings] = useState([]);
   const [metaError, setMetaError] = useState('Loading metadata.');
@@ -74,27 +73,12 @@ const Ratings = (props) => {
   }, [reviewData]);
 
   useEffect(()=> {
-    ratingsAPI.getAll(product_id)
-      .then(data=> {
-        if (data[0].results.length === 0) {
-          throw new Error('No data found');
-        }
-        setMetadata(data[1]);
-        setReviewData(data[0]);
-        setAllData(data[0]);
+    setIsLoadingMeta(false);
+    setIsLoadingreview(false);
 
-        setIsLoadingMeta(false);
-        setIsLoadingreview(false);
-
-        setMetaError('');
-        setReviewError('');
-      })
-      .catch(err => {
-        let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
-        setMetaError(errMsg);
-        setReviewError(errMsg);
-      });
-  }, [props.objID]);
+    setMetaError('');
+    setReviewError('');
+  }, [allData]);
 
   let catChange = (e) => {
     setCategory(e.target.value);
@@ -131,10 +115,8 @@ const Ratings = (props) => {
   };
 
   let refreshReviewList = () => {
-    console.log(reviewData.results);
-    console.log(reviewListDisplayLength);
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
-  }
+  };
 
   return (
     <div className='ratings'>
