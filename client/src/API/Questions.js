@@ -4,7 +4,7 @@ const questionAPI = {
   getAllQuestions: (productId) => {
     var options = { method: 'GET' };
 
-    return fetch(`http://localhost:3000/qa/questions/${productId}`, options)
+    return fetch(`qa/questions/${productId}`, options)
       .then(results => {
         return results.json();
       })
@@ -19,7 +19,7 @@ const questionAPI = {
   getAllAnswers: (questionId) => {
     var options = { method: 'GET' };
 
-    return fetch(`http://localhost:3000/qa/answers/${questionId}`, options)
+    return fetch(`qa/answers/${questionId}`, options)
       .then(results => {
         return results.json();
       })
@@ -40,7 +40,7 @@ const questionAPI = {
       }
     };
 
-    fetch('http://localhost:3000/qa/questions', options)
+    fetch('qa/questions', options)
       .then(results => {
         console.log(results);
       })
@@ -58,7 +58,7 @@ const questionAPI = {
       }
     };
 
-    fetch('http://localhost:3000/qa/answers', options)
+    fetch('qa/answers', options)
       .then(results => {
         console.log(results);
       })
@@ -70,7 +70,7 @@ const questionAPI = {
   markHelpful: (type, id) => {
     var options = { method: 'PUT' };
 
-    return fetch(`http://localhost:3000/qa/${type}/${id}/helpful`, options)
+    return fetch(`qa/${type}/${id}/helpful`, options)
       .then(results => {
         return results;
       })
@@ -82,7 +82,7 @@ const questionAPI = {
   report: (type, id) => {
     var options = { method: 'PUT' };
 
-    return fetch(`http://localhost:3000/qa/${type}/${id}/report`, options)
+    return fetch(`qa/${type}/${id}/report`, options)
       .then(results => {
         return results;
       })
