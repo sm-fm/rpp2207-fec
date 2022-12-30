@@ -13,6 +13,7 @@ const SpecificStyle = (props) => {
       <img className="icon"
         src={props.style.photos[0].thumbnail_url}
         alt="thumbnail of current style"
+        loading="lazy"
         onClick={() => {
           props.setChosenStyle(props.style);
           props.setStyleClicked(props.style.name);

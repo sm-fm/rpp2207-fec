@@ -13,6 +13,7 @@ const SpecificImage = (props) => {
         <img
           id="thumbnail-img"
           alt="thumbnail of image style"
+          loading="lazy"
           style={highlight}
           src={props.photo.thumbnail_url}
           onClick={() => { props.setIndexOfMainImg(props.index); }} />

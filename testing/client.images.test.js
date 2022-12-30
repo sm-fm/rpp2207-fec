@@ -25,7 +25,7 @@ describe('Overall Images component', () => {
         photos={chosenStyleData.results[0].photos} />
     );
     const mainImg = screen.getByAltText('Image of current style');
-    expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80");
   });
 
   test('Component doesn\'t render image when not passed images', async () => {
@@ -45,7 +45,7 @@ describe('Overall Images component', () => {
     const rightButton = screen.getByTestId('right-btn');
     fireEvent.click(rightButton);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80")
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80")
   });
 
   test('Image changes to correct image upon clicking left arrow', async() => {
@@ -59,7 +59,7 @@ describe('Overall Images component', () => {
     const leftButton = screen.getByTestId('left-btn');
     fireEvent.click(leftButton);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80");
   });
 });
 
@@ -73,7 +73,7 @@ describe('Expanded View component', () => {
         indexOfExpandedImg={0} />
     );
     const mainImg = screen.getByAltText('Image of current style');
-    expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
   });
 
   test('Right arrow renders upon mounting of component', async () => {
@@ -154,7 +154,7 @@ describe('Expanded View component', () => {
     const rightButton = screen.getByTestId('right-arrow');
     fireEvent.click(rightButton);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
   });
 
   test('Image changes to correct image upon clicking left arrow', async() => {
@@ -167,7 +167,7 @@ describe('Expanded View component', () => {
     const leftButton = screen.getByTestId('left-arrow');
     fireEvent.click(leftButton);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
   });
 
   test('Image changes to correct image upon clicking circle icon', async() => {
@@ -180,7 +180,7 @@ describe('Expanded View component', () => {
     const circleBtn = screen.getByTestId('circle 1');
     fireEvent.click(circleBtn);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80");
   });
 });
 
@@ -223,7 +223,7 @@ describe('Zoom component', () => {
         img={chosenStyleData.results[0].photos[0].thumbnail_url} />
     );
     const specificImage = screen.getByAltText('main image zoomed');
-    expect(specificImage).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(specificImage).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1275&q=80");
   });
 
   test('No image is rendered if it isn\'t passed an image', async () => {

@@ -56,13 +56,14 @@ const ExpandedView = (props) => {
                 style={highlight}
                 icon={faCircle}
                 key={uuidv4()}
-                onClick={() => setIndexOfCurrentImg(index)} />
+                onClick={() => setIndexOfCurrentImg(index)} />;
             })
             : null}
         </div>
         <img
-          src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
+          src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url.replace('w=300', 'w=1000')}
           alt="Image of current style"
+          loading="lazy"
           id="expanded-img"
           onClick={() => setZoomView(true)}
         />
