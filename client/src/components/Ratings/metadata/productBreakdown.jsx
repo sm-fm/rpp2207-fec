@@ -5,7 +5,6 @@ import characteristicMeanings from '../characteristicMeaning.js';
 let ProductBreakdown = (props) => {
   return (
     <div className='product-breakdown'>
-      <h5>Product Breakdown</h5>
       {Object.keys(props.data).map((val, idx) => {
         let ratio = (parseFloat(props.data[val].value) / 5);
         console.log(characteristicMeanings[val]);

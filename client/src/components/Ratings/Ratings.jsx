@@ -143,6 +143,7 @@ const Ratings = (props) => {
 
   return (
     <div className='ratings'>
+
       <div className='metaDataDisplay'>
         {!isLoadingMeta &&
         <Metadata generateStars={props.generateStars} meta={metadata} useRatings = {useRating}/>}

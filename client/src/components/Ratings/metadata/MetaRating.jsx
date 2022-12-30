@@ -31,7 +31,6 @@ let Metarating = (props) => {
 
   return (
     <div className='meta-rating'>
-      <h5>Ratings break down</h5>
       {errMsg !== '' &&
       <p className='errorMsg'>{errMsg}</p>}
       {ratingsList.length !== 0 &&

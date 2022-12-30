@@ -75,7 +75,6 @@
   min-width: 300px;
   padding-right: 10px;
   margin-right: 10px;
-  /* border-right: 1px solid black; */
   text-align: left
 }
 
@@ -278,10 +277,12 @@
 }
 
 .ratings .metadata h3{
+  position: relative;
   font-size: 23px;
-  font-weight: 100;
+  font-weight: 200;
   color: rgb(70, 70, 70);
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .metadata h4 {
@@ -302,11 +303,11 @@
   color: rgb(90, 90, 90)
 }
 
-.metadata h5 {
-  color: rgb(70, 70, 70);
-  font-size: 17px;
-  padding: 10px 0;
-  font-weight: 700;
+.meta-rating {
+  padding-top: 10px;
+}
+.product-breakdown {
+  padding-top: 20px;
 }
 
 .individual-rating-bars .star-number,
