@@ -43,8 +43,10 @@
     "jest-environment-jsdom": "^29.3.1",
     "nock": "^13.2.9",
     "node-fetch": "^2.6.7",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
+    "react-select": "^5.7.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import Overview from './Overview/Overview.jsx';
 import Questions from './Questions/Questions.jsx';
@@ -6,10 +6,12 @@ import Ratings from './Ratings/Ratings.jsx';
 import Related from './Related/Related.jsx';
 import '../style.css';
 
-const App = () => {
+const App = (props) => {
   const params = useParams();
-  const id = params.id || '71701';
-  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
+  const id = params.id || '71697';
+  const [yourOutfit, setYourOutfit] = useState([]);
+  const [scrollToRatings, setScrollToRatings] = useState(false);
+  const ratingsRef = useRef(null);
 
   const addToOutfit = (product) => {
     console.log(yourOutfit, product);
@@ -98,13 +100,19 @@ const App = () => {
     localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
   }, [yourOutfit]);
 
+  if (scrollToRatings) {
+    window.scrollTo({top: ratingsRef.current.offsetTop, behavior: 'smooth'});
+  }
+
   return (
     <div>
       <h1>App.jsx</h1>
-      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit}/>
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars}/>
+      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
       <Questions objID={id}/>
-      <Ratings objID={id} generateStars={generateStars}/>
+      <div ref={ratingsRef}>
+        <Ratings objID={id} generateStars={generateStars} />
+      </div>
     </div>
   );
 };
