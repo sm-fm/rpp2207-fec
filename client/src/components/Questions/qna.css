@@ -1,0 +1,297 @@
+strong {
+  font-weight: bold;
+}
+#qna {
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 5px 3% 5px 3%;
+
+}
+.qna-title {
+  color: black;
+  font-size: 25px;
+	width: fit-content;
+	margin: auto;
+	padding: 10px;
+}
+.qna-container {
+  width: 90%;
+	height: 50%;
+  justify-content: center;
+	margin: 5px;
+}
+.btn {
+  position: relative;
+	border-style: hidden;
+	background-color: white;
+	cursor: pointer;
+	font-family: Times, serif;
+}
+.list-container {
+	width: 100%;
+}
+
+/* Search */
+#q-search {
+	width: 90%;
+	background-color: #EEEEEE;
+	margin: auto;
+	border-bottom: 2px solid black;
+	padding: 5px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+	font-family: Times, serif;
+}
+#search-input {
+	font-size: 17px;
+	font-family: Times, serif;
+	width: 100%;
+	border-style: hidden;
+  background-color: #EEEEEE;
+	color: #202020;
+}
+#q-search-icon {
+	display: inline;
+  color: #202020;
+	padding: 0px 15px 0px 5px;
+}
+
+/* Question List */
+#q-content {
+	margin-bottom: 10px;
+	padding: none;
+	margin: 0 5%;
+}
+.q-btn-wrapper {
+	width: 100%;
+	border-top: 2px solid black;
+	margin-top: 10px;
+	padding: 5px;
+}
+#more-q,
+#collapse-q,
+#add-q {
+	color: black;
+	border: 2px solid black;
+	margin: 5px;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 17px;
+}
+#more-q:hover,
+#collapse-q:hover,
+#add-q:hover {
+	color: white;
+	background-color: black;
+}
+
+/* Question */
+.question-container {
+	margin: 10px 0 15px 0;
+	width: 100%;
+	font-size: 19px;
+}
+#add-ans {
+	font-size: 14px;
+	text-decoration: underline;
+	margin-left: 14px;
+}
+#add-ans:hover {
+	color: #4F74F7;
+}
+
+/* Answer List */
+#a-content {
+	padding-left: 5px;
+}
+#a-list {
+	border-left: 3px solid #939393;
+	padding-left: 5px;
+}
+#more-a, #collapse-a {
+	color: #939393;
+	border: 2px solid #939393;
+	border-radius: 5px;
+	font-size: 14px;
+}
+
+#more-a:hover,
+#collapse-a:hover {
+	color: white;
+	background-color: #939393;
+}
+
+/* Answer */
+#a-name {
+	display: inline;
+	margin-left: 20px;
+}
+#a-date {
+	display: inline;
+	padding-left: 3px;
+	padding-right: 5px;
+}
+.answer-container {
+	width: 100%;
+	margin-bottom: 15px;
+	padding-left: 5px;
+}
+.a-details {
+	display: inline;
+	font-size: 14px;
+}
+.thumbnail-container {
+	margin-left: 20px;
+}
+.thumbnail {
+	max-width: 80px;
+	max-height: 80px;
+	margin: 5px 10px 0 0;
+	padding: 3px;
+	border: 2px solid #939393;
+	border-radius: 5px;
+}
+
+/* Help/Report */
+.helpful-report,
+#report, #reported {
+	display: inline;
+}
+#helpful {
+	display:inline;
+	font-size: 14px;
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+	padding-left: 5px;
+}
+
+#yes-btn,
+#report-btn,
+#reported {
+	font-size: 14px;
+	text-decoration: underline;
+}
+
+#reported {
+	color: red;
+	text-transform: uppercase;
+	margin-left: 10px;
+}
+
+#yes-btn:hover {
+	color: #2ACC4D;
+}
+#report-btn:hover {
+	color: red;
+}
+
+/*
+Possible switch the design to something more like the main qna
+Find way to darken background when on modal
+Figure out how to get item name ( Use getProductById in Overview.js )
+*/
+.form {
+	border: 2px solid black;
+	width: 60%;
+	height: auto;
+  justify-content: center;
+	margin: 40px 20% 20% 20%;
+	background-color: black;
+	font-family: Times, serif;
+	border-radius: 5px;
+	z-index: 6;
+	position: fixed;
+	top: 0;
+}
+.form-header,
+.form-footer {
+	color: white;
+	width: 100%;
+}
+.form-body {
+	background-color: white;
+	border-radius: 3px;
+	padding: 10px;
+}
+
+#form-close {
+	background-color: black;
+	color: white;
+	float: right;
+	position: relative;
+	margin-right: 5px;
+	font-family: Arial;
+	font-weight: bolder;
+	font-size: 17px;
+	cursor: pointer;
+}
+#form-title {
+	margin: auto;
+	width: fit-content;
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-size: 25px;
+}
+#form-subtitle {
+	margin: auto;
+	width: fit-content;
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+#form-question {
+	margin: 10px 0 15px 0;
+}
+#form-label {
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+#form-box {
+	height: 60px;
+}
+#form-box,
+#form-input {
+	font-family: Times, serif;
+	width: 95%;
+	margin: auto;
+	font-size: 15px;
+	border-style: hidden;
+  background-color: #EEEEEE;
+	color: #202020;
+	padding: 5px;
+	border-radius: 2px;
+	border-bottom: 2px solid black;
+}
+#form-below {
+	font-style: oblique;
+	font-size: 15px;
+}
+#form-submit {
+	margin: 10px 40% 10px 40%;
+
+	width: 20%;
+	font-size: 17px;
+	background-color: black;
+	color: white;
+	border: 2px solid white;
+	border-radius: 5px;
+	padding: 5px;
+	font-family: Times, serif;
+}
+#form-upload {
+	font-size: 14px;
+	font-family: Times, serif;
+	border: 2px solid black;
+	border-radius: 5px;
+}
+
+#form-close:hover {
+	color: red;
+}
+#form-submit:hover {
+	background-color: white;
+	color: black;
+}
+#form-upload:hover {
+	background-color: black;
+	color: white;
+}

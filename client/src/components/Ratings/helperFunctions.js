@@ -26,7 +26,40 @@ let calculateRecommended = (rec) => {
   return Math.round((parseInt(rec.true) / (parseInt(rec.true) + parseInt(rec.false))) * 100);
 };
 
+let manipulateRatings = (obj) => {
+  if (typeof(obj) !== 'object') {
+    return undefined;
+  }
+
+  var totalVotes = Object.values(obj).reduce((a, b)=>{ return parseInt(a) + parseInt(b); }, 0);
+  var resultObj = {};
+
+  var currKey, currVotes;
+  for (let i = 0; i < Object.keys(obj).length; i++) {
+    currKey = Object.keys(obj)[i];
+    currVotes = parseInt(obj[currKey]);
+
+    resultObj[currKey] = {'votes': currVotes, 'ratio': parseFloat((currVotes / totalVotes).toFixed(2))};
+  }
+
+  for (let i = 0; i < 5; i++) {
+    if (resultObj[i + 1] === undefined) {
+      resultObj[i + 1] = {'votes': 0, 'ratio': 0};
+    }
+  }
+  return resultObj;
+};
+
+let returnMin = (a, b) => {
+  if (typeof(a) !== typeof(b)) {
+    return undefined;
+  }
+  return (a > b) ? b : a;
+};
+
 module.exports = {
   calculateAverageReviews: calculateAverageReviews,
-  calculateRecommended: calculateRecommended
+  calculateRecommended: calculateRecommended,
+  manipulateRatings: manipulateRatings,
+  returnMin: returnMin
 };
