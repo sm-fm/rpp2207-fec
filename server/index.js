@@ -137,7 +137,7 @@ app.put('/reviews/helpful/', (req, res) => {
 //report a review
 app.put('/reviews/report/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
-    .then((data) => {
+    .then(() => {
       res.status(200).send(true);
     })
     .catch(err => {
