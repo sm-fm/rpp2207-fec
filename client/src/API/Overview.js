@@ -14,7 +14,7 @@ const Overview = {
   },
 
   getProductById: (id) => {
-    return fetch(`http://3.145.6.92:3000:3000/products/${id}`, {
+    return fetch(`http://3.145.6.92:3000/products/${id}`, {
       method: 'GET'
     })
       .then(result => {
@@ -26,7 +26,7 @@ const Overview = {
   },
 
   getStylesById: (id) => {
-    return fetch(`http://3.145.6.92:3000:3000/products/${id}/styles`, {
+    return fetch(`http://3.145.6.92:3000/products/${id}/styles`, {
       method: 'GET'
     })
       .then(result => {
@@ -38,7 +38,7 @@ const Overview = {
   },
 
   addToCart: (data) => {
-    return fetch('http://3.145.6.92:3000:3000/cart', {
+    return fetch('http://3.145.6.92:3000/cart', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -54,7 +54,7 @@ const Overview = {
   },
 
   getAllReviews: (id) => {
-    return fetch(`http://3.145.6.92:3000:3000/allReviews/${id}`)
+    return fetch(`http://3.145.6.92:3000/allReviews/${id}`)
       .then(result => {
         return result.json();
       })
