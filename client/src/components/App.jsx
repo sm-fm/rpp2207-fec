@@ -14,17 +14,13 @@ const App = (props) => {
   const ratingsRef = useRef(null);
 
   const addToOutfit = (product) => {
-    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
       setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
   };
 
   const removeFromOutfit = (product) => {
-    console.log('yourOutfit: ', yourOutfit, 'product to remove: ', product);
     const id = product.id;
-    const newOutfit = yourOutfit.filter(outfit => outfit.id !== id);
-    console.log(newOutfit);
     setYourOutfit(yourOutfit.filter(outfit => outfit.id !== id));
   };
 

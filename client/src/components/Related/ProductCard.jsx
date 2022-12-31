@@ -6,7 +6,6 @@ const ProductCard = (props) => {
   const stars = props.generateStars(props.avgRatings, 'related');
 
   const routeChange = () => {
-    console.log('navigating');
     const path = `/${props.product.id.toString()}`;
     navigate(path);
   };
