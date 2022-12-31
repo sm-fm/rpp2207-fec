@@ -83,7 +83,6 @@ app.get('/reviews/meta', (req, res) => {
       res.status(200).send(results);
     })
     .catch(err => {
-      console.log(err);
       res.status(400).send(err);
     });
 });
@@ -92,7 +91,6 @@ app.get('/reviews/meta', (req, res) => {
 app.put('/reviews/helpful/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
     .then((data) => {
-      console.log('data: ', data);
       res.status(200).send(true);
     })
     .catch(err => {
@@ -130,6 +128,11 @@ app.post('/reviews/userReview/', (req, res) => {
     .catch((err) => {
       res.status(400).send(err);
     });
+});
+
+app.post('/reviews/photoUpload', (req, res) => {
+  console.log(req.query);
+  console.log(req.body);
 });
 // GET Questions
 app.get('/qa/questions/:id', (req, res) => {

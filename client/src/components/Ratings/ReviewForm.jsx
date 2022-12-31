@@ -73,8 +73,11 @@ let ReviewForm = (props) => {
     }
   };
 
-  let photoChangeHanlder = (e) => {
+  let photoChangeHandler = (e) => {
+    console.log(e.target.files[0]);
+    const file = e.target.files[0];
     setSelectedPhoto(e.target.files[0]);
+    api.submitUserPhoto(file);
   };
 
   useEffect(() => {
@@ -94,12 +97,12 @@ let ReviewForm = (props) => {
         <FontAwesomeIcon className='camera-icon' icon={faCamera}/>
         {photoList.length < 5 ?
           <>
-            <input type='file' id='photo-upload' onChange={photoChangeHanlder} accept='image/png, image/jpg, image/jpeg'/>
+            <input type='file' id='photo-upload' onChange={photoChangeHandler} accept='image/png, image/jpg, image/jpeg'/>
             <p className='discloser'>* Please use .png, .jpg, or .jpeg. Submit up to 5 images.</p>
           </>
           :
           <>
-            <input type='file' id='photo-upload' onChange={photoChangeHanlder} accept='image/png, image/jpg, image/jpeg' disabled/>
+            <input type='file' id='photo-upload' accept='image/png, image/jpg, image/jpeg' disabled/>
             <p className='discloser'>* You have reached the maximum number of uploads.</p>
           </>
         }

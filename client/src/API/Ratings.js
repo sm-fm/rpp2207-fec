@@ -91,6 +91,19 @@ const Ratings = {
       .catch((err) => {
         return err;
       });
+  },
+  submitUserPhoto: (file) => {
+    console.log(file);
+    return fetch('reviews/photoUpload', {
+      method: 'POST',
+      body: file
+    })
+      .then(data => {
+        return data;
+      })
+      .catch(err => {
+        return err;
+      })
   }
 };
 
