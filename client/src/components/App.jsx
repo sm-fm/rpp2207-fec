@@ -9,7 +9,7 @@ import '../style.css';
 const App = (props) => {
   const params = useParams();
   const id = params.id || '71697';
-  const [yourOutfit, setYourOutfit] = useState([]);
+  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
   const [scrollToRatings, setScrollToRatings] = useState(false);
   const ratingsRef = useRef(null);
 
@@ -21,7 +21,10 @@ const App = (props) => {
   };
 
   const removeFromOutfit = (product) => {
+    console.log('yourOutfit: ', yourOutfit, 'product to remove: ', product);
     const id = product.id;
+    const newOutfit = yourOutfit.filter(outfit => outfit.id !== id);
+    console.log(newOutfit);
     setYourOutfit(yourOutfit.filter(outfit => outfit.id !== id));
   };
 
@@ -106,9 +109,8 @@ const App = (props) => {
 
   return (
     <div>
-      <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} data={props.data} />
       <Questions objID={id}/>
       <div ref={ratingsRef}>
         <Ratings objID={id} generateStars={generateStars} data={props.data}/>
