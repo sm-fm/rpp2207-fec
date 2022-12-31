@@ -3,9 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 
 let Modal = (props) => {
-  console.log('modal is loading in');
   return (
-    <div className='reviews-modal' onBlur={props.onClick}>
+    <div className='reviews-modal'>
       <div className='image-wrapper'>
         <span id='reviews-modal-overlay' className='review-exit-modal' onClick={props.onClick}><FontAwesomeIcon icon={faXmark} /></span>
         <img src={props.src}

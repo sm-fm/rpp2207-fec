@@ -32,7 +32,6 @@ let ReviewCard = (props) => {
   }
 
   let imageModal = (e) => {
-    console.log(e.target);
     setModal(<Modal src={e.target.src} onClick={onModalClick}/>);
   };
 

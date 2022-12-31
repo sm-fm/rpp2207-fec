@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import Images from './ImageViews/Images.jsx';
 import StyleSelector from './StylesSelector/StyleSelector.jsx';
@@ -7,7 +7,6 @@ import ExpandedView from './ImageViews/ExpandedView.jsx';
 import Description from './ProductInfo/Description.jsx';
 
 const Overview = (props) => {
-
   const product = props.data.product;
   const styles = props.data.styles;
   const [chosenStyle, setChosenStyle] = useState(props.data.chosenStyle);
@@ -17,8 +16,15 @@ const Overview = (props) => {
   const [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
   const [skus, setSkus] = useState(props.data.skus);
   const reviews = props.data.reviews;
-  const stars = props.generateStars(props.data.averageRating, 'overview');
+  const stars = props.generateStars(props.data.avgRatings, 'overview');
 
+  if (Object.keys(props.data).length === 0) {
+    return (
+      <>
+        <p>Something went wrong</p>;
+      </>
+    );
+  }
   if (!expandedView) {
     return (
       <div id="main-overview">
@@ -63,7 +69,8 @@ const Overview = (props) => {
         </div>
       </div>
     );
-  } else {
+  }
+  if (expandedView) {
     return (
       <div id="main-overview">
         <ExpandedView

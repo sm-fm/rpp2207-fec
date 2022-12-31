@@ -126,7 +126,6 @@ app.get('/reviews/meta', (req, res) => {
 app.put('/reviews/helpful/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
     .then((data) => {
-      console.log('data: ', data);
       res.status(200).send(true);
     })
     .catch(err => {
