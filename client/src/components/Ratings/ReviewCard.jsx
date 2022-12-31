@@ -34,7 +34,8 @@ let ReviewCard = (props) => {
   let imageModal = (e) => {
     let componentInfo = (
       <img src={e.target.src}
-        alt='Sorry, the image could not be loaded at this time, please try again later.'/>
+        alt='Sorry, the image could not be loaded at this time, please try again later.'
+        loading ='lazy'/>
     );
     setModal(<Modal src={e.target.src} onClick={onModalClick} componentData={componentInfo}/>);
   };
@@ -111,6 +112,7 @@ let ReviewCard = (props) => {
               src={element.url}
               alt={`${props.data.reviewer_name} image - ${idx + 1}`}
               onClick={imageModal}
+              loading ='lazy'
             />
           );
         })}

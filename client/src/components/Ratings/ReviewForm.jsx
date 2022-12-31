@@ -73,10 +73,19 @@ let ReviewForm = (props) => {
     }
   };
 
+  let encodeImageFileAsURL = (file) => {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      console.log('RESULT', reader.result);
+    };
+    return reader.readAsDataURL(file);
+  };
+
   let photoChangeHandler = (e) => {
     console.log(e.target.files[0]);
     const file = e.target.files[0];
     setSelectedPhoto(e.target.files[0]);
+    console.log(encodeImageFileAsURL(file));
     api.submitUserPhoto(file);
   };
 
