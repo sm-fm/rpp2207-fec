@@ -146,9 +146,19 @@ app.post('/reviews/photoUpload', upload.any(), (req, res) => {
   cloudinary.uploader.upload(`${req.files[0].path}`, {public_id: req.files[0].filename})
     .then((data) => {
       res.status(200).send({url: data.url});
+      fs.unlink(`${req.files[0].path}`, (err) => {
+        if (err) {
+          console.log('There was an error');
+        }
+      });
     })
     .catch(err => {
       res.status(400).send(err);
+      fs.unlink(`${req.files[0].path}`, (err) => {
+        if (err) {
+          console.log('There was an error');
+        }
+      });
     });
 });
 
