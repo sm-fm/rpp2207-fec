@@ -24,7 +24,7 @@ describe('Overall Images component', () => {
         photos={chosenStyleData.results[0].photos} />
     );
     const mainImg = screen.getByAltText('Image of current style');
-    expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80");
+    expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
   });
 
   test('Component doesn\'t render image when not passed images', async () => {
@@ -44,7 +44,7 @@ describe('Overall Images component', () => {
     const rightButton = screen.getByTestId('right-btn');
     fireEvent.click(rightButton);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80")
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80")
   });
 
   test('Image changes to correct image upon clicking left arrow', async() => {
@@ -58,7 +58,7 @@ describe('Overall Images component', () => {
     const leftButton = screen.getByTestId('left-btn');
     fireEvent.click(leftButton);
     const img = screen.getByAltText('Image of current style');
-    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=850&q=80");
+    expect(img).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80");
   });
 });
 
@@ -191,7 +191,7 @@ describe('SpecificImage component', () => {
         photo={chosenStyleData.results[0].photos[0]} />
     );
     const specificImage = screen.getByAltText('thumbnail of image style');
-    expect(specificImage).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(specificImage).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=90&q=80");
   });
 
   test('No image is rendered when compnent is not passed one', async () => {

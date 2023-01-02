@@ -4,10 +4,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 require('dotenv').config();
+var compression = require('compression');
 
+app.use(compression());
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 const PATH = 3000;
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
@@ -108,7 +109,7 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/meta', (req, res) => {
+app.get('/reviews/meta/', (req, res) => {
   fetch(`${baseURL}/reviews/meta/?product_id=${req.query.product_id}`, getOptions)
     .then(results => {
       return results.json();

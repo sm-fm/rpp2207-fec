@@ -11,9 +11,10 @@ const SpecificStyle = (props) => {
         : null
       }
       <img className="icon"
-        src={props.style.photos[0].thumbnail_url}
+        src={props.style.photos[0].thumbnail_url
+          ? props.style.photos[0].thumbnail_url.replace('w=300', 'w=90')
+          : null}
         alt="thumbnail of current style"
-        loading="lazy"
         onClick={() => {
           props.setChosenStyle(props.style);
           props.setStyleClicked(props.style.name);
