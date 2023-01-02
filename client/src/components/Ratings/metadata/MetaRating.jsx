@@ -8,7 +8,6 @@ let Metarating = (props) => {
   let [errMsg, setErrMsg] = useState('');
 
   let trackRatings = (e) => {
-    console.log(e);
     props.useRatings(e)
       .then(data => {
         let newList = data || [];
