@@ -102,9 +102,13 @@ app.get('/reviews/meta', (req, res) => {
 app.put('/reviews/helpful/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
     .then((data) => {
-      res.status(200).send(true);
+      if (Object.keys(data).length === 0) {
+        throw new Error('There is an error when trying to report helpfulness.', data);
+      }
+      res.status(200).send(data);
     })
     .catch(err => {
+      console.log(err);
       res.status(400).send(err);
     });
 });

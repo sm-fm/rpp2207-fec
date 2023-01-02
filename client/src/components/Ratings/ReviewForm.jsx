@@ -173,6 +173,7 @@ let ReviewForm = (props) => {
           }
           setServerSubmissionError('');
           props.toggleReviewForm(true);
+          props.getReviewList();
         })
         .catch(err => {
           setServerSubmissionError('There was an error when trying to submit your review. Please try again later.');

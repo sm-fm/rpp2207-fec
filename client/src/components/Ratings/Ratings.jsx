@@ -43,10 +43,9 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', page = 1, count = 500) => {
+  let getReviewList = (sort = category || 'relevant', page = 1, count = 500) => {
     return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
-        console.log('Success!', data);
         setAllData(data);
         return data;
       })
@@ -102,7 +101,7 @@ const Ratings = (props) => {
 
   let catChange = (e) => {
     setCategory(e.target.value);
-    getReviewList(product_id, e.target.value);
+    getReviewList(e.target.value);
   };
 
   let useRating = async (e) => {
@@ -194,7 +193,7 @@ const Ratings = (props) => {
           <button onClick={toggleReviewForm} className='reviews-pointer review-form'>Add a Review &nbsp;&nbsp; +</button>
           {reviewForm &&
             <>
-              <ReviewForm toggleReviewForm = {toggleReviewForm.bind(this)} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id}/>
+              <ReviewForm toggleReviewForm = {toggleReviewForm} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id} getReviewList={getReviewList}/>
             </>
           }
 

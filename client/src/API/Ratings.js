@@ -36,11 +36,17 @@ const Ratings = {
       method: 'PUT',
     }
     )
-      .then(() => {
-        return true;
+      .then((data) => {
+        return data.json();
+      })
+      .then(data => {
+        if (Object.keys(data).length === 0) {
+          throw new Error('Fail');
+        }
+        return data;
       })
       .catch(err => {
-        return err;
+        return false;
       });
   },
   reportReview: (review_id) => {
