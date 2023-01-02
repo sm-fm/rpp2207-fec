@@ -29,8 +29,8 @@ let ReviewForm = (props) => {
     setCharacteristics(characteristics);
   }, [props.availableOptions]);
 
-  let onExit = (e) => {
-    props.toggleReviewForm(e);
+  let onExit = () => {
+    props.toggleReviewForm();
   };
 
   let overallRatingMeanings = {
@@ -172,7 +172,7 @@ let ReviewForm = (props) => {
             throw new Error('There was an issue');
           }
           setServerSubmissionError('');
-          props.toggleReviewForm(true);
+          props.toggleReviewForm(true, true);
           props.getReviewList();
         })
         .catch(err => {

@@ -418,3 +418,20 @@
   margin-right: 10px;
   border-radius: 10%;
 }
+
+.ratings .successful-form {
+  color: rgb(10, 191, 58);
+  animation-name: success;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+@keyframes success {
+  from {}
+  to {
+    color: white;
+    visibility: hidden;
+  }
+}

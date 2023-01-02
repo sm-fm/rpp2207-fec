@@ -35,7 +35,7 @@ const Ratings = (props) => {
 
 
   const [reviewForm, setReviewForm] = useState(false);
-  const [reviewFormInformation, setReviewFormInformation] = useState('');
+  const [reviewFormInformation, setReviewFormInformation] = useState(false);
   /**
    *
    * @param {*} id - product_id which can be found from the url
@@ -137,7 +137,7 @@ const Ratings = (props) => {
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
   };
 
-  let toggleReviewForm = (optionalParamForPostReviewSubmission) => {
+  let toggleReviewForm = (e, optionalParamForPostReviewSubmission) => {
     setReviewForm(!reviewForm);
 
     if (optionalParamForPostReviewSubmission) {
@@ -168,8 +168,10 @@ const Ratings = (props) => {
           </select>
         </div>
 
-        {setReviewFormInformation &&
-          <p style={{color: 'rgb(10, 191, 58)'}}>{reviewFormInformation}</p>
+        {reviewFormInformation ?
+          <p style={{'animation-play-state': 'running'}} className='successful-form'>{reviewFormInformation}</p>
+          :
+          null
         }
         {!isLoadingreview &&
         <div className='userReviews'>
