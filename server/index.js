@@ -3,11 +3,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+const upload = multer({dest: './photoHolder'});
+const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(bodyParser());
+
+cloudinary.config({
+  cloud_name: "dn9heevps",
+  api_key: process.env.PHOTO_API_KEY,
+  api_secret: process.env.PHOTO_API_SECRET
+});
 
 
 const PATH = 3000;
@@ -130,9 +141,42 @@ app.post('/reviews/userReview/', (req, res) => {
     });
 });
 
-app.post('/reviews/photoUpload', (req, res) => {
-  console.log(req.query);
-  console.log(req.body);
+app.post('/reviews/photoUpload', upload.any(), (req, res) => {
+  console.log(req.files);
+  fs.readFile(req.files[1].path, (error1, prefixData) => {
+    let prefix = prefixData.toString();
+    fs.readFile(req.files[0].path, (error2, photoData) => {
+      let theData = photoData.toString('base64');
+      let finalData = `${prefix},${theData}`;
+      fs.writeFile(`${req.files[0].path}-base64`, finalData, (error3) => {
+        if (error3) {
+          console.log(error3);
+        } else {
+          //${req.files[0].path}-base64
+          cloudinary.uploader.upload(`${req.files[0].path}`, {public_id: req.files[0].filename})
+            .then((data) => {
+              console.log('it worked: ', data);
+            })
+            .catch(err => {
+              console.log('There was an error: ', err);
+            });
+        }
+      });
+    });
+  // fs.readFile(req.file.path, (err, data) => {
+  //   let theData = data.toString('base64');
+  //   fs.writeFile(`${req.file.path}-base64`, theData, (err, data) => {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       cloudinary.uploader.upload('/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/photoHolder/2b5330550e703a1a91b0e8f6eefa3ae2-base64', {public_id: req.file.filename})
+  //         .then((data) => {
+  //           console.log('it worked: ', data);
+  //         })
+  //         .catch(err => {
+  //           console.log('There was an error: ', err);
+  //         });
+  });
 });
 // GET Questions
 app.get('/qa/questions/:id', (req, res) => {

@@ -73,20 +73,26 @@ let ReviewForm = (props) => {
     }
   };
 
-  let encodeImageFileAsURL = (file) => {
+  let encodeImageFileAsURL = async (file) => {
     var reader = new FileReader();
-    reader.onloadend = function() {
-      console.log('RESULT', reader.result);
-    };
-    return reader.readAsDataURL(file);
+    return new Promise((resolve, reject) => {
+      let data = reader.readAsDataURL(file);
+      reader.onloadend = function() {
+        console.log('RESULT', reader.result);
+        if (reader.result) {
+          resolve(reader.result);
+        } else {
+          reject('didnt work');
+        }
+      };
+    })
   };
 
-  let photoChangeHandler = (e) => {
-    console.log(e.target.files[0]);
+  let photoChangeHandler = async (e) => {
     const file = e.target.files[0];
-    setSelectedPhoto(e.target.files[0]);
-    console.log(encodeImageFileAsURL(file));
-    api.submitUserPhoto(file);
+    setSelectedPhoto(file);
+    let encoded = await encodeImageFileAsURL(file);
+    api.submitUserPhoto({file: encoded});
   };
 
   useEffect(() => {

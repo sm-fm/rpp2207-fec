@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const Buffer = require('buffer').Buffer;
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {
     return fetch('http://localhost:3000/reviews/?' +
@@ -93,17 +94,25 @@ const Ratings = {
       });
   },
   submitUserPhoto: (file) => {
-    console.log(file);
+    console.log(file.file);
+    let data = new Blob([file.file]);
+    const payload = new FormData();
+    // console.log(data);
+    // console.log(file.file.split(',')[0]);
+    payload.append('imageData', data, 'imageData');
+    payload.append('prefix', new Blob([file.file.split(',')[0]]), 'prefix');
+    console.log(payload.getAll('prefix'))
+    console.log(payload.getAll('imageData'));
     return fetch('reviews/photoUpload', {
       method: 'POST',
-      body: file
+      body: payload
     })
       .then(data => {
         return data;
       })
       .catch(err => {
         return err;
-      })
+      });
   }
 };
 
