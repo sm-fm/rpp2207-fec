@@ -14,7 +14,7 @@ let Metadata = (props) => {
           <h4>{averageRating}</h4>
         </div>
         <div className='average-ratings-holder'>
-          {props.generateStars(averageRating, 'metaDataHeader', 'rgb(80, 80, 80)', '14px')}
+          {props.generateStars(averageRating, 'metaDataHeader', 'rgb(80, 80, 80)', '15px')}
         </div>
       </div>
       <p className='recommended'>✓ {rec}% of users recommend this product.</p>

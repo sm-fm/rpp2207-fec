@@ -141,20 +141,6 @@ describe('General test of the Ratings component', () => {
   });
 
   test('happy path - should properly display data when it recieves data', async () => {
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
-      .reply(200, sampleReview);
-
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/meta/?product_id=71697')
-      .reply(200, sampleMeta);
-
     const { container } = render(<Ratings
       objID={ 71697 }
       generateStars = {() => { return 'stars'; }}
@@ -168,20 +154,6 @@ describe('General test of the Ratings component', () => {
   });
 
   test('should respond to changes in sort by drop downs', async () => {
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
-      .reply(200, sampleReview);
-
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/meta/?product_id=71697')
-      .reply(200, sampleMeta);
-
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
@@ -206,17 +178,6 @@ describe('General test of the Ratings component', () => {
 });
 
 describe('Testing of Metareveiws: ', () => {
-  // test('Should filter ratings when a rating bar is clicked', async () => {
-  //   nock('https://localhost:3000')
-  //     .defaultReplyHeaders({
-  //       'access-control-allow-origin': '*',
-  //     })
-  //     .get('/reviews/?product_id=71697&sort=newest&page=1&count=5')
-  //     .reply(200, sampleMeta);
-
-  //   expect(true).toBeTrue;
-  // });
-
   test('Should call the ratings filter function when a rating is clicked', async () => {
     let testClick = 0;
     const { container } = render(<MetaData
@@ -268,7 +229,7 @@ describe('Testing of reviews', () => {
         'access-control-allow-origin': '*',
       })
       .put('/reviews/helpful/?review_id=1277082')
-      .reply(200, true);
+      .reply(200, {size: 0, link: 0});
 
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}

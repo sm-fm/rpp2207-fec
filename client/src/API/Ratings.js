@@ -1,8 +1,9 @@
 const fetch = require('node-fetch');
-const Buffer = require('buffer').Buffer;
+const testing = true;
+const apiUrl = testing ? 'http://localhost:3000/' : '';
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {
-    return fetch('reviews/?' +
+    return fetch(apiUrl + 'reviews/?' +
       new URLSearchParams({
         product_id: product_id,
         sort: sort,
@@ -19,7 +20,7 @@ const Ratings = {
       });
   },
   getReviewMetadata: (id) => {
-    return fetch('reviews/meta/?' +
+    return fetch(apiUrl + 'reviews/meta/?' +
     new URLSearchParams({
       product_id: id,
     }),
@@ -34,7 +35,7 @@ const Ratings = {
       });
   },
   helpfulReview: (review_id) => {
-    return fetch('reviews/helpful/?' +
+    return fetch(apiUrl + 'reviews/helpful/?' +
     new URLSearchParams({
       review_id: review_id
     }),
@@ -46,6 +47,7 @@ const Ratings = {
     }
     )
       .then((data) => {
+        console.log('API callkL: ', data);
         return data.json();
       })
       .then(data => {
@@ -55,11 +57,12 @@ const Ratings = {
         return data;
       })
       .catch(err => {
+        console.log('There was an err, ', err);
         return false;
       });
   },
   reportReview: (review_id) => {
-    return fetch('reviews/report/?' +
+    return fetch(apiUrl + 'reviews/report/?' +
     new URLSearchParams({
       review_id: review_id
     }),
@@ -88,7 +91,7 @@ const Ratings = {
       chars[characteristics[i].id] = characteristics[i].value;
     }
 
-    return fetch('http://localhost:3000/reviews/userReview/', {
+    return fetch(apiUrl + 'reviews/userReview/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',
@@ -120,7 +123,7 @@ const Ratings = {
     let data = new Blob([file.file]);
     const payload = new FormData();
     payload.append('imageData', data, 'imageData');
-    return fetch('reviews/photoUpload', {
+    return fetch(apiUrl + 'reviews/photoUpload', {
       method: 'POST',
       body: payload
     })
