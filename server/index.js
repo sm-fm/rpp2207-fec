@@ -141,43 +141,17 @@ app.post('/reviews/userReview/', (req, res) => {
     });
 });
 
+//Review photo submission
 app.post('/reviews/photoUpload', upload.any(), (req, res) => {
-  console.log(req.files);
-  fs.readFile(req.files[1].path, (error1, prefixData) => {
-    let prefix = prefixData.toString();
-    fs.readFile(req.files[0].path, (error2, photoData) => {
-      let theData = photoData.toString('base64');
-      let finalData = `${prefix},${theData}`;
-      fs.writeFile(`${req.files[0].path}-base64`, finalData, (error3) => {
-        if (error3) {
-          console.log(error3);
-        } else {
-          //${req.files[0].path}-base64
-          cloudinary.uploader.upload(`${req.files[0].path}`, {public_id: req.files[0].filename})
-            .then((data) => {
-              console.log('it worked: ', data);
-            })
-            .catch(err => {
-              console.log('There was an error: ', err);
-            });
-        }
-      });
+  cloudinary.uploader.upload(`${req.files[0].path}`, {public_id: req.files[0].filename})
+    .then((data) => {
+      res.status(200).send({url: data.url});
+    })
+    .catch(err => {
+      res.status(400).send(err);
     });
-  // fs.readFile(req.file.path, (err, data) => {
-  //   let theData = data.toString('base64');
-  //   fs.writeFile(`${req.file.path}-base64`, theData, (err, data) => {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       cloudinary.uploader.upload('/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/photoHolder/2b5330550e703a1a91b0e8f6eefa3ae2-base64', {public_id: req.file.filename})
-  //         .then((data) => {
-  //           console.log('it worked: ', data);
-  //         })
-  //         .catch(err => {
-  //           console.log('There was an error: ', err);
-  //         });
-  });
 });
+
 // GET Questions
 app.get('/qa/questions/:id', (req, res) => {
   var id = `product_id=${req.params.id}`;

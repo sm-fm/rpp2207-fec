@@ -94,19 +94,16 @@ const Ratings = {
       });
   },
   submitUserPhoto: (file) => {
-    console.log(file.file);
     let data = new Blob([file.file]);
     const payload = new FormData();
-    // console.log(data);
-    // console.log(file.file.split(',')[0]);
     payload.append('imageData', data, 'imageData');
-    payload.append('prefix', new Blob([file.file.split(',')[0]]), 'prefix');
-    console.log(payload.getAll('prefix'))
-    console.log(payload.getAll('imageData'));
     return fetch('reviews/photoUpload', {
       method: 'POST',
       body: payload
     })
+      .then(data => {
+        return data.json();
+      })
       .then(data => {
         return data;
       })

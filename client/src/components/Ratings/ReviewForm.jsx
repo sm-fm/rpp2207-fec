@@ -76,28 +76,27 @@ let ReviewForm = (props) => {
   let encodeImageFileAsURL = async (file) => {
     var reader = new FileReader();
     return new Promise((resolve, reject) => {
-      let data = reader.readAsDataURL(file);
+      reader.readAsDataURL(file);
       reader.onloadend = function() {
-        console.log('RESULT', reader.result);
         if (reader.result) {
           resolve(reader.result);
         } else {
           reject('didnt work');
         }
       };
-    })
+    });
   };
 
   let photoChangeHandler = async (e) => {
     const file = e.target.files[0];
-    setSelectedPhoto(file);
     let encoded = await encodeImageFileAsURL(file);
-    api.submitUserPhoto({file: encoded});
+    let result = await api.submitUserPhoto({file: encoded});
+    setSelectedPhoto(result.url);
   };
 
   useEffect(() => {
     if (selectedPhoto && photoList.length < 5) {
-      setPhotoList([...photoList, URL.createObjectURL(selectedPhoto)]);
+      setPhotoList([...photoList, selectedPhoto]);
     }
   }, [selectedPhoto]);
 
@@ -129,7 +128,7 @@ let ReviewForm = (props) => {
       <div className='photo-submission-thumbnails'>
         {photoList.map((val, idx) => {
           return (
-            <img key={'photo-submission' + idx} src = {val}/>
+            <img key={'photo-submission' + idx} src = {val} onClick={() => { window.open(val); }}/>
           );
         })}
       </div>
