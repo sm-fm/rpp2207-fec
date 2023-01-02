@@ -19,6 +19,7 @@ let ReviewForm = (props) => {
   const [photoList, setPhotoList] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState();
   const [displayPhotoModal, setDisplayPhotoModal] = useState(false);
+  const [imageProcessing, setImageProcessing] = useState(false);
 
   useEffect(() => {
     let characteristics = Object.keys(props.availableOptions).map(val => {
@@ -90,8 +91,10 @@ let ReviewForm = (props) => {
   let photoChangeHandler = async (e) => {
     const file = e.target.files[0];
     let encoded = await encodeImageFileAsURL(file);
+    setImageProcessing(true);
     let result = await api.submitUserPhoto({file: encoded});
     setSelectedPhoto(result.url);
+    setImageProcessing(false);
   };
 
   useEffect(() => {
@@ -121,9 +124,19 @@ let ReviewForm = (props) => {
           </>
         }
       </label>
-      <div>
-        <button onClick={photoSubmission}>Submit</button>
-      </div>
+      {photoList.length < 5 ?
+        <div>
+          <button onClick={photoSubmission}>Submit</button>
+          {imageProcessing ?
+            <p style={{'display':'inline-block'}}>Image is processing, please wait...</p>
+            :
+            null
+          }
+        </div>
+        :
+        null
+      }
+
 
       <div className='photo-submission-thumbnails'>
         {photoList.map((val, idx) => {
