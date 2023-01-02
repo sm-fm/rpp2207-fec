@@ -20,6 +20,7 @@ let ReviewForm = (props) => {
   const [selectedPhoto, setSelectedPhoto] = useState();
   const [displayPhotoModal, setDisplayPhotoModal] = useState(false);
   const [imageProcessing, setImageProcessing] = useState(false);
+  const [serverSubmissionError, setServerSubmissionError] = useState('');
 
   useEffect(() => {
     let characteristics = Object.keys(props.availableOptions).map(val => {
@@ -156,7 +157,8 @@ let ReviewForm = (props) => {
       rating: overallRating,
       recommend: recommend,
       reviewBody: reviewBody,
-      reviewSummary: reviewSummary
+      reviewSummary: reviewSummary,
+      photos: photoList,
     };
 
     let errors = hf.reviewFormValidation(currentData, hf.validationRules);
@@ -164,8 +166,17 @@ let ReviewForm = (props) => {
       setSubmissionError(Object.values(errors));
     } else {
       setSubmissionError({});
-      api.userReview(parseInt(props.product_id), currentData);
-
+      api.userReview(parseInt(props.product_id), currentData)
+        .then(data => {
+          if (Object.keys(data).length === 0) {
+            throw new Error('There was an issue');
+          }
+          setServerSubmissionError('');
+          props.toggleReviewForm(true);
+        })
+        .catch(err => {
+          setServerSubmissionError('There was an error when trying to submit your review. Please try again later.');
+        });
     }
   };
 
@@ -316,7 +327,15 @@ let ReviewForm = (props) => {
           {!!(submissionError.length) &&
             <>
               <tr>
-                <td colSpan={2} style={{'maxWidth':'500px'}} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}.</td>
+                <td colSpan={2} style={{'maxWidth': '500px'}} className='discloser review-form-err'>Your submission could not be submitted due to the following reason(s): {submissionError.join(', ')}.</td>
+              </tr>
+            </>
+          }
+
+          {!!(serverSubmissionError) &&
+            <>
+              <tr>
+                <td colSpan={2} style={{'maxWidth': '500px'}} className='discloser review-form-err'>{serverSubmissionError}</td>
               </tr>
             </>
           }

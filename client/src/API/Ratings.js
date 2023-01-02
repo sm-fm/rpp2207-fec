@@ -55,14 +55,13 @@ const Ratings = {
         return err;
       });
   },
-  getAll: (product_id, sort = 'relevant', page = 1, count = 100) => {
+  getAll: (product_id, sort = 'relevant', page = 1, count = 500) => {
     return Promise.all([Ratings.getReviewList(product_id, sort, page, count), Ratings.getReviewMetadata(product_id)])
       .then(data => {
         return data;
       });
   },
   userReview: (review_id, {rating, recommend, characteristics, reviewSummary, reviewBody, nickName, email, photos = []}) => {
-    console.log('hi there: ', review_id, {rating, recommend, characteristics, reviewSummary, reviewBody, nickName, email});
     let chars = {};
     for (let i = 0; i < characteristics.length; i++) {
       chars[characteristics[i].id] = characteristics[i].value;
@@ -86,8 +85,11 @@ const Ratings = {
         characteristics: chars,
       })
     })
-      .then(() => {
-        return true;
+      .then((data) => {
+        return data.json();
+      })
+      .then(data => {
+        return data;
       })
       .catch((err) => {
         return err;

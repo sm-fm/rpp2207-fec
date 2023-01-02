@@ -183,7 +183,7 @@ let validationRules = {
   ],
   email: [
     [
-      ((b) => { return (b.includes('@') && b.includes('.')); }).bind(null),
+      ((b) => { return (b.includes('@') && b.includes('.') && b.length > 4); }).bind(null),
       'The email entered is not valid',
     ],
     [

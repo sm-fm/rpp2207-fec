@@ -35,6 +35,7 @@ const Ratings = (props) => {
 
 
   const [reviewForm, setReviewForm] = useState(false);
+  const [reviewFormInformation, setReviewFormInformation] = useState('');
   /**
    *
    * @param {*} id - product_id which can be found from the url
@@ -42,7 +43,7 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', page = 1, count = 100) => {
+  let getReviewList = (id, sort = 'relevant', page = 1, count = 500) => {
     return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
         console.log('Success!', data);
@@ -137,8 +138,12 @@ const Ratings = (props) => {
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
   };
 
-  let toggleReviewForm = () => {
+  let toggleReviewForm = (optionalParamForPostReviewSubmission) => {
     setReviewForm(!reviewForm);
+
+    if (optionalParamForPostReviewSubmission) {
+      setReviewFormInformation('Your review was successfully submitted.');
+    }
   };
 
   return (
@@ -163,6 +168,10 @@ const Ratings = (props) => {
             <option data-testid='select-option' value='helpful'>most helpful</option>
           </select>
         </div>
+
+        {setReviewFormInformation &&
+          <p style={{color: 'rgb(10, 191, 58)'}}>{reviewFormInformation}</p>
+        }
         {!isLoadingreview &&
         <div className='userReviews'>
           {reviewData.results.map((elem, idx) => {
@@ -185,7 +194,7 @@ const Ratings = (props) => {
           <button onClick={toggleReviewForm} className='reviews-pointer review-form'>Add a Review &nbsp;&nbsp; +</button>
           {reviewForm &&
             <>
-              <ReviewForm toggleReviewForm = {toggleReviewForm} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id}/>
+              <ReviewForm toggleReviewForm = {toggleReviewForm.bind(this)} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id}/>
             </>
           }
 

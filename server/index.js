@@ -134,6 +134,9 @@ app.post('/reviews/userReview/', (req, res) => {
   };
   fetch(`${baseURL}/reviews/`, postOptions)
     .then((data) => {
+      if (Math.round(Math.floor(data.status / 100)) !== 2) {
+        throw new Error(data);
+      }
       res.status(201).send(data);
     })
     .catch((err) => {
