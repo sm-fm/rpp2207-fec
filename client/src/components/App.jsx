@@ -108,10 +108,10 @@ const App = (props) => {
     <div>
       <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
-      <Questions objID={id}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} data={props.data} />
+      <Questions objID={id} data={props.data} />
       <div ref={ratingsRef}>
-        <Ratings objID={id} generateStars={generateStars} />
+        <Ratings objID={id} generateStars={generateStars} data={props.data} />
       </div>
     </div>
   );

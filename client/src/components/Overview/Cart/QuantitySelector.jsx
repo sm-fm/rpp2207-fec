@@ -10,9 +10,11 @@ const QuantitySelector = (props) => {
   const [quantClicked, setQuantClicked] = useState(false);
 
   useEffect(() => {
-    if (props.skuSelected) {
+    if (props.skuSelected && Object.keys(props.allSkus).length && Object.keys(props.skuSelected).length) {
       setSizeIsSelected(true);
-      setQuantity(props.allSkus[props.skuSelected].quantity);
+      if (Object.keys(props.allSkus).includes(props.skuSelected)) {
+        setQuantity(props.allSkus[props.skuSelected].quantity);
+      }
     }
   });
 
@@ -34,7 +36,7 @@ const QuantitySelector = (props) => {
     return arr;
   };
 
-  if (!sizeIsSelected || quantity === null || !props) {
+  if (!sizeIsSelected || !quantity || !props) {
     return (
       <div className="quantity-selector">
         <button name="quantity" className="quantity-btn" disabled>
@@ -43,7 +45,7 @@ const QuantitySelector = (props) => {
       </div>
     );
   } else {
-    if (!quantChosen || quantChosen > props.allSkus[props.skuSelected].quantity) { setQuantChosen(1); }
+    if (!quantChosen) { setQuantChosen(1); }
     return (
       <div className="quantity-selector">
         <button role="quantity" name="quantity" className="quantity-btn" onClick={handleClick}>

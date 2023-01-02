@@ -48,21 +48,6 @@ describe('Add to cart module', () => {
   });
 });
 
-// describe('Star module', () => {
-//   test('Should add current product to user\'s outfit when star is clicked', async () => {
-//     const { container } = render(
-//       <App
-//         data={chosenStyleData.data} />
-//     );
-//     const starBtn = screen.getByTestId('star');
-//     fireEvent.click(starBtn);
-//     waitFor(() => {
-//       const yourOutfit = container.getElementsByClassName('product-card-description');
-//       expect(yourOutfit.length).toBeTruthy();
-//     });
-//   });
-// });
-
 describe('POST request test', () => {
   test('Should render correct message if put request is successful', async () => {
     render(
