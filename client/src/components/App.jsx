@@ -28,13 +28,13 @@ const App = (props) => {
   const fullStar = (id, st, key, color, size) => {
     if (st === 'f') {
       return (
-        <svg key={`${key}-${id}`} width={size} height={size} viewBox="0 0 31 31">
+        <svg key={`grad-${key}-${id}-${color}`} width={size} height={size} viewBox="0 0 31 31">
           <defs>
-            <linearGradient id="grad-full">
+            <linearGradient id={`grad-${key}-${id}`}>
               <stop offset="100%" stopColor={color}/>
             </linearGradient>
           </defs>
-          <path fill="url(#grad-full)" stroke={color} d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+          <path fill={`url(#grad-${key}-${id})`} stroke={color} d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
         l11.547-1.2L16.026,0.6L20.388,10.918z"/>
         </svg>
       );
@@ -71,6 +71,7 @@ const App = (props) => {
 
   const generateStars = (rating, key, color = 'black', size = '11px') => {
     const stars = [];
+    console.log('color:', color);
     const fullStars = Math.floor(rating);
     for (let i = 0; i < 5; i++) {
       if (i === fullStars) {
@@ -111,9 +112,9 @@ const App = (props) => {
   return (
     <div onClick={clickTracking}>
       <h1>App.jsx</h1>
-      <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
+      {/* <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
-      <Questions objID={id}/>
+      <Questions objID={id}/> */}
       <div ref={ratingsRef}>
         <Ratings objID={id} generateStars={generateStars} data={props.data}/>
       </div>

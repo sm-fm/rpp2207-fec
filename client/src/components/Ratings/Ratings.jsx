@@ -127,11 +127,18 @@ const Ratings = (props) => {
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
   };
 
-  let toggleReviewForm = (e, optionalParamForPostReviewSubmission) => {
+  let toggleReviewForm = async (e, optionalParamForPostReviewSubmission) => {
     setReviewForm(!reviewForm);
 
     if (optionalParamForPostReviewSubmission) {
       setReviewFormInformation('Your review was successfully submitted.');
+      const timer = (time) => {
+        return new Promise((resolve) => {
+          setTimeout(resolve, time);
+        });
+      };
+      await timer(4000);
+      setReviewFormInformation(false);
     }
   };
 

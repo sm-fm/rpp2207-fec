@@ -88,7 +88,6 @@ app.post('/cart', (req, res) => {
 });
 
 app.get('/allReviews/:id', (req, res) => {
-  console.log(req.params.id);
   fetch(`${baseURL}/reviews?product_id=${req.params.id}`, getOptions)
     .then(results => {
       return results.json();
