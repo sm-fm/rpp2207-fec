@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1670862633130" clover="3.2.0">
+  <project timestamp="1670862633130" name="All files">
+    <metrics statements="221" coveredstatements="172" conditionals="89" coveredconditionals="72" methods="75" coveredmethods="52" elements="385" coveredelements="296" complexity="0" loc="221" ncloc="221" packages="9" files="22" classes="22"/>
+    <package name="client.src.API">
+      <metrics statements="19" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="15" coveredmethods="6"/>
+      <file name="Overview.js" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/API/Overview.js">
+        <metrics statements="11" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+      </file>
+      <file name="Ratings.js" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/API/Ratings.js">
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="helperFunctions.js" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/helperFunctions.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.Overview.Cart">
+      <metrics statements="16" coveredstatements="15" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="5"/>
+      <file name="Cart.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/Cart/Cart.jsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="SizeSelector.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/Cart/SizeSelector.jsx">
+        <metrics statements="9" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="10" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="22" count="6" type="stmt"/>
+        <line num="27" count="31" type="stmt"/>
+      </file>
+      <file name="SpecificSize.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/Cart/SpecificSize.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="33" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="33" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="31" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.Overview.ImageViews">
+      <metrics statements="44" coveredstatements="40" conditionals="26" coveredconditionals="23" methods="19" coveredmethods="16"/>
+      <file name="ExpandedView.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/ImageViews/ExpandedView.jsx">
+        <metrics statements="17" coveredstatements="15" conditionals="12" coveredconditionals="11" methods="8" coveredmethods="7"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="11" count="13" type="stmt"/>
+        <line num="12" count="13" type="stmt"/>
+        <line num="13" count="13" type="stmt"/>
+        <line num="15" count="13" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="13" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="13" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="13" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="45" count="72" type="stmt"/>
+        <line num="48" count="72" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+      </file>
+      <file name="Images.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/ImageViews/Images.jsx">
+        <metrics statements="12" coveredstatements="11" conditionals="8" coveredconditionals="7" methods="6" coveredmethods="5"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="12" count="7" type="stmt"/>
+        <line num="14" count="7" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="7" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="22" count="7" type="cond" truecount="4" falsecount="0"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+      </file>
+      <file name="SpecificImage.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/ImageViews/SpecificImage.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+      </file>
+      <file name="Zoom.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/ImageViews/Zoom.jsx">
+        <metrics statements="11" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="2"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.Overview.StylesSelector">
+      <metrics statements="8" coveredstatements="5" conditionals="8" coveredconditionals="7" methods="4" coveredmethods="3"/>
+      <file name="SpecificStyle.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/StylesSelector/SpecificStyle.jsx">
+        <metrics statements="5" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="22" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="StyleSelector.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Overview/StylesSelector/StyleSelector.jsx">
+        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="5" methods="2" coveredmethods="2"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="17" count="20" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.Ratings">
+      <metrics statements="92" coveredstatements="75" conditionals="39" coveredconditionals="30" methods="17" coveredmethods="14"/>
+      <file name="Ratings.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/Ratings.jsx">
+        <metrics statements="49" coveredstatements="32" conditionals="20" coveredconditionals="11" methods="10" coveredmethods="7"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="38" count="5" type="cond" truecount="2" falsecount="2"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="53" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="73" count="5" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="78" count="5" type="stmt"/>
+        <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="84" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="89" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="90" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="100" count="5" type="stmt"/>
+        <line num="124" count="5" type="stmt"/>
+      </file>
+      <file name="ReviewCard.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/ReviewCard.jsx">
+        <metrics statements="15" coveredstatements="15" conditionals="11" coveredconditionals="11" methods="3" coveredmethods="3"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="13" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="20" count="8" type="stmt"/>
+        <line num="21" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="7" type="stmt"/>
+        <line num="27" count="8" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+      </file>
+      <file name="helperFunctions.js" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/helperFunctions.js">
+        <metrics statements="28" coveredstatements="28" conditionals="8" coveredconditionals="8" methods="4" coveredmethods="4"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="16" count="15" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="13" type="stmt"/>
+        <line num="35" count="4" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="13" type="stmt"/>
+        <line num="40" count="13" type="stmt"/>
+        <line num="42" count="13" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="46" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="7" type="stmt"/>
+        <line num="50" count="4" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="client.src.components.Ratings.metadata">
+      <metrics statements="35" coveredstatements="21" conditionals="6" coveredconditionals="2" methods="13" coveredmethods="7"/>
+      <file name="MetaRating.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/metadata/MetaRating.jsx">
+        <metrics statements="18" coveredstatements="7" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
+      </file>
+      <file name="Metadata.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/metadata/Metadata.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+      <file name="productBreakdown.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/metadata/productBreakdown.jsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
+        <line num="10" count="4" type="stmt"/>
+      </file>
+      <file name="productRect.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/metadata/productRect.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+      </file>
+      <file name="reviewRect.jsx" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/client/src/components/Ratings/metadata/reviewRect.jsx">
+        <metrics statements="7" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="1"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="config">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="CSSStub.js" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/config/CSSStub.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="testing">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="mockData.js" path="/Users/justinstendara/Documents/HackReactor/Git/seniorPhase/rpp2207-fec/testing/mockData.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

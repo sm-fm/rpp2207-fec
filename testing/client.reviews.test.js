@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent, getByText } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, getByText, act } from '@testing-library/react';
 import React from 'react';
 import Router from 'react-router-dom';
 import hf from '../client/src/components/Ratings/helperFunctions.js';
@@ -126,15 +126,18 @@ describe('General test of the Ratings component', () => {
       .get('/reviews/meta/?product_id=71')
       .reply(200, sampleMetaError);
 
+
     const { container } = render(<Ratings
       objID={ 71 }
       generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReviewError, metaData: sampleMetaError}}
     />);
 
     await waitFor(() => {
       expect(container.getElementsByClassName('metaDataDisplay').length).toEqual(1);
       expect(container.getElementsByClassName('errorMsg').length).toEqual(2);
     });
+
   });
 
   test('happy path - should properly display data when it recieves data', async () => {
@@ -155,6 +158,7 @@ describe('General test of the Ratings component', () => {
     const { container } = render(<Ratings
       objID={ 71697 }
       generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
     />);
 
     await waitFor(() => {
@@ -188,9 +192,12 @@ describe('General test of the Ratings component', () => {
     const { container } = render(<Ratings
       objID={ 71697 }
       generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
     />);
 
-    fireEvent.change(container.getElementsByTagName('select')[0], {target: {value: 'newest'}});
+    act(() => {
+      fireEvent.change(container.getElementsByTagName('select')[0], {target: {value: 'newest'}});
+    });
     let options = container.getElementsByTagName('option');
     await waitFor(() => {
       expect(container.getElementsByTagName('select')[0].value).toBe(options[1].text);
@@ -260,7 +267,7 @@ describe('Testing of reviews', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/helpful/?review_id=1277082')
+      .put('/reviews/helpful/?review_id=1277082')
       .reply(200, true);
 
     const { container } = render(<ReviewCard
@@ -281,21 +288,23 @@ describe('Testing of reviews', () => {
   test('Clicking on \'reported\' will change the text of reported', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
-        method: 'PUT',
         'access-control-allow-origin': '*',
       })
-      .put("/reviews/report/?review_id=1277082")
+      .put('/reviews/report/?review_id=1277082')
       .reply(200, true);
 
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
       data={sampleReview.results[0]}
-
     />, {wrapper: Router});
 
     expect(getByText(container, 'Report', {exact: false})).toBeTruthy();
-    fireEvent.click(container.getElementsByClassName('reviews-report')[0]);
+
+    act(() => {
+      fireEvent.click(container.getElementsByClassName('reviews-report')[0]);
+    });
+
     await waitFor(() => {
       expect(getByText(container, 'REPORTED', {exact: false})).toBeTruthy();
     });
@@ -306,7 +315,6 @@ describe('Testing of reviews', () => {
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
       data={sampleReview.results[0]}
-
     />, {wrapper: Router});
 
     expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
@@ -315,8 +323,6 @@ describe('Testing of reviews', () => {
       expect(container.getElementsByClassName('reviews-modal').length).toBe(1);
       fireEvent.click(container.getElementsByClassName('review-exit-modal')[0]);
       expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
-    });
-    await waitFor(() => {
     });
   });
 });
