@@ -241,7 +241,8 @@
 .user-review-wrapper .collapse-review,
 .review-review-form button,
 .photo-modal input,
-.photo-modal button {
+.photo-modal button,
+.meta-rating button {
   margin-right: 10px;
   background-color: white;
   border: 1px solid rgb(70, 70, 70);
@@ -255,7 +256,8 @@
 .user-review-wrapper .review-form:hover,
 .user-review-wrapper .show-more:hover,
 .user-review-wrapper .collapse-review:hover,
-.review-review-form button:hover {
+.review-review-form button:hover,
+.meta-rating button:hover {
   margin-right: 10px;
   background-color: rgb(70, 70, 70);
   border: 1px solid rgb(70, 70, 70);
@@ -270,6 +272,17 @@
 .review-review-form button:hover {
   font-size: 14px;
   padding: 7px;
+}
+
+.meta-rating button,
+.meta-rating button:hover {
+  font-size: 13px;
+  padding: 5px;
+}
+
+.meta-rating .reviews-reset-filter {
+  display: block;
+  margin-bottom: 15px;
 }
 
 

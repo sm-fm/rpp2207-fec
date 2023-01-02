@@ -9,7 +9,6 @@ let ReviewCard = (props) => {
   // Could even do this with the body - could send an already shortened portion of the body
   var date = new Date(props.data.date);
   date = format(date, 'MMM d, y');
-  console.log(props.data);
   const [displayFullBody, setDisplay] = useState(false);
   const [modal, setModal] = useState(null);
   const [helpfulness, setHelpfulness] = useState(props.data.helpfulness);

@@ -8,6 +8,7 @@ let Metarating = (props) => {
   let [errMsg, setErrMsg] = useState('');
 
   let trackRatings = (e) => {
+    console.log(e);
     props.useRatings(e)
       .then(data => {
         let newList = data || [];
@@ -34,9 +35,15 @@ let Metarating = (props) => {
       {errMsg !== '' &&
       <p className='errorMsg'>{errMsg}</p>}
       {ratingsList.length !== 0 &&
-      [<p key='rating-preview-list' id='ratingsList'>{ratingsList.join(', ')}</p>,
-        <p className= 'reviews-reset-filter' key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</p>
-      ]
+      <>
+        {ratingsList.map((val, idx) => {
+          return (
+            <button key={'rating-preview-list' + idx} id={val} onClick={trackRatings}>{val}</button>
+          );
+        })}
+        <button className= 'reviews-reset-filter' key='reset-ratings-preview-list' id='resetRatingsFilters' onClick={resetFilters}>Reset Filters</button>
+      </>
+
 
       }
       {Object.values(ratings).map((val, idx) => {
