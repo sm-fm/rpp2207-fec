@@ -71,7 +71,6 @@ const App = (props) => {
 
   const generateStars = (rating, key, color = 'black', size = '11px') => {
     const stars = [];
-    console.log('color:', color);
     const fullStars = Math.floor(rating);
     for (let i = 0; i < 5; i++) {
       if (i === fullStars) {

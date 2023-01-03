@@ -127,7 +127,7 @@ let ReviewForm = (props) => {
       </label>
       {photoList.length < 5 ?
         <div>
-          <button onClick={photoSubmission}>Submit</button>
+          <button onClick={photoSubmission} className='photo-modal-submission'>Submit</button>
           {imageProcessing ?
             <p style={{'display':'inline-block'}}>Image is processing, please wait...</p>
             :

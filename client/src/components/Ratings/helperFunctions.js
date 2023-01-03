@@ -65,11 +65,11 @@ let reviewFormStars = (numberStars, key, clickHandler) => {
       return (
         <svg key={`${key}-${id}`} width="15px" height="15px" viewBox="0 0 31 31" onClick={clickHandler} className={`${key}-${id}`}>
           <defs>
-            <linearGradient id="grad-full">
+            <linearGradient id="grad-full-review-form">
               <stop offset="100%" stopColor="black"/>
             </linearGradient>
           </defs>
-          <path fill="url(#grad-full)" className={`${key}-${id}`} stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+          <path fill="url(#grad-full-review-form)" className={`${key}-${id}`} stroke="black" d="M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
         l11.547-1.2L16.026,0.6L20.388,10.918z"/>
         </svg>
       );
@@ -179,6 +179,10 @@ let validationRules = {
     [
       ((b) => { return b.length <= 60; }).bind(null),
       'The nickname must not exceed 60 characters'
+    ],
+    [
+      ((b) => { return b.length >= 1; }).bind(null),
+      'A nickname is required for submission'
     ]
   ],
   email: [

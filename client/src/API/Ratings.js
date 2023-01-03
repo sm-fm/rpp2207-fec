@@ -47,7 +47,6 @@ const Ratings = {
     }
     )
       .then((data) => {
-        console.log('API callkL: ', data);
         return data.json();
       })
       .then(data => {
@@ -57,7 +56,6 @@ const Ratings = {
         return data;
       })
       .catch(err => {
-        console.log('There was an err, ', err);
         return false;
       });
   },

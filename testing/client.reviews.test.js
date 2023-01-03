@@ -14,7 +14,7 @@ let sampleMeta = reviewData.sampleMeta;
 let sampleMetaError = reviewData.sampleMetaError;
 let sampleReviewError = reviewData.sampleReviewError;
 let sampleReviewsNewest = reviewData.sampleReviewsNewest;
-let formValidationRules = reviewData.validationRules;
+let formValidationRules = hf.validationRules;
 let sampleFormData = reviewData.sampleDataOne;
 
 describe('Testing all helper functions', () => {
@@ -198,6 +198,20 @@ describe('Testing of Metareveiws: ', () => {
     });
   });
 
+  test('Reviews should be reset when a rating is selected', async () => {
+
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    act(() => {
+      expect(container.getElementsByClassName('userReview').length).toBe(2);
+      fireEvent.click(container.getElementsByClassName('ratings-bar')[0]);
+    });
+    expect(container.getElementsByClassName('userReview').length).toBe(0);
+  });
   test('Should reset filters when the reset filters link is pressed', async () => {
     const { container } = render(<MetaRating
       data={sampleMeta.ratings}
@@ -285,5 +299,95 @@ describe('Testing of reviews', () => {
       fireEvent.click(container.getElementsByClassName('review-exit-modal')[0]);
       expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
     });
+  });
+});
+
+describe('Testing reviews form', () => {
+  test('Make sure the modal pops up when the write a review button is clicked', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    fireEvent.click(container.getElementsByClassName('review-form')[0]);
+
+    await waitFor(() => {
+      expect(container.getElementsByClassName('review-form-modal').length).toBe(1);
+    });
+  });
+
+  test('Make sure the modal can be closed', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    fireEvent.click(container.getElementsByClassName('review-form')[0]);
+    fireEvent.click(container.getElementsByClassName('review-exit-modal')[0]);
+
+    await waitFor(() => {
+      expect(container.getElementsByClassName('review-form-modal').length).toBe(0);
+    });
+  });
+
+  test('Testing inputs in the review form - overall rating', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    fireEvent.click(container.getElementsByClassName('review-form')[0]);
+    fireEvent.click(container.getElementsByClassName('review-form-0')[0]);
+    expect(container.getElementsByClassName('rating-meaning-holder')[0].innerHTML).toBe('Poor');
+    fireEvent.click(container.getElementsByClassName('review-form-1')[1]);
+    expect(container.getElementsByClassName('rating-meaning-holder')[0].innerHTML).toBe('Fair');
+    fireEvent.click(container.getElementsByClassName('review-form-4')[1]);
+    expect(container.getElementsByClassName('rating-meaning-holder')[0].innerHTML).toBe('Great');
+  });
+
+  test('Making sure form validation works - will display error if not all information is input', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    fireEvent.click(container.getElementsByClassName('review-form')[0]);
+    fireEvent.click(container.getElementsByClassName('review-form-0')[0]);
+    fireEvent.click(container.querySelector('#recommend'));
+    fireEvent.click(container.getElementsByClassName('submitBtn')[0].children[0]);
+    expect(container.getElementsByClassName('review-form-err').length).toBe(1);
+
+  });
+
+  test('Photo modal will open and close', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    fireEvent.click(container.getElementsByClassName('review-form')[0]);
+    fireEvent.click(container.getElementsByClassName('submitBtn')[0].children[1]);
+    expect(container.getElementsByClassName('photo-modal').length).toBe(1);
+    fireEvent.click(container.getElementsByClassName('review-exit-modal')[1]);
+    expect(container.getElementsByClassName('photo-modal').length).toBe(0);
+  });
+
+  test('Photo modal will close when \'submit\' button is clicked', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    fireEvent.click(container.getElementsByClassName('review-form')[0]);
+    fireEvent.click(container.getElementsByClassName('submitBtn')[0].children[1]);
+    expect(container.getElementsByClassName('photo-modal').length).toBe(1);
+    fireEvent.click(container.getElementsByClassName('review-exit-modal')[0]);
+    expect(container.getElementsByClassName('photo-modal-submission').length).toBe(0);
   });
 });

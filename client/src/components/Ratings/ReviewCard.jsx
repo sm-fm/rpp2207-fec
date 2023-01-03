@@ -50,7 +50,6 @@ let ReviewCard = (props) => {
   let onHelpfulClick = (e) => {
     API.helpfulReview(e.target.parentNode.id)
       .then(data => {
-        console.log('helpful click: ', data);
         if (Object.keys(data).length !== 0) {
           setHelpfulness(helpfulness + 1);
           setReviewed(true);
