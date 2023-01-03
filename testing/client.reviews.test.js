@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent, getByText, act } from '@testing-library/react';
+import { render, waitFor, fireEvent, getByText, act } from '@testing-library/react';
 import React from 'react';
 import Router from 'react-router-dom';
 import hf from '../client/src/components/Ratings/helperFunctions.js';

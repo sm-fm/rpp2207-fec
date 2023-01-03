@@ -32,7 +32,6 @@ const Ratings = (props) => {
   const [ratings, setRatings] = useState([]);
   const [metaError, setMetaError] = useState('Loading metadata.');
 
-
   const [reviewForm, setReviewForm] = useState(false);
   const [reviewFormInformation, setReviewFormInformation] = useState(false);
   /**
