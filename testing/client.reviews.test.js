@@ -108,25 +108,40 @@ describe('ReviewCard component', () => {
       expect(prevLen).toBeLessThan(currLen);
     });
   });
+
+  test('The collapse review button should not display until the show more button is clicked', async () => {
+    const { container } = render(<Ratings
+      objID={ 71 }
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    expect(container.getElementsByClassName('show-more').length).toBe(1);
+    expect(container.getElementsByClassName('collapse-review').length).toBe(0);
+    fireEvent.click(container.getElementsByClassName('show-more')[0]);
+    expect(container.getElementsByClassName('collapse-review').length).toBe(1);
+  });
+
+  test('The collapse review button should show less reviews when clicked', async () => {
+    const { container } = render(<Ratings
+      objID={ 71 }
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    expect(container.getElementsByClassName('show-more').length).toBe(1);
+    expect(container.getElementsByClassName('collapse-review').length).toBe(0);
+    expect(container.getElementsByClassName('userReview').length).toBe(2);
+    fireEvent.click(container.getElementsByClassName('show-more')[0]);
+    expect(container.getElementsByClassName('collapse-review').length).toBe(1);
+    expect(container.getElementsByClassName('userReview').length).toBe(4);
+    fireEvent.click(container.getElementsByClassName('collapse-review')[0]);
+    expect(container.getElementsByClassName('userReview').length).toBe(2);
+  });
 });
 
 describe('General test of the Ratings component', () => {
   test('sad path - Should not break when the API does not return the proper data', async () => {
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/?product_id=71&sort=relevant&page=1&count=100')
-      .reply(200, sampleReviewError);
-
-    nock('http://localhost:3000')
-      .defaultReplyHeaders({
-        'access-control-allow-origin': '*',
-      })
-      .get('/reviews/meta/?product_id=71')
-      .reply(200, sampleMetaError);
-
-
     const { container } = render(<Ratings
       objID={ 71 }
       generateStars = {() => { return 'stars'; }}
@@ -212,6 +227,26 @@ describe('Testing of Metareveiws: ', () => {
     });
     expect(container.getElementsByClassName('userReview').length).toBe(0);
   });
+
+  test('Rating filter should be removed when it is clicked again', async () => {
+    const {container} = render(<Ratings
+      ObjID={71697}
+      generateStars = {() => { return 'stars'; }}
+      data = {{allData: sampleReview, metaData: sampleMeta}}
+    />);
+
+    act(() => {
+      expect(container.getElementsByClassName('userReview').length).toBe(2);
+      fireEvent.click(container.getElementsByClassName('ratings-bar')[0]);
+    });
+    expect(container.getElementsByClassName('userReview').length).toBe(0);
+
+    act(() => {
+      fireEvent.click(container.getElementsByClassName('ratings-bar')[0]);
+    });
+    expect(container.getElementsByClassName('userReview').length).toBe(2);
+  });
+  console.error = jest.fn();
   test('Should reset filters when the reset filters link is pressed', async () => {
     const { container } = render(<MetaRating
       data={sampleMeta.ratings}
