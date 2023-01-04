@@ -40,7 +40,7 @@ const FetchData = (WrappedComponent, id) => {
         })
         .then(result => {
           this.setState({product: result});
-          return RatingsAPI.getAll(result.id);
+          return RatingsAPI.getAll(result.id, 'relevance', 1, -1);
         })
         .then(data => {
           this.setState({

@@ -102,16 +102,24 @@ app.get('/allReviews/:id', (req, res) => {
 });
 
 app.get('/reviews', (req, res) => {
+  let initialAPIHandler = parseInt(req.query.count) === -1;
+  let count = req.query.count;
+  if (initialAPIHandler) {
+    count = 200;
+  }
   fetch(`${baseURL}/reviews/?` + new URLSearchParams({
     'product_id': req.query.product_id,
     sort: req.query.sort,
     page: req.query.page,
-    count: req.query.count,
+    count: count
   }), getOptions)
     .then(results => {
       return results.json();
     })
     .then(results => {
+      if (initialAPIHandler) {
+        results.results = results.results.splice(0, 5);
+      }
       res.status(200).send(results);
     })
     .catch(err => {

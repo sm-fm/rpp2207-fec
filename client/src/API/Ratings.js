@@ -77,7 +77,7 @@ const Ratings = {
         return err;
       });
   },
-  getAll: (product_id, sort = 'relevant', page = 1, count = 250) => {
+  getAll: (product_id, sort = 'relevant', page = 1, count = 5) => {
     return Promise.all([Ratings.getReviewList(product_id, sort, page, count), Ratings.getReviewMetadata(product_id)])
       .then(data => {
         return data;

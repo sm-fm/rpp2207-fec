@@ -7,6 +7,7 @@ import './rating.css';
 import ReviewForm from './ReviewForm.jsx';
 
 const Ratings = (props) => {
+  console.log(props.data);
   const holderReviewData = {
     "product": "2",
     "page": 0,
@@ -34,6 +35,9 @@ const Ratings = (props) => {
 
   const [reviewForm, setReviewForm] = useState(false);
   const [reviewFormInformation, setReviewFormInformation] = useState(false);
+
+  // Refering to the load state
+  const [madeInitialCall, setMadeInitialCall] = useState(false);
   /**
    *
    * @param {*} id - product_id which can be found from the url
@@ -41,7 +45,7 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (sort = category || 'relevant', page = 1, count = 500) => {
+  let getReviewList = (sort = category || 'relevant', page = 1, count = 300) => {
     return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
         setAllData(data);
@@ -51,7 +55,7 @@ const Ratings = (props) => {
         setReviewError('Something went wrong, please try again later.');
       });
   };
-
+  // Running this so that the first time the component loads it will grab all the necessary information
   let filterReviewList = (ratingsList) => {
     if (ratingsList.length === 0) {
       setReviewData(allData);
@@ -116,6 +120,10 @@ const Ratings = (props) => {
 
   let incrementReviewsList = () => {
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength + 2));
+    if (!madeInitialCall) {
+      getReviewList();
+      setMadeInitialCall(true);
+    }
   };
 
   let collapseReviewList = () => {
