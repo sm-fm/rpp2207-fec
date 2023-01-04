@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const SpecificSize = (props) => {
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     props.setDefaultVal(props.size);
-  }
+  };
 
   if (props.size) {
     return (
       <option
         value={props.size}
         className="size-item"
-        onClick={handleClick}>
+        onClick={handleClick}
+      >
         {props.size}
       </option>
-    )
+    );
   }
 };
 

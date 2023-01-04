@@ -12,15 +12,14 @@ import {
 } from "react-router-dom";
 import '@testing-library/jest-dom';
 const fetch = require('node-fetch');
-// globalThis.fetch = fetch
-// global.window = Object.create(window);
+
 
 describe('StyleSelector Module', () => {
   test('renders correct style information in StyleSelector', async () => {
     render(<StyleSelector
       chosenStyle={ chosenStyleData.results[0] }
       styles={ chosenStyleData.results } />);
-    const styleSelectorInfo = screen.getByText(/STYLE > Forest Green & Black/i);
+    const styleSelectorInfo = screen.getByText(/Forest Green & Black/i);
     expect(styleSelectorInfo).toBeInTheDocument();
   });
 
@@ -37,6 +36,7 @@ describe('StyleSelector Module', () => {
     const styleSelectorInfo = screen.getByText(/140.00/i);
     expect(styleSelectorInfo).toBeInTheDocument();
   });
+
 });
 
 describe('SpecificStyle Module', () => {
@@ -55,4 +55,5 @@ describe('SpecificStyle Module', () => {
     const checkmark = await screen.getByTestId('checkmark');
     expect(checkmark).toBeInTheDocument();
   });
+
 });

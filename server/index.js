@@ -3,10 +3,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+const upload = multer({dest: './photoHolder'});
+const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(bodyParser());
+
+cloudinary.config({
+  cloud_name: "dn9heevps",
+  api_key: process.env.PHOTO_API_KEY,
+  api_secret: process.env.PHOTO_API_SECRET
+});
 
 
 const PATH = 3000;
@@ -26,6 +38,7 @@ const putOptions = {
   }
 };
 
+
 // API ROUTES
 app.get('/products', (req, res) => {
   fetch(`${baseURL}/products`, getOptions)
@@ -37,6 +50,7 @@ app.get('/products', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.sendStatus(401);
     });
 });
 
@@ -50,6 +64,40 @@ app.get('/products/:query(*)', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.sendStatus(401);
+    });
+});
+
+app.post('/cart', (req, res) => {
+  var options = {
+    method: 'POST',
+    body: req.body,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  fetch(`${baseURL}/cart?sku_id=${req.body.sku_id}`, options)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(401);
+    });
+});
+
+app.get('/allReviews/:id', (req, res) => {
+  fetch(`${baseURL}/reviews?product_id=${req.params.id}`, getOptions)
+    .then(results => {
+      return results.json();
+    })
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(401);
     });
 });
 
@@ -81,7 +129,6 @@ app.get('/reviews/meta', (req, res) => {
       res.status(200).send(results);
     })
     .catch(err => {
-      console.log(err);
       res.status(400).send(err);
     });
 });
@@ -90,10 +137,13 @@ app.get('/reviews/meta', (req, res) => {
 app.put('/reviews/helpful/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
     .then((data) => {
-      console.log('data: ', data);
-      res.status(200).send(true);
+      if (Object.keys(data).length === 0) {
+        throw new Error('There is an error when trying to report helpfulness.', data);
+      }
+      res.status(200).send(data);
     })
     .catch(err => {
+      console.log(err);
       res.status(400).send(err);
     });
 });
@@ -108,6 +158,52 @@ app.put('/reviews/report/', (req, res) => {
       res.status(400).send(err);
     });
 });
+// Adds user review to the database
+
+
+app.post('/reviews/userReview/', (req, res) => {
+  const postOptions = {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'Authorization': process.env.GITHUB_ACCESS_TOKEN,
+    },
+    body: JSON.stringify(req.body)
+  };
+  fetch(`${baseURL}/reviews/`, postOptions)
+    .then((data) => {
+      if (Math.round(Math.floor(data.status / 100)) !== 2) {
+        throw new Error(data);
+      }
+      res.status(201).send(data);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+});
+
+//Review photo submission
+app.post('/reviews/photoUpload', upload.any(), (req, res) => {
+  cloudinary.uploader.upload(`${req.files[0].path}`, {public_id: req.files[0].filename})
+    .then((data) => {
+      res.status(200).send({url: data.url});
+      fs.unlink(`${req.files[0].path}`, (err) => {
+        if (err) {
+          console.log('There was an error');
+        }
+      });
+    })
+    .catch(err => {
+      res.status(400).send(err);
+      fs.unlink(`${req.files[0].path}`, (err) => {
+        if (err) {
+          console.log('There was an error');
+        }
+      });
+    });
+});
+
 // GET Questions
 app.get('/qa/questions/:id', (req, res) => {
   var id = `product_id=${req.params.id}`;
