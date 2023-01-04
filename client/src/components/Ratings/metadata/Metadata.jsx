@@ -8,10 +8,10 @@ let Metadata = (props) => {
   let rec = hf.calculateRecommended(props.meta.recommended);
   return (
     <div className='metadata'>
-      <h3>Ratings & Reviews</h3>
+      <p className='heading'>Ratings & Reviews</p>
       <div className='heading'>
         <div className='average-rating'>
-          <h4>{averageRating}</h4>
+          <p className='average-rating-tag'>{averageRating}</p>
         </div>
         <div className='average-ratings-holder'>
           {props.generateStars(averageRating, 'metaDataHeader', 'rgb(80, 80, 80)', '15px')}

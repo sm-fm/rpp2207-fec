@@ -78,9 +78,9 @@ let ReviewCard = (props) => {
         <div className='starHolder'>
           {props.generateStars(props.data.rating, 'userReview', 'rgb(100, 100, 100)', '12px')}
         </div>
-        <h6 className='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
+        <p className='username'>{`${props.data.reviewer_name}, ${date}`}</p>
       </div>
-      <h3 className='summary'>{props.data.summary}</h3>
+      <p className='summary'>{props.data.summary}</p>
       <p className='reviewBody'>{renderBody}</p>
 
       {(!displayFullBody && !shortText) &&
@@ -92,7 +92,7 @@ let ReviewCard = (props) => {
       {props.data.response !== '' &&
         <p className='companyResponse'>{props.data.response}</p>}
 
-      <h6 id={props.data.review_id} className='reviews-helpfulness'>
+      <p id={props.data.review_id} className='reviews-helpfulness'>
         Helpful?&nbsp;
         {!reviewed ?
           <u onClick={onHelpfulClick} className='reviews-helpful reviews-pointer'>Yes</u> :
@@ -105,7 +105,7 @@ let ReviewCard = (props) => {
           <u style={{color: 'red'}}>REPORTED</u> :
           <u className='reviews-report reviews-pointer' onClick={onReportClick}>Report</u>
         }
-      </h6>
+      </p>
 
       <div className='thumbnail-holder'>
         {props.data.photos.map((element, idx) => {

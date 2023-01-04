@@ -290,7 +290,7 @@
   color: rgb(80, 80, 80);
 }
 
-.ratings .metadata h3{
+.ratings .metadata .heading{
   position: relative;
   font-size: 23px;
   font-weight: 200;
@@ -299,7 +299,7 @@
   text-align: left;
 }
 
-.metadata h4 {
+.metadata .average-rating-tag {
   margin-top: 15px;
   margin-bottom: 3px;
   font-weight: 700;
