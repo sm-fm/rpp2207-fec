@@ -73,7 +73,7 @@
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-      "^.+\\.(css|less)$": "<rootDir>/testing/config/CSSStub.js"
+      "\\.(css|sass)$": "identity-obj-proxy"
     }
   }
 }
