@@ -43,7 +43,6 @@ const FetchData = (WrappedComponent, id) => {
           return RatingsAPI.getAll(result.id);
         })
         .then(data => {
-          // this.setState({avgRatings: OverviewAPI.getAverageRating(metadata.ratings)});
           this.setState({
             metaData: data[1],
             reviewData: data[0],
