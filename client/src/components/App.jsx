@@ -8,7 +8,7 @@ import '../style.css';
 
 const App = () => {
   const params = useParams();
-  const id = params.id;
+  const id = params.id || '71701';
   const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
 
   const addToOutfit = (product) => {

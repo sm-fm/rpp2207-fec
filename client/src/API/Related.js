@@ -1,16 +1,21 @@
 const fetch = require('node-fetch');
-
+const options = {
+  headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  }
+};
 const RelatedAPI = {
   getRelatedProducts: (id) => {
     var relatedProducts = [];
-    return fetch(`http://localhost:3000/products/${id}/related`)
+    return fetch(`products/${id}/related`, options)
       .then(results => {
         return results.json();
       })
       .then(relatedIDs => {
         return Promise.all(
           relatedIDs.map(id => {
-            return fetch(`http://localhost:3000/products/${id}`)
+            return fetch(`products/${id}`, options)
               .then((result) => {
                 return result.json();
               });
@@ -21,7 +26,7 @@ const RelatedAPI = {
         relatedProducts = products;
         return Promise.all(
           products.map(product => {
-            return fetch(`http://localhost:3000/products/${product.id}/styles`)
+            return fetch(`products/${product.id}/styles`, options)
               .then((result) => {
                 return result.json();
               });
@@ -39,7 +44,7 @@ const RelatedAPI = {
       });
   },
   getProductById: (id) => {
-    return fetch(`http://localhost:3000/products/${id}`)
+    return fetch(`products/${id}`, options)
       .then(json => {
         return json.json();
       })
@@ -47,7 +52,7 @@ const RelatedAPI = {
         return product;
       })
       .then((product) => {
-        return fetch(`http://localhost:3000/products/${product.id}/styles`)
+        return fetch(`products/${product.id}/styles`, options)
           .then((json) => {
             return json.json();
           })
