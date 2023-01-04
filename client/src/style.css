@@ -79,7 +79,7 @@ body {
 	align-items: center;
 	gap: 1.72vh;
 	flex-wrap: wrap;
-	max-width: 27.82vw;
+	max-width: 400px;
 }
 
 #checkmark {
