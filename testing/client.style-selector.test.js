@@ -46,7 +46,7 @@ describe('SpecificStyle Module', () => {
       styleClicked={ chosenStyleData.results[0] }
       style={ chosenStyleData.results[0] } />);
     const image = screen.getByAltText('thumbnail of current style');
-    expect(image).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(image).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=90&q=80");
   });
 
   test('renders checkmark over currently clicked style', async () => {
@@ -70,7 +70,7 @@ describe('SpecificStyle Module', () => {
     fireEvent.click(thumbnail[1]);
     waitFor(() => {
       const mainImg = screen.getByAltText('Image of current style');
-      expect(mainImg).toHaveAttribute('src', 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80');
+      expect(mainImg).toHaveAttribute('src', 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=90&q=80');
     });
   });
 

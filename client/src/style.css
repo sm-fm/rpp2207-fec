@@ -94,8 +94,8 @@ body {
 
 .icon {
 	object-fit: cover;
-	width: 5.22vw;
-	height: 6.45vh;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
 }
 
@@ -107,8 +107,8 @@ body {
 }
 
 .specific-img {
-	min-width: 100%;
-	height: 100%;
+	width: 975px;
+	height: 800px;
 	object-fit: cover;
 	object-position: 50% 50%;
 	cursor: -moz-zoom-in;
@@ -118,8 +118,8 @@ body {
 
 #thumbnail-img {
 	object-fit: cover;
-	width: 5.22vw;
-	height: 6.45vh;
+	width: 70px;
+	height: 70px;
 	left: 0;
 }
 

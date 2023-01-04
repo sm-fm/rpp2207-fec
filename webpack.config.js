@@ -2,6 +2,7 @@
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -20,7 +21,6 @@ const config = {
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
-
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
@@ -42,6 +42,10 @@ const config = {
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
     ],
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
   },
 };
 
