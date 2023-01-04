@@ -12,6 +12,7 @@ const Cart = (props) => {
   const [countPurchasing, setCountPurchasing] = useState(0);
   const sizeDropDown = useRef();
   const [needSize, setNeedSize] = useState(false);
+  const [sizeChanged, setSizeChanged] = useState(false);
 
   const handleFocusSizeDropDrow = () => {
     sizeDropDown.current.focus();
@@ -26,13 +27,17 @@ const Cart = (props) => {
           setSkuSelected={setSkuSelected}
           setSizeOptions={setSizeOptions}
           sizeDropDown={sizeDropDown}
-          needSize={needSize} />
+          needSize={needSize}
+          setNeedSize={setNeedSize}
+          setSizeChanged={setSizeChanged} />
         <QuantitySelector
           skuSelected={skuSelected}
           sizeSelected={sizeSelected}
           setQuantity={setQuantity}
           setCountPurchasing={setCountPurchasing}
-          allSkus={props.skus} />
+          allSkus={props.skus}
+          sizeChanged={sizeChanged}
+          setSizeChanged={setSizeChanged} />
       </div>
       <div className="add-to-cart-star-container">
         <AddToCart

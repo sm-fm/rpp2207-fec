@@ -6,7 +6,6 @@ const AddToCart = (props) => {
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
 
   const handleOptionsClick = () => {
-    props.handleFocusSizeDropDrow();
     props.setNeedSize(true);
   };
 
@@ -32,6 +31,7 @@ const AddToCart = (props) => {
     return (
       <div className='add-to-cart-container'>
         <button
+          data-testid="add-to-cart-btn"
           className='add-to-cart-btn'
           onClick={handleOptionsClick} >
             Add to Cart

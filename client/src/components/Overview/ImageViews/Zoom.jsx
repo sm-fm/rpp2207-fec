@@ -24,8 +24,9 @@ const Zoom = (props) => {
       {props.img
         ?
         <img
-          src={props.img}
+          src={props.img.replace('=300', '=1275')}
           id="zoom"
+          loading="lazy"
           alt="main image zoomed" />
         : null}
     </div>

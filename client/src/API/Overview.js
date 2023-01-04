@@ -47,11 +47,12 @@ const Overview = {
   },
 
   addToCart: (data) => {
-    return fetch('http://localhost:3000/cart', {
+    return fetch('cart', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
     })
       .then(() => {
@@ -63,7 +64,12 @@ const Overview = {
   },
 
   getAllReviews: (id) => {
-    return fetch(`http://localhost:3000/allReviews/${id}`)
+    return fetch(`allReviews/${id}`, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(result => {
         return result.json();
       })

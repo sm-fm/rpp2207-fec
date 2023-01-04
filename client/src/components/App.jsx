@@ -107,9 +107,9 @@ const App = (props) => {
     <div>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} data={props.data} />
-      <Questions objID={id}/>
+      <Questions objID={id} data={props.data} />
       <div ref={ratingsRef}>
-        <Ratings objID={id} generateStars={generateStars} data={props.data}/>
+        <Ratings objID={id} generateStars={generateStars} data={props.data} />
       </div>
     </div>
   );

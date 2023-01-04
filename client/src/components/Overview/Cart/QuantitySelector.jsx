@@ -6,16 +6,20 @@ const QuantitySelector = (props) => {
 
   const [sizeIsSelected, setSizeIsSelected] = useState(false);
   const [quantity, setQuantity] = useState(null);
+  const [quantChosen, setQuantChosen] = useState();
+  const [quantClicked, setQuantClicked] = useState(false);
 
   useEffect(() => {
-    if (props.skuSelected && Object.keys(props.skuSelected).length > 0) {
+    if (props.skuSelected && Object.keys(props.allSkus).length && Object.keys(props.skuSelected).length) {
       setSizeIsSelected(true);
-      setQuantity(props.allSkus[props.skuSelected].quantity);
+      if (Object.keys(props.allSkus).includes(props.skuSelected)) {
+        setQuantity(props.allSkus[props.skuSelected].quantity);
+      }
     }
   });
 
-  const handleChange = (e) => {
-    props.setCountPurchasing(e.target.value);
+  const handleClick = () => {
+    setQuantClicked(true);
   };
 
   const createQuantityDropDown = () => {
@@ -25,26 +29,33 @@ const QuantitySelector = (props) => {
       arr.push(<SpecificQuantity
         num={i}
         setQuantity={props.setQuantity}
+        setQuantChosen={setQuantChosen}
+        setQuantClicked={setQuantClicked}
         key={uuidv4()} />);
     }
     return arr;
   };
 
-  if (!sizeIsSelected || quantity === null || !props) {
+  if (!sizeIsSelected || !quantity || !props) {
     return (
       <div className="quantity-selector">
-        <select name="quantity" className="quantity">
-          <option role="quantity" value="--" disabled>--</option>
-        </select>
+        <button name="quantity" className="quantity-btn" disabled>
+          -- <>&or;</>
+        </button>
       </div>
     );
   } else {
+    if (!quantChosen) { setQuantChosen(1); }
     return (
       <div className="quantity-selector">
-        <select role="quantity" name="quantity" className="quantity" onChange={handleChange}>
-          <option data-testid="quantity" value={1}>1</option>
-          {createQuantityDropDown()}
-        </select>
+        <button role="quantity" name="quantity" className="quantity-btn" onClick={handleClick}>
+          {quantChosen} <>&or;</>
+        </button>
+        <ul>
+          {quantClicked
+            ? createQuantityDropDown()
+            : null}
+        </ul>
       </div>
     );
   }

@@ -9,7 +9,7 @@ const questionAPI = {
       }
     };
 
-    return fetch(`/qa/questions/${productId}`, options)
+    return fetch(`qa/questions/${productId}`, options)
       .then(results => {
         return results.json();
       })
@@ -29,7 +29,7 @@ const questionAPI = {
       }
     };
 
-    return fetch(`/qa/answers/${questionId}`, options)
+    return fetch(`qa/answers/${questionId}`, options)
       .then(results => {
         return results.json();
       })
@@ -51,7 +51,7 @@ const questionAPI = {
       }
     };
 
-    fetch('/qa/questions', options)
+    fetch('qa/questions', options)
       .then(results => {
         console.log(results);
       })
@@ -70,7 +70,7 @@ const questionAPI = {
       }
     };
 
-    fetch('/qa/answers', options)
+    fetch('qa/answers', options)
       .then(results => {
         console.log(results);
       })
@@ -88,7 +88,7 @@ const questionAPI = {
       }
     };
 
-    return fetch(`/qa/${type}/${id}/helpful`, options)
+    return fetch(`qa/${type}/${id}/helpful`, options)
       .then(results => {
         return results;
       })
@@ -106,7 +106,7 @@ const questionAPI = {
       }
     };
 
-    return fetch(`/qa/${type}/${id}/report`, options)
+    return fetch(`qa/${type}/${id}/report`, options)
       .then(results => {
         return results;
       })

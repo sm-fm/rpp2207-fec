@@ -4,7 +4,7 @@ import Features from './Features.jsx';
 const Description = (props) => {
   if (props && props.product) {
     return (
-      <div className="desc-ctn">
+      <>
         <div className="slogan-description">
           <h2 className="slogan" role="slogan">{props.product.slogan}</h2>
           <p className="description" role="description">{props.product.description}</p>
@@ -14,7 +14,7 @@ const Description = (props) => {
             ? <Features product={props.product} />
             : null}
         </div>
-      </div>
+      </>
     );
   } else {
     return null;
