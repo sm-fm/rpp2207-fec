@@ -40,11 +40,17 @@ const FetchData = (WrappedComponent, id) => {
         })
         .then(result => {
           this.setState({product: result});
-          return RatingsAPI.getReviewMetadata(result.id);
+          return RatingsAPI.getAll(result.id);
         })
-        .then(metadata => {
-          this.setState({avgRatings: OverviewAPI.getAverageRating(metadata.ratings)});
-          return OverviewAPI.getStylesById(metadata.product_id);
+        .then(data => {
+          // this.setState({avgRatings: OverviewAPI.getAverageRating(metadata.ratings)});
+          this.setState({
+            metaData: data[1],
+            reviewData: data[0],
+            allData: data[0],
+            avgRatings: OverviewAPI.getAverageRating(data[1].ratings)
+          });
+          return OverviewAPI.getStylesById(data[0].product);
         })
         .then(styles => {
           return styles.json();
@@ -59,23 +65,9 @@ const FetchData = (WrappedComponent, id) => {
           });
           return OverviewAPI.getAllReviews(styles.product_id);
         })
-        .then(reviews => {
-          this.setState({ reviews });
-          return RatingsAPI.getReviewList(reviews.product, 'relevant', 1, 100);
-        })
         .then(data => {
-          this.setState({
-            allData: data
-          });
-          return RatingsAPI.getAll(data.product);
-        })
-        .then(data => {
-          this.setState({
-            metaData: data[1],
-            reviewData: data[0],
-            allData: data[0]
-          });
-          return QuestionsAPI.getAllQuestions(data[0].product);
+          this.setState({ data });
+          return QuestionsAPI.getAllQuestions(data.product);
         })
         .then(results => {
           this.setState({
