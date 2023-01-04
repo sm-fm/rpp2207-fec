@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Zoom from './Zoom.jsx';
 
 const ExpandedView = (props) => {
-
   const [indexOfCurrentImg, setIndexOfCurrentImg] = useState(props.indexOfExpandedImg);
   const [zoomView, setZoomView] = useState(false);
   const [photos, setPhotos] = useState(props.photos);
