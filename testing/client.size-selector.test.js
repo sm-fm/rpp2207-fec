@@ -11,7 +11,7 @@ describe('SizeSelector module', () => {
       <SizeSelector
         skus={chosenStyleData.results[0].skus} />
     );
-    const sizeSelectorbtn = screen.getByRole('sizes-btn');
+    const sizeSelectorbtn = screen.getByTestId('sizes-btn');
     expect(sizeSelectorbtn).toBeInTheDocument();
   });
 
@@ -20,9 +20,9 @@ describe('SizeSelector module', () => {
       <SizeSelector
         skus={chosenStyleData.results[0].skus} />
     );
-    const sizebtn = screen.getByRole('sizes-btn');
+    const sizebtn = screen.getByTestId('sizes-btn');
     fireEvent.click(sizebtn);
-    const sizeSelections = screen.queryAllByRole('size');
+    const sizeSelections = screen.queryAllByTestId('size');
     expect(sizeSelections.length).toEqual(5);
   });
 
@@ -45,7 +45,7 @@ describe('SizeSelector module', () => {
       <SizeSelector
         skus={chosenStyleData.results[0].skus} />
     );
-    const defaultOption = screen.getByRole('sizes-btn');
+    const defaultOption = screen.getByTestId('sizes-btn');
     expect(defaultOption.value).toBe('Select a size');
   });
 
@@ -53,9 +53,10 @@ describe('SizeSelector module', () => {
     render(
       <SizeSelector
         skus={chosenStyleData.results[0].skus}
-        setDefaultVal={() => {}} />
+        setDefaultVal={() => {}}
+        setQuantity={() => {}} />
     );
-    const sizeOption = screen.getByRole('sizes-btn');
+    const sizeOption = screen.getByTestId('sizes-btn');
     fireEvent.click(sizeOption);
     waitFor(() => {
       const firstOption = screen.getByText(/S/i);
@@ -71,6 +72,7 @@ describe('SpecificSize module', () => {
     render(
       <SpecificSize
         setDefaultVal={() => {}}
+        setQuantity={() => {}}
         setSizeSelected={() => {}}
         setNeedSize={() => {}}
         setSizeOptions={() => {}}
@@ -88,16 +90,17 @@ describe('SpecificSize module', () => {
     render(
       <SpecificSize />
     );
-    const sizeOption = screen.queryByRole('size');
+    const sizeOption = screen.queryByTestId('size');
     expect(sizeOption).toBeNull();
   });
 
   test('Value of drop down should change on click of a specific option', async () => {
     render(
       <SizeSelector
-        skus={chosenStyleData.results[0].skus} />
+        skus={chosenStyleData.results[0].skus}
+        setQuantity={() => {}} />
     );
-    const sizeOption = screen.getByRole('sizes-btn');
+    const sizeOption = screen.getByTestId('sizes-btn');
     fireEvent.click(sizeOption);
     waitFor(() => {
       const firstOption = screen.getByText(/S/i);

@@ -12,9 +12,7 @@ const QuantitySelector = (props) => {
   useEffect(() => {
     if (props.skuSelected && Object.keys(props.allSkus).length && Object.keys(props.skuSelected).length) {
       setSizeIsSelected(true);
-      if (Object.keys(props.allSkus).includes(props.skuSelected)) {
-        setQuantity(props.allSkus[props.skuSelected].quantity);
-      }
+      setQuantity(props.quantity);
     }
   });
 
@@ -25,7 +23,7 @@ const QuantitySelector = (props) => {
   const createQuantityDropDown = () => {
     var arr = [];
     var q = quantity > 15 ? 15 : quantity;
-    for (var i = 2; i < q + 1; i++) {
+    for (var i = 1; i < q + 1; i++) {
       arr.push(<SpecificQuantity
         num={i}
         setQuantity={props.setQuantity}
@@ -48,7 +46,7 @@ const QuantitySelector = (props) => {
     if (!quantChosen) { setQuantChosen(1); }
     return (
       <div className="quantity-selector">
-        <button role="quantity" name="quantity" className="quantity-btn" onClick={handleClick}>
+        <button data-testid="quantity" name="quantity" className="quantity-btn" onClick={handleClick}>
           {quantChosen} <>&or;</>
         </button>
         <ul>

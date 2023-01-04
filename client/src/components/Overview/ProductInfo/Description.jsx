@@ -6,8 +6,8 @@ const Description = (props) => {
     return (
       <>
         <div className="slogan-description">
-          <h2 className="slogan" role="slogan">{props.product.slogan}</h2>
-          <p className="description" role="description">{props.product.description}</p>
+          <h2 className="slogan" data-testid="slogan">{props.product.slogan}</h2>
+          <p className="description" data-testid="description">{props.product.description}</p>
         </div>
         <div className="features">
           {props.product.features.length !== 0

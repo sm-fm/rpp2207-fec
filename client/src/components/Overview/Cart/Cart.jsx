@@ -29,8 +29,10 @@ const Cart = (props) => {
           sizeDropDown={sizeDropDown}
           needSize={needSize}
           setNeedSize={setNeedSize}
-          setSizeChanged={setSizeChanged} />
+          setSizeChanged={setSizeChanged}
+          setQuantity={setQuantity} />
         <QuantitySelector
+          quantity={quantity}
           skuSelected={skuSelected}
           sizeSelected={sizeSelected}
           setQuantity={setQuantity}

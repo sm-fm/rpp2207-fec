@@ -12,11 +12,12 @@ describe('QuantitySelector Module', () => {
       skuSelected={'2580526'}
       sizeSelected={'S'}
       setQuantity={16}
+      quantity={7}
       allSkus={chosenStyleData.results[0].skus} />);
-    const quantbtn = screen.getByRole('quantity');
+    const quantbtn = screen.getByTestId('quantity');
     fireEvent.click(quantbtn);
     const quantitySelector = screen.queryAllByTestId('quantity');
-    expect(quantitySelector.length).toBe(7);
+    expect(quantitySelector.length).toBe(8);
   });
 
   test('Quantity selector drop down should be disabled when no style in selected', async () => {
@@ -33,14 +34,15 @@ describe('QuantitySelector Module', () => {
     render(<QuantitySelector
       skuSelected={'2580526'}
       sizeSelected={'S'}
+      quantity={2}
       allSkus={chosenStyleData.results[0].skus}
       setQuantity={() => {}} />);
-    const quantitySelector = screen.getByRole('quantity');
+    const quantitySelector = screen.getByTestId('quantity');
     fireEvent.click(quantitySelector);
     waitFor(() => {
       const quantitySelector = screen.queryAllByTestId('quantity');
       fireEvent.click(quantitySelector[1]);
-      const btn = screen.getByRole('size');
+      const btn = screen.getByTestId('size');
       expect(btn.value).toBe(2);
     });
   });
@@ -49,9 +51,10 @@ describe('QuantitySelector Module', () => {
     render(<QuantitySelector
       skuSelected={'2580526'}
       sizeSelected={'S'}
+      quantity={1}
       allSkus={chosenStyleData.results[0].skus}
       setQuantity={() => {}} />);
-    const quantitySelector = screen.getByRole('quantity');
+    const quantitySelector = screen.getByTestId('quantity');
     fireEvent.click(quantitySelector);
     waitFor(() => {
       const quantitySelector = screen.queryAllByTestId('quantity');
@@ -86,7 +89,7 @@ describe('Integration between SizeSelector and Quantity Selector buttons', () =>
   test('Quantity should correctly change based on size selection', async () => {
     render(<Cart
       skus={chosenStyleData.results[0].skus} />);
-    const sizeSelection = screen.getByRole('sizes-btn');
+    const sizeSelection = screen.getByTestId('sizes-btn');
     fireEvent.click(sizeSelection);
     waitFor(() => {
       const size = screen.getByText(/S/i);

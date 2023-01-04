@@ -37,7 +37,8 @@ const SizeSelector = (props) => {
           setNeedSize={props.setNeedSize}
           setSkuSelected={props.setSkuSelected}
           open={open}
-          setSizeChanged={props.setSizeChanged} />);
+          setSizeChanged={props.setSizeChanged}
+          setQuantity={props.setQuantity} />);
         preventDuplicates.push(specificSku.size);
       }
     }
@@ -61,7 +62,7 @@ const SizeSelector = (props) => {
       <div className="size-selector">
         <button
           onClick={handleChange}
-          role="sizes-btn"
+          data-testid="sizes-btn"
           className="sizes-btn">
           {currentVal} <>&or;</>
         </button>
@@ -77,7 +78,7 @@ const SizeSelector = (props) => {
         <button
           value={defaultVal}
           onClick={handleChange}
-          role="sizes-btn"
+          data-testid="sizes-btn"
           className="sizes-btn">
           {defaultVal} <>&or;</>
         </button>
@@ -87,19 +88,3 @@ const SizeSelector = (props) => {
 };
 
 export default SizeSelector;
-// data-testid="select"
-//         name="sizes"
-//         className="sizes"
-//         ref={props.sizeDropDown}
-//         onChange={handleChange}
-//         options={createSizeDropDown()} >
-//         <option value={defaultVal}>{defaultVal}</option>
-//         {createSizeDropDown()}
-// props.setSizeSelected(e.target.value);
-// setDefaultVal(e.target.value);
-// props.setSizeOptions(e.target.value);
-// Object.keys(props.skus).forEach(sku => {
-//   if (props.skus[sku].size === e.target.value) {
-//     props.setSkuSelected(sku);
-//   }
-// });

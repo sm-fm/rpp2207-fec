@@ -10,6 +10,7 @@ const SpecificSize = (props) => {
     Object.keys(props.skus).forEach(sku => {
       if (props.skus[sku].size === props.size) {
         props.setSkuSelected(sku);
+        props.setQuantity(props.skus[sku].quantity);
       }
     });
     props.setSizeChanged(true);
@@ -21,7 +22,7 @@ const SpecificSize = (props) => {
       <div className="sizes-container">
         <li
           value={props.size}
-          role="size"
+          data-testid="size"
           className="size-item"
           onClick={handleClick}
         >
