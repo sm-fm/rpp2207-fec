@@ -9,12 +9,11 @@ import '../style.css';
 const App = (props) => {
   const params = useParams();
   const id = params.id || '71697';
-  const [yourOutfit, setYourOutfit] = useState([]);
+  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
   const [scrollToRatings, setScrollToRatings] = useState(false);
   const ratingsRef = useRef(null);
 
   const addToOutfit = (product) => {
-    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
       setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
@@ -106,9 +105,8 @@ const App = (props) => {
 
   return (
     <div>
-      <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} data={props.data} />
       <Questions objID={id}/>
       <div ref={ratingsRef}>
         <Ratings objID={id} generateStars={generateStars} data={props.data}/>
