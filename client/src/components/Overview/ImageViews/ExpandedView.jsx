@@ -75,7 +75,7 @@ const ExpandedView = (props) => {
           img={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
           setZoomView={setZoomView} />
       </div>
-    )
+    );
   }
 };
 
