@@ -21,14 +21,12 @@ const Related = (props) => {
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
       .then((products) => {
+        // console.log('PRODUCTS: ', products);
         var productsMap = new Map();
         products.forEach(product => productsMap.set(product.id, product));
         setRelatedProducts([...productsMap.values()]);
       });
-    overviewAPI.getProductById(props.objID)
-      .then((result) => {
-        return result.json();
-      })
+    relatedAPI.getProductById(props.objID)
       .then((product) => {
         setCurrentProduct(product);
       });

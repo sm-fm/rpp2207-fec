@@ -1,3 +1,5 @@
+import React from 'react';
+
 const sampleProduct = {
   'id': 71702,
   'campus': 'hr-rpp',
@@ -199,7 +201,7 @@ const sampleProduct = {
   }
 };
 
-const reviews = {
+const sampleReview = {
   'product_id': '71702',
   'ratings': {
     '1': '1',
@@ -229,6 +231,97 @@ const reviews = {
   }
 };
 
+const styles = {
+  'product_id': '71702',
+  'results': [{
+    'style_id': 444254,
+    'name': 'Zebra Stripe',
+    'original_price': '900.00',
+    'sale_price': null,
+    'default?': false,
+    'photos': [{
+      'thumbnail_url': 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1551489186-cf8726f514f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1507920676663-3b72429774ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1507920676663-3b72429774ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1544376664-80b17f09d399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1544376664-80b17f09d399?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1525&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1513531926349-466f15ec8cc7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1517278322228-3fe7a86cf6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1517720359744-6d12f8a09b10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1517720359744-6d12f8a09b10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1530821875964-91927b611bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1519862170344-6cd5e49cb996?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1519862170344-6cd5e49cb996?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1558014356-f7c41bc744f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1558014356-f7c41bc744f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1542818212-9899bafcb9db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1542818212-9899bafcb9db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1526&q=80'
+    }, {
+      'thumbnail_url': 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+      'url': 'https://images.unsplash.com/photo-1515110371136-7e393289662c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1656&q=80'
+    }],
+    'skus': {
+      '2580773': {
+        'quantity': 14,
+        'size': '7'
+      },
+      '2580774': {
+        'quantity': 25,
+        'size': '7.5'
+      },
+      '2580775': {
+        'quantity': 9,
+        'size': '8'
+      },
+      '2580776': {
+        'quantity': 2,
+        'size': '8.5'
+      },
+      '2580777': {
+        'quantity': 18,
+        'size': '9'
+      },
+      '2580778': {
+        'quantity': 12,
+        'size': '9.5'
+      },
+      '2580779': {
+        'quantity': 10,
+        'size': '10'
+      },
+      '2580780': {
+        'quantity': 18,
+        'size': '10.5'
+      },
+      '2580781': {
+        'quantity': 11,
+        'size': '11'
+      },
+      '2580782': {
+        'quantity': 35,
+        'size': '11.5'
+      },
+      '2580783': {
+        'quantity': 25,
+        'size': '12'
+      }
+    }
+  }]
+};
+
 const product1 = {...sampleProduct};
 const product2 = {...sampleProduct};
 const product3 = {...sampleProduct};
@@ -238,11 +331,98 @@ Object.assign(product1, {'id': 11111, 'name': 'Product #1', 'default_price': '1.
 Object.assign(product2, {'id': 11112, 'name': 'Product #2', 'default_price': '2.22'});
 Object.assign(product3, {'id': 11113, 'name': 'Product #3', 'default_price': '3.33'});
 Object.assign(product4, {'id': 11114, 'name': 'Product #4', 'default_price': '4.44'});
-Object.assign(product5, {'id': 11115, 'name': 'Product #5', 'default_price': '5.55'});
+Object.assign(product5, {'id': 71702, 'name': 'Product #5', 'default_price': '5.55'});
 const relatedProducts = [product1, product2, product3, product4, product5];
+
+const review1 = {...sampleReview};
+const review2 = {...sampleReview};
+const review3 = {...sampleReview};
+const review4 = {...sampleReview};
+const review5 = {...sampleReview};
+Object.assign(review1, {'id': 11111});
+Object.assign(review2, {'id': 11112});
+Object.assign(review3, {'id': 11113});
+Object.assign(review4, {'id': 11114});
+Object.assign(review5, {'id': 71702});
+
+const reviews = [review1, review2, review3, review4, review5];
+
+const fullStar = (id, st, key) => {
+  if (st === 'f') {
+    return (
+      <svg key={`${key}-${id}`} width='11px' height='11px' viewBox='0 0 31 31'>
+        <defs>
+          <linearGradient id='grad-full'>
+            <stop offset='100%' stopColor='black'/>
+          </linearGradient>
+        </defs>
+        <path fill='url(#grad-full)' stroke='black' d='M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+      l11.547-1.2L16.026,0.6L20.388,10.918z'/>
+      </svg>
+    );
+  } else if (st === 'e') {
+    return (
+      <svg key={`${key}-${id}`} width='11px' height='11px' viewBox='0 0 31 31'>
+        <defs>
+          <linearGradient id='grad-full'>
+            <stop offset='100%' stopColor='white'/>
+          </linearGradient>
+        </defs>
+        <path fill='white' stroke='black' d='M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+      l11.547-1.2L16.026,0.6L20.388,10.918z'/>
+      </svg>
+    );
+  }
+
+};
+
+const halfStar = (id, key, amount) => {
+  return (
+    <svg key={`${key}-${id}`} width='11px' height='11px' viewBox='0 0 31 31'>
+      <defs>
+        <linearGradient id={`grad-${key}-${amount}-${id}`}>
+          <stop offset={`${amount}%`} stopColor='black' stopOpacity='1'/>
+          <stop offset={`${amount}%`} stopColor='white' stopOpacity='1'/>
+        </linearGradient>
+      </defs>
+      <path fill={`url(#grad-${key}-${amount}-${id})`} stroke='black' d='M20.388,10.918L32,12.118l-8.735,7.749L25.914,31.4l-9.893-6.088L6.127,31.4l2.695-11.533L0,12.118
+    l11.547-1.2L16.026,0.6L20.388,10.918z'/>
+    </svg>
+  );
+};
+
+const generateStars = (rating, key) => {
+  const stars = [];
+  const fullStars = Math.floor(rating);
+  for (let i = 0; i < 5; i++) {
+    if (i === fullStars) {
+      let values = [0, 0.25, 0.5, 0.75, 1];
+      let roundedStarVal = values.map((val) => {
+        return Math.abs(val - (rating % 1));
+      });
+      if (rating % 1 > 0.0001) {
+        let partialStar = values[roundedStarVal.indexOf(Math.min(...roundedStarVal))] * 100;
+        stars.push(halfStar(i, key, partialStar));
+      } else {
+        stars.push(fullStar(i, 'e', key));
+      }
+      continue;
+    }
+
+    if (i < fullStars) {
+      stars.push(fullStar(i, 'f', key));
+    } else if ( i > fullStars - 1) {
+      stars.push(fullStar(i, 'e', key));
+    }
+  }
+  return stars;
+};
 
 module.exports = {
   sampleProduct: sampleProduct,
   reviews: reviews,
-  relatedProducts: relatedProducts
+  relatedProducts: relatedProducts,
+  generateStars: generateStars,
+  styles: styles,
+  sampleReview: sampleReview
 };

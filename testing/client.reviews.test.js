@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent, getByText } from '@testing-library/react';
 import React from 'react';
 import Router from 'react-router-dom';
 // import RatingsAPI from '../client/src/API/Ratings.js';
@@ -6,6 +6,9 @@ import hf from '../client/src/components/Ratings/helperFunctions.js';
 import nock from 'nock';
 import ReviewCard from '../client/src/components/Ratings/ReviewCard.jsx';
 import Ratings from '../client/src/components/Ratings/Ratings.jsx';
+import MetaData from '../client/src/components/Ratings/metadata/Metadata.jsx';
+import MetaRating from '../client/src/components/Ratings/metadata/MetaRating.jsx';
+
 var expected = [
   {
     "product": "71697",
@@ -343,8 +346,15 @@ test('Test manipulateRatings from the Ratings helper functions', () => {
   expect(hf.manipulateRatings(123)).toBe(undefined);
 });
 
+test('review returnMin function', () => {
+  expect(hf.returnMin(1, 2)).toBe(1);
+  expect(hf.returnMin(2, 1)).toBe(1);
+  expect(hf.returnMin('hi', 'a')).toBe('a');
+  expect(hf.returnMin('', 1)).toBe(undefined);
+});
+
 describe('ReviewCard component', () => {
-  it('tests the data being passed to ReviewCard is on the screen', async () => {
+  test('tests the data being passed to ReviewCard is on the screen', async () => {
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
@@ -356,7 +366,7 @@ describe('ReviewCard component', () => {
     });
   });
 
-  it('should display more text when \'show more\' is pressed', async () => {
+  test('should display more text when \'show more\' is pressed', async () => {
     const { container } = render(<ReviewCard
       generateStars={ function() { return 'stars'; }}
       key={`reviews-${1}`}
@@ -373,12 +383,12 @@ describe('ReviewCard component', () => {
 });
 
 describe('General test of the Ratings component', () => {
-  it('sad path - Should not break when the API does not return the proper data', async () => {
+  test('sad path - Should not break when the API does not return the proper data', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71')
+      .get('/reviews/?product_id=71&sort=relevant&page=1&count=100')
       .reply(200, sampleReviewError);
 
     nock('http://localhost:3000')
@@ -399,12 +409,12 @@ describe('General test of the Ratings component', () => {
     });
   });
 
-  it('happy path - should properly display data when it recieves data', async () => {
+  test('happy path - should properly display data when it recieves data', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -421,16 +431,16 @@ describe('General test of the Ratings component', () => {
 
     await waitFor(() => {
       expect(container.getElementsByClassName('metadata').length).toEqual(1);
-      expect(container.getElementsByClassName('userReview').length).toEqual(5);
+      expect(container.getElementsByClassName('userReview').length).toEqual(2);
     });
   });
 
-  it('should respond to changes in sort by drop downs', async () => {
+  test('should respond to changes in sort by drop downs', async () => {
     nock('http://localhost:3000')
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=relevant&page=1&count=100')
       .reply(200, sampleReview);
 
     nock('http://localhost:3000')
@@ -444,7 +454,7 @@ describe('General test of the Ratings component', () => {
       .defaultReplyHeaders({
         'access-control-allow-origin': '*',
       })
-      .get('/reviews/?product_id=71697&sort=newest&page=1&count=5&rating=%22%5B%5D%22')
+      .get('/reviews/?product_id=71697&sort=newest&page=&count=5')
       .reply(200, sampleReviewsNewest);
 
     const { container } = render(<Ratings
@@ -456,6 +466,129 @@ describe('General test of the Ratings component', () => {
     let options = container.getElementsByTagName('option');
     await waitFor(() => {
       expect(container.getElementsByTagName('select')[0].value).toBe(options[1].text);
+    });
+  });
+});
+
+describe('Testing of Metareveiws: ', () => {
+  // test('Should filter ratings when a rating bar is clicked', async () => {
+  //   nock('https://localhost:3000')
+  //     .defaultReplyHeaders({
+  //       'access-control-allow-origin': '*',
+  //     })
+  //     .get('/reviews/?product_id=71697&sort=newest&page=1&count=5')
+  //     .reply(200, sampleMeta);
+
+  //   expect(true).toBeTrue;
+  // });
+
+  test('Should call the ratings filter function when a rating is clicked', async () => {
+    let testClick = 0;
+    const { container } = render(<MetaData
+      meta={sampleMeta}
+      generateStars = {() => { return 'stars'; }}
+      useRatings = {() => {
+        return new Promise((resolve) => {
+          testClick++;
+          resolve([]);
+        });
+      }}
+    />);
+
+    await waitFor(() => {
+      let rects = container.getElementsByTagName('svg');
+      fireEvent.click(rects[0]);
+      expect(testClick).toBeGreaterThan(1);
+    });
+  });
+
+  test('Should reset filters when the reset filters link is pressed', async () => {
+    const { container } = render(<MetaRating
+      data={sampleMeta.ratings}
+      manipulateShape = {hf.manipulateRatings}
+      useRatings = {() => {
+        return new Promise((resolve) => {
+          resolve([1]);
+        });
+      }}
+    />);
+
+    let rects = container.getElementsByTagName('rect');
+    fireEvent.click(rects[0]);
+    fireEvent.click(rects[1]);
+    await waitFor(async () => {
+      expect(getByText(container, 'Reset Filters')).toBeTruthy();
+      fireEvent.click(container.getElementsByClassName('reviews-reset-filter')[0]);
+      await waitFor( () => {
+        expect(container.getElementsByClassName('rating-preview-list').length).toBe(0);
+      });
+    });
+  });
+});
+
+describe('Testing of reviews', () => {
+  test('Clicking on \'yes\' helpful will increment the helpful button', async () => {
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        'access-control-allow-origin': '*',
+      })
+      .get('/reviews/helpful/?review_id=1277082')
+      .reply(200, true);
+
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+    />, {wrapper: Router});
+
+    expect(getByText(container, '(1)', {exact: false})).toBeTruthy();
+    fireEvent.click(container.getElementsByClassName('reviews-helpful')[0]);
+    await waitFor(() => {
+      expect(getByText(container, '(2)', {exact: false})).toBeTruthy();
+      fireEvent.click(container.getElementsByClassName('reviews-helpful')[0]);
+      expect(getByText(container, '(2)', {exact: false})).toBeTruthy();
+    });
+  });
+
+  test('Clicking on \'reported\' will change the text of reported', async () => {
+    nock('http://localhost:3000')
+      .defaultReplyHeaders({
+        method: 'PUT',
+        'access-control-allow-origin': '*',
+      })
+      .put("/reviews/report/?review_id=1277082")
+      .reply(200, true);
+
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+
+    />, {wrapper: Router});
+
+    expect(getByText(container, 'Report', {exact: false})).toBeTruthy();
+    fireEvent.click(container.getElementsByClassName('reviews-report')[0]);
+    await waitFor(() => {
+      expect(getByText(container, 'REPORTED', {exact: false})).toBeTruthy();
+    });
+  });
+
+  test('Clicking on a review thumbnail loads a modal', async () => {
+    const { container } = render(<ReviewCard
+      generateStars={ function() { return 'stars'; }}
+      key={`reviews-${1}`}
+      data={sampleReview.results[0]}
+
+    />, {wrapper: Router});
+
+    expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
+    fireEvent.click(container.getElementsByClassName('review-thumbnail')[0]);
+    await waitFor(() => {
+      expect(container.getElementsByClassName('reviews-modal').length).toBe(1);
+      fireEvent.click(container.getElementsByClassName('review-exit-modal')[0]);
+      expect(container.getElementsByClassName('reviews-modal').length).toBe(0);
+    });
+    await waitFor(() => {
     });
   });
 });
