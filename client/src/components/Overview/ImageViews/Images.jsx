@@ -72,7 +72,9 @@ const Images = (props) => {
           }
           <img
             className="specific-img"
-            src={props.chosenStyle.photos[indexOfMainImg].thumbnail_url}
+            src={props.chosenStyle.photos[indexOfMainImg]
+              ? props.chosenStyle.photos[indexOfMainImg].thumbnail_url.replace('w=300', 'w=800')
+              : null}
             alt="Image of current style"
             onClick={() => {
               props.setExpandedView(true);

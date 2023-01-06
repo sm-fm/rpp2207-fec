@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import SpecificStyle from './SpecificStyle.jsx';
-import api from '../../../API/Overview.js';
 
 const StyleSelector = (props) => {
   return props.chosenStyle && props.styles ?

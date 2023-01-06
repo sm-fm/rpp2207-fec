@@ -47,7 +47,7 @@ const RelatedProducts = (props) => {
           </div>
           : null
         }
-        { props && props.relatedProducts && position <= (props.relatedProducts.length - 4) * 250 ?
+        { props && props.relatedProducts && (props.relatedProducts.length * 250) - position > props.relatedContainerWidth - 200 ?
           <div className="arrow-container-right" role="button" aria-label="scroll right" onClick={() => { setPosition(position + 250); }}>
             <div className="arrow-right"></div>
           </div>

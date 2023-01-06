@@ -14,7 +14,9 @@ const SpecificImage = (props) => {
           id="thumbnail-img"
           alt="thumbnail of image style"
           style={highlight}
-          src={props.photo.thumbnail_url}
+          src={props.photo.thumbnail_url
+            ? props.photo.thumbnail_url.replace('w=300', 'w=90')
+            : null}
           onClick={() => { props.setIndexOfMainImg(props.index); }} />
         : null}
     </div>

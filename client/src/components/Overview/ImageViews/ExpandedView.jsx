@@ -8,7 +8,6 @@ import { v4 as uuidv4 } from 'uuid';
 import Zoom from './Zoom.jsx';
 
 const ExpandedView = (props) => {
-
   const [indexOfCurrentImg, setIndexOfCurrentImg] = useState(props.indexOfExpandedImg);
   const [zoomView, setZoomView] = useState(false);
   const [photos, setPhotos] = useState(props.photos);
@@ -56,13 +55,14 @@ const ExpandedView = (props) => {
                 style={highlight}
                 icon={faCircle}
                 key={uuidv4()}
-                onClick={() => setIndexOfCurrentImg(index)} />
+                onClick={() => setIndexOfCurrentImg(index)} />;
             })
             : null}
         </div>
         <img
-          src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
+          src={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url.replace('w=300', 'w=1000')}
           alt="Image of current style"
+          loading="lazy"
           id="expanded-img"
           onClick={() => setZoomView(true)}
         />
@@ -75,7 +75,7 @@ const ExpandedView = (props) => {
           img={props.chosenStyle.photos[indexOfCurrentImg].thumbnail_url}
           setZoomView={setZoomView} />
       </div>
-    )
+    );
   }
 };
 

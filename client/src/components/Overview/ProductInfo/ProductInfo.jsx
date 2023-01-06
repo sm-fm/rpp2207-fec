@@ -9,7 +9,7 @@ const ProductInfo = (props) => {
   if (props || props.stars || props.reviews) {
     return (
       <div id='product-info'>
-        <div className="stars" role="stars">
+        <div className="stars" data-testid="stars">
           {props.stars}
         </div>
         {props.reviews && props.reviews.count
