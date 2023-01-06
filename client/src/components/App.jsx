@@ -105,7 +105,18 @@ const App = (props) => {
   }
 
   let clickTracking = ((e) => {
-    // console.log(e.target);
+    let clickTimeStamp = new Date();
+    let holders = ['main-overview', 'related', 'qna', 'reviews', 'app'];
+    let nativePath = e.nativeEvent.path;
+    let container;
+    for (let i = 0; i < nativePath.length; i++) {
+      if (holders.includes(nativePath[i].id)) {
+        container = nativePath[i].id;
+        break;
+      }
+    }
+    let clickInformation = {timeStamp: clickTimeStamp, container: container, targetElement: e.target, event: e};
+    console.log('Click information: ', clickInformation);
   });
 
   return (

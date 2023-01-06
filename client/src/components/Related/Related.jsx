@@ -32,7 +32,7 @@ const Related = (props) => {
   }, []);
 
   return (
-    <div className='related-container' ref={elementRef}>
+    <div className='related-container' ref={elementRef} id='related'>
       <div className="related-products-header">RELATED PRODUCTS</div>
       <RelatedProducts relatedContainerWidth={relatedContainerWidth} currentProduct={props.data.currentProduct} addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={props.data.relatedProducts} generateStars={props.generateStars} />
       <div className="your-outfit-header">YOUR OUTFIT</div>

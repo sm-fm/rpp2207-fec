@@ -149,7 +149,7 @@ const Ratings = (props) => {
   };
 
   return (
-    <div className='ratings'>
+    <div className='ratings' id='reviews'>
 
       <div className='metaDataDisplay'>
         {!isLoadingMeta &&
