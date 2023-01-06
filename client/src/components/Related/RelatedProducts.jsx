@@ -47,7 +47,7 @@ const RelatedProducts = (props) => {
           </div>
           : null
         }
-        { props && props.relatedProducts && position <= (props.relatedProducts.length - 4) * 250 ?
+        { props && props.relatedProducts && (props.relatedProducts.length * 250) - position > props.relatedContainerWidth - 200 ?
           <div className="arrow-container-right" role="button" aria-label="scroll right" onClick={() => { setPosition(position + 250); }}>
             <div className="arrow-right"></div>
           </div>
@@ -55,26 +55,26 @@ const RelatedProducts = (props) => {
         }
       </div>
       {modalShowing ?
-        <div className='comparison-modal'>
+        <div className='comparison-modal' role='dialog' aria-label='comparison window'>
           <div className='modal-top'>COMPARING</div>
           <div className='modal-product-names'>
             <div className='product-1'>{currentProduct.name}</div>
             <div className='product-2'>{comparisonProduct.name}</div>
           </div>
           <table className='modal-table'>
-            <tbody>
+            <tbody className='modal-table-body'>
               {getFeatures().map((feature, index) => {
                 return (
-                  <tr key={`${feature}-${index}`}>
+                  <tr className='feature-row' key={`${feature}-${index}`}>
                     <td className='left-check'>{currentProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
-                    <td>{feature.value} {feature.feature}</td>
+                    <td className='feature-cell'>{feature.value} {feature.feature}</td>
                     <td className='right-check'>{comparisonProduct.features.filter(item => item.feature === feature.feature && item.value === feature.value).length > 0 ? '✓' : null}</td>
                   </tr>
                 );
               })}
             </tbody>
           </table>
-          <div className="close-btn" onClick={() => { setModalShowing(false); }}></div>
+          <div className="close-btn" role='button' aria-label='close comparison' onClick={() => { setModalShowing(false); }}></div>
         </div>
         : null}
     </>
