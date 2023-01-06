@@ -7,7 +7,6 @@ import './rating.css';
 import ReviewForm from './ReviewForm.jsx';
 
 const Ratings = (props) => {
-  console.log(props.data);
   const holderReviewData = {
     "product": "2",
     "page": 0,
