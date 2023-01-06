@@ -57,18 +57,19 @@ CSS-RESET: end
 =====================
 */
 
+body {
+	background-color: whitesmoke;
+}
+
 #specific-style {
-	/* border-radius: 50%; */
 	max-width: 100%;
 	max-height: 100%;
-	flex-direction: right;
 	position: relative;
-	border: 1px solid black;
 }
 
 #style-info {
-	text-align: right;
-	padding-right: 900px;
+	text-align: left;
+	padding-right: 62.59vw;
 }
 
 #style-icons {
@@ -76,37 +77,38 @@ CSS-RESET: end
 	flex-direction: row;
 	justify-content: left;
 	align-items: center;
-	gap: 20px;
+	gap: 1.72vh;
 	flex-wrap: wrap;
 	max-width: 400px;
-	border: 1px solid red;
 }
 
 #checkmark {
-	height: 25px;
-	width: 25px;
+	height: 2.15vh;
+	width: 1.74vw;
 	position: absolute;
 	top: 0;
 	right: 0;
+	background-color: whitesmoke;
+	border-radius: 50%;
 }
 
 .icon {
 	object-fit: cover;
-	width: 75px;
-	height: 75px;
+	width: 70px;
+	height: 70px;
 	border-radius: 50%;
 }
 
 #main-img {
-	border: 1px solid green;
-	width: 850px;
-	height: 600px;
+	width: 59.11vw;
+	height: 53vh;
 	position: relative;
+	overflow: hidden;
 }
 
 .specific-img {
-	min-width: 100%;
-	height: 100%;
+	width: 975px;
+	height: 800px;
 	object-fit: cover;
 	object-position: 50% 50%;
 	cursor: -moz-zoom-in;
@@ -116,25 +118,52 @@ CSS-RESET: end
 
 #thumbnail-img {
 	object-fit: cover;
-	width: 75px;
-	height: 75px;
+	width: 70px;
+	height: 70px;
 	left: 0;
 }
 
-#style-photos {
+#style-photos-window {
 	display: flex;
 	flex-direction: column;
 	justify-content: left;
 	align-items: left;
-	gap: 20px;
-	max-height: 300px;
-	max-width: 75px;
-	border: 1px solid blue;
+	gap: 1.3vh;
+	max-height: 42.2vh;
+	min-height: 42.2vh;
+	max-width: 5.22vw;
 	position: absolute;
+	top: 0;
+	overflow: hidden;
+	margin-top: 5.42vh;
 }
 
-#highlight-img {
-	border-bottom: 5px solid black;
+#style-photos {
+  gap: 1.3vh;
+	display: flex;
+	flex-direction: column;
+	max-height: 47.33vh;
+	margin-top: 0;
+	/* manipulate this based on what photos need to show */
+	transition: margin-top 1s ease;
+}
+
+#up-arrow {
+	position: absolute;
+	top: 2.5%;
+	width: 8%;
+	height: 2.15vh;
+	color: whitesmoke;
+	left: 0;
+}
+
+#down-arrow {
+	position: absolute;
+	bottom: 2.5%;
+	width: 8%;
+	height: 2.15vh;
+	color: whitesmoke;
+	left: 0;
 }
 
 #style-img {
@@ -145,16 +174,18 @@ CSS-RESET: end
 	right: 0;
 	top: 50%;
 	width: 10%;
-	height: 35px;
+	height: 3vh;
 	position: absolute;
+	color: whitesmoke;
 }
 
 #left-arrow {
 	left: 0;
 	top: 50%;
-	width: 10%;
-	height: 35px;
+	width: 25%;
+	height: 3vh;
 	position: absolute;
+	color: whitesmoke;
 }
 
 #expanded-img {
@@ -176,9 +207,18 @@ CSS-RESET: end
 }
 
 #circle {
-	height: 5px;
+	height: .43vh;
 	color: white;
-	padding: 5px;
+	padding: .35vw;
+}
+
+#exit-expanded {
+	position: absolute;
+	right: 0;
+	top: 2%;
+	width: 10%;
+	height: 2.15vh;
+	color: whitesmoke;
 }
 
 #zoom {
@@ -191,4 +231,314 @@ CSS-RESET: end
 	height: 100vh;
 	width: 100vw;
 	overflow: hidden;
+}
+
+.size-needed {
+	color: red;
+}
+
+.review-count {
+	border-bottom: 1px solid black;
+	max-width: 8.35vw;
+}
+
+.original-price {
+	text-decoration: line-through;
+}
+
+.sale-price {
+	color: red;
+}
+
+#product-styles-cart {
+	position: absolute;
+	right: 5%;
+	top: 10%;
+	height: 53.5vh;
+}
+
+.product-name {
+	font-weight: bold;
+	font-size: 40px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: .42vh;
+}
+
+.category-name {
+	font-size: 25px;
+  margin-top: .86vh;
+}
+
+#styles {
+	max-width: 27.82vw;
+	margin-bottom: 1.72vh;
+}
+
+#images-comp {
+	display: inline-block;
+	justify-content: left;
+	margin-left: 4.87vw;
+}
+
+#cart {
+	position: absolute;
+	display: inline-block;
+	height: 17.7vh;
+	width: 27.82vw;
+}
+
+#main-overview {
+	display: inline-block;
+	margin-top: 8.61vh;
+	margin-bottom: 8.61vh;
+}
+
+.size-selector-quantity-container {
+  display: inline-block;
+	height: 4.42vh;
+	width: 27.68vw;
+	margin-top: 5.681vh;
+}
+
+.size-selector {
+	display: inline-block;
+	height: 4.42vh;
+	width: 17.39vw;
+	position: absolute;
+}
+
+.size-item {
+	width: 17.39vw;
+	height: 2.58vh;
+	position: relative;
+	border: 1px solid #454545;
+	z-index: 2;
+}
+
+.sizes-container {
+	width: 17.39vw;
+	height: 2.58vh;
+	background-color: whitesmoke;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #454545;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+}
+
+.sizes-btn {
+	height: 4.42vh;
+	width: 17.39vw;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: large;
+	background-color: whitesmoke;
+	border: 1px solid #454545;
+	display: inline-block;
+}
+
+.quant-container {
+	width: 8vw;
+	height: 2.58vh;
+	background-color: whitesmoke;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #454545;
+	text-align: center;
+	position: relative;
+	z-index: 2;
+}
+
+.single-quantity {
+	width: 8vw;
+	height: 2.58vh;
+	border-bottom: .43vh;
+	position: relative;
+	border: 1px solid #454545;
+	z-index: 2;
+}
+
+.quantity-btn {
+	height: 4.42vh;
+	width: 8vw;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: large;
+	background-color: whitesmoke;
+	border: 1px solid #454545;
+	display: inline-block;
+}
+
+.quantity-selector {
+	display: inline-block;
+	width: 8vw;
+	height: 4.42vh;
+	margin-left: 19.47vw;
+	position: absolute;
+}
+
+.add-to-cart-star-container {
+	display: inline-block;
+	width: 27.4vw;
+	height: 4.23vh;
+	margin-top: 1.76vh;
+
+}
+
+.add-to-cart-btn {
+	display: inline-block;
+	width: 20.86vw;
+	height: 4.23vh;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: large;
+	background-color: whitesmoke;
+	border: 1px solid #454545;
+}
+
+.add-to-cart-container {
+	display: inline-block;
+}
+
+.star {
+	display: inline-block;
+	height: 4.23vh;
+	width: 3.52vw;
+	margin-left: 3.02vw;
+	font-weight: bold;
+	font-size: large;
+	background-color: whitesmoke;
+	border: 1px solid #454545;
+}
+
+.star-container {
+	display: inline-block;
+	top: 0;
+	right: 0;
+}
+
+.cart-container {
+	width: 27.82vw;
+	height: 17.21vh;
+	display: inline-block;
+}
+
+#product-info {
+  display: inline-block;
+}
+
+.stars {
+	display: inline-block;
+}
+
+.review-count {
+	display: inline-block;
+	margin-left: .49vw;
+}
+
+.original-price {
+	font-size: large;
+	margin-left: .35vw;
+}
+
+.sale-price {
+	font-size: large;
+}
+
+.o-price-original {
+	font-size: large;
+}
+
+#style-info {
+	display: inline-block;
+	margin-top: 1.72vh;
+}
+
+.style-name-info {
+	width: 27.55vw;
+	display: inline-block;
+	margin-bottom: 1.72vh;
+	margin-top: 1.72vh;
+}
+
+.style-text {
+	display: inline-block;
+	margin-right: .35vw;
+	font-weight: bold;
+	font-size: large;
+}
+
+.carrot {
+	display: inline-block;
+	font-weight: bold;
+	font-size: large;
+}
+
+#description-container {
+	margin-left: 4.86vw;
+	width: 88.55vw;
+	height: 13.77vh;
+	display: inline-block;
+}
+
+.style-name {
+	display: inline-block;
+	margin-left: .7vw;
+	font-size: large;
+}
+
+.slogan {
+	font-weight: bold;
+	font-size: x-large;
+	color: #454545;
+	margin-bottom: 1.72vh;
+	margin-top: 4.41vh;
+	display: inline-block;
+}
+
+.slogan-description {
+	width: 53.5vw;
+	display: inline-block;
+	margin-top: 0;
+	margin-left: 5.5vw;
+	height: 13.77vh;
+
+}
+
+.features {
+	display: inline-block;
+	border-left: 2px solid #454545;
+	width: 27.82vw;
+	min-height: 9.04vh;
+	max-height: 13.77vh;
+	margin-left: .83vw;
+	position: absolute;
+	margin-top: 4.41vh;
+	z-index: 1;
+}
+
+.features-list {
+	display: inline-block;
+	min-height: 9.04vh;
+	max-height: 13.77vh;
+	width: 28.03vw;
+  margin-top: 0;
+}
+
+.indi-feature {
+	display: inline-block;
+	margin-left: .35vw;
+	margin-bottom: .86vh;
+	color: #454545;
+}
+
+.feature-check {
+	margin-left: .7vw;
+	display: inline-block;
+}
+
+.description {
+	color: #454545;
+	display: inline-block
 }

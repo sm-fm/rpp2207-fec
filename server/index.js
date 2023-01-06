@@ -4,10 +4,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 require('dotenv').config();
+var compression = require('compression');
 
+app.use(compression());
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 const PATH = 3000;
 const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp';
@@ -37,6 +38,7 @@ app.get('/products', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.sendStatus(401);
     });
 });
 
@@ -50,6 +52,41 @@ app.get('/products/:query(*)', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+      res.sendStatus(401);
+    });
+});
+
+app.post('/cart', (req, res) => {
+  var options = {
+    method: 'POST',
+    body: req.body,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  fetch(`${baseURL}/cart?sku_id=${req.body.sku_id}`, options)
+    .then(() => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(401);
+    });
+});
+
+app.get('/allReviews/:id', (req, res) => {
+  console.log(req.params.id);
+  fetch(`${baseURL}/reviews?product_id=${req.params.id}`, getOptions)
+    .then(results => {
+      return results.json();
+    })
+    .then(results => {
+      res.send(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(401);
     });
 });
 
@@ -72,7 +109,7 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/meta', (req, res) => {
+app.get('/reviews/meta/', (req, res) => {
   fetch(`${baseURL}/reviews/meta/?product_id=${req.query.product_id}`, getOptions)
     .then(results => {
       return results.json();
@@ -89,8 +126,7 @@ app.get('/reviews/meta', (req, res) => {
 // Increment review helpfulness
 app.put('/reviews/helpful/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/helpful`, putOptions)
-    .then((data) => {
-      console.log('data: ', data);
+    .then(() => {
       res.status(200).send(true);
     })
     .catch(err => {
@@ -101,7 +137,7 @@ app.put('/reviews/helpful/', (req, res) => {
 //report a review
 app.put('/reviews/report/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
-    .then((data) => {
+    .then(() => {
       res.status(200).send(true);
     })
     .catch(err => {

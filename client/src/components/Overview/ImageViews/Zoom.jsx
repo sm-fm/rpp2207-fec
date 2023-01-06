@@ -12,8 +12,8 @@ const Zoom = (props) => {
     var zoomedImg = ReactDOM.findDOMNode(node);
     zoomedImg.style.transformOrigin = `${x}px ${y}px`;
     zoomedImg.style.transform = 'scale(2.5)';
-    zoomedImg.style.cursor = 'zoom-out'
-  }
+    zoomedImg.style.cursor = 'zoom-out';
+  };
 
   return (
     <div id="zoom-container"
@@ -24,12 +24,13 @@ const Zoom = (props) => {
       {props.img
         ?
         <img
-          src={props.img}
+          src={props.img.replace('=300', '=1275')}
           id="zoom"
+          loading="lazy"
           alt="main image zoomed" />
         : null}
     </div>
-  )
-}
+  );
+};
 
 export default Zoom;

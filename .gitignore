@@ -4,5 +4,7 @@ node_modules
 client/dist/
 coverage/
 config/
-fontawesome-free-5.15.4-web/
 FEC-PEM.pem
+fontawesome-free-5.15.4-web/
+fontawesome-free-5.15.4-web
+

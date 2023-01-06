@@ -1,14 +1,11 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import debounce from 'lodash.debounce';
-import relatedAPI from '../../API/Related.js';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
 import './related.css';
 
 const Related = (props) => {
-  const [relatedProducts, setRelatedProducts] = useState();
-  const [isFetching, setIsFetching] = useState(true);
-  const [currentProduct, setCurrentProduct] = useState({});
   const [relatedContainerWidth, setRelatedContainerWidth] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const elementRef = useRef(null);
@@ -18,18 +15,9 @@ const Related = (props) => {
   };
 
   useEffect(() => {
-    relatedAPI.getRelatedProducts(props.objID)
-      .then((products) => {
-        // console.log('PRODUCTS: ', products);
-        var productsMap = new Map();
-        products.forEach(product => productsMap.set(product.id, product));
-        setRelatedProducts([...productsMap.values()]);
-      });
-    relatedAPI.getProductById(props.objID)
-      .then((product) => {
-        setCurrentProduct(product);
-      });
-  }, [props.objID]);
+    props.data.product.styles = {};
+    props.data.product.styles.results = props.data.styles;
+  }, [props.data]);
 
   useEffect(() => {
     setRelatedContainerWidth(elementRef.current.getBoundingClientRect().width);
@@ -37,9 +25,7 @@ const Related = (props) => {
 
   useEffect(() => {
     const debouncedHandleResize = debounce(handleResize, 300);
-
     window.addEventListener('resize', debouncedHandleResize);
-
     return () => {
       window.removeEventListener('resize', debouncedHandleResize);
     };
@@ -48,26 +34,18 @@ const Related = (props) => {
   return (
     <div className='related-container' ref={elementRef}>
       <div className="related-products-header">RELATED PRODUCTS</div>
-      <RelatedProducts
-        relatedContainerWidth={relatedContainerWidth}
-        currentProduct={currentProduct}
-        addToOutfit={props.addToOutfit}
-        yourOutfit={props.yourOutfit}
-        relatedProducts={relatedProducts}
-        generateStars={props.generateStars}
-        isFetching={isFetching}
-        setIsFetching={setIsFetching}
-      />
+      <RelatedProducts relatedContainerWidth={relatedContainerWidth} currentProduct={props.data.currentProduct} addToOutfit={props.addToOutfit} yourOutfit={props.yourOutfit} relatedProducts={props.data.relatedProducts} generateStars={props.generateStars} />
       <div className="your-outfit-header">YOUR OUTFIT</div>
       <YourOutfit
         relatedContainerWidth={relatedContainerWidth}
         objID={props.objID}
+        product={props.data.product}
+        styles={props.data.styles}
+        avgRatings={props.data.avgRatings}
         yourOutfit={props.yourOutfit}
         addToOutfit={props.addToOutfit}
         removeFromOutfit={props.removeFromOutfit}
         generateStars={props.generateStars}
-        isFetching={isFetching}
-        setIsFetching={setIsFetching}
       />
     </div>
   );

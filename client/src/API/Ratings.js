@@ -52,13 +52,16 @@ const Ratings = {
       });
   },
   reportReview: (review_id) => {
-    return fetch(`reviews/report/?review_id=${review_id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
+    return fetch('reviews/report/?' +
+    new URLSearchParams({
+      review_id: review_id
+    }),
+    {
+      method: 'PUT',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
       .then(() => {
         return true;
       })
