@@ -8,14 +8,16 @@ let Metadata = (props) => {
   let rec = hf.calculateRecommended(props.meta.recommended);
   return (
     <div className='metadata'>
-      <h3>Ratings and Reviews</h3>
+      <p className='heading'>Ratings & Reviews</p>
       <div className='heading'>
-        <h4>{averageRating}</h4>
+        <div className='average-rating'>
+          <p className='average-rating-tag'>{averageRating}</p>
+        </div>
         <div className='average-ratings-holder'>
-          {props.generateStars(averageRating)}
+          {props.generateStars(averageRating, 'metaDataHeader', 'rgb(80, 80, 80)', '15px')}
         </div>
       </div>
-      <p className='recommended'>{rec}% of users recommend this product.</p>
+      <p className='recommended'>✓ {rec}% of users recommend this product.</p>
       <Metarating data={props.meta.ratings} manipulateShape = {hf.manipulateRatings} useRatings={props.useRatings}/>
       <ProductBreakdown data = {props.meta.characteristics}/>
     </div>

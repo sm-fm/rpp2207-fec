@@ -9,12 +9,15 @@ let ReviewCard = (props) => {
   // Could even do this with the body - could send an already shortened portion of the body
   var date = new Date(props.data.date);
   date = format(date, 'MMM d, y');
-
   const [displayFullBody, setDisplay] = useState(false);
   const [modal, setModal] = useState(null);
   const [helpfulness, setHelpfulness] = useState(props.data.helpfulness);
   const [reviewed, setReviewed] = useState(false);
   const [reported, setReported] = useState(false);
+
+  useEffect(() => {
+    setHelpfulness(props.data.helpfulness);
+  }, [props.data.helpfulness]);
 
   let shortBody, shortText;
   if (props.data.body.length > 250) {
@@ -32,8 +35,12 @@ let ReviewCard = (props) => {
   }
 
   let imageModal = (e) => {
-    console.log(e.target);
-    setModal(<Modal src={e.target.src} onClick={onModalClick}/>);
+    let componentInfo = (
+      <img src={e.target.src}
+        alt='Sorry, the image could not be loaded at this time, please try again later.'
+        loading ='lazy'/>
+    );
+    setModal(<Modal src={e.target.src} onClick={onModalClick} componentData={componentInfo}/>);
   };
 
   let onModalClick = () => {
@@ -43,7 +50,7 @@ let ReviewCard = (props) => {
   let onHelpfulClick = (e) => {
     API.helpfulReview(e.target.parentNode.id)
       .then(data => {
-        if (data) {
+        if (Object.keys(data).length !== 0) {
           setHelpfulness(helpfulness + 1);
           setReviewed(true);
         }
@@ -69,36 +76,36 @@ let ReviewCard = (props) => {
     <div className = 'userReview'>
       <div className='flex-box'>
         <div className='starHolder'>
-          {props.generateStars(props.data.rating, 'userReview')}
+          {props.generateStars(props.data.rating, 'userReview', 'rgb(100, 100, 100)', '12px')}
         </div>
-        <h6 className='username'>{`${props.data.reviewer_name}, ${date}`}</h6>
+        <p className='username'>{`${props.data.reviewer_name}, ${date}`}</p>
       </div>
-      <h3 className='summary'>{props.data.summary}</h3>
+      <p className='summary'>{props.data.summary}</p>
       <p className='reviewBody'>{renderBody}</p>
 
       {(!displayFullBody && !shortText) &&
         <p className='show-more-review' onClick={() => setDisplay(!displayFullBody)}>Show more.</p>}
 
       {props.data.recommend &&
-        <p>✓ I recommend this product</p>}
+        <p className='recommend'>✓ I recommend this product</p>}
 
       {props.data.response !== '' &&
         <p className='companyResponse'>{props.data.response}</p>}
 
-      <h6 id={props.data.review_id} className='reviews-helpfulness'>
-        Helpful?
+      <p id={props.data.review_id} className='reviews-helpfulness'>
+        Helpful?&nbsp;
         {!reviewed ?
-          <u onClick={onHelpfulClick} className='reviews-helpful'>Yes</u> :
+          <u onClick={onHelpfulClick} className='reviews-helpful reviews-pointer'>Yes</u> :
           <u className='reviews-helpful'>Yes</u>
         }
 
-        {`(${helpfulness})`} |
+        {`  (${helpfulness})`} | &nbsp;
 
         {reported ?
           <u style={{color: 'red'}}>REPORTED</u> :
-          <u className='reviews-report' onClick={onReportClick}>Report</u>
+          <u className='reviews-report reviews-pointer' onClick={onReportClick}>Report</u>
         }
-      </h6>
+      </p>
 
       <div className='thumbnail-holder'>
         {props.data.photos.map((element, idx) => {
@@ -108,6 +115,7 @@ let ReviewCard = (props) => {
               src={element.url}
               alt={`${props.data.reviewer_name} image - ${idx + 1}`}
               onClick={imageModal}
+              loading ='lazy'
             />
           );
         })}

@@ -21,8 +21,8 @@ describe('Overall Images component', () => {
   test('Component renders correct image', async () => {
     render(
       <Images
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos} />
     );
     const mainImg = screen.getByAltText('Image of current style');
     expect(mainImg).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
@@ -39,8 +39,8 @@ describe('Overall Images component', () => {
   test('Image changes to correct image upon clicking right arrow', async() => {
     const { container } = render(
       <Images
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos} />
     );
     const rightButton = screen.getByTestId('right-btn');
     fireEvent.click(rightButton);
@@ -51,8 +51,8 @@ describe('Overall Images component', () => {
   test('Image changes to correct image upon clicking left arrow', async() => {
     const { container } = render(
       <Images
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos} />
     );
     const rightButton = screen.getByTestId('right-btn');
     fireEvent.click(rightButton);
@@ -79,9 +79,9 @@ describe('Expanded View component', () => {
   test('Right arrow renders upon mounting of component', async () => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={0} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={0} />
     );
     const rightArrow = screen.getByTestId('right-arrow');
     expect(rightArrow).toBeInTheDocument();
@@ -90,9 +90,9 @@ describe('Expanded View component', () => {
   test('Right arrow does not render when viewing last image in list', async () => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={5} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={5} />
     );
     const rightArrow = screen.queryByTestId('right-arrow');
     expect(rightArrow).toBeNull();
@@ -101,9 +101,9 @@ describe('Expanded View component', () => {
   test('Left arrow renders when viewing any image other than first image in list', async () => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={1} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={1} />
     );
     const leftArrow = screen.getByTestId('left-arrow');
     expect(leftArrow).toBeInTheDocument();
@@ -112,9 +112,9 @@ describe('Expanded View component', () => {
   test('Left arrow should not render upon mounting of component', async () => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={0} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={0} />
     );
     const leftArrow = screen.queryByTestId('left-arrow');
     expect(leftArrow).toBeNull();
@@ -123,9 +123,9 @@ describe('Expanded View component', () => {
   test('Circle icons should render upon mounting component', async () => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={0} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={0} />
     );
     var circleIcons = [];
     for (var i = 0; i < 6; i++) {
@@ -137,8 +137,8 @@ describe('Expanded View component', () => {
   test('Circle icons should not render when no images are passed to component', async () => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      indexOfExpandedImg={0} />
+        chosenStyle={chosenStyleData.results[0]}
+        indexOfExpandedImg={0} />
     );
     const circleIcon = screen.queryAllByTestId('circle');
     expect(circleIcon.length).toBe(0);
@@ -147,9 +147,9 @@ describe('Expanded View component', () => {
   test('Image changes to correct image upon clicking right arrow', async() => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={0} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={0} />
     );
     const rightButton = screen.getByTestId('right-arrow');
     fireEvent.click(rightButton);
@@ -160,9 +160,9 @@ describe('Expanded View component', () => {
   test('Image changes to correct image upon clicking left arrow', async() => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={1} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={1} />
     );
     const leftButton = screen.getByTestId('left-arrow');
     fireEvent.click(leftButton);
@@ -173,9 +173,9 @@ describe('Expanded View component', () => {
   test('Image changes to correct image upon clicking circle icon', async() => {
     render(
       <ExpandedView
-      chosenStyle={chosenStyleData.results[0]}
-      photos={chosenStyleData.results[0].photos}
-      indexOfExpandedImg={0} />
+        chosenStyle={chosenStyleData.results[0]}
+        photos={chosenStyleData.results[0].photos}
+        indexOfExpandedImg={0} />
     );
     const circleBtn = screen.getByTestId('circle 1');
     fireEvent.click(circleBtn);
@@ -189,7 +189,7 @@ describe('SpecificImage component', () => {
   test('Correct image is rendered upon component mounting', async () => {
     render(
       <SpecificImage
-      photo={chosenStyleData.results[0].photos[0]} />
+        photo={chosenStyleData.results[0].photos[0]} />
     );
     const specificImage = screen.getByAltText('thumbnail of image style');
     expect(specificImage).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
@@ -206,13 +206,13 @@ describe('SpecificImage component', () => {
   test('Thumbnail image that is currently main image should have a bottom border', async() => {
     render(
       <SpecificImage
-      photo={chosenStyleData.results[0].photos[1]}
-      setIndexOfMainImg={() => {}} />
+        photo={chosenStyleData.results[0].photos[1]}
+        setIndexOfMainImg={() => {}} />
     );
     const clickedImg = screen.getByAltText('thumbnail of image style');
     fireEvent.click(clickedImg);
     expect(clickedImg).toHaveStyle('border-bottom: 5px solid black;');
-  })
+  });
 });
 
 // ZOOM COMPONENT -------------------------------------------------------------------
@@ -220,7 +220,7 @@ describe('Zoom component', () => {
   test('Correct image is rendered upon component mounting', async () => {
     render(
       <Zoom
-      img={chosenStyleData.results[0].photos[0].thumbnail_url} />
+        img={chosenStyleData.results[0].photos[0].thumbnail_url} />
     );
     const specificImage = screen.getByAltText('main image zoomed');
     expect(specificImage).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
@@ -237,7 +237,7 @@ describe('Zoom component', () => {
   test('Image should zoom 2.5x when clicked', async() => {
     render(
       <Zoom
-      img={chosenStyleData.results[0].photos[0].thumbnail_url} />
+        img={chosenStyleData.results[0].photos[0].thumbnail_url} />
     );
     const zoomedImgContainer = screen.getByRole("zoom-container");
     fireEvent.mouseMove(zoomedImgContainer);

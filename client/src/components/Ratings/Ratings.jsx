@@ -4,9 +4,9 @@ import UserReviews from './ReviewCard.jsx';
 import Metadata from './metadata/Metadata.jsx';
 import hf from './helperFunctions.js';
 import './rating.css';
+import ReviewForm from './ReviewForm.jsx';
 
 const Ratings = (props) => {
-  // use 71697 for testing
   const holderReviewData = {
     "product": "2",
     "page": 0,
@@ -18,8 +18,8 @@ const Ratings = (props) => {
   product_id = props.objID || 71697;
 
   // Refering to the review list
-  const [allData, setAllData] = useState([]);
-  const [reviewData, setReviewData] = useState(holderReviewData);
+  const [allData, setAllData] = useState(props.data.allData);
+  const [reviewData, setReviewData] = useState(props.data.allData);
   const [isLoadingreview, setIsLoadingreview] = useState(true);
   const [category, setCategory] = useState(null);
   const [reviewError, setReviewError] = useState('Loading reviews.');
@@ -27,11 +27,16 @@ const Ratings = (props) => {
   const [numberReviewsDisplayed, setNumberReviewsDisplayed] = useState(0);
 
   // Refering to metadata
-  const [metadata, setMetadata] = useState({});
+  const [metadata, setMetadata] = useState(props.data.metaData);
   const [isLoadingMeta, setIsLoadingMeta] = useState(true);
   const [ratings, setRatings] = useState([]);
   const [metaError, setMetaError] = useState('Loading metadata.');
 
+  const [reviewForm, setReviewForm] = useState(false);
+  const [reviewFormInformation, setReviewFormInformation] = useState(false);
+
+  // Refering to the load state
+  const [madeInitialCall, setMadeInitialCall] = useState(false);
   /**
    *
    * @param {*} id - product_id which can be found from the url
@@ -39,10 +44,9 @@ const Ratings = (props) => {
    * @param {*} page - Speciries the page from which the results are returned
    * @param {*} count - Tells how many results per page
    */
-  let getReviewList = (id, sort = 'relevant', page = 1, count = 100) => {
+  let getReviewList = (sort = category || 'relevant', page = 1, count = 300) => {
     return ratingsAPI.getReviewList(product_id, sort, page, count)
       .then(data => {
-        console.log('Success!', data);
         setAllData(data);
         return data;
       })
@@ -50,7 +54,7 @@ const Ratings = (props) => {
         setReviewError('Something went wrong, please try again later.');
       });
   };
-
+  // Running this so that the first time the component loads it will grab all the necessary information
   let filterReviewList = (ratingsList) => {
     if (ratingsList.length === 0) {
       setReviewData(allData);
@@ -74,31 +78,22 @@ const Ratings = (props) => {
   }, [reviewData]);
 
   useEffect(()=> {
-    ratingsAPI.getAll(product_id)
-      .then(data=> {
-        if (data[0].results.length === 0) {
-          throw new Error('No data found');
-        }
-        setMetadata(data[1]);
-        setReviewData(data[0]);
-        setAllData(data[0]);
+    if (!Object.keys(metadata.ratings).length) {
+      setMetaError('Uh-oh! Something went wrong, please try again later.');
+      setReviewError('Uh-oh! Something went wrong, please try again later.');
 
-        setIsLoadingMeta(false);
-        setIsLoadingreview(false);
+    } else {
+      setIsLoadingMeta(false);
+      setIsLoadingreview(false);
 
-        setMetaError('');
-        setReviewError('');
-      })
-      .catch(err => {
-        let errMsg = 'Uh-oh! There was an error when trying to retrieve the data. Please try again later.';
-        setMetaError(errMsg);
-        setReviewError(errMsg);
-      });
-  }, [props.objID]);
+      setMetaError('');
+      setReviewError('');
+    }
+  }, [allData]);
 
   let catChange = (e) => {
     setCategory(e.target.value);
-    getReviewList(product_id, e.target.value);
+    getReviewList(e.target.value);
   };
 
   let useRating = async (e) => {
@@ -124,6 +119,10 @@ const Ratings = (props) => {
 
   let incrementReviewsList = () => {
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength + 2));
+    if (!madeInitialCall) {
+      getReviewList();
+      setMadeInitialCall(true);
+    }
   };
 
   let collapseReviewList = () => {
@@ -131,13 +130,27 @@ const Ratings = (props) => {
   };
 
   let refreshReviewList = () => {
-    console.log(reviewData.results);
-    console.log(reviewListDisplayLength);
     setReviewListDisplayLength(hf.returnMin(reviewData.results.length, reviewListDisplayLength));
-  }
+  };
+
+  let toggleReviewForm = async (e, optionalParamForPostReviewSubmission) => {
+    setReviewForm(!reviewForm);
+
+    if (optionalParamForPostReviewSubmission) {
+      setReviewFormInformation('Your review was successfully submitted.');
+      const timer = (time) => {
+        return new Promise((resolve) => {
+          setTimeout(resolve, time);
+        });
+      };
+      await timer(4000);
+      setReviewFormInformation(false);
+    }
+  };
 
   return (
     <div className='ratings'>
+
       <div className='metaDataDisplay'>
         {!isLoadingMeta &&
         <Metadata generateStars={props.generateStars} meta={metadata} useRatings = {useRating}/>}
@@ -150,13 +163,19 @@ const Ratings = (props) => {
       </div>
       <div className='user-review-wrapper'>
         <div className='reviewListHeading'>
-          <label>{reviewListDisplayLength} reviews, sorted by </label>
-          <select data-testid='select' id='sortBy' onChange={catChange}>
+          <label className='heading'>{reviewListDisplayLength} reviews, sorted by </label>
+          <select data-testid='select' id='sortBy' onChange={catChange} className='reviews-pointer heading'>
             <option data-testid='select-option' value='relevance'>relevance</option>
             <option data-testid='select-option' value='newest'>newest</option>
             <option data-testid='select-option' value='helpful'>most helpful</option>
           </select>
         </div>
+
+        {reviewFormInformation ?
+          <p style={{'animation-play-state': 'running'}} className='successful-form'>{reviewFormInformation}</p>
+          :
+          null
+        }
         {!isLoadingreview &&
         <div className='userReviews'>
           {reviewData.results.map((elem, idx) => {
@@ -168,11 +187,21 @@ const Ratings = (props) => {
               return null;
             }
           })}
+
           {(reviewData.results.length >= 2 && reviewListDisplayLength < reviewData.results.length) &&
-          <p onClick={incrementReviewsList}>Show more</p>
+          <button onClick={incrementReviewsList} className='reviews-pointer show-more'>Show More</button>
           }
+
           {(reviewListDisplayLength > 2) &&
-          <p onClick={collapseReviewList}>Collapse reviews</p>}
+          <button onClick={collapseReviewList} className='reviews-pointer collapse-review'>Collapse Reviews</button>}
+
+          <button onClick={toggleReviewForm} className='reviews-pointer review-form'>Add a Review &nbsp;&nbsp; +</button>
+          {reviewForm &&
+            <>
+              <ReviewForm toggleReviewForm = {toggleReviewForm} generateStars={props.generateStars} availableOptions={metadata.characteristics} product_id = {product_id} getReviewList={getReviewList}/>
+            </>
+          }
+
         </div>
         }
         {reviewError &&
