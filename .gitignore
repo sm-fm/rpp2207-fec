@@ -5,3 +5,4 @@ client/dist/
 coverage/
 fontawesome-free-5.15.4-web/
 fec2.pem
+.DS_Store
