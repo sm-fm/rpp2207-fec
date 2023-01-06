@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import overviewAPI from '../../API/Overview.js';
 import relatedAPI from '../../API/Related.js';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
@@ -10,13 +9,10 @@ const Related = (props) => {
   const [isFetching, setIsFetching] = useState(true);
   const [currentProduct, setCurrentProduct] = useState({});
 
-  // const handleSetIsFetching = () => {
-  //   setIsFetching(!isFetching);
-  // };
-
   useEffect(() => {
     relatedAPI.getRelatedProducts(props.objID)
       .then((products) => {
+        // console.log('PRODUCTS: ', products);
         var productsMap = new Map();
         products.forEach(product => productsMap.set(product.id, product));
         setRelatedProducts([...productsMap.values()]);

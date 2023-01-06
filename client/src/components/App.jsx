@@ -14,15 +14,15 @@ const App = (props) => {
   const ratingsRef = useRef(null);
 
   const addToOutfit = (product) => {
-    console.log(yourOutfit, product);
     if (!(yourOutfit.filter((item) => item.id === product.id).length > 0)) {
       setYourOutfit(yourOutfit => ([product, ...yourOutfit]));
     }
   };
 
-  const removeFromOutfit = (product) => {
+  const removeFromOutfit = (product, e) => {
     const id = product.id;
     setYourOutfit(yourOutfit.filter(outfit => outfit.id !== id));
+    e.stopPropagation();
   };
 
   const fullStar = (id, st, key, color, size) => {
