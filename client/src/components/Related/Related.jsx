@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import debounce from 'lodash.debounce';
-import overviewAPI from '../../API/Overview.js';
 import relatedAPI from '../../API/Related.js';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
