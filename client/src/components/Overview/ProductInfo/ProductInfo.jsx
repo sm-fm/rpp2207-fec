@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ProductInfo = (props) => {
-  console.log('Props: ', props);
 
   const handleClick = () => {
     props.setScrollToRatings(true);

@@ -7,7 +7,6 @@ import ExpandedView from './ImageViews/ExpandedView.jsx';
 import Description from './ProductInfo/Description.jsx';
 
 const Overview = (props) => {
-  console.log('Overview Props: ', props);
   const product = props.data.product;
   const styles = props.data.styles;
   const [chosenStyle, setChosenStyle] = useState(props.data.chosenStyle);
