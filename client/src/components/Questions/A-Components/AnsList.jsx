@@ -1,46 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import questionAPI from '../../../API/Questions.js';
 import Answer from './Answer.jsx';
 
-const AnsList = (props) => {
+const AnsList = ({mixedAns, openModal}) => {
   let [answers, setAnswers] = useState([]);
   let [rendered, setRendered] = useState([]);
-  let [num, setNum] = useState(2);
+
+  var handleCollapse = () => { setRendered([ answers[0], answers[1] ]); };
+  var handleMore = () => {
+    let rl = rendered.length;
+    let al = answers.length;
+    setRendered(al - rl > 2 ? [...rendered, answers[rl], answers[rl + 1]] : answers);
+  };
 
   useEffect(() => {
-    questionAPI.getAllAnswers(props.q_ID)
-      .then(results => {
-        setAnswers(results);
-        if (results.length >= 2) {
-          setRendered([ results[0], results[1] ]);
-          setNum(2);
-        } else {
-          setRendered(results);
-          setNum(1);
-        }
-      })
-      .catch(err => console.log(err));
-  }, [props.q_ID]);
+    var ans = Object.values(mixedAns);
+    var curr = 0;
+    var next = 1;
+    while (curr < ans.length - 1) {
+      if (ans[curr].helpfulness < ans[next].helpfulness) {
+        let temp = ans[curr];
+        ans[curr] = ans[next];
+        ans[next] = temp;
+      }
+      next++;
 
-  var handleMore = () => {
-    var tempArr = rendered;
-    var tempNum = num;
-    if (answers.length - rendered.length >= 2) {
-      tempArr.push(answers[num]);
-      tempArr.push(answers[num+1]);
-      tempNum += 2;
-    } else {
-      tempArr.push(answers[num]);
-      tempNum += 1;
+      if (next === ans.length) {
+        curr++;
+        next = curr + 1;
+      }
     }
-    setRendered(tempArr);
-    setNum(tempNum);
-  };
-
-  var handleCollapse = () => {
-    setRendered([ answers[0], answers[1] ]);
-    setNum(2);
-  };
+    setAnswers(ans);
+    setRendered(ans.length > 2 ? [ans[0], ans[1]] : ans);
+  }, [mixedAns]);
 
   return (
     <div id="a-content" className="qna-container">
@@ -49,12 +40,13 @@ const AnsList = (props) => {
           return (
             <Answer
               key={idx}
-              a_ID={a.answer_id}
+              answerId={a.id}
               body={a.body}
               date={a.date}
               helpful={a.helpfulness}
               name={a.answerer_name}
               photos={a.photos}
+              openModal={openModal}
             />
           );
         })}
@@ -62,7 +54,7 @@ const AnsList = (props) => {
       {rendered.length < answers.length ?
         <button id="more-a" className="btn" onClick={handleMore}> More Answers </button>
         : null}
-      {rendered.length === answers.length && num > 2 ?
+      {rendered.length > 2 ?
         <button id="collapse-a" className="btn" onClick={handleCollapse}> Collapse Answers </button>
         : null}
     </div>

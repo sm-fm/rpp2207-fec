@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import questionAPI from '../../API/Questions.js';
+import React, { useState } from 'react';
 import Search from './Search.jsx';
 import QuestList from './Q-Components/QuestList.jsx';
 import AnsForm from './A-Components/AnsForm.jsx';
@@ -7,49 +6,60 @@ import QuestForm from './Q-Components/QuestForm.jsx';
 import './qna.css';
 
 const Questions = (props) => {
-  let [data, setData] = useState([]);
-  let [questions, setQuestions] = useState([]);
-  let [onAns, setOnAns] = useState(false);
-  let [onQuest, setOnQuest] = useState(false);
-
-
-  useEffect(() => {
-    questionAPI.getAllQuestions(props.objID)
-      .then(results => {
-        setData(results);
-        setQuestions(results);
-      })
-      .catch(err => console.log(err));
-  }, [props.objID]);
+  var data = props.data;
+  let [questions, setQuestions] = useState(data.questions);
+  let [form, setForm] = useState(-1);
+  let [modal, setModal] = useState('');
 
   var handleSearch = (term) => {
-    var results = data.filter(q => {
+    var results = data.questions.filter(q => {
       return q.question_body.toLowerCase().includes(term.toLowerCase());
     });
     setQuestions(results);
   };
 
-  var openAnsForm = () => { setOnAns(true); };
-  var closeAnsForm = () => { setOnAns(false); };
+  var openForm = (id) => { setForm(id); };
+  var closeForm = () => { setForm(-1); };
 
-  var openQuestForm = () => { setOnQuest(true); };
-  var closeQuestForm = () => { setOnQuest(false); };
+  var openModal = (imgUrl) => { setModal(imgUrl); };
+  var closeModal = () => { setModal(''); };
 
   return (
     <div id="qna" className="qna-container">
-      {onAns ?
-        <AnsForm closeForm={closeAnsForm}/> : null
+      {form > -1 ?
+        <AnsForm
+          closeForm={closeForm}
+          itemName={data.product.name}
+          questionBody={questions[form].question_body}
+          questionId={questions[form].question_id}
+        /> : null
       }
-      {onQuest ?
-        <QuestForm closeForm={closeQuestForm}/> : null
+      {form < -1 ?
+        <QuestForm
+          closeForm={closeForm}
+          itemName={data.product.name}
+          productId={data.id}
+        /> : null
       }
-      <h1 className="qna-title">Q & A</h1>
+      {modal ?
+        <div className="modal-thumbnail-container">
+          <button onClick={closeModal}
+            className="btn"
+            id="modal-btn"
+          >X</button>
+          <img
+            className="modal-thumbnail"
+            src={modal}
+            alt=""
+          />
+        </div> : null
+      }
+      <h1 className="qna-title">Questions & Answers</h1>
       <Search handleSearch={handleSearch}/>
       <QuestList
         questions={questions}
-        length={questions.length}
-        openAnsForm={openAnsForm}
-        openQuestForm={openQuestForm}
+        openForm={openForm}
+        openModal={openModal}
       />
     </div>
   );

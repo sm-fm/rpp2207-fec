@@ -113,7 +113,6 @@
   position: fixed;
   max-width: 150vh;
   max-height: 80vh;
-  /* border: 1px solid black; */
   float: right;
   margin: auto;
   right: 10%;
@@ -245,7 +244,7 @@
 .photo-modal button,
 .meta-rating button {
   margin-right: 10px;
-  background-color: white;
+  background-color: whitesmoke;
   border: 1px solid rgb(70, 70, 70);
   padding: 10px;
   color: rgb(70, 70, 70);

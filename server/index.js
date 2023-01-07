@@ -7,8 +7,8 @@ const fs = require('fs');
 const multer = require('multer');
 const upload = multer({dest: './photoHolder'});
 const cloudinary = require('cloudinary').v2;
+const compression = require('compression');
 require('dotenv').config();
-var compression = require('compression');
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
@@ -130,7 +130,7 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/meta/', (req, res) => {
+app.get('/reviews/meta', (req, res) => {
   fetch(`${baseURL}/reviews/meta/?product_id=${req.query.product_id}`, getOptions)
     .then(results => {
       return results.json();
@@ -161,7 +161,7 @@ app.put('/reviews/helpful/', (req, res) => {
 //report a review
 app.put('/reviews/report/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
-    .then(() => {
+    .then((data) => {
       res.status(200).send(true);
     })
     .catch(err => {
@@ -254,15 +254,16 @@ app.get('/qa/answers/:id', (req, res) => {
 app.post('/qa/questions', (req, res) => {
   var options = {
     method: 'POST',
-    body: req.body,
+    body: JSON.stringify(req.body),
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'Authorization': process.env.GITHUB_ACCESS_TOKEN
     }
   };
 
   fetch(`${baseURL}/qa/questions`, options)
-    .then(results => {
-      console.log(results);
+    .then(() => {
       res.sendStatus(201);
     })
     .catch(err => {
@@ -275,14 +276,17 @@ app.post('/qa/questions', (req, res) => {
 app.post('/qa/answers/:id', (req, res) => {
   var options = {
     method: 'POST',
-    body: req.body,
+    body: JSON.stringify(req.body),
     headers: {
-      'Content-Type': 'application/json'
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'Authorization': process.env.GITHUB_ACCESS_TOKEN
     }
   };
 
   fetch(`${baseURL}/qa/questions/${req.params.id}/answers`, options)
-    .then(() => {
+    .then(results => {
+      console.log(results);
       res.sendStatus(201);
     })
     .catch(err => {

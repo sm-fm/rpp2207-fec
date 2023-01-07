@@ -2,34 +2,34 @@ import React from 'react';
 import HelpReport from '../HelpReport.jsx';
 import { format } from 'date-fns';
 
-const Answer = (props) => {
-  var date = new Date(props.date);
-  date = format(date, 'MMM d, y');
+const Answer = ({ date, body, photos, name, answerId, helpful, openModal }) => {
+  const _date = format(new Date(date), 'MMM d, y');
 
   return (
     <div className="answer-container">
-      <h1><strong>A: </strong>{props.body}</h1>
+      <h1><strong>A: </strong>{body}</h1>
       <div className="thumbnail-container">
-        {props.photos.map((photo, idx) => {
+        {photos.map((photo, idx) => {
           return (
             <img
               key={idx}
-              className='thumbnail'
-              src={photo.url}
-              alt={''}
+              onClick={() => openModal(photo)}
+              className="thumbnail"
+              src={photo}
+              alt=""
             />
           );
         })}
       </div>
       <span className="a-details">
-        {props.name === 'Seller' ?
-          <p id="a-name"><strong>{props.name}, </strong></p>
-          : <p id="a-name">{props.name}, </p>}
-        <p id="a-date">{date}</p>
+        {name === 'Seller' ?
+          <p id="a-name"><strong>{name}, </strong></p>
+          : <p id="a-name">{name}, </p>}
+        <p id="a-date">{_date}</p>
         <HelpReport
-          val={props.a_ID}
+          val={answerId}
           type={'answers'}
-          helpful={props.helpful}
+          helpful={helpful}
         />
       </span>
     </div>

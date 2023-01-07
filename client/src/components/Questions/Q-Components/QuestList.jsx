@@ -1,41 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import Question from './Question.jsx';
 
-const QuestList = (props) => {
-  let [questions, setQuestions] = useState([]);
+const QuestList = ({ questions, openForm, openModal }) => {
   let [rendered, setRendered] = useState([]);
-  let [num, setNum] = useState(2);
+
+  var handleCollapse = () => { setRendered([ questions[0], questions[1] ]); };
+  var handleMore = () => {
+    let rl = rendered.length;
+    let ql = questions.length;
+    setRendered(ql - rl > 2 ? [...rendered, questions[rl], questions[rl + 1]] : questions);
+  };
 
   useEffect(() => {
-    setQuestions(props.questions);
-    if (props.length >= 2) {
-      setRendered([ props.questions[0], props.questions[1] ]);
-      setNum(2);
-    } else {
-      setRendered(props.questions);
-      setNum(1);
-    }
-  }, [props.questions, props.length]);
-
-  var handleMore = () => {
-    var tempArr = rendered;
-    var tempNum = num;
-    if (questions.length - rendered.length >= 2) {
-      tempArr.push(questions[num]);
-      tempArr.push(questions[num+1]);
-      tempNum += 2;
-    } else {
-      tempArr.push(questions[num]);
-      tempNum += 1;
-    }
-    setRendered(tempArr);
-    setNum(tempNum);
-  };
-
-  var handleCollapse = () => {
-    setRendered([ questions[0], questions[1] ]);
-    setNum(2);
-  };
+    setRendered(questions.length > 2 ? [questions[0], questions[1]] : questions);
+  }, [questions]);
 
   return (
     <div id="q-content">
@@ -44,13 +22,15 @@ const QuestList = (props) => {
           return (
             <Question
               key={idx}
-              q_ID={q.question_id}
+              idx={idx}
+              questionId={q.question_id}
               body={q.question_body}
               date={q.question_date}
               helpful={q.question_helpfulness}
               name={q.asker_name}
               answers={q.answers}
-              openForm={props.openAnsForm}
+              openForm={openForm}
+              openModal={openModal}
             />
           );
         })}
@@ -59,10 +39,10 @@ const QuestList = (props) => {
         {rendered.length < questions.length ?
           <button id="more-q" className="btn" onClick={handleMore}> More Questions </button>
           : null}
-        {rendered.length === questions.length && num > 2 ?
+        {rendered.length > 2 ?
           <button id="collapse-q" className="btn" onClick={handleCollapse}> Collapse Questions </button>
           : null}
-        <button id="add-q" className="btn" onClick={props.openQuestForm}>Ask a Question +</button>
+        <button id="add-q" className="btn" onClick={ () => openForm(-2) }>Ask a Question +</button>
       </div>
     </div>
   );
