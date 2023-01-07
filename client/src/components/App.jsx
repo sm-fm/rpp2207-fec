@@ -121,7 +121,6 @@ const App = (props) => {
 
   return (
     <div onClick={clickTracking}>
-      <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
       <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} data={props.data} />
       <Questions objID={id} data={props.data} />

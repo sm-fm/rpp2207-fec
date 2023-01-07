@@ -431,7 +431,7 @@
 @keyframes success {
   from {}
   to {
-    color: white;
+    color: whitesmoke;
     visibility: hidden;
     animation-play-state: paused;
   }
