@@ -11,7 +11,7 @@ describe('Product Info module', () => {
         product={chosenStyleData.featureData[1]}
         stars={[]} />
     );
-    const starsRendered = screen.getByRole('stars');
+    const starsRendered = screen.getByTestId('stars');
     expect(starsRendered).toBeInTheDocument();
   });
 

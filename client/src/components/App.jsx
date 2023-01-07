@@ -9,7 +9,7 @@ import '../style.css';
 const App = (props) => {
   const params = useParams();
   const id = params.id || '71697';
-  const [yourOutfit, setYourOutfit] = useState([]);
+  const [yourOutfit, setYourOutfit] = useState(JSON.parse(localStorage.getItem('yourOutfit')) || []);
   const [scrollToRatings, setScrollToRatings] = useState(false);
   const ratingsRef = useRef(null);
 
@@ -105,17 +105,28 @@ const App = (props) => {
   }
 
   let clickTracking = ((e) => {
-    // console.log(e.target);
+    let clickTimeStamp = new Date();
+    let holders = ['main-overview', 'related', 'qna', 'reviews', 'app'];
+    let nativePath = e.nativeEvent.path;
+    let container;
+    for (let i = 0; i < nativePath.length; i++) {
+      if (holders.includes(nativePath[i].id)) {
+        container = nativePath[i].id;
+        break;
+      }
+    }
+    let clickInformation = {timeStamp: clickTimeStamp, container: container, targetElement: e.target, event: e};
+    console.log('Click information: ', clickInformation);
   });
 
   return (
     <div onClick={clickTracking}>
       <h1>App.jsx</h1>
       <Overview objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} setScrollToRatings={setScrollToRatings} generateStars={generateStars} data={props.data} />
-      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} />
-      <Questions objID={id}/>
+      <Related objID={id} yourOutfit={yourOutfit} addToOutfit={addToOutfit} removeFromOutfit={removeFromOutfit} generateStars={generateStars} data={props.data} />
+      <Questions objID={id} data={props.data} />
       <div ref={ratingsRef}>
-        <Ratings objID={id} generateStars={generateStars} data={props.data}/>
+        <Ratings objID={id} generateStars={generateStars} data={props.data} />
       </div>
     </div>
   );

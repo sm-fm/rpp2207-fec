@@ -12,7 +12,7 @@ describe('Features module', () => {
       <Features
         product={chosenStyleData.featureData[0]} />
     );
-    const features = screen.queryAllByRole('indi-feature');
+    const features = screen.queryAllByTestId('indi-feature');
     expect(features.length).toBe(4);
   });
 
@@ -27,13 +27,13 @@ describe('Features module', () => {
 
   test('Should not render features if no data is passed to component', async () => {
     render(<Features />);
-    const features = screen.queryAllByRole('indi-feature');
+    const features = screen.queryAllByTestId('indi-feature');
     expect(features.length).toBe(0);
   });
 
   test('IndiFeature should not exist if no data passed to Features', async () => {
     render(<Features />);
-    const indiFeature = screen.queryByRole('check');
+    const indiFeature = screen.queryByTestId('check');
     expect(indiFeature).toBeNull();
   });
 });
@@ -52,8 +52,8 @@ describe('Description component', () => {
 
   test('Should not render info if no data is passed to component', async () => {
     render(<Description />);
-    const slogan = screen.queryByRole('slogan');
-    const description = screen.queryByRole('description');
+    const slogan = screen.queryByTestId('slogan');
+    const description = screen.queryByTestId('description');
     expect(slogan).toBeNull;
     expect(description).toBeNull;
   });

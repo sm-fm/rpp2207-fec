@@ -7,6 +7,7 @@ import ExpandedView from './ImageViews/ExpandedView.jsx';
 import Description from './ProductInfo/Description.jsx';
 
 const Overview = (props) => {
+  console.log('Overview Props: ', props);
   const product = props.data.product;
   const styles = props.data.styles;
   const [chosenStyle, setChosenStyle] = useState(props.data.chosenStyle);
@@ -15,7 +16,7 @@ const Overview = (props) => {
   const [expandedView, setExpandedView] = useState(false);
   const [indexOfExpandedImg, setIndexOfExpandedImg] = useState(0);
   const [skus, setSkus] = useState(props.data.skus);
-  const reviews = props.data.reviews;
+  const reviews = props.data.reviewData.results.length;
   const stars = props.generateStars(props.data.avgRatings, 'overview');
 
   if (Object.keys(props.data).length === 0) {

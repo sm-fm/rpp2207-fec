@@ -229,7 +229,8 @@
 .reviewListHeading .heading {
   font-weight: 700;
   font-size: 17px;
-  color: rgb(80, 80, 80)
+  color: rgb(80, 80, 80);
+  background-color: whitesmoke;
 }
 
 .reviewListHeading .heading select {

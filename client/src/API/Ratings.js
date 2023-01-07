@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const testing = true;
+const testing = false;
 const apiUrl = testing ? 'http://localhost:3000/' : '';
 const Ratings = {
   getReviewList: (product_id, sort, page, count) => {

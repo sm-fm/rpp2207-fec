@@ -8,7 +8,9 @@ const multer = require('multer');
 const upload = multer({dest: './photoHolder'});
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
+var compression = require('compression');
 
+app.use(compression());
 app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
@@ -128,7 +130,7 @@ app.get('/reviews', (req, res) => {
     });
 });
 
-app.get('/reviews/meta', (req, res) => {
+app.get('/reviews/meta/', (req, res) => {
   fetch(`${baseURL}/reviews/meta/?product_id=${req.query.product_id}`, getOptions)
     .then(results => {
       return results.json();
@@ -159,7 +161,7 @@ app.put('/reviews/helpful/', (req, res) => {
 //report a review
 app.put('/reviews/report/', (req, res) => {
   fetch(`${baseURL}/reviews/${req.query.review_id}/report`, putOptions)
-    .then((data) => {
+    .then(() => {
       res.status(200).send(true);
     })
     .catch(err => {

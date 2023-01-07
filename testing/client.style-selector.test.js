@@ -1,6 +1,7 @@
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import StyleSelector from '../client/src/components/Overview/StylesSelector/StyleSelector.jsx';
 import SpecificStyle from '../client/src/components/Overview/StylesSelector/SpecificStyle.jsx';
+import Overview from '../client/src/components/Overview/Overview.jsx';
 import chosenStyleData from './mockData.js';
 import React from 'react';
 import {
@@ -45,7 +46,7 @@ describe('SpecificStyle Module', () => {
       styleClicked={ chosenStyleData.results[0] }
       style={ chosenStyleData.results[0] } />);
     const image = screen.getByAltText('thumbnail of current style');
-    expect(image).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80");
+    expect(image).toHaveAttribute('src', "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=90&q=80");
   });
 
   test('renders checkmark over currently clicked style', async () => {
@@ -54,6 +55,23 @@ describe('SpecificStyle Module', () => {
       style={ chosenStyleData.results[0] } />);
     const checkmark = await screen.getByTestId('checkmark');
     expect(checkmark).toBeInTheDocument();
+  });
+
+  test('Clicking on a thumbnail correctly changes the main image', async () => {
+    render(
+      <Overview
+        data={chosenStyleData.data}
+        yourOutfit={[]}
+        addToOutfit={() => {}}
+        setScrollToRatings={() => {}}
+        generateStars={() => {}} />
+    );
+    const thumbnail = screen.queryAllByAltText('thumbnail of current style');
+    fireEvent.click(thumbnail[1]);
+    waitFor(() => {
+      const mainImg = screen.getByAltText('Image of current style');
+      expect(mainImg).toHaveAttribute('src', 'https://images.unsplash.com/photo-1534011546717-407bced4d25c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=90&q=80');
+    });
   });
 
 });
