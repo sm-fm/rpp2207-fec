@@ -11,6 +11,8 @@ Table of Contents --
   
 ![Screenshot 2023-01-07 at 4 20 34 PM](https://user-images.githubusercontent.com/98621806/211170740-7b8a34e9-f316-466e-89e2-a568f51f8ac5.jpg)
 
+![fecgif](https://user-images.githubusercontent.com/98621806/211430073-089252e8-5480-48a0-b5de-4e34f3ad2796.gif)
+
 Description --
 The Overview module (Sean McDaniel) will be the top-most module on the Product Detail page.  The functionality contained within this module can be divided into several pieces:
   - Image gallery
